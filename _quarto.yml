@@ -1,20 +1,42 @@
 project:
-  type: website
-  output-dir: docs
+  type: book
+  output-dir: _book
 
-website:
-  title: "챗GPT 데이터 과학"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+lang: ko-KR
+
+book:
+  title: "챗GPT 데이터 사이언스"
+  reader-mode: true
+
+  page-footer:
+    left: |
+      이광춘, 신종화, 유충현, 홍성학이 '챗GPT 데이터 사이언스'를 저작했습니다.
+    right: |
+      <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.
+  cover-image: cover.jpg
+  favicon: cover.jpg
+  site-url: https://r2bit.com/chatGPT4ds/
+  repo-url: https://github.com/bit2r/chatGPT4ds
+  repo-branch: main
+  repo-actions: [edit, issue]
+  chapters:
+    - index.qmd
+
+    # - intro.qmd
+
+    - part: "1부"
+      chapters:
+        - intro.qmd
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
-    toc: true
+    theme:
+      - cosmo
+      - chatGPT4ds.scss
+    code-link: true
 
+    author-meta: "이광춘, 신종화, 유충현, 홍성학"
+    callout-appearance: simple
 
+editor: source
 
