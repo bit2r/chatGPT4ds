@@ -1,11 +1,8 @@
-<<<<<<< HEAD
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
+# Quarto
 
 /.quarto/
-=======
+
+
 # History files
 .Rhistory
 .Rapp.history
@@ -13,6 +10,7 @@
 # Session Data files
 .RData
 .RDataTmp
+.Rproj.user
 
 # User-specific files
 .Ruserdata
@@ -47,12 +45,11 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 
-# pkgdown site
-docs/
 
 # translation temp files
 po/*~
 
 # RStudio Connect folder
 rsconnect/
->>>>>>> 9dd8b262f114d0ff21fd6585111d8c11ad40bb43
+
+
