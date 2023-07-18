@@ -1,0 +1,9 @@
+---
+title: "파이썬"
+---
+
+About this site
+
+```{python}
+print("챗GPT 데이터 과학 세상에 오신 것을 환영합니다.")
+```

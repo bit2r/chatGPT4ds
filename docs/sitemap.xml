@@ -2,10 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://r2bit.com/chatGPT4ds/index.html</loc>
-    <lastmod>2023-07-18T00:42:58.888Z</lastmod>
+    <lastmod>2023-07-18T01:09:52.304Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/chatGPT4ds/intro.html</loc>
-    <lastmod>2023-07-18T00:43:04.359Z</lastmod>
+    <lastmod>2023-07-18T01:11:14.105Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r2bit.com/chatGPT4ds/lang_r.html</loc>
+    <lastmod>2023-07-18T01:08:08.082Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r2bit.com/chatGPT4ds/lang_py.html</loc>
+    <lastmod>2023-07-18T01:07:59.776Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r2bit.com/chatGPT4ds/lang_gpt.html</loc>
+    <lastmod>2023-07-18T01:08:12.371Z</lastmod>
   </url>
 </urlset>

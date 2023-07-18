@@ -4,27 +4,55 @@
     "href": "index.html",
     "title": "챗GPT 데이터 과학",
     "section": "",
-    "text": "1 데이터 과학\n한글 창제"
+    "text": "1 데이터 과학"
+  },
+  {
+    "objectID": "index.html#교육",
+    "href": "index.html#교육",
+    "title": "챗GPT 데이터 과학",
+    "section": "1.2 교육",
+    "text": "1.2 교육\n\nTidyverse Hands-on"
+  },
+  {
+    "objectID": "index.html#관련-링크",
+    "href": "index.html#관련-링크",
+    "title": "챗GPT 데이터 과학",
+    "section": "1.3 관련 링크",
+    "text": "1.3 관련 링크\n\nR사용자회\n페이스북\n유튜브\nGitHub"
   },
   {
     "objectID": "intro.html",
     "href": "intro.html",
-    "title": "\n2  About\n",
+    "title": "\n2  소개\n",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
   },
   {
-    "objectID": "index.html#데이터-정제",
-    "href": "index.html#데이터-정제",
-    "title": "챗GPT 데이터 과학",
-    "section": "1.1 데이터 정제",
-    "text": "1.1 데이터 정제"
+    "objectID": "lang_r.html",
+    "href": "lang_r.html",
+    "title": "\n3  R 언어\n",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
   },
   {
-    "objectID": "index.html#우리나라",
-    "href": "index.html#우리나라",
+    "objectID": "lang_py.html",
+    "href": "lang_py.html",
+    "title": "4  파이썬",
+    "section": "",
+    "text": "About this site\n\nprint(\"챗GPT 데이터 과학 세상에 오신 것을 환영합니다.\")\n\n챗GPT 데이터 과학 세상에 오신 것을 환영합니다."
+  },
+  {
+    "objectID": "index.html#데이터-과학",
+    "href": "index.html#데이터-과학",
     "title": "챗GPT 데이터 과학",
-    "section": "2.1 우리나라",
-    "text": "2.1 우리나라\n\n2.1.1 대한민국"
+    "section": "0.1 데이터 과학",
+    "text": "0.1 데이터 과학"
+  },
+  {
+    "objectID": "index.html#참고",
+    "href": "index.html#참고",
+    "title": "챗GPT 데이터 과학",
+    "section": "1.1 참고",
+    "text": "1.1 참고"
   }
 ]

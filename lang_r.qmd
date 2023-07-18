@@ -1,5 +1,5 @@
 ---
-title: "소개"
+title: "R 언어"
 ---
 
 About this site

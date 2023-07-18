@@ -5,13 +5,17 @@ subtitle: "ChatGPT for Data Science"
 
 # 데이터 과학
 
-## 데이터 정제
+## 참고
 
-# 한글 사랑
+## 교육
 
-한글 창제
+- [Tidyverse Hands-on](https://choonghyunryu.github.io/Edu_Tidyverse/)
 
-## 우리나라
+## 관련 링크
 
-### 대한민국
+- [R사용자회](https://r2bit.com)
+- [페이스북](https://www.facebook.com/groups/tidyverse)
+- [유튜브](https://www.youtube.com/channel/UCW-epmIvjBEhhVXw_F0Nqbw)
+- [GitHub](https://github.com/bit2r/)
+
 
