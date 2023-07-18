@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "챗GPT 데이터 과학",
     "section": "",
-    "text": "데이터 과학"
+    "text": "1 데이터 과학\n한글 창제"
   },
   {
     "objectID": "intro.html",
@@ -12,5 +12,19 @@
     "title": "\n2  About\n",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "index.html#데이터-정제",
+    "href": "index.html#데이터-정제",
+    "title": "챗GPT 데이터 과학",
+    "section": "1.1 데이터 정제",
+    "text": "1.1 데이터 정제"
+  },
+  {
+    "objectID": "index.html#우리나라",
+    "href": "index.html#우리나라",
+    "title": "챗GPT 데이터 과학",
+    "section": "2.1 우리나라",
+    "text": "2.1 우리나라\n\n2.1.1 대한민국"
   }
 ]

@@ -5,7 +5,7 @@ project:
 lang: ko-KR
 
 book:
-  title: "챗GPT 데이터 사이언스"
+  title: "챗GPT 데이터 과학"
   reader-mode: true
 
   page-footer:
