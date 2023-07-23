@@ -4,3 +4,55 @@ title: "챗GPT 자연어"
 
 
 
+![](images/chatgpt_code_interpreter.jpg)
+
+# 챗GPT 시대 데이터 분석
+
+- OpenAI 챗GPT [Code Interpreter 플러그인](https://openai.com/blog/chatgpt-plugins#code-interpreter)
+- [노터블(Notable)](https://noteable.io/): EDA & ETL Made Easy (SQL, Python, & R)
+- [오픈소스 GPT-Code UI](https://github.com/ricklamers/gpt-code-ui)
+- R
+    - [RTutor.ai](http://rtutor.ai/), [GitHub 저장소](https://github.com/gexijin/RTutor)
+    - [https://chatlize.ai/](https://chatlize.ai/)
+
+
+# Code Interpreter
+
+
+::: {.panel-tabset}
+
+
+### 1단계
+
+![](images/rtutor/code_interpreter_02.webp)
+
+### 2단계
+
+![](images/rtutor/code_interpreter_03.webp)
+
+### 3단계
+
+![](images/rtutor/code_interpreter_04.webp)
+
+### 4단계
+
+![](images/rtutor/code_interpreter_05.webp)
+
+### 5단계 (데이터+프롬프트)
+
+![](images/rtutor/code_interpreter_import.jpg)
+
+:::
+
+
+# Notable.ai
+
+
+# 심슨 패러독스
+
+1. 챗GPT Code Interpreter : [채팅 이력](https://chat.openai.com/share/2e7237e6-c0ca-45b1-9254-4a4476430b19)
+2. Jupyter Notebook 다운로드: [`penguin_analysis.ipynb`](data/penguin_analysis.ipynb)
+3. `penguin_analysis.ipynb` &rarr; `penguin_analysis.qmd` 
+    -  명령어: `$ quarto convert penguin_analysis.ipynb`
+4. 쿼토 컴파일: [바로가기](penguin_analysis.html)
+   

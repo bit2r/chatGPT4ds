@@ -54,5 +54,124 @@
     "title": "챗GPT 데이터 과학",
     "section": "1.1 참고",
     "text": "1.1 참고"
+  },
+  {
+    "objectID": "penguins.html",
+    "href": "penguins.html",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "",
+    "text": "4 펭귄 데이터셋"
+  },
+  {
+    "objectID": "penguins.html#펭귄-데이터-출현",
+    "href": "penguins.html#펭귄-데이터-출현",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "\n4.1 펭귄 데이터 출현",
+    "text": "4.1 펭귄 데이터 출현\n미국에서 “George Floyd”가 경찰에 의해 살해되면서 촉발된 “Black Lives Matter” 운동은 아프리카계 미국인을 향한 폭력과 제도적 인종주의에 반대하는 사회운동이다. 한국에서도 소수 정당인 정의당에서 여당 의원 176명 중 누가?…차별금지법 발의할 ’의인’을 구합니다로 기사로 낼 정도로 적극적으로 나서고 있다.\n데이터 과학에서 최근 R.A. Fisher의 과거 저술한 “The genetical theory of natural selection” [@fisher1958genetical] 우생학(Eugenics) 대한 관점이 논란이 되면서 R 데이터 과학의 첫 데이터셋으로 붓꽃 iris 데이터를 다른 데이터, 즉 펭귄 데이터로 대체하는 움직임이 활발히 전개되고 있다. palmerpenguins [@penguin2020] 데이터셋이 대안으로 많은 호응을 얻고 있다. [@AbdulMajedRaja2020, @Levy2019]"
+  },
+  {
+    "objectID": "penguins.html#penguins-study",
+    "href": "penguins.html#penguins-study",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "\n4.2 펭귄 공부",
+    "text": "4.2 펭귄 공부\n팔머(Palmer) 펭귄은 3종이 있으며 자세한 내용은 다음 나무위키를 참조한다. 1\n\n\n젠투 펭귄(Gentoo Penguin): 머리에 모자처럼 둘러져 있는 하얀 털 때문에 알아보기가 쉽다. 암컷이 회색이 뒤에, 흰색이 앞에 있다. 펭귄들 중에 가장 빠른 시속 36km의 수영 실력을 자랑하며, 짝짓기 할 준비가 된 펭귄은 75-90cm까지도 자란다.\n\n아델리 펭귄(Adelie Penguin): 프랑스 탐험가인 뒤몽 뒤르빌(Dumont D’Urville) 부인의 이름을 따서 ’아델리’라 불리게 되었다. 각진 머리와 작은 부리 때문에 알아보기 쉽고, 다른 펭귄들과 마찬가지로 암수가 비슷하게 생겼지만 암컷이 조금 더 작다.\n\n턱끈 펭귄(Chinstrap Penguin): 언뜻 보면 아델리 펭귄과 매우 비슷하지만, 몸집이 조금 더 작고, 목에서 머리 쪽으로 이어지는 검은 털이 눈에 띈다. 어린 고삐 펭귄들은 회갈색 빛을 띄는 털을 가지고 있으며, 목 아래 부분은 더 하얗다. 무리를 지어 살아가며 일부일처제를 지키기 때문에 짝짓기 이후에도 부부로써 오랫동안 함께 살아간다.\n\n\n\n팔머 펭귄 3종 세트\n\n다음으로 iris 데이터와 마찬가지로 펭귄 3종을 구분하기 위한 변수로 조류의 부리에 있는 중앙 세로선의 융기를 지칭하는 능선(culmen) 길이(culmen length)와 깊이(culmen depth)를 이해하면 된다.\n\n\n팔머 펭귄 능선 변수"
+  },
+  {
+    "objectID": "penguins.html#penguin-home",
+    "href": "penguins.html#penguin-home",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "\n4.3 펭귄 서식지",
+    "text": "4.3 펭귄 서식지\nleaflet 팩키지로 펭귄 서식지를 남극에서 특정한다. geocoding을 해야 하는데 구글에서 위치 정보를 구글링하면 https://latitude.to/에서 직접 위경도를 반환하여 준다. 이 정보를 근거로 하여 펭귄 서식지를 시각화한다.\n\n\n\n\n파머 연구소와 펭귄 서식지\n\n\n\n펭귄 3종\n\n\n\n\n\n아델리, 젠투, 턱끈 펭귄이 함께한 사진\n\n\n\n토르거센 섬에서 새끼를 키우는 아델리 펭귄\n\n\n\n비스코 지점 젠투 펭귄 서식지\n\n\n\n펭귄과 함께 현장에서 일하는 크리스틴 고먼 박사\n\n\n\n\n파머 펭귄 데이터셋\n\n\n\n\nlibrary(tidyverse)\nlibrary(leaflet)\nlibrary(palmerpenguins)\n# library(tidygeocoder)\n\npenguins %&gt;% \n  count(island)\n\n# A tibble: 3 × 2\n  island        n\n  &lt;fct&gt;     &lt;int&gt;\n1 Biscoe      168\n2 Dream       124\n3 Torgersen    52\n\nisland_df &lt;- tribble(~\"address\", ~\"lat\", ~\"lng\",\n                     \"Torgersen Island antarctica\", -64.772819, -64.074325,\n                     \"Dream Island antarctica\", -64.725558, -64.225562,\n                     \"Biscoe Island antarctica\", -64.811565, -63.777947,\n                     \"Palmer Station\", -64.774312, -64.054213)\n\nisland_df %&gt;% \n  leaflet() %&gt;% \n  addProviderTiles(providers$OpenStreetMap) %&gt;% \n  addMarkers(lng=~lng, lat=~lat, \n                   popup = ~ as.character(paste0(\"&lt;strong&gt;\", paste0(\"명칭:\",`address`), \"&lt;/strong&gt;&lt;br&gt;\",\n                                                 \"-----------------------------------------------------------&lt;br&gt;\",\n                                                 \"&middot; latitude: \", `lat`, \"&lt;br&gt;\",\n                                                 \"&middot; longitude: \", `lng`, \"&lt;br&gt;\"\n                   )))"
+  },
+  {
+    "objectID": "penguins.html#데이터-설치",
+    "href": "penguins.html#데이터-설치",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "\n4.4 데이터 설치",
+    "text": "4.4 데이터 설치\nremotes 팩키지 install_github() 함수로 펭귄 데이터를 설치한다.\n\n# install.packages(\"remotes\")\nremotes::install_github(\"allisonhorst/palmerpenguins\")\n\ntidyverse 팩키지 glimpse() 함수로 펭귄 데이터를 일별한다.\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\nglimpse(penguins)\n\nRows: 344\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…"
+  },
+  {
+    "objectID": "penguins.html#penguin-EDA-skimr",
+    "href": "penguins.html#penguin-EDA-skimr",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "\n4.5 자료구조 일별",
+    "text": "4.5 자료구조 일별\nskimr 팩키지를 사용해서 penguins 데이터프레임 자료구조를 일별한다. 이를 통해서 344개 펭귄 관측값이 있으며, 7개 칼럼으로 구성된 것을 확인할 수 있다. 또한, 범주형 변수가 3개, 숫자형 변수가 4개로 구성되어 있다. 그외 더 자세한 사항은 범주형, 숫자형 변수에 대한 요약 통계량을 참조한다.\n\nskimr::skim(penguins)\n\n\nData summary\n\n\nName\npenguins\n\n\nNumber of rows\n344\n\n\nNumber of columns\n8\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\nfactor\n3\n\n\nnumeric\n5\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: factor\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nordered\nn_unique\ntop_counts\n\n\n\nspecies\n0\n1.00\nFALSE\n3\nAde: 152, Gen: 124, Chi: 68\n\n\nisland\n0\n1.00\nFALSE\n3\nBis: 168, Dre: 124, Tor: 52\n\n\nsex\n11\n0.97\nFALSE\n2\nmal: 168, fem: 165\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\nbill_length_mm\n2\n0.99\n43.92\n5.46\n32.1\n39.23\n44.45\n48.5\n59.6\n▃▇▇▆▁\n\n\nbill_depth_mm\n2\n0.99\n17.15\n1.97\n13.1\n15.60\n17.30\n18.7\n21.5\n▅▅▇▇▂\n\n\nflipper_length_mm\n2\n0.99\n200.92\n14.06\n172.0\n190.00\n197.00\n213.0\n231.0\n▂▇▃▅▂\n\n\nbody_mass_g\n2\n0.99\n4201.75\n801.95\n2700.0\n3550.00\n4050.00\n4750.0\n6300.0\n▃▇▆▃▂\n\n\nyear\n0\n1.00\n2008.03\n0.82\n2007.0\n2007.00\n2008.00\n2009.0\n2009.0\n▇▁▇▁▇\n\n\n\n\n\n데이터가 크지 않아 DT 팩키지를 통해 데이터 전반적인 내용을 살펴볼 수 있다.\n\npenguins %&gt;% \n  reactable::reactable()"
+  },
+  {
+    "objectID": "penguins.html#penguin-EDA",
+    "href": "penguins.html#penguin-EDA",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "\n4.6 탐색적 데이터 분석",
+    "text": "4.6 탐색적 데이터 분석\npalmerpenguins 데이터셋 소개에 포함되어 있는 미국 팔머 연구소 (palmer station) 펭귄 물갈퀴(flipper) 길이와 체질량(body mass) 산점도를 그려보자.\n\nlibrary(tidyverse)\nlibrary(extrafont)\nloadfonts()\n\nmass_flipper &lt;- ggplot(data = penguins, \n                       aes(x = flipper_length_mm,\n                           y = body_mass_g)) +\n  geom_point(aes(color = species, \n                 shape = species),\n             size = 3,\n             alpha = 0.8) +\n  theme_minimal(base_family = \"NanumGothic\") +\n  scale_color_manual(values = c(\"darkorange\",\"purple\",\"cyan4\")) +\n  labs(title = \"펭귄 크기\",\n       subtitle = \"남극 펭귄 3종 물갈퀴 길이와 체질량 관계\",\n       x = \"물갈퀴 길이 (mm)\",\n       y = \"체질량 (g)\",\n       color = \"펭귄 3종\",\n       shape = \"펭귄 3종\") +\n  theme(legend.position = c(0.2, 0.7),\n        legend.background = element_rect(fill = \"white\", color = NA),\n        plot.title.position = \"plot\",\n        plot.caption = element_text(hjust = 0, face= \"italic\"),\n        plot.caption.position = \"plot\")\n\nmass_flipper"
+  },
+  {
+    "objectID": "penguins.html#footnotes",
+    "href": "penguins.html#footnotes",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "",
+    "text": "신발끈 여행사, 관광안내자료↩︎"
+  },
+  {
+    "objectID": "lang_gpt.html",
+    "href": "lang_gpt.html",
+    "title": "4  챗GPT 자연어",
+    "section": "",
+    "text": "5 챗GPT 시대 데이터 분석\n\nOpenAI 챗GPT Code Interpreter 플러그인\n노터블(Notable): EDA & ETL Made Easy (SQL, Python, & R)\n오픈소스 GPT-Code UI\nR\n\nRTutor.ai, GitHub 저장소\nhttps://chatlize.ai/\n\n\n\n\n6 Code Interpreter\n\n1단계2단계3단계4단계5단계 (데이터+프롬프트)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7 Notable.ai\n\n\n8 심슨 패러독스\n\n챗GPT Code Interpreter : 채팅 이력\nJupyter Notebook 다운로드: penguin_analysis.ipynb\npenguin_analysis.ipynb → penguin_analysis.qmd\n\n명령어: $ quarto convert penguin_analysis.ipynb\n\n쿼토 컴파일: 바로가기"
+  },
+  {
+    "objectID": "lang_sql.html",
+    "href": "lang_sql.html",
+    "title": "7  파이썬",
+    "section": "",
+    "text": "About this site\n\nprint(\"챗GPT 데이터 과학 세상에 오신 것을 환영합니다.\")\n\n챗GPT 데이터 과학 세상에 오신 것을 환영합니다."
+  },
+  {
+    "objectID": "simpson.html",
+    "href": "simpson.html",
+    "title": "\n8  파이썬\n",
+    "section": "",
+    "text": "9 심슨의 역설 1 2\n영국의 통계학자 에드워드 심슨이 정리한 역설(Simpson paradox)로, 전반적인 추세가 경향성이 존재하는 것으로 보이지만, 그룹으로 나눠서 개별적으로 보게 되면 경향성이 사라지거나 해석이 반대로 되는 경우를 이른다.\n중요한 변수(lurking variable)가 빠져서 주로 이런 역설이 발생한다. 심슨의 역설은 확률의 역사에서 중요한 주제 중의 하나로 자리를 잡고 있다.\n\\(\\frac{a_1}{A_1} &gt; \\frac{b_1}{B_1}\\) 이고 \\(\\frac{a_2}{A_2} &gt; \\frac{b_2}{B_2}\\) 이라고 반드시 \\(\\frac{a_1+a_2}{(A_1+A_2)} &gt; \\frac{(b_1+b_2)}{(B_1+B_2)}\\) 인 것은 아니다. 즉, “각 부분에 대한 평균이 크다고 해서 전체에 대한 평균까지 크지는 않다”는 의미이다.3\n심슨의 역설 사례를 책페이지수와 책가격의 관계를 살펴보자. 데이터는 책 유형(하드커버, 페이퍼백)은 두가지가 있고, 페이지수와 책가격이 달러로 구성된 데이터프레임이다.\n심슨의 역설에 대해서 동아사이언스에서 2008년, 2013년 3회 심슨의 역설에 대한 기사를 실었는데 “명문대 남녀 합격생의 반전”, “오류를 잡아라! 확률 법정” 의 기사가 눈에 띈다."
+  },
+  {
+    "objectID": "simpson.html#simpson-paradox-case-study-EDA",
+    "href": "simpson.html#simpson-paradox-case-study-EDA",
+    "title": "\n8  파이썬\n",
+    "section": "\n10.1 데이터 시각화",
+    "text": "10.1 데이터 시각화\n이를 시각적으로 표현하면 관계가 음의 상관관계를 갖는 것을 알 수 있다.\n\nlibrary(tidyverse)\nlibrary(cowplot)\nlibrary(extrafont)\nloadfonts()\n\nsimp_df &lt;- tribble(\n    ~book_type, ~num_pages, ~book_price,\n    \"hardcover\", 150, 27.43, \n    \"hardcover\", 225, 48.76, \n    \"hardcover\", 342, 50.25, \n    \"hardcover\", 185, 32.01, \n    \"paperback\", 475, 10.00, \n    \"paperback\", 834, 15.73, \n    \"paperback\", 1020, 20.00, \n    \"paperback\", 790, 17.89)\n\nsimp_df %&gt;% \n    ggplot(aes(x=num_pages, y=book_price)) +\n      geom_point(size=3) +\n      geom_smooth(method = \"lm\", se=FALSE)"
+  },
+  {
+    "objectID": "simpson.html#simpson-paradox-case-study-EDA-cor",
+    "href": "simpson.html#simpson-paradox-case-study-EDA-cor",
+    "title": "\n8  파이썬\n",
+    "section": "\n10.2 기술통계량",
+    "text": "10.2 기술통계량\nnum_pages, book_price 두변수를 추출하여 상관계수를 도출한다. 그리고 나서, 책 유형에 따른 상관관계도 도출해 낸다. 먼저 책 유형에 관계없이 num_pages, book_price 상관관계는 -0.5949366으로 나름 강한 음의 상관계수가 관측된다.\n\nsimp_df %&gt;% \n    summarise(book_cor = cor(num_pages, book_price)) %&gt;% \n    pull()\n\n[1] -0.5949366\n\n\n이번에는 책 유형에 따른 상관계수는 어떤지 계산해 보자. 이 경우, 하드커버는 0.848, 페이퍼백은 0.956로 강한 양의 상관관계가 존재함이 확인된다.\n\nsimp_df %&gt;% \n    group_by(book_type) %&gt;% \n    summarise(book_cor = cor(num_pages, book_price))\n\n# A tibble: 2 × 2\n  book_type book_cor\n  &lt;chr&gt;        &lt;dbl&gt;\n1 hardcover    0.848\n2 paperback    0.956"
+  },
+  {
+    "objectID": "simpson.html#simpson-paradox-case-study-EDA-cor-viz",
+    "href": "simpson.html#simpson-paradox-case-study-EDA-cor-viz",
+    "title": "\n8  파이썬\n",
+    "section": "\n10.3 상관관계 시각화",
+    "text": "10.3 상관관계 시각화\n앞서 확인한 결과를 책 유형별로 나눠 상관계수를 시각화한다.\n\nsimp_df %&gt;% \n    ggplot(aes(x=num_pages, y=book_price, color=book_type)) +\n      geom_point(size=3) +\n      geom_smooth(method = \"lm\", se=FALSE) +\n      theme_minimal(base_family = \"NanumGothic\") +\n      labs(x=\"책페이지 수\", y=\"책가격($)\", title=\"심슨의 역설 사례\", color=\"책유형\" )+\n      theme(legend.position = \"top\")"
+  },
+  {
+    "objectID": "simpson.html#simpson-paradox-berkeley",
+    "href": "simpson.html#simpson-paradox-berkeley",
+    "title": "\n8  파이썬\n",
+    "section": "\n11.1 UC 버클리 입학 4\n",
+    "text": "11.1 UC 버클리 입학 4\n\n심슨의 역설관련 가장 유명한 사례는 1973년 UC 버클리 대학 입학데이터로 입학에 성차별이 존재하는지에 관한 데이터다.\n\n\n성별에 따른 입학률 비교\n\nlibrary(datasets)\nadmin_df &lt;- UCBAdmissions %&gt;% tbl_df\n\nadmin_df %&gt;% \n    group_by(Gender, Admit) %&gt;% \n    dplyr::summarise(total = sum(n)) %&gt;% \n    spread(Admit, total) %&gt;% \n    mutate(Admitted_Pcnt = Admitted/ (Admitted+Rejected),\n           Rejected_Pcnt = Rejected/ (Admitted+Rejected)) %&gt;% \n    DT::datatable(options = list(scrollX = TRUE)) %&gt;% \n    DT::formatPercentage(c(\"Admitted_Pcnt\",\"Rejected_Pcnt\"), digits=1)\n\n\n\n\n\n\n\n\n복사하여 붙여넣기\n\nadmin_df %&gt;% \n    group_by(Gender, Admit, Dept) %&gt;% \n    dplyr::summarise(total = sum(n)) %&gt;% \n    spread(Admit, total) %&gt;% \n    mutate(Admitted_Pcnt = Admitted/ (Admitted+Rejected),\n           Rejected_Pcnt = Rejected/ (Admitted+Rejected)) %&gt;% \n    DT::datatable(options = list(scrollX = TRUE)) %&gt;% \n    DT::formatPercentage(c(\"Admitted_Pcnt\",\"Rejected_Pcnt\"), digits=1)\n\n\n\n\n\n\n\n\n기술통계량을 통해 살펴본 사항을 그래프로 시각화한다. 막대 그래프를 통해 남성 합격률이 여성보다 높은 것으로 나타나 성차별이 존재하는 것으로 파악되지만, 학과별로 놓고 보면 여성 합격률이 더 높거나 남성과 유사한 것으로 시각적으로 나타난다.\n\n# A barplot for overall admission percentage for each gender.\n\nadmit_g &lt;- admin_df %&gt;% \n    group_by(Gender, Admit) %&gt;% \n    dplyr::summarise(total = sum(n)) %&gt;% \n    spread(Admit, total) %&gt;% \n    mutate(Admitted_Pcnt = Admitted/ (Admitted+Rejected),\n           Rejected_Pcnt = Rejected/ (Admitted+Rejected)) %&gt;% \n    ggplot(aes(x = Gender, y = Admitted_Pcnt, width = 0.2, fill=Gender)) +\n    geom_bar(stat = \"identity\") +\n    labs(x=\"성별\", y=\"입학합격율\", title=\"버클리 전체 입학합격률\") +\n    scale_y_continuous(labels = scales::percent, limits = c(0,1)) +\n    theme_minimal(base_family = \"NanumGothic\") +\n    theme(legend.position = \"none\") \n\nadmit_dept_g &lt;- admin_df %&gt;% \n    group_by(Gender, Admit, Dept) %&gt;% \n    dplyr::summarise(total = sum(n)) %&gt;% \n    spread(Admit, total) %&gt;% \n    mutate(Admitted_Pcnt = Admitted/ (Admitted+Rejected),\n           Rejected_Pcnt = Rejected/ (Admitted+Rejected)) %&gt;% \n    ggplot(aes(x = Gender, y = Admitted_Pcnt, fill=Gender)) +\n    geom_bar(stat = \"identity\") +\n    facet_grid(. ~ Dept) +\n    labs(x=\"성별\", y=\"\", title=\"버클리 학과별 입학합격률\") +\n    scale_y_continuous(labels = scales::percent, limits = c(0,1)) +\n    theme_bw(base_family = \"NanumGothic\") +\n    theme(axis.text.x = element_text(angle = 90, hjust = 1),\n          legend.position = \"none\") \n\nplot_grid(admit_g, admit_dept_g, labels = \"\")"
+  },
+  {
+    "objectID": "simpson.html#simpson-paradox-news-article-game-case",
+    "href": "simpson.html#simpson-paradox-news-article-game-case",
+    "title": "\n8  파이썬\n",
+    "section": "\n12.1 게임 업데이터 사례 5\n",
+    "text": "12.1 게임 업데이터 사례 5\n\n예전에 모 게임에서 큰 규모의 업데이트를 한 후 게임 고객 동향을 분석한 적이 있습니다. 이 게임은 전체 게임 고객을 약 십 여가지 유형으로 분류하고 있는데, 크게 보면 게임 활동이 왕성하고 충성도가 높은 ‘진성’ 유형, 게임 활동이 그리 활발하지 않은 ‘라이트’ 유형, 자동 사냥 유저로 의심되는 ‘봇’ 유형 등이 있죠.\n이 게임의 업데이트 전/후 일별접속자수(DAU)와 유저당 결제금액(ARPU) 지표를 확인해 보니 아래와 같이 나왔습니다.\n\n일별 접속자수(DAU)가 크게 늘었지만 유저당 결재금액(ARPU)가 하락하여 뭔가 특단의 조치가 필요한 것으로 파악되지만, 이를 고객 집단을 반영하여 분석을 하게 되면 진성유저는 큰 차이가 없고, 크게 늘어난 유저가 봇이거나 Non-PU 유저라 봇을 비용으로 간주하여 제거하거나 Non-PU유저를 PU로 바꾸거나 PU 유저의 결재금액을 높이는 방향으로 사업적인 조치를 취하는 것이 바람직스러워 보인다."
+  },
+  {
+    "objectID": "simpson.html#footnotes",
+    "href": "simpson.html#footnotes",
+    "title": "\n8  파이썬\n",
+    "section": "",
+    "text": "Prof. Eric A. Suess(February 23, 2016), “Simpson’s Paradox - Correlations and Slopes”↩︎\nPaul van der Laken (27 September 2017), “Simpson’s Paradox: Two HR examples with R code.”↩︎\n나무위키, “심슨의 역설”↩︎\nJohnny Hong(January 30, 2016), “A (very) brief introduction to ggplot2”↩︎\nNC소프트 (2017-07-05) “데이터 분석을 이용한 게임 고객 모델링 #4”↩︎"
   }
 ]

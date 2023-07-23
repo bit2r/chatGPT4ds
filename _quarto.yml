@@ -26,19 +26,29 @@ book:
       chapters:
         - intro.qmd
 
+    - part: "데이터셋"
+      chapters:
+        - penguins.qmd
+
     - part: "언어"
       chapters:
+        - lang_gpt.qmd
         - lang_r.qmd
         - lang_py.qmd
-        - lang_gpt.qmd
+        - lang_sql.qmd
 
     - part: "데이터 과학"
+      chapters:
+        - simpson.qmd
 
     - part: "프로그래밍"
 
     - part: "커뮤니케이션"
 
     - part: "챗GPT"
+
+    - part: "-----"
+
 
 format:
   html:
@@ -47,8 +57,21 @@ format:
       - chatGPT4ds.scss
     code-link: true
 
-    author-meta: "이광춘, 신종화, 유충현, 홍성학"
+    author-meta: "이광춘, 신종화"
     callout-appearance: simple
 
 editor: source
 
+filters:
+   - lightbox
+lightbox: auto
+link-citations: true
+
+
+knitr:
+  opts_chunk:
+    message: false
+    warning: false
+    collapse: false
+editor_options:
+  chunk_output_type: console
