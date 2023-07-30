@@ -44,6 +44,8 @@ book:
     - part: "프로그래밍"
 
     - part: "커뮤니케이션"
+      chapters:
+        - quarto.qmd
 
     - part: "챗GPT"
 

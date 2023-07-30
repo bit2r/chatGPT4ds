@@ -1,16 +1,10 @@
----
-title: "파이썬"
----
 
 
+# 심슨의 역설 {#simpson-paradox}
 
-# 심슨의 역설 [^erick-simpson] [^hr-example-simpson] {#simpson-paradox}
+영국의 통계학자 에드워드 심슨이 정리한 역설(Simpson paradox)로, 전반적인 추세가 경향성이 존재하는 것으로 보이지만, 그룹으로 나눠서 개별적으로 보게 되면 경향성이 사라지거나 해석이 반대로 되는 경우를 이른다. [^erick-simpson]: [Prof. Eric A. Suess(February 23, 2016), "Simpson’s Paradox - Correlations and Slopes"](http://rstudio-pubs-static.s3.amazonaws.com/155188_cc8b400f7d134a3e9de6cbfb8320e1e0.html) [^hr-example-simpson]: [Paul van der Laken (27 September 2017), "Simpson’s Paradox: Two HR examples with R code."](https://paulvanderlaken.com/2017/09/27/simpsons-paradox-two-hr-examples-with-r-code/)
 
-[^erick-simpson]: [Prof. Eric A. Suess(February 23, 2016), "Simpson’s Paradox - Correlations and Slopes"](http://rstudio-pubs-static.s3.amazonaws.com/155188_cc8b400f7d134a3e9de6cbfb8320e1e0.html)
-
-[^hr-example-simpson]: [Paul van der Laken (27 September 2017), "Simpson’s Paradox: Two HR examples with R code."](https://paulvanderlaken.com/2017/09/27/simpsons-paradox-two-hr-examples-with-r-code/)
-
-영국의 통계학자 에드워드 심슨이 정리한 역설(Simpson paradox)로, 전반적인 추세가 경향성이 존재하는 것으로 보이지만, 그룹으로 나눠서 개별적으로 보게 되면 경향성이 사라지거나 해석이 반대로 되는 경우를 이른다.
+[^erick-simpson] [^hr-example-simpson]
 
 중요한 변수(lurking variable)가 빠져서 주로 이런 역설이 발생한다.
 [심슨의 역설](https://statkclee.github.io/r-algorithm/r-history-of-probability.html#simpson-paradox-1951)은 확률의 역사에서 중요한 주제 중의 하나로 자리를 잡고 있다.

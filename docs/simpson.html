@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.3.361">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘, 신종화">
-<title>챗GPT 데이터 과학 - 8&nbsp; 파이썬</title>
+<title>챗GPT 데이터 과학 - 8&nbsp; 심슨의 역설</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -61,6 +61,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./quarto.html" rel="next">
 <link href="./lang_sql.html" rel="prev">
 <link href="./cover.jpg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -106,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html">데이터 과학</a></li><li class="breadcrumb-item"><a href="./simpson.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">파이썬</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html">데이터 과학</a></li><li class="breadcrumb-item"><a href="./simpson.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">심슨의 역설</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -222,7 +223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simpson.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
   </div>
 </li>
       </ul>
@@ -232,9 +233,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">프로그래밍</span></span>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">커뮤니케이션</span></span>
-  </li>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">커뮤니케이션</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
  <span class="menu-text">챗GPT</span></span>
@@ -251,34 +265,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-<li><a href="#simpson-paradox" id="toc-simpson-paradox" class="nav-link active" data-scroll-target="#simpson-paradox"><span class="header-section-number">9</span> 심슨의 역설 </a></li>
-  <li>
-<a href="#simpson-paradox-case-study" id="toc-simpson-paradox-case-study" class="nav-link" data-scroll-target="#simpson-paradox-case-study"><span class="header-section-number">10</span> 심슨의 역설 사례</a>
+<li>
+<a href="#simpson-paradox-case-study" id="toc-simpson-paradox-case-study" class="nav-link active" data-scroll-target="#simpson-paradox-case-study"><span class="header-section-number">9</span> 심슨의 역설 사례</a>
   <ul class="collapse">
-<li><a href="#simpson-paradox-case-study-EDA" id="toc-simpson-paradox-case-study-EDA" class="nav-link" data-scroll-target="#simpson-paradox-case-study-EDA"><span class="header-section-number">10.1</span> 데이터 시각화</a></li>
-  <li><a href="#simpson-paradox-case-study-EDA-cor" id="toc-simpson-paradox-case-study-EDA-cor" class="nav-link" data-scroll-target="#simpson-paradox-case-study-EDA-cor"><span class="header-section-number">10.2</span> 기술통계량</a></li>
-  <li><a href="#simpson-paradox-case-study-EDA-cor-viz" id="toc-simpson-paradox-case-study-EDA-cor-viz" class="nav-link" data-scroll-target="#simpson-paradox-case-study-EDA-cor-viz"><span class="header-section-number">10.3</span> 상관관계 시각화</a></li>
+<li><a href="#simpson-paradox-case-study-EDA" id="toc-simpson-paradox-case-study-EDA" class="nav-link" data-scroll-target="#simpson-paradox-case-study-EDA"><span class="header-section-number">9.1</span> 데이터 시각화</a></li>
+  <li><a href="#simpson-paradox-case-study-EDA-cor" id="toc-simpson-paradox-case-study-EDA-cor" class="nav-link" data-scroll-target="#simpson-paradox-case-study-EDA-cor"><span class="header-section-number">9.2</span> 기술통계량</a></li>
+  <li><a href="#simpson-paradox-case-study-EDA-cor-viz" id="toc-simpson-paradox-case-study-EDA-cor-viz" class="nav-link" data-scroll-target="#simpson-paradox-case-study-EDA-cor-viz"><span class="header-section-number">9.3</span> 상관관계 시각화</a></li>
   </ul>
 </li>
   <li>
-<a href="#simpson-paradox-news-article" id="toc-simpson-paradox-news-article" class="nav-link" data-scroll-target="#simpson-paradox-news-article"><span class="header-section-number">11</span> 심슨의 역설 기사</a>
+<a href="#simpson-paradox-news-article" id="toc-simpson-paradox-news-article" class="nav-link" data-scroll-target="#simpson-paradox-news-article"><span class="header-section-number">10</span> 심슨의 역설 기사</a>
   <ul class="collapse">
-<li><a href="#simpson-paradox-berkeley" id="toc-simpson-paradox-berkeley" class="nav-link" data-scroll-target="#simpson-paradox-berkeley"><span class="header-section-number">11.1</span> UC 버클리 입학 </a></li>
+<li><a href="#simpson-paradox-berkeley" id="toc-simpson-paradox-berkeley" class="nav-link" data-scroll-target="#simpson-paradox-berkeley"><span class="header-section-number">10.1</span> UC 버클리 입학 </a></li>
   </ul>
 </li>
   <li>
-<a href="#simpson-paradox-news-article-case" id="toc-simpson-paradox-news-article-case" class="nav-link" data-scroll-target="#simpson-paradox-news-article-case"><span class="header-section-number">12</span> 실제 사례</a>
+<a href="#simpson-paradox-news-article-case" id="toc-simpson-paradox-news-article-case" class="nav-link" data-scroll-target="#simpson-paradox-news-article-case"><span class="header-section-number">11</span> 실제 사례</a>
   <ul class="collapse">
-<li><a href="#simpson-paradox-news-article-game-case" id="toc-simpson-paradox-news-article-game-case" class="nav-link" data-scroll-target="#simpson-paradox-news-article-game-case"><span class="header-section-number">12.1</span> 게임 업데이터 사례 </a></li>
+<li><a href="#simpson-paradox-news-article-game-case" id="toc-simpson-paradox-news-article-game-case" class="nav-link" data-scroll-target="#simpson-paradox-news-article-game-case"><span class="header-section-number">11.1</span> 게임 업데이터 사례 </a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/bit2r/chatGPT4ds/edit/main/simpson.qmd" class="toc-action">편집</a></p><p><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action">이슈 보고</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">
-<span class="chapter-number">8</span>&nbsp; <span class="chapter-title">파이썬</span>
-</h1>
+<h1 class="title"><span id="simpson-paradox" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></h1>
 </div>
 
 
@@ -291,12 +302,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header><section id="simpson-paradox" class="level1" data-number="9"><h1 data-number="9">
-<span class="header-section-number">9</span> 심슨의 역설 <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>
-</h1>
-<p>영국의 통계학자 에드워드 심슨이 정리한 역설(Simpson paradox)로, 전반적인 추세가 경향성이 존재하는 것으로 보이지만, 그룹으로 나눠서 개별적으로 보게 되면 경향성이 사라지거나 해석이 반대로 되는 경우를 이른다.</p>
+</header><p>영국의 통계학자 에드워드 심슨이 정리한 역설(Simpson paradox)로, 전반적인 추세가 경향성이 존재하는 것으로 보이지만, 그룹으로 나눠서 개별적으로 보게 되면 경향성이 사라지거나 해석이 반대로 되는 경우를 이른다. [^erick-simpson]: <a href="http://rstudio-pubs-static.s3.amazonaws.com/155188_cc8b400f7d134a3e9de6cbfb8320e1e0.html">Prof.&nbsp;Eric A. Suess(February 23, 2016), “Simpson’s Paradox - Correlations and Slopes”</a></p>
+<p>[^erick-simpson] <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p>중요한 변수(lurking variable)가 빠져서 주로 이런 역설이 발생한다. <a href="https://statkclee.github.io/r-algorithm/r-history-of-probability.html#simpson-paradox-1951">심슨의 역설</a>은 확률의 역사에서 중요한 주제 중의 하나로 자리를 잡고 있다.</p>
-<p><span class="math inline">\(\frac{a_1}{A_1} &gt; \frac{b_1}{B_1}\)</span> 이고 <span class="math inline">\(\frac{a_2}{A_2} &gt; \frac{b_2}{B_2}\)</span> 이라고 반드시 <span class="math inline">\(\frac{a_1+a_2}{(A_1+A_2)} &gt; \frac{(b_1+b_2)}{(B_1+B_2)}\)</span> 인 것은 아니다. 즉, “각 부분에 대한 평균이 크다고 해서 전체에 대한 평균까지 크지는 않다”는 의미이다.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p><span class="math inline">\(\frac{a_1}{A_1} &gt; \frac{b_1}{B_1}\)</span> 이고 <span class="math inline">\(\frac{a_2}{A_2} &gt; \frac{b_2}{B_2}\)</span> 이라고 반드시 <span class="math inline">\(\frac{a_1+a_2}{(A_1+A_2)} &gt; \frac{(b_1+b_2)}{(B_1+B_2)}\)</span> 인 것은 아니다. 즉, “각 부분에 대한 평균이 크다고 해서 전체에 대한 평균까지 크지는 않다”는 의미이다.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <div class="row">
 <div class="col-md-6">
 <iframe width="300" height="180" src="https://www.youtube.com/embed/ebEkn-BiW5k" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="">
@@ -307,11 +316,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </iframe>
 </div>
 </div>
-</section><section id="simpson-paradox-case-study" class="level1" data-number="10"><h1 data-number="10">
-<span class="header-section-number">10</span> 심슨의 역설 사례</h1>
+<section id="simpson-paradox-case-study" class="level1" data-number="9"><h1 data-number="9">
+<span class="header-section-number">9</span> 심슨의 역설 사례</h1>
 <p>심슨의 역설 사례를 책페이지수와 책가격의 관계를 살펴보자. 데이터는 책 유형(하드커버, 페이퍼백)은 두가지가 있고, 페이지수와 책가격이 달러로 구성된 데이터프레임이다.</p>
-<section id="simpson-paradox-case-study-EDA" class="level2" data-number="10.1"><h2 data-number="10.1" class="anchored" data-anchor-id="simpson-paradox-case-study-EDA">
-<span class="header-section-number">10.1</span> 데이터 시각화</h2>
+<section id="simpson-paradox-case-study-EDA" class="level2" data-number="9.1"><h2 data-number="9.1" class="anchored" data-anchor-id="simpson-paradox-case-study-EDA">
+<span class="header-section-number">9.1</span> 데이터 시각화</h2>
 <p>이를 시각적으로 표현하면 관계가 음의 상관관계를 갖는 것을 알 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
@@ -341,8 +350,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="simpson-paradox-case-study-EDA-cor" class="level2" data-number="10.2"><h2 data-number="10.2" class="anchored" data-anchor-id="simpson-paradox-case-study-EDA-cor">
-<span class="header-section-number">10.2</span> 기술통계량</h2>
+</section><section id="simpson-paradox-case-study-EDA-cor" class="level2" data-number="9.2"><h2 data-number="9.2" class="anchored" data-anchor-id="simpson-paradox-case-study-EDA-cor">
+<span class="header-section-number">9.2</span> 기술통계량</h2>
 <p><code>num_pages</code>, <code>book_price</code> 두변수를 추출하여 상관계수를 도출한다. 그리고 나서, 책 유형에 따른 상관관계도 도출해 낸다. 먼저 책 유형에 관계없이 <code>num_pages</code>, <code>book_price</code> 상관관계는 <code>-0.5949366</code>으로 나름 강한 음의 상관계수가 관측된다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">simp_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -365,8 +374,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 2 paperback    0.956</code></pre>
 </div>
 </div>
-</section><section id="simpson-paradox-case-study-EDA-cor-viz" class="level2" data-number="10.3"><h2 data-number="10.3" class="anchored" data-anchor-id="simpson-paradox-case-study-EDA-cor-viz">
-<span class="header-section-number">10.3</span> 상관관계 시각화</h2>
+</section><section id="simpson-paradox-case-study-EDA-cor-viz" class="level2" data-number="9.3"><h2 data-number="9.3" class="anchored" data-anchor-id="simpson-paradox-case-study-EDA-cor-viz">
+<span class="header-section-number">9.3</span> 상관관계 시각화</h2>
 <p>앞서 확인한 결과를 책 유형별로 나눠 상관계수를 시각화한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">simp_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -383,15 +392,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section></section><section id="simpson-paradox-news-article" class="level1" data-number="11"><h1 data-number="11">
-<span class="header-section-number">11</span> 심슨의 역설 기사</h1>
+</section></section><section id="simpson-paradox-news-article" class="level1" data-number="10"><h1 data-number="10">
+<span class="header-section-number">10</span> 심슨의 역설 기사</h1>
 <p>심슨의 역설에 대해서 <a href="http://dl.dongascience.com/search?keyword=%EC%8B%AC%EC%8A%A8%EC%9D%98+%EC%97%AD%EC%84%A4">동아사이언스</a>에서 2008년, 2013년 3회 심슨의 역설에 대한 기사를 실었는데 “명문대 남녀 합격생의 반전”, “오류를 잡아라! 확률 법정” 의 기사가 눈에 띈다.</p>
 <ul>
 <li><a href="http://dl.dongascience.com/magazine/view/S201307N052">박경미 교수의 수학캠핑 - 확률 패러독스, “명문대 남녀 합격생의 반전”</a></li>
 <li><a href="http://dl.dongascience.com/magazine/view/M201302N008">최영준(2013), “오류를 잡아라! 확률 법정”, 수학동아</a></li>
 </ul>
-<section id="simpson-paradox-berkeley" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="simpson-paradox-berkeley">
-<span class="header-section-number">11.1</span> UC 버클리 입학 <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>
+<section id="simpson-paradox-berkeley" class="level2" data-number="10.1"><h2 data-number="10.1" class="anchored" data-anchor-id="simpson-paradox-berkeley">
+<span class="header-section-number">10.1</span> UC 버클리 입학 <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>
 </h2>
 <p>심슨의 역설관련 가장 유명한 사례는 1973년 UC 버클리 대학 입학데이터로 입학에 성차별이 존재하는지에 관한 데이터다.</p>
 <div class="row">
@@ -411,8 +420,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="fu">DT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DT/man/formatCurrency.html">formatPercentage</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Admitted_Pcnt"</span>,<span class="st">"Rejected_Pcnt"</span><span class="op">)</span>, digits<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-7d77831dc5f7d9bc89d4" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-7d77831dc5f7d9bc89d4">{"x":{"filter":"none","vertical":false,"data":[["1","2"],["Female","Male"],[557,1198],[1278,1493],[0.3035422343324251,0.4451876625789669],[0.6964577656675749,0.5548123374210331]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Gender<\/th>\n      <th>Admitted<\/th>\n      <th>Rejected<\/th>\n      <th>Admitted_Pcnt<\/th>\n      <th>Rejected_Pcnt<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 1, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 1, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[2,3,4,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-4e26ee6bc90333745415" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-4e26ee6bc90333745415">{"x":{"filter":"none","vertical":false,"data":[["1","2"],["Female","Male"],[557,1198],[1278,1493],[0.3035422343324251,0.4451876625789669],[0.6964577656675749,0.5548123374210331]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Gender<\/th>\n      <th>Admitted<\/th>\n      <th>Rejected<\/th>\n      <th>Admitted_Pcnt<\/th>\n      <th>Rejected_Pcnt<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 1, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 1, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[2,3,4,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -429,8 +438,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="fu">DT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DT/man/formatCurrency.html">formatPercentage</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Admitted_Pcnt"</span>,<span class="st">"Rejected_Pcnt"</span><span class="op">)</span>, digits<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-89e45f82d2b449d555fc" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-89e45f82d2b449d555fc">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12"],["Female","Female","Female","Female","Female","Female","Male","Male","Male","Male","Male","Male"],["A","B","C","D","E","F","A","B","C","D","E","F"],[89,17,202,131,94,24,512,353,120,138,53,22],[19,8,391,244,299,317,313,207,205,279,138,351],[0.8240740740740741,0.68,0.3406408094435076,0.3493333333333333,0.2391857506361323,0.07038123167155426,0.6206060606060606,0.6303571428571428,0.3692307692307693,0.3309352517985611,0.2774869109947644,0.05898123324396783],[0.1759259259259259,0.32,0.6593591905564924,0.6506666666666666,0.7608142493638677,0.9296187683284457,0.3793939393939394,0.3696428571428572,0.6307692307692307,0.6690647482014388,0.7225130890052356,0.9410187667560321]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Gender<\/th>\n      <th>Dept<\/th>\n      <th>Admitted<\/th>\n      <th>Rejected<\/th>\n      <th>Admitted_Pcnt<\/th>\n      <th>Rejected_Pcnt<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 1, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 1, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[3,4,5,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-38c9479a8655c0f1307b" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-38c9479a8655c0f1307b">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12"],["Female","Female","Female","Female","Female","Female","Male","Male","Male","Male","Male","Male"],["A","B","C","D","E","F","A","B","C","D","E","F"],[89,17,202,131,94,24,512,353,120,138,53,22],[19,8,391,244,299,317,313,207,205,279,138,351],[0.8240740740740741,0.68,0.3406408094435076,0.3493333333333333,0.2391857506361323,0.07038123167155426,0.6206060606060606,0.6303571428571428,0.3692307692307693,0.3309352517985611,0.2774869109947644,0.05898123324396783],[0.1759259259259259,0.32,0.6593591905564924,0.6506666666666666,0.7608142493638677,0.9296187683284457,0.3793939393939394,0.3696428571428572,0.6307692307692307,0.6690647482014388,0.7225130890052356,0.9410187667560321]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Gender<\/th>\n      <th>Dept<\/th>\n      <th>Admitted<\/th>\n      <th>Rejected<\/th>\n      <th>Admitted_Pcnt<\/th>\n      <th>Rejected_Pcnt<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 1, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 1, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[3,4,5,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -475,10 +484,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section></section><section id="simpson-paradox-news-article-case" class="level1" data-number="12"><h1 data-number="12">
-<span class="header-section-number">12</span> 실제 사례</h1>
-<section id="simpson-paradox-news-article-game-case" class="level2" data-number="12.1"><h2 data-number="12.1" class="anchored" data-anchor-id="simpson-paradox-news-article-game-case">
-<span class="header-section-number">12.1</span> 게임 업데이터 사례 <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>
+</section></section><section id="simpson-paradox-news-article-case" class="level1" data-number="11"><h1 data-number="11">
+<span class="header-section-number">11</span> 실제 사례</h1>
+<section id="simpson-paradox-news-article-game-case" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="simpson-paradox-news-article-game-case">
+<span class="header-section-number">11.1</span> 게임 업데이터 사례 <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>
 </h2>
 <p>예전에 모 게임에서 큰 규모의 업데이트를 한 후 게임 고객 동향을 분석한 적이 있습니다. 이 게임은 전체 게임 고객을 약 십 여가지 유형으로 분류하고 있는데, 크게 보면 게임 활동이 왕성하고 충성도가 높은 ‘진성’ 유형, 게임 활동이 그리 활발하지 않은 ‘라이트’ 유형, 자동 사냥 유저로 의심되는 ‘봇’ 유형 등이 있죠.</p>
 <p>이 게임의 업데이트 전/후 일별접속자수(DAU)와 유저당 결제금액(ARPU) 지표를 확인해 보니 아래와 같이 나왔습니다.</p>
@@ -488,11 +497,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
-<li id="fn1"><p><a href="http://rstudio-pubs-static.s3.amazonaws.com/155188_cc8b400f7d134a3e9de6cbfb8320e1e0.html">Prof.&nbsp;Eric A. Suess(February 23, 2016), “Simpson’s Paradox - Correlations and Slopes”</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p><a href="https://paulvanderlaken.com/2017/09/27/simpsons-paradox-two-hr-examples-with-r-code/">Paul van der Laken (27 September 2017), “Simpson’s Paradox: Two HR examples with R code.”</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p><a href="https://namu.wiki/w/%EC%8B%AC%EC%8A%A8%EC%9D%98%20%EC%97%AD%EC%84%A4">나무위키, “심슨의 역설”</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p><a href="http://jcyhong.github.io/ggplot_demo.html">Johnny Hong(January 30, 2016), “A (very) brief introduction to ggplot2”</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p><a href="http://blog.ncsoft.com/?p=28900">NC소프트 (2017-07-05) “데이터 분석을 이용한 게임 고객 모델링 #4”</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p><a href="https://paulvanderlaken.com/2017/09/27/simpsons-paradox-two-hr-examples-with-r-code/">Paul van der Laken (27 September 2017), “Simpson’s Paradox: Two HR examples with R code.”</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://namu.wiki/w/%EC%8B%AC%EC%8A%A8%EC%9D%98%20%EC%97%AD%EC%84%A4">나무위키, “심슨의 역설”</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="http://jcyhong.github.io/ggplot_demo.html">Johnny Hong(January 30, 2016), “A (very) brief introduction to ggplot2”</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a href="http://blog.ncsoft.com/?p=28900">NC소프트 (2017-07-05) “데이터 분석을 이용한 게임 고객 모델링 #4”</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -731,6 +739,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./quarto.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">쿼토</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -741,7 +752,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
     <div class="nav-footer-right"><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":true,"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":true,"selector":".lightbox","descPosition":"bottom","openEffect":"zoom"});</script>
 
 
 </body></html>
