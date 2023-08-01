@@ -41,7 +41,9 @@ book:
       chapters:
         - simpson.qmd
         - basic_stat.qmd
-        - intermediate_stat.qmd
+        - sampling.qmd
+        - hypothesis.qmd
+
     - part: "프로그래밍"
 
     - part: "커뮤니케이션"
@@ -51,7 +53,7 @@ book:
     - part: "챗GPT"
 
     - part: "-----"
-
+    - references.qmd
 
 format:
   html:
@@ -70,6 +72,7 @@ filters:
 lightbox: auto
 link-citations: true
 
+bibliography: references.bib
 
 knitr:
   opts_chunk:

@@ -61,7 +61,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./sampling.html" rel="next">
+<link href="./hypothesis.html" rel="next">
 <link href="./basic_stat.html" rel="prev">
 <link href="./cover.jpg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -103,7 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html">데이터 과학</a></li><li class="breadcrumb-item"><a href="./intermediate_stat.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">표본 추출</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html">데이터 과학</a></li><li class="breadcrumb-item"><a href="./sampling.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">표본 추출</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -230,14 +230,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intermediate_stat.html" class="sidebar-item-text sidebar-link active">
+  <a href="./sampling.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./sampling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
+  <a href="./hypothesis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
   </div>
 </li>
       </ul>
@@ -271,6 +271,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <span class="sidebar-item-text sidebar-link text-start">
  <span class="menu-text">-----</span></span>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">참고문헌</span></a>
+  </div>
+</li>
     </ul>
 </div>
 </nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
@@ -314,7 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#calculate-standard-error-bootstrap" id="toc-calculate-standard-error-bootstrap" class="nav-link" data-scroll-target="#calculate-standard-error-bootstrap"><span class="header-section-number">10.5.2</span> 부츠트랩 신뢰구간</a></li>
   </ul>
 </li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/bit2r/chatGPT4ds/edit/main/intermediate_stat.qmd" class="toc-action">편집</a></p><p><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action">이슈 보고</a></p></div></div></nav>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/bit2r/chatGPT4ds/edit/main/sampling.qmd" class="toc-action">편집</a></p><p><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action">이슈 보고</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -432,18 +438,18 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 8
-   total_cup_points species coo          farm_name aroma  body balance sweetness
-              &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;        &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
- 1             84.2 Arabica Colombia     &lt;NA&gt;       7.67  7.67    7.92        10
- 2             87.2 Arabica Mexico       la herra…  8.17  7.83    8.17        10
- 3             84   Arabica Colombia     &lt;NA&gt;       7.67  7.67    7.75        10
- 4             80.7 Arabica Costa Rica   gamboa     7.83  7.83    7.5         10
- 5             81.8 Arabica United Stat… kona pac…  7.25  7.75    7.75        10
- 6             81.1 Arabica United Stat… hacienda…  7.67  7.58    7.67        10
- 7             78.5 Arabica Mexico       various    7.25  7.25    7.58        10
- 8             86.2 Arabica Ethiopia     haider a…  8     8.08    8.08        10
- 9             78.6 Arabica Mexico       cofradia   7.92  7.92    7.5         10
-10             84.7 Arabica Peru         &lt;NA&gt;       7.67  7.92    7.83        10</code></pre>
+   total_cup_points species coo        farm_name   aroma  body balance sweetness
+              &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+ 1             83.3 Arabica Costa Rica several      7.67  7.67    7.67        10
+ 2             82.7 Arabica Guatemala  finca medi…  7.67  7.5     7.5         10
+ 3             78.5 Arabica Mexico     various      7.25  7.25    7.58        10
+ 4             85.4 Arabica Brazil     fazenda se…  8     7.75    8           10
+ 5             78.3 Arabica Guatemala  various      7.17  7.17    7.17        10
+ 6             81.7 Arabica Mexico     &lt;NA&gt;         7.67  7.5     7.25        10
+ 7             83.2 Arabica Guatemala  finca medi…  7.5   7.58    7.5         10
+ 8             83.3 Arabica Colombia   &lt;NA&gt;         7.5   7.67    7.58        10
+ 9             83.5 Arabica Guatemala  santo toma…  7.83  7.67    7.5         10
+10             83.2 Arabica Guatemala  nueva gran…  7.33  7.33    7.67        10</code></pre>
 </div>
 </div>
 </section><section id="systematic-sampling" class="level3" data-number="10.2.3"><h3 data-number="10.2.3" class="anchored" data-anchor-id="systematic-sampling">
@@ -499,9 +505,9 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <pre><code># A tibble: 3 × 9
   rowid total_cup_points species coo     farm_name aroma  body balance sweetness
   &lt;int&gt;            &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
-1   446             85   Arabica Brazil  sitío sã…  8     7.67    7.67     10   
-2   892             83.1 Arabica Colomb… &lt;NA&gt;       7.83  7.42    7.92     10   
-3  1338             83.7 Arabica United… &lt;NA&gt;       7.75  7.75    8         9.33</code></pre>
+1   446             81.2 Arabica Hondur… cerro bu…  7.42  7.33    7.25        10
+2   892             84.5 Arabica Mexico  finca el…  7.92  7.75    7.83        10
+3  1338             82.2 Arabica Hondur… bethel     7.58  7.42    7.42        10</code></pre>
 </div>
 </div>
 </section><section id="stratified-sampling" class="level3" data-number="10.2.4"><h3 data-number="10.2.4" class="anchored" data-anchor-id="stratified-sampling">
@@ -517,16 +523,16 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 # Groups:   coo [37]
    total_cup_points species coo      farm_name     aroma  body balance sweetness
               &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
- 1             82.8 Arabica Brazil   capoeirinha    7.67  7.5     7.42        10
- 2             82.2 Arabica Brazil   caxambu        7.67  7.5     7.58        10
- 3             83   Arabica Brazil   fazenda sant…  7.67  7.42    7.5         10
+ 1             78.4 Arabica Brazil   santa maria    6.83  6.92    6.83        10
+ 2             81   Arabica Brazil   cachoeira da…  7.33  7.33    7.17        10
+ 3             73.5 Arabica Brazil   &lt;NA&gt;           7.25  7       6.42        10
  4             80.3 Arabica Burundi  &lt;NA&gt;           7.08  7.08    7.08        10
  5             83.3 Arabica Burundi  sogestal kay…  7.75  7.5     7.75        10
- 6             82.3 Arabica China    yun lan coff…  7.5   7.42    7.42        10
- 7             83.6 Arabica China    menglian man…  7.67  7.67    7.75        10
- 8             84.5 Arabica China    puer jiangch…  7.67  7.75    7.58        10
- 9             83.8 Arabica Colombia &lt;NA&gt;           7.83  7.58    7.58        10
-10             83.9 Arabica Colombia &lt;NA&gt;           7.75  7.75    7.92        10
+ 6             84.5 Arabica China    puer jiangch…  7.67  7.75    7.58        10
+ 7             83.2 Arabica China    chen lin       7.5   7.67    7.67        10
+ 8             82.8 Arabica China    man ganna es…  7.67  7.67    7.67        10
+ 9             83   Arabica Colombia &lt;NA&gt;           7.58  7.58    7.42        10
+10             83.5 Arabica Colombia &lt;NA&gt;           7.75  7.75    7.5         10
 # ℹ 86 more rows</code></pre>
 </div>
 </div>
@@ -549,13 +555,13 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">coo</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 8
-  total_cup_points species coo    farm_name   aroma  body balance sweetness
-             &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
-1             82.3 Arabica Brazil &lt;NA&gt;         7.42  7.5     7.58        10
-2             83.2 Arabica Brazil água limpa   7.75  7.58    7.58        10
-3             82.7 Arabica Brazil santa maria  7.33  7.67    7.5         10
-4             81.8 Arabica Brazil rio verde    7.17  7.75    7.25        10
-5             83   Arabica Brazil capoeirinha  7.5   7.58    7.42        10</code></pre>
+  total_cup_points species coo           farm_name aroma  body balance sweetness
+             &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;         &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+1             82.1 Arabica Indonesia     various    7.5   7.5     7.42        10
+2             80.7 Arabica Indonesia     darmawi    7.58  7.5     7.5         10
+3             83.3 Arabica United State… &lt;NA&gt;       7.92  7.67    7.67        10
+4             81.5 Arabica United State… &lt;NA&gt;       7.33  7.5     7.83        10
+5             80.3 Arabica United State… &lt;NA&gt;       7.17  7.67    7.33        10</code></pre>
 </div>
 </div>
 </section></section><section id="basic-concept-comparison" class="level2" data-number="10.3"><h2 data-number="10.3" class="anchored" data-anchor-id="basic-concept-comparison">
@@ -585,7 +591,7 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <span></span>
 <span><span class="va">mean_srs</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 82.30519</code></pre>
+<pre><code>[1] 82.13789</code></pre>
 </div>
 </div>
 </section><section id="basic-concept-comparison-stratified" class="level3" data-number="10.3.3"><h3 data-number="10.3.3" class="anchored" data-anchor-id="basic-concept-comparison-stratified">
@@ -601,7 +607,7 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <span></span>
 <span><span class="va">mean_stratified</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 82.0522</code></pre>
+<pre><code>[1] 81.95732</code></pre>
 </div>
 </div>
 </section><section id="basic-concept-comparison-cluster" class="level3" data-number="10.3.4"><h3 data-number="10.3.4" class="anchored" data-anchor-id="basic-concept-comparison-cluster">
@@ -620,7 +626,7 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <span></span>
 <span><span class="va">mean_cluster</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 80.54842</code></pre>
+<pre><code>[1] 81.65486</code></pre>
 </div>
 </div>
 </section></section><section id="calculate-errors" class="level2" data-number="10.4"><h2 data-number="10.4" class="anchored" data-anchor-id="calculate-errors">
@@ -639,7 +645,7 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <pre><code># A tibble: 1 × 4
   population   srs stratifed cluster
        &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-1       82.2  82.3      82.1    80.5</code></pre>
+1       82.2  82.1      82.0    81.7</code></pre>
 </div>
 </div>
 <p>모집단에서 추정값을 뺀 후 100을 곱해 상대오차(Relative Error)를 구해 추정값의 정확성을 상대적으로 비교할 수 있다.</p>
@@ -652,10 +658,10 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <pre><code># A tibble: 4 × 3
   method     estimation relative_error
   &lt;chr&gt;           &lt;dbl&gt;          &lt;dbl&gt;
-1 population       82.2          0    
-2 srs              82.3          0.187
-3 stratifed        82.1          0.121
-4 cluster          80.5          1.95 </code></pre>
+1 population       82.2         0     
+2 srs              82.1         0.0162
+3 stratifed        82.0         0.236 
+4 cluster          81.7         0.604 </code></pre>
 </div>
 </div>
 <section id="calculate-errors-many-times" class="level3" data-number="10.4.1"><h3 data-number="10.4.1" class="anchored" data-anchor-id="calculate-errors-many-times">
@@ -669,7 +675,7 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <span></span>
 <span><span class="va">mean_srs</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 82.05226</code></pre>
+<pre><code>[1] 82.19203</code></pre>
 </div>
 </div>
 <p><code><a href="https://rdrr.io/r/base/lapply.html">replicate()</a></code> 함수를 사용해서 앞서 정의한 단순 임의추출방법을 원하는 만큼 예를 들어 100회 수행하게 된다. 이를 통해서 10% 표본을 뽑아 <code>total_cup_points</code> 평균을 계산하는 작업을 100회 수행시킬 수 있다.</p>
@@ -684,19 +690,19 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <span></span>
 <span><span class="va">srs_100</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  [1] 82.23203 82.41060 82.21902 82.15038 82.29481 82.61955 82.33789 81.64466
-  [9] 82.00895 82.25940 82.59985 81.84677 81.83910 82.09511 82.33707 82.22308
- [17] 81.94211 82.07850 82.44759 82.28609 82.47602 82.29060 82.15789 82.28947
- [25] 82.37865 82.30263 82.39188 82.19263 82.41226 82.20165 82.00233 82.06647
- [33] 81.71241 82.31361 82.33263 82.12023 82.30188 82.04744 82.28105 82.25752
- [41] 81.94684 82.06068 81.79880 82.23647 82.84211 82.37203 82.11406 82.34000
- [49] 82.43624 82.43113 81.66158 82.08346 82.09992 82.02774 82.20556 82.19820
- [57] 81.96895 82.08602 81.92992 82.36120 81.81812 82.13662 82.21383 82.06173
- [65] 82.46594 81.91632 81.99331 82.44113 82.54376 82.45444 82.28075 82.45617
- [73] 82.29474 81.62850 82.06173 82.11466 82.46617 82.67143 82.32647 82.14150
- [81] 82.11962 82.51925 82.13797 81.84293 82.01639 82.13489 82.23579 81.99158
- [89] 82.63880 82.22729 81.98158 82.50925 82.44744 82.18368 82.33323 82.34098
- [97] 81.94985 81.91188 81.90188 82.25722</code></pre>
+<pre><code>  [1] 82.15835 82.59120 82.22406 82.15233 82.01256 82.03602 82.10098 82.01857
+  [9] 82.24218 82.68609 81.95293 81.79617 82.54105 81.91368 82.03451 82.23744
+ [17] 82.11105 81.96466 82.57759 82.34887 81.91564 82.15880 82.52820 82.03534
+ [25] 82.47654 82.28902 82.07015 82.35301 81.87038 82.16624 82.29248 82.19752
+ [33] 82.16459 81.94436 82.00917 82.09278 82.16594 82.21541 81.93000 81.81211
+ [41] 82.58090 82.27429 81.93038 81.85150 81.87098 82.40707 82.07865 81.90165
+ [49] 81.91060 81.85594 82.25947 82.12556 82.43812 82.17023 82.02910 82.22797
+ [57] 82.14226 82.11165 81.88955 81.84489 82.34774 81.54902 82.18188 82.09165
+ [65] 81.84526 81.85338 81.87128 82.00308 81.72338 81.94293 81.91947 82.13105
+ [73] 82.55263 82.20090 82.07737 82.25692 82.09586 81.95872 82.38038 82.61098
+ [81] 82.29940 82.45632 82.12925 82.01000 81.79090 82.38865 81.77925 81.93970
+ [89] 82.01699 82.40361 81.82150 82.21865 82.46180 81.93429 81.91970 82.34173
+ [97] 82.10436 82.38820 82.02195 82.22835</code></pre>
 </div>
 </div>
 <p>코드가 다소 난잡하기 때문에 임의표본추출하는 로직을 따로 떼어 함수로 제작하고 이를 마찬가지 방식으로 <code><a href="https://rdrr.io/r/base/lapply.html">replicate()</a></code> 함수를 사용해서 동일한 작업을 수행한다.</p>
@@ -716,19 +722,19 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <span></span>
 <span><span class="va">srs_fun_100</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  [1] 81.49827 82.33940 82.18970 82.12195 82.59744 82.16805 82.35135 81.98383
-  [9] 82.26707 82.36812 81.96436 81.90556 82.08165 82.32586 82.35571 82.38820
- [17] 82.05165 82.19459 82.09767 82.12887 82.36030 82.38549 82.05414 82.28241
- [25] 82.14211 81.90015 81.96211 81.89902 81.66774 82.13444 81.87188 82.52895
- [33] 82.53632 82.27797 82.39308 82.19759 81.57737 82.25850 82.27774 82.21090
- [41] 82.25195 82.06579 81.95180 82.03789 81.62083 82.03504 82.09218 82.25459
- [49] 82.00113 82.26617 82.11286 82.12361 82.17564 82.15398 82.36008 82.08233
- [57] 81.94015 82.17398 82.30414 81.99346 82.06218 82.37068 81.94376 82.34105
- [65] 81.77752 82.43925 81.79556 82.13827 82.44737 81.85797 82.46135 81.90444
- [73] 81.79782 82.13180 82.29594 82.19541 81.85301 82.09910 82.43436 82.13872
- [81] 82.13075 82.05331 82.33180 82.42278 82.02865 82.52143 81.66895 81.83947
- [89] 82.41812 81.82729 82.25180 81.97353 82.08218 82.31699 82.13692 81.71083
- [97] 82.18338 82.00955 82.12308 81.98767</code></pre>
+<pre><code>  [1] 82.16571 81.88188 82.43504 82.68647 81.83128 81.80256 82.38203 82.12955
+  [9] 82.09947 81.82436 82.20308 82.01068 82.47526 82.45098 81.72361 82.08053
+ [17] 81.88865 82.25053 82.71579 82.33098 82.21023 81.83985 82.12511 81.93759
+ [25] 81.78195 82.12639 82.27865 82.21887 82.18932 82.37150 82.41414 82.02820
+ [33] 82.77090 82.16316 82.33008 82.35842 82.04015 82.16511 81.80594 82.05932
+ [41] 82.35639 81.86782 82.12812 82.07677 82.47842 82.09489 82.29865 82.32368
+ [49] 82.07331 82.25850 82.09639 82.02519 82.04699 81.68015 82.45436 82.20654
+ [57] 82.02459 81.63805 82.35008 82.10346 82.24865 82.26090 82.12068 82.17504
+ [65] 82.03541 82.31226 82.57398 82.28286 81.87098 82.02113 82.20887 82.07226
+ [73] 82.08827 82.16068 82.04143 82.23714 82.32353 82.28496 82.10925 82.68444
+ [81] 82.07429 81.99767 82.28662 82.14248 82.30165 82.11211 82.29211 82.25211
+ [89] 82.23722 82.05947 82.31594 82.13406 82.05850 82.44880 82.33481 81.95820
+ [97] 82.40992 82.50293 82.20045 82.13564</code></pre>
 </div>
 </div>
 </section><section id="calculate-errors-sample-size" class="level3" data-number="10.4.2"><h3 data-number="10.4.2" class="anchored" data-anchor-id="calculate-errors-sample-size">
@@ -768,7 +774,7 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="op">~</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">(</span><span class="va">.x</span>, accuracy <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="intermediate_stat_files/figure-html/coffee-sample-size-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="intermediate_stat_files/figure-html/coffee-sample-size-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="sampling_files/figure-html/coffee-sample-size-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="sampling_files/figure-html/coffee-sample-size-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -788,11 +794,11 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <pre><code># A tibble: 5 × 3
   samp_prop mean_cup_points sd_cup_points
   &lt;glue&gt;              &lt;dbl&gt;         &lt;dbl&gt;
-1 10 %                 82.1        0.212 
-2 33 %                 82.2        0.111 
-3 50 %                 82.1        0.0783
-4 75 %                 82.1        0.0404
-5 90 %                 82.1        0.0266</code></pre>
+1 10 %                 82.2        0.219 
+2 33 %                 82.2        0.0904
+3 50 %                 82.2        0.0700
+4 75 %                 82.1        0.0409
+5 90 %                 82.1        0.0228</code></pre>
 </div>
 </div>
 </section></section><section id="calculate-bootstrap" class="level2" data-number="10.5"><h2 data-number="10.5" class="anchored" data-anchor-id="calculate-bootstrap">
@@ -834,7 +840,7 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="intermediate_stat_files/figure-html/calucate-bootstrap-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="intermediate_stat_files/figure-html/calucate-bootstrap-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="sampling_files/figure-html/calucate-bootstrap-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="sampling_files/figure-html/calucate-bootstrap-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -864,7 +870,7 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 3. 표본분포(sampling distribution) total_cup_points 표준편차</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">srs_fun_100</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">coffee_df</span><span class="op">)</span> <span class="op">*</span> <span class="fl">0.1</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.624232</code></pre>
+<pre><code>[1] 2.558876</code></pre>
 </div>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 4. 부츠트랩 total_cup_points 표준편차</span></span>
 <span><span class="va">standard_error</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">mean_cup_points</span><span class="op">)</span></span>
@@ -1135,8 +1141,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./sampling.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">표본 추출</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./hypothesis.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1148,7 +1154,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
     <div class="nav-footer-right"><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":true,"openEffect":"zoom","descPosition":"bottom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","loop":true,"openEffect":"zoom"});</script>
 
 
 </body></html>
