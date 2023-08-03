@@ -336,7 +336,7 @@ div.csl-indent {
 <p>하지만, 수많은 연구자들과 개발자의 기여로 코딩을 통해서 직관적으로 다양한 통계가설 검정을 할 수 있는 시대가 열리고 있다. <a href="https://cran.r-project.org/web/packages/infer/"><code>infer</code></a> 팩키지에 최근 기능이 많이 추가되고 있어 이에 대한 기대가 크다.</p>
 <p>기본적으로 모집단에 대해 알고자 하는 경우 표본을 추출하여 이를 기반으로 모집단에 대한 추론을 한다. 뽑혀진 표본에 대해서 컴퓨팅 기술을 활용하여 재표본추출을 반복하여 모집단에 대해 추론을 하는 방법에 대해 주로 살펴보자.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/sampling-inference.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="표본추출과 추론"><img src="images/sampling-inference.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/sampling-inference.png" class="lightbox" title="표본추출과 추론" data-gallery="quarto-lightbox-gallery-1"><img src="images/sampling-inference.png" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">표본추출과 추론</figcaption></figure>
 </div>
 <section id="computer-age-statistical-inference" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="computer-age-statistical-inference">
@@ -360,7 +360,7 @@ div.csl-indent {
 <span class="header-section-number">11.2</span> tidyverse 가설검정</h2>
 <p>데이터 과학을 이끌어 나가는 있는 R과 파이썬 진영의 현재 주도적인 흐름을 살펴보자. 우선 다소 차이가 있지만, <code>for</code> 반복루프를 이해하고 이를 코드로 구현할 수만 있다면 컴퓨터를 활용한 가설검정이 가능한 것은 사실이다. 하지만, 2011년 Allen Downey 교수가 주장했던 것처럼 오랜동안 검정된 해석학적 방법(Analytic Method)에 대한 교차검정하는 방식으로 활용하는 것이 추천된다. <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/infer-r-vs-python.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="R과 파이썬 검정 가설검정 프레임워크 비교"><img src="images/infer-r-vs-python.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/infer-r-vs-python.png" class="lightbox" title="R과 파이썬 검정 가설검정 프레임워크 비교" data-gallery="quarto-lightbox-gallery-2"><img src="images/infer-r-vs-python.png" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">R과 파이썬 검정 가설검정 프레임워크 비교</figcaption></figure>
 </div>
 <p>코딩기반 가설검정은 우선 데이터로부터 시작된다. 데이터를 컴퓨터의 기능을 활용하여 모의실험 표본을 생성하고 나서 귀무가설(<span class="math inline">\(H_0\)</span>) 모형에서 검정통계량을 추출하여 이를 바탕으로 <span class="math inline">\(p-값\)</span>을 계산하여 의사결정을 추진한다.</p>
@@ -376,7 +376,7 @@ div.csl-indent {
 <li><code><a href="https://infer.tidymodels.org/reference/visualize.html">visualize()</a></code></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/infer_framework.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="가설검정과 신뢰구간"><img src="images/infer_framework.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/infer_framework.png" class="lightbox" title="가설검정과 신뢰구간" data-gallery="quarto-lightbox-gallery-3"><img src="images/infer_framework.png" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">가설검정과 신뢰구간</figcaption></figure>
 </div>
 </section><section id="mosquitoes-love-beer-drinkers" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="mosquitoes-love-beer-drinkers">
@@ -924,7 +924,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
     <div class="nav-footer-right"><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":true,"descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"loop":true,"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","descPosition":"bottom"});</script>
 
 
 </body></html>

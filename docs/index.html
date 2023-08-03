@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
 
-<head>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
 
-<meta charset="utf-8" />
-<meta name="generator" content="quarto-1.3.361" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-
-<meta name="author" content="이광춘, 신종화" />
+<meta name="author" content="이광춘, 신종화">
 
 <title>챗GPT 데이터 과학</title>
 <style>
@@ -25,7 +23,28 @@ ul.task-list li input[type="checkbox"] {
 }
 </style>
 
-<!-- htmldependencies:E3FAD763 -->
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./intro.html" rel="next">
+<link href="./cover.jpg" rel="icon" type="image/jpeg">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -50,22 +69,17 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body>
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn"
-      data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" 
-      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환"
-      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <h1 class="quarto-secondary-nav-title"></h1>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" 
-      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환"
-      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">챗GPT 데이터 과학</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -79,9 +93,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="/">
-      챗GPT 데이터 과학
-      </a> 
+      <a href="./">챗GPT 데이터 과학</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/bit2r/chatGPT4ds" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="리더 모드 전환">
@@ -101,8 +113,8 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class='chapter-number'>1</span>  <span class='chapter-title'>챗GPT 데이터 과학</span></span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">챗GPT 데이터 과학</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -116,8 +128,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>2</span>  <span class='chapter-title'>소개</span></span></a>
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">소개</span></span></a>
   </div>
 </li>
       </ul>
@@ -133,8 +145,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/penguins.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>3</span>  <span class='chapter-title'>펭귄 데이터셋</span></span></a>
+  <a href="./penguins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
   </div>
 </li>
       </ul>
@@ -150,26 +162,26 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/lang_gpt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>4</span>  <span class='chapter-title'>챗GPT 자연어</span></span></a>
+  <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/lang_r.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>5</span>  <span class='chapter-title'>R 언어</span></span></a>
+  <a href="./lang_r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R 언어</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/lang_py.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>6</span>  <span class='chapter-title'>파이썬</span></span></a>
+  <a href="./lang_py.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/lang_sql.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>7</span>  <span class='chapter-title'>파이썬</span></span></a>
+  <a href="./lang_sql.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
   </div>
 </li>
       </ul>
@@ -185,26 +197,26 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/simpson.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>8</span>  <span class='chapter-title'>심슨의 역설</span></span></a>
+  <a href="./simpson.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/basic_stat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>9</span>  <span class='chapter-title'>통계</span></span></a>
+  <a href="./basic_stat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">통계</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/sampling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>10</span>  <span class='chapter-title'>표본 추출</span></span></a>
+  <a href="./sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/hypothesis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>11</span>  <span class='chapter-title'>코딩 가설검정</span></span></a>
+  <a href="./hypothesis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
   </div>
 </li>
       </ul>
@@ -224,8 +236,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>12</span>  <span class='chapter-title'>쿼토</span></span></a>
+  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
   </div>
 </li>
       </ul>
@@ -240,17 +252,28 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/references.html" class="sidebar-item-text sidebar-link">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">참고문헌</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" ></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <div id="quarto-toc-target"></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#데이터-과학" id="toc-데이터-과학" class="nav-link active" data-scroll-target="#데이터-과학"><span class="header-section-number">1</span> 데이터 과학</a>
+  <ul class="collapse">
+  <li><a href="#참고" id="toc-참고" class="nav-link" data-scroll-target="#참고"><span class="header-section-number">1.1</span> 참고</a></li>
+  <li><a href="#교육" id="toc-교육" class="nav-link" data-scroll-target="#교육"><span class="header-section-number">1.2</span> 교육</a></li>
+  <li><a href="#관련-링크" id="toc-관련-링크" class="nav-link" data-scroll-target="#관련-링크"><span class="header-section-number">1.3</span> 관련 링크</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/bit2r/chatGPT4ds/edit/main/index.qmd" class="toc-action">편집</a></p><p><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action">이슈 보고</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -272,53 +295,38 @@ ul.task-list li input[type="checkbox"] {
   
 
 </header>
-<nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">목차</h2>
-   
-  <ul>
-  <li><a href="#데이터-과학" id="toc-데이터-과학"><span class="header-section-number">1</span> 데이터 과학</a>
-  <ul>
-  <li><a href="#참고" id="toc-참고"><span class="header-section-number">1.1</span> 참고</a></li>
-  <li><a href="#교육" id="toc-교육"><span class="header-section-number">1.2</span> 교육</a></li>
-  <li><a href="#관련-링크" id="toc-관련-링크"><span class="header-section-number">1.3</span> 관련 링크</a></li>
-  </ul></li>
-  </ul>
-</nav>
+
 <div class="quarto-figure quarto-figure-center">
-<figure>
-<p><a href="cover.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="cover.jpg" title="챗GPT 데이터 과학" class="img-fluid" /></a></p>
+<figure class="figure">
+<p><a href="cover.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="cover.jpg" title="챗GPT 데이터 과학" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 <section id="데이터-과학" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> 데이터 과학</h1>
 <section id="참고" class="level2" data-number="1.1">
-<h2 data-number="1.1"><span class="header-section-number">1.1</span> 참고</h2>
+<h2 data-number="1.1" class="anchored" data-anchor-id="참고"><span class="header-section-number">1.1</span> 참고</h2>
 </section>
 <section id="교육" class="level2" data-number="1.2">
-<h2 data-number="1.2"><span class="header-section-number">1.2</span> 교육</h2>
+<h2 data-number="1.2" class="anchored" data-anchor-id="교육"><span class="header-section-number">1.2</span> 교육</h2>
 <ul>
 <li><a href="https://choonghyunryu.github.io/Edu_Tidyverse/">Tidyverse Hands-on</a></li>
 </ul>
 </section>
 <section id="관련-링크" class="level2" data-number="1.3">
-<h2 data-number="1.3"><span class="header-section-number">1.3</span> 관련 링크</h2>
+<h2 data-number="1.3" class="anchored" data-anchor-id="관련-링크"><span class="header-section-number">1.3</span> 관련 링크</h2>
 <ul>
 <li><a href="https://r2bit.com">R사용자회</a></li>
 <li><a href="https://www.facebook.com/groups/tidyverse">페이스북</a></li>
 <li><a href="https://www.youtube.com/channel/UCW-epmIvjBEhhVXw_F0Nqbw">유튜브</a></li>
 <li><a href="https://github.com/bit2r/">GitHub</a></li>
 </ul>
-<div id="quarto-navigation-envelope" class="hidden">
-<p><span class="hidden" data-render-id="quarto-int-sidebar-title">챗GPT 데이터 과학</span> <span class="hidden" data-render-id="quarto-int-navbar-title">챗GPT 데이터 과학</span> <span class="hidden" data-render-id="quarto-int-next"><span class="chapter-number">2</span>  <span class="chapter-title">소개</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/index.html"><span class="chapter-number">1</span>  <span class="chapter-title">챗GPT 데이터 과학</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-1">tidyverse</span> <span class="hidden" data-render-id="quarto-int-sidebar:/intro.html"><span class="chapter-number">2</span>  <span class="chapter-title">소개</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-2">데이터셋</span> <span class="hidden" data-render-id="quarto-int-sidebar:/penguins.html"><span class="chapter-number">3</span>  <span class="chapter-title">펭귄 데이터셋</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-3">언어</span> <span class="hidden" data-render-id="quarto-int-sidebar:/lang_gpt.html"><span class="chapter-number">4</span>  <span class="chapter-title">챗GPT 자연어</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/lang_r.html"><span class="chapter-number">5</span>  <span class="chapter-title">R 언어</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/lang_py.html"><span class="chapter-number">6</span>  <span class="chapter-title">파이썬</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/lang_sql.html"><span class="chapter-number">7</span>  <span class="chapter-title">파이썬</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-4">데이터 과학</span> <span class="hidden" data-render-id="quarto-int-sidebar:/simpson.html"><span class="chapter-number">8</span>  <span class="chapter-title">심슨의 역설</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/basic_stat.html"><span class="chapter-number">9</span>  <span class="chapter-title">통계</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/sampling.html"><span class="chapter-number">10</span>  <span class="chapter-title">표본 추출</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/hypothesis.html"><span class="chapter-number">11</span>  <span class="chapter-title">코딩 가설검정</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-5">프로그래밍</span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-6">커뮤니케이션</span> <span class="hidden" data-render-id="quarto-int-sidebar:/quarto.html"><span class="chapter-number">12</span>  <span class="chapter-title">쿼토</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-7">챗GPT</span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-8">—–</span> <span class="hidden" data-render-id="quarto-int-sidebar:/references.html">참고문헌</span> <span class="hidden" data-render-id="footer-left">이광춘, 신종화, 유충현, 홍성학이 ’챗GPT 데이터 사이언스’를 저작했습니다.</span> <span class="hidden" data-render-id="footer-right"><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</span> <span class="hidden" data-render-id="quarto-breadcrumbs-f794d09340e7b953e0ded31d220d84ab"><span class="chapter-number">1</span>  <span class="chapter-title">챗GPT 데이터 과학</span></span></p>
-</div>
-<div id="quarto-meta-markdown" class="hidden">
-<p><span class="hidden" data-render-id="quarto-metatitle">챗GPT 데이터 과학</span> <span class="hidden" data-render-id="quarto-twittercardtitle">챗GPT 데이터 과학</span> <span class="hidden" data-render-id="quarto-ogcardtitle">챗GPT 데이터 과학</span> <span class="hidden" data-render-id="quarto-metasitename">챗GPT 데이터 과학</span> <span class="hidden" data-render-id="quarto-twittercarddesc">ChatGPT for Data Science</span> <span class="hidden" data-render-id="quarto-ogcardddesc">ChatGPT for Data Science</span></p>
-</div>
+
+
 </section>
 </section>
 
 </main> <!-- /main -->
-<script id = "quarto-html-after-body" type="application/javascript">
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -555,29 +563,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a  href="/intro.html" class="pagination-link">
-        <span class="nav-page-text"><span class='chapter-number'>2</span>  <span class='chapter-title'>소개</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./intro.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">소개</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">
-      <div class='footer-contents'>이광춘, 신종화, 유충현, 홍성학이 '챗GPT 데이터 사이언스'를 저작했습니다.
-</div>  
-    </div>   
+    <div class="nav-footer-left">이광춘, 신종화, 유충현, 홍성학이 ’챗GPT 데이터 사이언스’를 저작했습니다.</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
-    <div class="nav-footer-right">
-      <div class='footer-contents'><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.
-</div>  
-    </div>
+    <div class="nav-footer-right"><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom","loop":true});</script>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":true,"openEffect":"zoom","selector":".lightbox"});</script>
 
-</body>
 
-</html>
+
+</body></html>
