@@ -305,7 +305,7 @@ div.csl-indent {
    
   <ul>
 <li><a href="#computer-age-statistical-inference" id="toc-computer-age-statistical-inference" class="nav-link active" data-scroll-target="#computer-age-statistical-inference"><span class="header-section-number">11.1</span> 통계적 가설검정</a></li>
-  <li><a href="#computer-age-statistical-inference" id="toc-computer-age-statistical-inference" class="nav-link" data-scroll-target="#computer-age-statistical-inference"><span class="header-section-number">11.2</span> tidyverse 가설검정</a></li>
+  <li><a href="#computer-age-tidyverse-inference" id="toc-computer-age-tidyverse-inference" class="nav-link" data-scroll-target="#computer-age-tidyverse-inference"><span class="header-section-number">11.2</span> tidyverse 가설검정</a></li>
   <li><a href="#computer-age-statistical-inference-ho-ci" id="toc-computer-age-statistical-inference-ho-ci" class="nav-link" data-scroll-target="#computer-age-statistical-inference-ho-ci"><span class="header-section-number">11.3</span> 가설검정과 신뢰구간</a></li>
   <li>
 <a href="#mosquitoes-love-beer-drinkers" id="toc-mosquitoes-love-beer-drinkers" class="nav-link" data-scroll-target="#mosquitoes-love-beer-drinkers"><span class="header-section-number">11.4</span> 사례: 맥주와 모기</a>
@@ -319,7 +319,7 @@ div.csl-indent {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="computer-age-statistical-inference" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></h1>
+<h1 class="title"><span id="computer-age-inference" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></h1>
 </div>
 
 
@@ -332,11 +332,12 @@ div.csl-indent {
   </div>
   
 
-</header><p>컴퓨터가 활발히 사용되기 전에 통계적 검정에 대한 필요성은 과거에도 존재했다. 하지만, 그 당시에는 컴퓨터가 너무 희귀한 자원이고 컴퓨터를 잘 다둘 수 있는 사람도 극도로 적었기 때문에 수학을 바탕으로한 통계적 추론 방법(Analytic Method)이 발달했지만 여전히 진입장벽은 높기만 했다.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+</header><p>통계적 추론은 주로 모수 추정에 대한 품질 해석과 관련된다. 예를 들어, 전통적인 추정 질문은 다음과 같다. “추정한 평균 <span class="math inline">\(\bar{x}\)</span>가 모집단 평균 <span class="math inline">\(\mu\)</span>에 근처에 있다는 것을 얼마나 확신할 수 있는가?” 질문과 구체적인 사항이 설정에 따라 변할 수 있지만, 추정에 대한 토대는 모든 통계학에서 동일하다.</p>
+<p>컴퓨터가 활발히 사용되기 전에 통계적 검정에 대한 필요성은 과거에도 존재했다. 하지만, 그 당시에는 컴퓨터가 너무 희귀한 자원이고 컴퓨터를 잘 다둘 수 있는 사람도 극도로 적었기 때문에 수학을 바탕으로한 통계적 추론 방법(Analytic Method)이 발달했지만 여전히 진입장벽은 높기만 했다.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p>하지만, 수많은 연구자들과 개발자의 기여로 코딩을 통해서 직관적으로 다양한 통계가설 검정을 할 수 있는 시대가 열리고 있다. <a href="https://cran.r-project.org/web/packages/infer/"><code>infer</code></a> 팩키지에 최근 기능이 많이 추가되고 있어 이에 대한 기대가 크다.</p>
 <p>기본적으로 모집단에 대해 알고자 하는 경우 표본을 추출하여 이를 기반으로 모집단에 대한 추론을 한다. 뽑혀진 표본에 대해서 컴퓨팅 기술을 활용하여 재표본추출을 반복하여 모집단에 대해 추론을 하는 방법에 대해 주로 살펴보자.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/sampling-inference.png" class="lightbox" title="표본추출과 추론" data-gallery="quarto-lightbox-gallery-1"><img src="images/sampling-inference.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/sampling-inference.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="표본추출과 추론"><img src="images/sampling-inference.png" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">표본추출과 추론</figcaption></figure>
 </div>
 <section id="computer-age-statistical-inference" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="computer-age-statistical-inference">
@@ -355,12 +356,12 @@ div.csl-indent {
 <li>검정통계량 계산</li>
 <li>통계적인 의사결정</li>
 </ol>
-<p>통계적 가설검정(Statistical Testing)은 기존 통계학 전공자의 전유물이었으나, 컴퓨터의 일반화와 누구나 코딩을 할 수 있는 현재(2023-08-01)는 더 이상 기존 통념이 통용되지는 않게 되었다. 특히 <a href="https://www.python.org/">파이썬</a> 진영에서 이런 움직임이 활발하다. 그렇다고 <a href="https://www.r-project.org/">R</a> 진영에서도 기존의 방식을 고수하는 것은 아니다.</p>
-</section><section id="computer-age-statistical-inference" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="computer-age-statistical-inference">
+<p>통계적 가설검정(Statistical Testing)은 기존 통계학 전공자의 전유물이었으나, 컴퓨터의 일반화와 누구나 코딩을 할 수 있는 현재(2023-08-04)는 더 이상 기존 통념이 통용되지는 않게 되었다. 특히 <a href="https://www.python.org/">파이썬</a> 진영에서 이런 움직임이 활발하다. 그렇다고 <a href="https://www.r-project.org/">R</a> 진영에서도 기존의 방식을 고수하는 것은 아니다.</p>
+</section><section id="computer-age-tidyverse-inference" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="computer-age-tidyverse-inference">
 <span class="header-section-number">11.2</span> tidyverse 가설검정</h2>
 <p>데이터 과학을 이끌어 나가는 있는 R과 파이썬 진영의 현재 주도적인 흐름을 살펴보자. 우선 다소 차이가 있지만, <code>for</code> 반복루프를 이해하고 이를 코드로 구현할 수만 있다면 컴퓨터를 활용한 가설검정이 가능한 것은 사실이다. 하지만, 2011년 Allen Downey 교수가 주장했던 것처럼 오랜동안 검정된 해석학적 방법(Analytic Method)에 대한 교차검정하는 방식으로 활용하는 것이 추천된다. <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/infer-r-vs-python.png" class="lightbox" title="R과 파이썬 검정 가설검정 프레임워크 비교" data-gallery="quarto-lightbox-gallery-2"><img src="images/infer-r-vs-python.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/infer-r-vs-python.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="R과 파이썬 검정 가설검정 프레임워크 비교"><img src="images/infer-r-vs-python.png" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">R과 파이썬 검정 가설검정 프레임워크 비교</figcaption></figure>
 </div>
 <p>코딩기반 가설검정은 우선 데이터로부터 시작된다. 데이터를 컴퓨터의 기능을 활용하여 모의실험 표본을 생성하고 나서 귀무가설(<span class="math inline">\(H_0\)</span>) 모형에서 검정통계량을 추출하여 이를 바탕으로 <span class="math inline">\(p-값\)</span>을 계산하여 의사결정을 추진한다.</p>
@@ -376,7 +377,7 @@ div.csl-indent {
 <li><code><a href="https://infer.tidymodels.org/reference/visualize.html">visualize()</a></code></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/infer_framework.png" class="lightbox" title="가설검정과 신뢰구간" data-gallery="quarto-lightbox-gallery-3"><img src="images/infer_framework.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/infer_framework.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="가설검정과 신뢰구간"><img src="images/infer_framework.png" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">가설검정과 신뢰구간</figcaption></figure>
 </div>
 </section><section id="mosquitoes-love-beer-drinkers" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="mosquitoes-love-beer-drinkers">
@@ -633,7 +634,7 @@ mean in group 맥주 mean in group 맹물
 <pre><code># A tibble: 1 × 1
   p_value
     &lt;dbl&gt;
-1       0</code></pre>
+1   0.001</code></pre>
 </div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">null_model</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">stat</span>, <span class="fl">0.025</span><span class="op">)</span>,</span>
@@ -642,7 +643,7 @@ mean in group 맥주 mean in group 맹물
 <pre><code># A tibble: 1 × 2
       l     u
   &lt;dbl&gt; &lt;dbl&gt;
-1 -2.60  2.76</code></pre>
+1 -2.69  2.66</code></pre>
 </div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### 3.2.4. 시각화</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">null_model</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">stat</span>, fill<span class="op">=</span><span class="st">"gray75"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -924,7 +925,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
     <div class="nav-footer-right"><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"loop":true,"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","descPosition":"bottom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":true,"descPosition":"bottom","openEffect":"zoom"});</script>
 
 
 </body></html>

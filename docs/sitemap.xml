@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://r2bit.com/chatGPT4ds/index.html</loc>
-    <lastmod>2023-08-03T23:13:24.709Z</lastmod>
+    <lastmod>2023-07-18T01:09:51.522Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/chatGPT4ds/intro.html</loc>
@@ -30,7 +30,7 @@
   </url>
   <url>
     <loc>https://r2bit.com/chatGPT4ds/simpson.html</loc>
-    <lastmod>2023-07-30T02:58:47.347Z</lastmod>
+    <lastmod>2023-08-03T23:14:51.462Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/chatGPT4ds/quarto.html</loc>
@@ -46,7 +46,7 @@
   </url>
   <url>
     <loc>https://r2bit.com/chatGPT4ds/basic_stat.html</loc>
-    <lastmod>2023-08-01T06:34:50.258Z</lastmod>
+    <lastmod>2023-08-03T23:15:00.402Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/chatGPT4ds/sampling.html</loc>
@@ -54,10 +54,14 @@
   </url>
   <url>
     <loc>https://r2bit.com/chatGPT4ds/hypothesis.html</loc>
-    <lastmod>2023-08-03T23:13:44.416Z</lastmod>
+    <lastmod>2023-08-04T01:28:47.397Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/chatGPT4ds/references.html</loc>
     <lastmod>2023-08-01T10:04:52.880Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r2bit.com/chatGPT4ds/NHST.html</loc>
+    <lastmod>2023-08-04T01:47:55.738Z</lastmod>
   </url>
 </urlset>

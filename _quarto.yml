@@ -43,6 +43,7 @@ book:
         - basic_stat.qmd
         - sampling.qmd
         - hypothesis.qmd
+        - NHST.qmd
 
     - part: "프로그래밍"
 

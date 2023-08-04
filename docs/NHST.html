@@ -8,7 +8,7 @@
 
 <meta name="author" content="이광춘, 신종화">
 
-<title>챗GPT 데이터 과학</title>
+<title>챗GPT 데이터 과학 – nhst</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,7 +21,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -31,7 +50,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro.html" rel="next">
+<link href="./quarto.html" rel="next">
+<link href="./hypothesis.html" rel="prev">
 <link href="./cover.jpg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -42,9 +62,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -70,11 +87,14 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "검색"
   }
 }</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -83,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">챗GPT 데이터 과학</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html">데이터 과학</a></li><li class="breadcrumb-item"><a href="./NHST.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">NHST.html</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -118,7 +138,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">챗GPT 데이터 과학</span></span></a>
   </div>
 </li>
@@ -226,7 +246,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./NHST.html" class="sidebar-item-text sidebar-link">
+  <a href="./NHST.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">NHST.html</span></span></a>
   </div>
 </li>
@@ -272,70 +292,50 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">목차</h2>
-   
-  <ul>
-  <li><a href="#데이터-과학" id="toc-데이터-과학" class="nav-link active" data-scroll-target="#데이터-과학"><span class="header-section-number">1</span> 데이터 과학</a>
-  <ul class="collapse">
-  <li><a href="#참고" id="toc-참고" class="nav-link" data-scroll-target="#참고"><span class="header-section-number">1.1</span> 참고</a></li>
-  <li><a href="#교육" id="toc-교육" class="nav-link" data-scroll-target="#교육"><span class="header-section-number">1.2</span> 교육</a></li>
-  <li><a href="#관련-링크" id="toc-관련-링크" class="nav-link" data-scroll-target="#관련-링크"><span class="header-section-number">1.3</span> 관련 링크</a></li>
-  </ul></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">챗GPT 데이터 과학</h1>
-<p class="subtitle lead">ChatGPT for Data Science</p>
+
+
+<p>R.A. Fisher는 NHST의 토대를 만들었으며 분산분석의 개념과 제한된 표본을 이용해 실험을 설계하는 실험계획법에 큰 기여를 했다. 1925년에 그가 발표한 ’Statistical Methods for Research Workers’라는 책에서 유의성 검정(significance test) 개념이 소개된 것을 확인할 수 있다. <span class="citation" data-cites="fisher1970statistical">(<a href="references.html#ref-fisher1970statistical" role="doc-biblioref">Fisher 1970</a>)</span></p>
+<p>귀무가설(null hypothesis)과 대립가설(alternative hypothesis)을 바탕으로 한 가설검정(hypothesis testing) 개념을 Neyman과 Pearson이 정립했고, 이를 적용한 최초의 사례는 1940년에 발표한 “Statistical Analysis in Educational Research”라는 책에서 NHST(Null Hypothesis Significance Testing) 개념을 처음으로 사용한 것으로 알려져 있다. <span class="citation" data-cites="lindquist1940statistical">(<a href="references.html#ref-lindquist1940statistical" role="doc-biblioref">Lindquist 1940</a>)</span></p>
+<div class="cell" data-fig-alig="center">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[귀무가설 &amp; 대립가설 설정]:::process
+    B["유의수준 선택 (예, 0.05)"]:::process
+    C[데이터 수집 및 분석]:::process
+    D["검정 통계량 계산 (예, t-점수, z-점수)"]:::process
+    E[검정 통계량을 임계값과 비교]:::decision
+    F[귀무가설 기각 또는 기각하지 않음]:::decision
+    G["결과 보고"]:::report
+    A --&gt; B
+    B --&gt; C
+    C --&gt; D
+    D --&gt; E
+    E --&gt; F
+    F --&gt; G
+    classDef process fill:#efefef,stroke:#333,stroke-width:1px;
+    classDef decision fill:#ffefef,stroke:#333,stroke-width:1px;
+    classDef report fill:#efefff,stroke:#333,stroke-width:1px;
+</pre>
+</div>
+</div>
+</div>
 </div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="cover.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="cover.jpg" title="챗GPT 데이터 과학" class="img-fluid figure-img"></a></p>
-</figure>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-fisher1970statistical" class="csl-entry" role="listitem">
+Fisher, Ronald Aylmer. 1970. <span>“Statistical methods for research workers”</span>. In <em>Breakthroughs in statistics: Methodology and distribution</em>, 66–70. Springer.
 </div>
-<section id="데이터-과학" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> 데이터 과학</h1>
-<section id="참고" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="참고"><span class="header-section-number">1.1</span> 참고</h2>
-</section>
-<section id="교육" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="교육"><span class="header-section-number">1.2</span> 교육</h2>
-<ul>
-<li><a href="https://choonghyunryu.github.io/Edu_Tidyverse/">Tidyverse Hands-on</a></li>
-</ul>
-</section>
-<section id="관련-링크" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="관련-링크"><span class="header-section-number">1.3</span> 관련 링크</h2>
-<ul>
-<li><a href="https://r2bit.com">R사용자회</a></li>
-<li><a href="https://www.facebook.com/groups/tidyverse">페이스북</a></li>
-<li><a href="https://www.youtube.com/channel/UCW-epmIvjBEhhVXw_F0Nqbw">유튜브</a></li>
-<li><a href="https://github.com/bit2r/">GitHub</a></li>
-</ul>
-
-
-</section>
-</section>
+<div id="ref-lindquist1940statistical" class="csl-entry" role="listitem">
+Lindquist, Everet Franklin. 1940. <span>“Statistical analysis in educational research.”</span>
+</div>
+</div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -657,10 +657,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./hypothesis.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">소개</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./quarto.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">쿼토</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -672,13 +675,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/NHST.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</p>
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","loop":true});</script>
 
 
 
