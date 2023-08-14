@@ -49,6 +49,7 @@ book:
       chapters:
         - functions.qmd
         - functions_ds.qmd
+        - functions_purrr.qmd
 
     - part: "커뮤니케이션"
       chapters:
