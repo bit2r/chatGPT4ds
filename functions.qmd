@@ -25,4 +25,46 @@ editor_options:
 - 데이터프레임을 입력받아 그래프를 반환하는 함수.
 
 
+## Defuse-and-Inject 패턴
+
+`tidy evaluation`에서 Defuse-and-Inject 패턴을 통해 데이터프레임 `dplyr` 패키지와 그래프 문법에 따른 시각화 `ggplot2` 패키지에 함수를 직관적으로 적용시킬 수 있다. 
+**신관제거(defuse)**는 기본적으로 표현식의 평가를 지연시켜 바로 실행되는 것을 막는 역할을 수행한다. 이런 기능을 통해 환경의 맥락을 유지하는 역할을 수행한다. **주입(injection)**은 포획되거나 신관제거된 표현석을 다른 맥락에서 평가하거나 다른 표현식에 주입하는 개념이다. 신관제거에 `enquo()`가 사용되었다면 주입에는 `!!` (뱅-뱅 이라고 읽음) 연산자를 사용하여 으로 다른 함수 내부에서 평가되어 실행되는 역할을 수행한다.
+
+
+```{r}
+library(dplyr)
+library(palmerpenguins)
+
+filter_na <- function(dataframe, col_name) {
+  
+  col_quo = enquo(col_name) # 신관제거(defuse)
+  
+  dataframe %>%
+    select(species, island, sex, year, body_mass_g) |> 
+    filter(is.na(!!col_quo)) # 주입(inject)
+}
+
+# 사용방법
+penguins %>% filter_na(sex)
+```
+
+`filter_na()` 함수는 데이터프레임과 칼럼명을 패러미터로 받아 칼럼명에 결측값이 있는 행만 추출하여 반환하는 역할을 수행한다. 이를 위해서 칼럼명을 신관제거하여 `col_quo` 표현식으로 지연시킨 후에 `!!col_quo`에 주입시켜 평가작업을 수행하여 원하는 결과를 반환한다.
+
+## 역사
+
+`tidyvserse`는 **데이터 마스킹(data-masking)** 방식을 `ggplot2`, `dplyr` 패키지에 도입했지만, 결국 `rlang` 패키지에 자체 프로그래밍 프레임워크를 장착했다. `rlang` 패키지 
+`Defuse-and-Inject` 패턴에 이르는 과정은 이전 다양한 시도를 통해 학습하는 배움의 과정이였다.
+
+- S언어에서 `attach()` 함수로 데이터 범위 개념을 도입했다. [@becker2018new]
+- S언어로 모형 함수에 데이터 마스킹 공식을 도입했다. [@chambers1992statistical]
+- Peter Delgaard `frametools` 패키지를 1997년 작성했고 나중에 `base::transform()`, 
+`base::subset()` 함수로 Base R에 채택됐다.
+- Luke Tierney가 원래 환경을 추적하기 위해 공식을 2000년에 변경했고 R 1.1.0에 반영되었으며 
+`Quosures`의 모태가 되었다.
+- 2001년 Luke Tierney는 `base::with()`를 소개했다.
+- `dplyr` 패키지가 2014년 첫선을 보였고, 2017년 `rlang` 패키지에 `tidy eval`이 구현되며 `quosure`, 암묵적 주입(implicit injection), 데이터 대명사(data pronouns) 개념이 소개됐다.
+- 2019년 `rlang` 0.4.0에 `Defuse-and-Inject` 패턴을 단순화한 `{{}}`이 도입되어 직관적으로 코드를 작성하게 되었다.
+
+
+
 

@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.288">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="이광춘, 신종화">
-
 <title>챗GPT 데이터 과학 - 13&nbsp; 함수</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,8 +18,60 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
-
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -42,8 +91,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -68,16 +116,11 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "검색"
   }
 }</script>
-
-
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -88,13 +131,9 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">챗GPT 데이터 과학</a> 
         <div class="sidebar-tools-main">
@@ -114,7 +153,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">챗GPT 데이터 과학</span></span></a>
@@ -128,15 +167,15 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">소개</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
@@ -145,15 +184,15 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./penguins.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
@@ -162,8 +201,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
@@ -188,7 +227,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
@@ -197,8 +236,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simpson.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
@@ -229,7 +268,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
@@ -238,15 +277,15 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">함수</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
@@ -255,15 +294,15 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
  <span class="menu-text">챗GPT</span></span>
@@ -279,19 +318,22 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li><a href="#defuse-and-inject-%ED%8C%A8%ED%84%B4" id="toc-defuse-and-inject-패턴" class="nav-link active" data-scroll-target="#defuse-and-inject-%ED%8C%A8%ED%84%B4"><span class="header-section-number">13.1</span> Defuse-and-Inject 패턴</a></li>
+  <li><a href="#%EC%97%AD%EC%82%AC" id="toc-역사" class="nav-link" data-scroll-target="#%EC%97%AD%EC%82%AC"><span class="header-section-number">13.2</span> 역사</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/functions.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions.html">프로그래밍</a></li><li class="breadcrumb-item"><a href="./functions.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">함수</span></a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">함수</span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions.html">프로그래밍</a></li><li class="breadcrumb-item"><a href="./functions.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">함수</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title">
+<span class="chapter-number">13</span>&nbsp; <span class="chapter-title">함수</span>
+</h1>
 </div>
 
 
@@ -305,9 +347,7 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
-
-<p>단순한 데이터 과학 업무는 인터랙티브하게 콘솔에서 작업을 수행하지만, 난이도가 올라가고 좀더 복작합 작업은 스크립트를 작성한다. 스크립트 작업을 여러번 반복하게 되면 복사하여 붙여넣기를 자주하게 된다. 그런 과정에서 뜻하지 않은 실수를 누구나 가지고 있다. 이제 함수를 작성하여 이러한 실수를 줄이고 생산성을 높여나갈 시점이다. 함수를 작성하면 복사하여 붙여넣기를 사용할 때보다 몇 가지 큰 이점이 있다.</p>
+</header><p>단순한 데이터 과학 업무는 인터랙티브하게 콘솔에서 작업을 수행하지만, 난이도가 올라가고 좀더 복작합 작업은 스크립트를 작성한다. 스크립트 작업을 여러번 반복하게 되면 복사하여 붙여넣기를 자주하게 된다. 그런 과정에서 뜻하지 않은 실수를 누구나 가지고 있다. 이제 함수를 작성하여 이러한 실수를 줄이고 생산성을 높여나갈 시점이다. 함수를 작성하면 복사하여 붙여넣기를 사용할 때보다 몇 가지 큰 이점이 있다.</p>
 <ul>
 <li>기억하기 좋고 연상적인 함수명은 코드 가독성을 높인다.</li>
 <li>복사하여 붙여넣기에 따른 버그를 없앨 수 있다.</li>
@@ -320,11 +360,68 @@ ul.task-list li input[type="checkbox"] {
 <li>데이터프레임을 입력받아 데이터프레임을 반환하는 함수.</li>
 <li>데이터프레임을 입력받아 그래프를 반환하는 함수.</li>
 </ul>
+<section id="defuse-and-inject-패턴" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="defuse-and-inject-패턴">
+<span class="header-section-number">13.1</span> Defuse-and-Inject 패턴</h2>
+<p><code>tidy evaluation</code>에서 Defuse-and-Inject 패턴을 통해 데이터프레임 <code>dplyr</code> 패키지와 그래프 문법에 따른 시각화 <code>ggplot2</code> 패키지에 함수를 직관적으로 적용시킬 수 있다. <strong>신관제거(defuse)</strong>는 기본적으로 표현식의 평가를 지연시켜 바로 실행되는 것을 막는 역할을 수행한다. 이런 기능을 통해 환경의 맥락을 유지하는 역할을 수행한다. <strong>주입(injection)</strong>은 포획되거나 신관제거된 표현석을 다른 맥락에서 평가하거나 다른 표현식에 주입하는 개념이다. 신관제거에 <code><a href="https://rlang.r-lib.org/reference/enquo.html">enquo()</a></code>가 사용되었다면 주입에는 <code>!!</code> (뱅-뱅 이라고 읽음) 연산자를 사용하여 으로 다른 함수 내부에서 평가되어 실행되는 역할을 수행한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">filter_na</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dataframe</span>, <span class="va">col_name</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  </span>
+<span>  <span class="va">col_quo</span> <span class="op">=</span> <span class="fu"><a href="https://rlang.r-lib.org/reference/enquo.html">enquo</a></span><span class="op">(</span><span class="va">col_name</span><span class="op">)</span> <span class="co"># 신관제거(defuse)</span></span>
+<span>  </span>
+<span>  <span class="va">dataframe</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">species</span>, <span class="va">island</span>, <span class="va">sex</span>, <span class="va">year</span>, <span class="va">body_mass_g</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="op">!</span><span class="op">!</span><span class="va">col_quo</span><span class="op">)</span><span class="op">)</span> <span class="co"># 주입(inject)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># 사용방법</span></span>
+<span><span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">filter_na</span><span class="op">(</span><span class="va">sex</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11 × 5
+   species island    sex    year body_mass_g
+   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt; &lt;int&gt;       &lt;int&gt;
+ 1 Adelie  Torgersen &lt;NA&gt;   2007          NA
+ 2 Adelie  Torgersen &lt;NA&gt;   2007        3475
+ 3 Adelie  Torgersen &lt;NA&gt;   2007        4250
+ 4 Adelie  Torgersen &lt;NA&gt;   2007        3300
+ 5 Adelie  Torgersen &lt;NA&gt;   2007        3700
+ 6 Adelie  Dream     &lt;NA&gt;   2007        2975
+ 7 Gentoo  Biscoe    &lt;NA&gt;   2007        4100
+ 8 Gentoo  Biscoe    &lt;NA&gt;   2008        4650
+ 9 Gentoo  Biscoe    &lt;NA&gt;   2009        4725
+10 Gentoo  Biscoe    &lt;NA&gt;   2009        4875
+11 Gentoo  Biscoe    &lt;NA&gt;   2009          NA</code></pre>
+</div>
+</div>
+<p><code>filter_na()</code> 함수는 데이터프레임과 칼럼명을 패러미터로 받아 칼럼명에 결측값이 있는 행만 추출하여 반환하는 역할을 수행한다. 이를 위해서 칼럼명을 신관제거하여 <code>col_quo</code> 표현식으로 지연시킨 후에 <code>!!col_quo</code>에 주입시켜 평가작업을 수행하여 원하는 결과를 반환한다.</p>
+</section><section id="역사" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="역사">
+<span class="header-section-number">13.2</span> 역사</h2>
+<p><code>tidyvserse</code>는 <strong>데이터 마스킹(data-masking)</strong> 방식을 <code>ggplot2</code>, <code>dplyr</code> 패키지에 도입했지만, 결국 <code>rlang</code> 패키지에 자체 프로그래밍 프레임워크를 장착했다. <code>rlang</code> 패키지 <code>Defuse-and-Inject</code> 패턴에 이르는 과정은 이전 다양한 시도를 통해 학습하는 배움의 과정이였다.</p>
+<ul>
+<li>S언어에서 <code><a href="https://rdrr.io/r/base/attach.html">attach()</a></code> 함수로 데이터 범위 개념을 도입했다. <span class="citation" data-cites="becker2018new">(<a href="references.html#ref-becker2018new" role="doc-biblioref">Becker 2018</a>)</span>
+</li>
+<li>S언어로 모형 함수에 데이터 마스킹 공식을 도입했다. <span class="citation" data-cites="chambers1992statistical">(<a href="references.html#ref-chambers1992statistical" role="doc-biblioref">Chambers 와/과 Hastie 1992</a>)</span>
+</li>
+<li>Peter Delgaard <code>frametools</code> 패키지를 1997년 작성했고 나중에 <code><a href="https://rdrr.io/r/base/transform.html">base::transform()</a></code>, <code><a href="https://rdrr.io/r/base/subset.html">base::subset()</a></code> 함수로 Base R에 채택됐다.</li>
+<li>Luke Tierney가 원래 환경을 추적하기 위해 공식을 2000년에 변경했고 R 1.1.0에 반영되었으며 <code>Quosures</code>의 모태가 되었다.</li>
+<li>2001년 Luke Tierney는 <code><a href="https://rdrr.io/r/base/with.html">base::with()</a></code>를 소개했다.</li>
+<li>
+<code>dplyr</code> 패키지가 2014년 첫선을 보였고, 2017년 <code>rlang</code> 패키지에 <code>tidy eval</code>이 구현되며 <code>quosure</code>, 암묵적 주입(implicit injection), 데이터 대명사(data pronouns) 개념이 소개됐다.</li>
+<li>2019년 <code>rlang</code> 0.4.0에 <code>Defuse-and-Inject</code> 패턴을 단순화한 <code>{{}}</code>이 도입되어 직관적으로 코드를 작성하게 되었다.</li>
+</ul>
 
 
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-becker2018new" class="csl-entry" role="listitem">
+Becker, Richard. 2018. <em>The new S language</em>. CRC Press.
+</div>
+<div id="ref-chambers1992statistical" class="csl-entry" role="listitem">
+Chambers, J. M., 와/과 T. J. Hastie. 1992. <em>Statistical Models in S</em>. London: Chapman &amp; Hall.
+</div>
+</div>
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -640,9 +737,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./NHST.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">NHST.html</span></span>
       </a>          
@@ -654,21 +749,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>이광춘, 신종화, 유충현, 홍성학이 ’챗GPT 데이터 사이언스’를 저작했습니다.</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/functions.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
+    </div>
     <div class="nav-footer-right">
 <p><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</p>
 </div>
   </div>
 </footer>
-
-
 
 
 </body></html>
