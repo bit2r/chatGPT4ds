@@ -71,24 +71,23 @@ penguins %>% filter_na(sex)
 
 ![](images/function_concept.png)
 
-## 함수를 작성하는 이유 {#why-write-function}
+## 왜 함수가 필요한가? {#why-write-function}
 
-
-1. 반복적인 복사하여 붙여넣기를 줄여 작업량을 상당히 줄인다.
-1. 버그와 오류가 끼어들 여지를 줄인다.
-1. 코드 재사용을 증가시킨다.
-1. 작성한 지적 산출물 공유를 촉진시킨다.
-
-예를 들어, 데이터프레임에 담긴 변수의 측도가 상이하여 측도를 재조정하는 경우 다음과 같은 수학식이 많이 사용된다.
-즉, 최대값과 최소값을 빼서 분모에 놓고 분자에 최소값을 빼고 나누면 0--1 사이 값으로 척도를 재조정하게 된다.
+왜 함수가 필요한지를 데이터를 분석할 때 자주 나오는 변수 정규화 사례를 바탕으로 살펴보자.
+\footnote{해들리 위컴이 함수에 대해 필요성과 중요성을 언급하며 제시한 사례를 가져왔다. 자세한 사항은 R for Data Science 2판 26장 함수를 참고한다.}
+데이터프레임에 담긴 변수의 측도가 상이하여 변수를 상대적으로 비교하기 위해 
+측도를 재조정하여 표준화할 필요가 있다. 
+변수에서 평균을 빼고 표준편차로 나누는 정규화도 있지만,
+최대값에서 최소값을 빼서 분모에 두고 분자에 최소값을 빼서 나누면 모든 변수가 
+0--1 사이 값으로 척도가 조정된다.
 
 $$ f(x)_{\text{척도조정}} = \frac{x-min(x)}{max(x)-min(x)} $$
 
-``` {r fp-duplication}
+``` {r}
 df <- data.frame(a=c(1,2,3,4,5),
-				 b=c(10,20,30,40,50),
-				 c=c(7,8,6,1,3),
-				 d=c(5,4,6,5,2))
+        				 b=c(10,20,30,40,50),
+        				 c=c(7,8,6,1,3),
+        				 d=c(5,4,6,5,2))
 df$a <- (df$a - min(df$a, na.rm = TRUE)) /
         (max(df$a, na.rm = TRUE) - min(df$a, na.rm = TRUE))
 df$b <- (df$b - min(df$b, na.rm = TRUE)) /
@@ -101,9 +100,8 @@ df
 ```
 
 상기 R 코드는 측도를 모두 맞춰서 변수 4개(`a`, `b`, `c`, `d`)를 비교하거나 향후 분석을 위한 것이다. 
-하지만, 읽어야 되는 코드가 중복되고 길어 코드를 작성한 개발자의 **의도** 가 의도적이지는 않지만 숨겨졌다.
-
-그리고, R 코드에 실수한 것이 그냥 남게 되어 다음 프로그램 실행에서 버그(특히, 구문론이 아닌 의미론적 버그)가 숨겨지게 된다. 즉, 상기 코드가 만들어 지는 과정을 살펴보면 이해가 쉽게된다.
+하지만, 읽어야 하는 코드중복이 심하고 길어 코드를 작성한 개발자의 **의도** 가 본의 아니게 숨겨져 있다.
+작성한 R 코드에 실수한 것이 있는 경우, 다음 프로그램 실행에서 버그(특히, 구문론이 아닌 의미론적 버그)가 숨겨지게 된다. 상기 코드가 작성되는 과정을 살펴보면 본의 아니게 의도가 숨겨진다는 의미가 어떤 것인지 명확해진다.
 
 1. `df$a <- (df$a - min(df$a, na.rm = TRUE)) / (max(df$a, na.rm = TRUE) - min(df$a, na.rm = TRUE))` 코드를 작성한 후,
 정상적으로 돌아가는지 확인한다.
@@ -120,17 +118,17 @@ df
 
 ## 함수를 작성하는 시점 {#time-to-write-function}
 
-복사해서 붙여넣는 것을 두번 하게 되면, 함수를 작성할 시점이다. 중복을 제거하는 한 방법은 함수를 작성하는 것이다.
-함수를 작성하게 되면 의도가 명확해진다.
+복사해서 붙여넣는 것을 두번 하게 되면, 함수를 작성할 시점이다. 
+중복을 제거하는 한 방법이 함수를 작성하는 것이고, 함수를 작성하게 되면 의도가 명확해진다.
 함수명을 `rescale`로 붙이고 이를 실행하게 되면, 의도가 명확하게 드러나게 되고, 복사해서 붙여넣게 되면서 
 생겨나는 중복과 반복에 의한 실수를 줄일 수 있게 되고, 향후 코드를 갱신할 때도 도움이 된다.
 
 
-``` {r fp-write-fn}
+``` {r}
 rescale <- function(x){
-              rng <- range(x, na.rm = TRUE)
-              (x - rng[1]) / (rng[2] - rng[1])
-            }
+  rng <- range(x, na.rm = TRUE)
+  (x - rng[1]) / (rng[2] - rng[1])
+}
 
 df$a <- rescale(df$a)
 df$b <- rescale(df$b)
@@ -138,14 +136,19 @@ df$c <- rescale(df$c)
 df$d <- rescale(df$d)
 ```
 
-또다른 방법은 함수형 프로그래밍을 사용하는 것으로 함수명을 반복적으로 사용하는 것조차도 피할 수 있다.
-
+`rescale()` 함수를 사용해서 복사하여 붙여넣는 중복을 크게 줄였으나, 여전히 함수명을 반복해서 
+복사하여 붙여넣기를 통해 코드를 작성했다.
+함수형 프로그래밍을 사용하는 것으로 함수명을 반복적으로 사용하는 것조차도 피할 수 있다.
 
 ``` {r fp-write-purrr}
 library(purrr)
 df <- map_df(df, rescale)
+df
 ```
 
+함수를 사용하지 않고 복사하여 붙여넣기 방식으로 코드를 작성한 경우 의도하지 않은 실수가 있어 
+함수를 도입하여 작성한 코드와 결과가 다른 것이 존재한다. 
+코드를 읽어 찾아보거나 실행한 후 결과를 통해 버그를 찾아보는 것도 함수의 의미와 중요성을 파악하는데 도움이 된다.
 
 ## 좋은 함수 {#criteria-on-good-function}
 
@@ -164,12 +167,8 @@ df <- map_df(df, rescale)
 - 해석가능하다 - Interpretable
 - 유지보수가 뛰어나다 - Maintainable
 
-<style>
-div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
-</style>
-<div class = "blue">
-
-**좋은 함수란?**
+:::{.callout-note}
+### 좋은 함수란?
 
 척도를 일치시키는 기능을 함수로 구현했지만, 기능을 구현했다고 좋은 함수가 되지는 않는다.
 좋은 함수가 되는 조건은 다음과 같다.
@@ -178,11 +177,12 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 1. **Understandable:** 사람이 이해할 수 있어야 함. 즉, 함수는 컴퓨터를 위해 기능이 올바르게 구현되고, 사람도 이해할 수 있도록 작성되어야 한다.
 1. 즉, **Correct + Understandable:** 컴퓨터와 사람을 위해 적성될 것.
 
-</div>
+:::
 
-# 함수 구성요소 {#funciton-component}
 
-## 인자(argument) {#function-component-argument}
+## 함수 구성요소 {#funciton-component}
+
+### 인자(argument) {#function-component-argument}
 
 함수 구성요소 중 중요한 요소로 인자(argument)를 꼽을 수 있다. 인자는 크게 두가지로 나뉜다.
 
@@ -201,7 +201,7 @@ t.test(x, y = NULL,
        conf.level = 0.95, ...)
 ```
 
-## 인자값 확인 - `assert` {#function-component-argument-assert}
+### 인자값 확인 - `assert` {#function-component-argument-assert}
 
 인자값이 제대로 입력되어야 함수몸통에서 기술한 연산작업이 제대로 수행될 수 있다.
 이를 위해서 `testthat`, `assertive`, `assertr`, `assertthat` 등 수많은 팩키지가 존재한다.
@@ -258,7 +258,7 @@ sum_numbers_assertive(na_vector)
 ```
 
 
-## 반환값 확인 {#function-component-return}
+### 반환값 확인 {#function-component-return}
 
 R은 파이썬과 달리 `return()`이 꼭 필요하지는 않다. 왜냐하면 마지막 객체가 자동으로 함수 반환값으로 정의되기 때문이다. 함수 반환값 관련하여 몇가지 사항을 알아두면 도움이 많이 된다.
 
@@ -315,9 +315,9 @@ mtcars_list
 ```
 
 
-# 함수 사용하는 방법 {#how-to-use-function}
+## 함수 사용하는 방법 {#how-to-use-function}
 
-## 함수 이해 {#understand-function}
+### 함수 이해 {#understand-function}
 
 함수를 작성하기 전에 먼저, 함수를 사용하는 방법을 익히는 것이 필요하다.
 함수는 함수명, 인자(argument), 함수 몸통(body), 반환값(return value)으로 구성된다.  
@@ -385,11 +385,11 @@ basic_operation(7, 3)
   </div>
 </div>
 
-## 함수 인자 {#understand-argument}
+### 함수 인자 {#understand-argument}
 
 함수를 구성하는 중요한 요소는 함수인자다. 
 
-## 함수 호출 {#call-function}
+### 함수 호출 {#call-function}
 
 다른 사람이 작성한 함수를 사용한다는 것은 좀더 엄밀한 의미로 함수를 호출(call)한다고 한다.
 함수를 호출해서 사용하기 위해서 먼저 함수명을 알아야 되고, 그 다음으로 함수에서 사용되는 인자(arugment)를 파악해서 올바르게 전달해야 원하는 결과를 얻을 수 있다.
@@ -407,7 +407,7 @@ library(gapminder)
 sd(gapminder$lifeExp, na.rm = TRUE)
 ```
 
-# 스크립트 &rarr; 함수 {#convert-scripts-to-function}
+## 스크립트 &rarr; 함수 {#convert-scripts-to-function}
 
 함수를 작성하는 경우는 먼저 데이터를 가져와서 정제하고 EDA과정을 거치며 모형과 시각화 산출물을 제작하는 과정을 거친다. 그리고 나서 이런 작업이 몇번 반복하게 되면 함수작성을 고려하게 된다.
 즉, 스크립트에서 함수로 변환하는 과정을 설명하면 다음과 같다.
@@ -421,7 +421,7 @@ sd(gapminder$lifeExp, na.rm = TRUE)
 1. `return`이 불필요하기 때문에 R 언어 특성을 반영하여 필요한 경우 제거한다.
 
 
-## 주사위 {#writing-funciton-dice}
+### 주사위 {#writing-funciton-dice}
 
 먼저 주사위를 모사하여 보자. 즉, 주사위를 물리적으로 만드는 대신 주사위를 던진 것과 동일한 효과가 나타나도록 이를 구현해본다.
 
@@ -472,7 +472,7 @@ draw_dice <- function(num_try) {
 draw_dice(3)
 ```
 
-## 함수작성 사례 - `rescale` {#how-to-write-function}
+### 함수작성 사례 - `rescale` {#how-to-write-function}
 
 함수를 작성할 경우 먼저 매우 단순한 문제에서 출발한다. 척도를 맞추는 상기 과정을 R 함수로 만들어본다. 
 
@@ -518,7 +518,7 @@ rescale <- function(x){
 rescale(x)
 ```
 
-## 함수를 하나의 인자로 넘기는 함수 제작   {#function-is-argument}
+### 함수를 하나의 인자로 넘기는 함수 제작   {#function-is-argument}
 
 기능 먼저 구현 추후 중복 제거하여 함수로 제작한다. 함수도 인자로 넣어 처리할 수 있다는 점이 처음에 이상할 수도 있지만, 함수를 인자로 처리할 경우 코드 중복을 상당히 줄일 수 있다.
 $L_1$, $L_2$, $L_3$ 값을 구하는 함수를 다음과 같이 작성해야 한다. 숫자 1,2,3 만 차이날 뿐 함수 중복이 심하다.
