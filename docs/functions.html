@@ -271,7 +271,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
   </div>
 </li>
       </ul>
@@ -288,7 +294,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
   </div>
 </li>
       </ul>
@@ -365,7 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">13.1</span> 함수 기본 지식</h2>
 <p>함수는 입력값(<code>x</code>)를 넣어 어떤 작업(<code>f</code>)을 수행한 결과를 반환(<code>y</code>) 과정으로 이해할 수 있는데, 인자로 다양한 값을 함수에 넣을 수 있고, 물론 함수가 뭔가 유용한 작업을 수행하기 위한 전제조건을 만족시키는지 확인하는 과정을 <code>assert</code> 개념을 넣어 확인하고 기술된 작업을 수행한 후에 출력값을 변환시키게 된다.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/function_concept.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="데이터 과학 함수 개념"><img src="images/function_concept.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/function_concept.png" class="lightbox" title="데이터 과학 함수 개념" data-gallery="quarto-lightbox-gallery-1"><img src="images/function_concept.png" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">데이터 과학 함수 개념</figcaption></figure>
 </div>
 </section><section id="how-to-use-function" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="how-to-use-function">
@@ -488,7 +494,7 @@ NULL</code></pre>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dice</span>, size<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 6</code></pre>
+<pre><code>[1] 5</code></pre>
 </div>
 </div>
 <ol start="2" type="1">
@@ -686,8 +692,8 @@ NULL</code></pre>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"총 관측점: "</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span>, <span class="st">"\n훈련: "</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">train</span><span class="op">)</span>, <span class="st">"\n시험: "</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>총 관측점:  150 
-훈련:  126 
-시험:  24</code></pre>
+훈련:  117 
+시험:  33</code></pre>
 </div>
 </div>
 <p>혹은, 회귀분석 결과를 <code><a href="https://rdrr.io/r/base/list.html">list()</a></code> 함수로 결합시켜 리스트로 반환시킨다. 이런 경우 결과값이 하나가 아니더라도 추후 리스트 객체를 풀어 활용하는 것이 가능하다.</p>
@@ -1291,7 +1297,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./functions_ds.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">함수</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1307,7 +1313,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"loop":true,"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom","selector":".lightbox"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","loop":true,"descPosition":"bottom"});</script>
 
 
 </body></html>

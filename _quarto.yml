@@ -86,3 +86,8 @@ knitr:
     collapse: false
 editor_options:
   chunk_output_type: console
+
+
+execute:
+  freeze: auto
+

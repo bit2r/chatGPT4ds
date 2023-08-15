@@ -80,7 +80,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./quarto.html" rel="next">
+<link href="./functions_purrr.html" rel="next">
 <link href="./functions.html" rel="prev">
 <link href="./cover.jpg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -91,7 +91,10 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -124,7 +127,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions.html">프로그래밍</a></li><li class="breadcrumb-item"><a href="./functions_ds.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">함수</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions.html">프로그래밍</a></li><li class="breadcrumb-item"><a href="./functions_ds.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -287,7 +290,13 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions_ds.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
   </div>
 </li>
       </ul>
@@ -304,7 +313,7 @@ div.csl-indent {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
   </div>
 </li>
       </ul>
@@ -332,11 +341,23 @@ div.csl-indent {
    
   <ul>
 <li><a href="#defuse-and-inject-%ED%8C%A8%ED%84%B4" id="toc-defuse-and-inject-패턴" class="nav-link active" data-scroll-target="#defuse-and-inject-%ED%8C%A8%ED%84%B4"><span class="header-section-number">14.1</span> Defuse-and-Inject 패턴</a></li>
-  <li><a href="#%EC%97%AD%EC%82%AC" id="toc-역사" class="nav-link" data-scroll-target="#%EC%97%AD%EC%82%AC"><span class="header-section-number">14.2</span> 역사</a></li>
+  <li>
+<a href="#%EC%97%AD%EC%82%AC" id="toc-역사" class="nav-link" data-scroll-target="#%EC%97%AD%EC%82%AC"><span class="header-section-number">14.2</span> 역사</a>
+  <ul class="collapse">
+<li><a href="#attach-%ED%95%A8%EC%88%98" id="toc-attach-함수" class="nav-link" data-scroll-target="#attach-%ED%95%A8%EC%88%98"><span class="header-section-number">14.2.1</span> <code>attach()</code> 함수</a></li>
+  <li><a href="#with-%ED%95%A8%EC%88%98" id="toc-with-함수" class="nav-link" data-scroll-target="#with-%ED%95%A8%EC%88%98"><span class="header-section-number">14.2.2</span> <code>with()</code> 함수</a></li>
+  <li><a href="#aggregate-%ED%95%A8%EC%88%98" id="toc-aggregate-함수" class="nav-link" data-scroll-target="#aggregate-%ED%95%A8%EC%88%98"><span class="header-section-number">14.2.3</span> <code>aggregate()</code> 함수</a></li>
+  </ul>
+</li>
+  <li><a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%A7%88%EC%8A%A4%ED%82%B9" id="toc-데이터-마스킹" class="nav-link" data-scroll-target="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%A7%88%EC%8A%A4%ED%82%B9"><span class="header-section-number">14.3</span> 데이터 마스킹</a></li>
+  <li><a href="#%EA%B9%94%EB%81%94%ED%95%9C-%ED%8F%89%EA%B0%80" id="toc-깔끔한-평가" class="nav-link" data-scroll-target="#%EA%B9%94%EB%81%94%ED%95%9C-%ED%8F%89%EA%B0%80"><span class="header-section-number">14.4</span> 깔끔한 평가</a></li>
+  <li><a href="#%EA%B7%B8%EB%A3%B9%EB%B3%84-%ED%8F%89%EA%B7%A0" id="toc-그룹별-평균" class="nav-link" data-scroll-target="#%EA%B7%B8%EB%A3%B9%EB%B3%84-%ED%8F%89%EA%B7%A0"><span class="header-section-number">14.5</span> 그룹별 평균</a></li>
+  <li><a href="#%EA%B7%B8%EB%9E%98%ED%94%84" id="toc-그래프" class="nav-link" data-scroll-target="#%EA%B7%B8%EB%9E%98%ED%94%84"><span class="header-section-number">14.6</span> 그래프</a></li>
+  <li><a href="#%EC%97%AD%EC%82%AC-1" id="toc-역사-1" class="nav-link" data-scroll-target="#%EC%97%AD%EC%82%AC-1"><span class="header-section-number">14.7</span> 역사</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/functions_ds.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions.html">프로그래밍</a></li><li class="breadcrumb-item"><a href="./functions_ds.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">함수</span></a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions.html">프로그래밍</a></li><li class="breadcrumb-item"><a href="./functions_ds.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title">
 <span class="chapter-number">14</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span>
 </h1>
@@ -353,7 +374,11 @@ div.csl-indent {
   
 
 
-</header><p>단순한 데이터 과학 업무는 인터랙티브하게 콘솔에서 작업을 수행하지만, 난이도가 올라가고 좀더 복작합 작업은 스크립트를 작성한다. 스크립트 작업을 여러번 반복하게 되면 복사하여 붙여넣기를 자주하게 된다. 그런 과정에서 뜻하지 않은 실수를 누구나 가지고 있다. 이제 함수를 작성하여 이러한 실수를 줄이고 생산성을 높여나갈 시점이다. 함수를 작성하면 복사하여 붙여넣기를 사용할 때보다 몇 가지 큰 이점이 있다.</p>
+</header><div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/function_vector.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/function_vector.jpg" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<p>단순한 데이터 과학 업무는 인터랙티브하게 콘솔에서 작업을 수행하지만, 난이도가 올라가고 좀더 복작합 작업은 스크립트를 작성한다. 스크립트 작업을 여러번 반복하게 되면 복사하여 붙여넣기를 자주하게 된다. 그런 과정에서 뜻하지 않은 실수를 누구나 가지고 있다. 이제 함수를 작성하여 이러한 실수를 줄이고 생산성을 높여나갈 시점이다. 함수를 작성하면 복사하여 붙여넣기를 사용할 때보다 몇 가지 큰 이점이 있다.</p>
 <ul>
 <li>기억하기 좋고 연상적인 함수명은 코드 가독성을 높인다.</li>
 <li>복사하여 붙여넣기에 따른 버그를 없앨 수 있다.</li>
@@ -417,6 +442,390 @@ div.csl-indent {
 <code>dplyr</code> 패키지가 2014년 첫선을 보였고, 2017년 <code>rlang</code> 패키지에 <code>tidy eval</code>이 구현되며 <code>quosure</code>, 암묵적 주입(implicit injection), 데이터 대명사(data pronouns) 개념이 소개됐다.</li>
 <li>2019년 <code>rlang</code> 0.4.0에 <code>Defuse-and-Inject</code> 패턴을 단순화한 <code>{{}}</code>이 도입되어 직관적으로 코드를 작성하게 되었다.</li>
 </ul>
+<p>데이터 분석에서 빈도수가 높은 작업을 Base R과 <code>dplyr</code> 패키지를 사용한 사례를 다음과 같이 비교하면 S언어에서 현재까지 이뤄낸 발전이 가시적으로 다가온다.</p>
+<table class="table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 36%">
+<col style="width: 33%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: center;">작업</th>
+<th style="text-align: center;">Base R</th>
+<th style="text-align: center;"><code>dplyr</code></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>행 필터링 (Filter)</strong></td>
+<td style="text-align: center;"><code>subset(data, condition)</code></td>
+<td style="text-align: center;"><code>data %&gt;% filter(condition)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>특정 칼럼 선택 (Select)</strong></td>
+<td style="text-align: center;"><code>data[, c("col1", "col2")]</code></td>
+<td style="text-align: center;"><code>data %&gt;% select(col1, col2)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>그룹별 집계작업</strong></td>
+<td style="text-align: center;"><code>aggregate(. ~ grouping_var, data, FUN = mean)</code></td>
+<td style="text-align: center;"><code>data %&gt;% group_by(grouping_var) %&gt;% summarize(new_col = mean(col_name))</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">죠인(Join)</td>
+<td style="text-align: center;"><code>merge(data1, data2, by = "key_column")</code></td>
+<td style="text-align: center;"><code>data1 %&gt;% inner_join(data2, by = "key_column")</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>칼럼 추가</strong></td>
+<td style="text-align: center;"><code>transform(data, new_col = some_func(existing_col))</code></td>
+<td style="text-align: center;"><code>data %&gt;% mutate(new_col = some_func(existing_col))</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>행 결합</strong></td>
+<td style="text-align: center;"><code>rbind(data1, data2)</code></td>
+<td style="text-align: center;"><code>bind_rows(data1, data2)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>칼럼 결합</strong></td>
+<td style="text-align: center;"><code>cbind(data1, data2)</code></td>
+<td style="text-align: center;"><code>bind_cols(data1, data2)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>정렬</strong></td>
+<td style="text-align: center;"><code>data[order(data$col_name), ]</code></td>
+<td style="text-align: center;"><code>data %&gt;% arrange(col_name)</code></td>
+</tr>
+</tbody>
+</table>
+<section id="attach-함수" class="level3" data-number="14.2.1"><h3 data-number="14.2.1" class="anchored" data-anchor-id="attach-함수">
+<span class="header-section-number">14.2.1</span> <code>attach()</code> 함수</h3>
+<p>데이터프레임에 <code><a href="https://rdrr.io/r/base/attach.html">attach()</a></code> 함수를 사용하면 데이터프레임을 구성하는 칼럼이 벡터로 작업환경에서 바로 접근하여 작업을 수행할 수 있다. <code>penguins</code> 데이터프레임을 <code><a href="https://rdrr.io/r/base/attach.html">attach()</a></code>한 결과 <code>bill_depth_mm</code> 벡터가 작업환경에서 바로 접근하여 평균값을 계산할 수 있게 되었다. 작업을 완료한 후에 <code><a href="https://rdrr.io/r/base/detach.html">detach()</a></code> 를 사용해서 작업환경에서 제거한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">base</span><span class="fu">::</span><span class="kw"><a href="https://rdrr.io/r/base/attach.html">attach</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span>pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/search.html">search</a></span><span class="op">(</span><span class="op">)</span> <span class="op">==</span> <span class="st">"penguins"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "bill_depth_mm"     "bill_length_mm"    "body_mass_g"      
+[4] "flipper_length_mm" "island"            "sex"              
+[7] "species"           "year"             </code></pre>
+</div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">bill_depth_mm</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 17.15117</code></pre>
+</div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/detach.html">detach</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="with-함수" class="level3" data-number="14.2.2"><h3 data-number="14.2.2" class="anchored" data-anchor-id="with-함수">
+<span class="header-section-number">14.2.2</span> <code>with()</code> 함수</h3>
+<p><code><a href="https://rdrr.io/r/base/attach.html">attach()</a></code> 함수는 편리한 장점이 있지만, 데이터프레임 변수명과 함수명, 또 다른 작업에서 나온 객체명과 충돌이 발생할 경우 전혀 생각하지 못한 문제가 발생할 수 있다. 따라서, 격리를 통해 문제를 단순화하는 것이 필요하다. 이를 위해서 <code><a href="https://rdrr.io/r/base/with.html">with()</a></code> 함수를 사용하게 되면 데이터프레임에 속한 칼럼명을 명시하지 않더라도 간결하게 데이터 분석 작업을 이어나갈 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>,</span>
+<span>     expr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">bill_depth_mm</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 17.15117</code></pre>
+</div>
+</div>
+</section><section id="aggregate-함수" class="level3" data-number="14.2.3"><h3 data-number="14.2.3" class="anchored" data-anchor-id="aggregate-함수">
+<span class="header-section-number">14.2.3</span> <code>aggregate()</code> 함수</h3>
+<p>Base R 에서 지원되는 <code><a href="https://rdrr.io/r/stats/aggregate.html">aggregate()</a></code> 함수를 사용해서 동일한 결과를 얻을 수 있다. <code><a href="https://rdrr.io/r/stats/aggregate.html">aggregate()</a></code> 함수는 <code><a href="https://rdrr.io/r/base/with.html">with()</a></code>와 지향점은 유사하지만 구현방식에서 다소 차이가 난다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">bill_depth_mm</span> <span class="op">~</span> <span class="fl">1</span>, </span>
+<span>          data <span class="op">=</span> <span class="va">penguins</span>, </span>
+<span>          FUN <span class="op">=</span> <span class="va">mean</span>, </span>
+<span>          na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  bill_depth_mm
+1      17.15117</code></pre>
+</div>
+</div>
+</section></section><section id="데이터-마스킹" class="level2" data-number="14.3"><h2 data-number="14.3" class="anchored" data-anchor-id="데이터-마스킹">
+<span class="header-section-number">14.3</span> 데이터 마스킹</h2>
+<p>R에서의 <strong>데이터 마스킹(Data Masking)</strong>은 <code>tidyverse</code> 생태계에서 데이터 문법을 담당하는 <code>dplyr</code> 패키지에서 핵심적인 개념이다. 데이터 마스킹을 사용하면 데이터프레임 칼럼을 <code>$</code>, <code>[[ ]]</code>를 사용하지 않고도 칼럼명으로 직접 참조할 수 있어, 데이터를 조작하고 변환할 때 훨씬 직관적이고 가독성 높은 코드를 작성할 수 있다.</p>
+<p><code>penguins</code> 데이터프레임의 <code>species</code>를 데이터 마스킹 없이 조작하려면 <code>penguins$species</code> 혹은 <code>penguins[['species']]</code>와 같이 구문을 작성해야 하지만 데이터 마스킹을 사용하면 <code>species</code> 만으로 충분한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 데이터 마스킹을 사용하여 펭귄종(species)이 "Adelie"만 추출한다.</span></span>
+<span><span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 152 × 8
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+ 1 Adelie  Torgersen           39.1          18.7               181        3750
+ 2 Adelie  Torgersen           39.5          17.4               186        3800
+ 3 Adelie  Torgersen           40.3          18                 195        3250
+ 4 Adelie  Torgersen           NA            NA                  NA          NA
+ 5 Adelie  Torgersen           36.7          19.3               193        3450
+ 6 Adelie  Torgersen           39.3          20.6               190        3650
+ 7 Adelie  Torgersen           38.9          17.8               181        3625
+ 8 Adelie  Torgersen           39.2          19.6               195        4675
+ 9 Adelie  Torgersen           34.1          18.1               193        3475
+10 Adelie  Torgersen           42            20.2               190        4250
+# ℹ 142 more rows
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+<p><code>dplyr</code> 함수의 데이터 마스킹은 비표준 평가 (Non-standard evaluation, NSE)라는 개념에 기반을 두는데, 표현식을 캡처하고 난 후 바로 바로 실행되지 않고 제공된 데이터의 맥락 내에서 평가가 이루어진다. 데이터 마스킹은 강력하며 깔끔한 구문을 제공하지만, 칼럼명과 충돌할 수 있는 환경의 변수 이름이 있을 때 예기치 않은 방식으로 동작한다. 모호한 상황이 발생할 때 항상 다음과 같은 방식으로 <code>.data$column_name</code> 함으로써 데이터 마스킹 재정의(Overriding)를 통해 명확히 한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">species</span> <span class="op">&lt;-</span> <span class="st">"Chinstrap"</span></span>
+<span></span>
+<span><span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 152 × 8
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+ 1 Adelie  Torgersen           39.1          18.7               181        3750
+ 2 Adelie  Torgersen           39.5          17.4               186        3800
+ 3 Adelie  Torgersen           40.3          18                 195        3250
+ 4 Adelie  Torgersen           NA            NA                  NA          NA
+ 5 Adelie  Torgersen           36.7          19.3               193        3450
+ 6 Adelie  Torgersen           39.3          20.6               190        3650
+ 7 Adelie  Torgersen           38.9          17.8               181        3625
+ 8 Adelie  Torgersen           39.2          19.6               195        4675
+ 9 Adelie  Torgersen           34.1          18.1               193        3475
+10 Adelie  Torgersen           42            20.2               190        4250
+# ℹ 142 more rows
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+<table class="table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 28%">
+<col style="width: 46%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: center;">항목</th>
+<th style="text-align: left;">데이터 마스킹</th>
+<th style="text-align: left;">Tidy Evaluation</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>정의</strong></td>
+<td style="text-align: left;">- 데이터프레임 칼럼명을 직접적인 변수처럼 다룰 수 있는 능력. <br> - <code>$</code>나 <code>[[ ]]</code> 없이 칼럼 참조를 단순화.</td>
+<td style="text-align: left;">- R 메타프로그래밍을 위한 프레임워크, 특히 tidyverse 에서 사용. <br> - 다양한 맥락에서 표현식을 캡쳐하고 평가하는 도구 제공.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>사용 사례</strong></td>
+<td style="text-align: left;">- <code>dplyr</code> 함수에서 직접 데이터 조작. <br> - 코드 가독성 향상.</td>
+<td style="text-align: left;">- 따옴표 없는 표현식으로 사용자 정의 함수 생성. <br> - 표현식을 프로그래밍 방식으로 구성 및 평가. <br> - 표현식 평가 맥락 제어.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>구현</strong></td>
+<td style="text-align: left;">- 기본적으로 tidy evaluation 메커니즘을 사용하여 구현됨.</td>
+<td style="text-align: left;">- <code>rlang 패키지</code> <code><a href="https://rlang.r-lib.org/reference/enquo.html">enquo()</a></code>, <code><a href="https://rlang.r-lib.org/reference/defusing-advanced.html">quo()</a></code>, <code>!!</code> 등을 사용. <br> - 표현식과 그 환경을 캡쳐하기 위해 쿼저(Quosure) 의존.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>복잡성</strong></td>
+<td style="text-align: left;">- 최종 사용자를 위해 간소화. <br> - 기본적인 복잡성을 추상화.</td>
+<td style="text-align: left;">- R 메타프로그래밍 이해 필요. <br> - 고급 사용자에게 더 많은 유연성 제공.</td>
+</tr>
+</tbody>
+</table></section><section id="깔끔한-평가" class="level2" data-number="14.4"><h2 data-number="14.4" class="anchored" data-anchor-id="깔끔한-평가">
+<span class="header-section-number">14.4</span> 깔끔한 평가</h2>
+<p><strong>깔끔한 평가(Tidy evaluation)</strong>은 R <code>tidyverse</code> 프레임워크로, 특히 비표준 평가 (Non-Standard Evaluation, NSE)와 관련하여 <code>tidyverse</code> 함수로 프로그래밍하는 방법을 표준화했다. NSE는 R 함수가 표준과는 다른 맥락에서 표현식을 평가할 때 발생한다.</p>
+<ul>
+<li>준인용(Quasiquotation): <code><a href="https://rlang.r-lib.org/reference/enquo.html">enquo()</a></code> 함수를 사용하여 표현식을 캡처하고 <code>!!</code>를 사용하여 표현식의 인용제거(Unquoting)을 가능케 한다.</li>
+<li>Pronouns (대명사): <code>.data</code> 대명사는 데이터프레임의 칼럼명을 명시적으로 참조하는데 사용되어 모호성을 제거한다.</li>
+<li>함수: <code><a href="https://rlang.r-lib.org/reference/enquo.html">enquo()</a></code>는 표현식을 캡처하고, <code><a href="https://rlang.r-lib.org/reference/quo_label.html">quo_name()</a></code>은 표현식을 문자열로 변환하며, <code>!!</code>는 표현식 인용제거 또는 주입작업을 수행한다.</li>
+</ul>
+<p>예를 들어, <code>dplyr</code> 패키지 <code>filter</code> 및 <code>select</code>와 같은 동사를 사용하지만 함수에 칼럼명을 작성하려는 경우, 인수로 전달될 때 이러한 동사가 어떤 칼럼을 참조하는지 명확히 하기 위해 깔끔한 평가(tidy evaluation)가 사용된다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">filter_and_select</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">col_name</span>, <span class="va">threshold</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  </span>
+<span>  <span class="co"># 칼럼명 문자열을 기호로 변환</span></span>
+<span>  <span class="va">col_sym</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rlang.r-lib.org/reference/sym.html">sym</a></span><span class="op">(</span><span class="va">col_name</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># 준인용(quasiquotation)을 사용해서 칼럼 표현식을 캡쳐</span></span>
+<span>  <span class="va">col_expr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rlang.r-lib.org/reference/enquo.html">enquo</a></span><span class="op">(</span><span class="va">col_sym</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># !! 연산자를 이용하여 인용제거(unquote)하고 표현식을 주입</span></span>
+<span>  <span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="op">!</span><span class="va">col_expr</span> <span class="op">&gt;</span> <span class="va">threshold</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">!</span><span class="op">!</span><span class="va">col_expr</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">filter_and_select</span><span class="op">(</span><span class="va">penguins</span>, <span class="st">"bill_length_mm"</span>, <span class="fl">55</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 1
+  bill_length_mm
+           &lt;dbl&gt;
+1           59.6
+2           55.9
+3           55.1
+4           58  
+5           55.8</code></pre>
+</div>
+</div>
+<p><code><a href="https://rlang.r-lib.org/reference/sym.html">sym()</a></code> → <code><a href="https://rlang.r-lib.org/reference/enquo.html">enquo()</a></code> → <code>!!</code>(뱅뱅) 구현방식이 Defuse-and-Inject 패턴으로 내부 동작방식은 동일하지만 사용자 구문은 <code>{ 칼럼명 }</code>으로 깔끔해졌다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">filter_and_select_latest</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">col_name</span>, <span class="va">threshold</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  </span>
+<span>  <span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">{</span><span class="op">{</span> <span class="va">col_name</span> <span class="op">}</span><span class="op">}</span> <span class="op">&gt;</span> <span class="va">threshold</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">{</span><span class="op">{</span> <span class="va">col_name</span> <span class="op">}</span><span class="op">}</span><span class="op">)</span></span>
+<span>  </span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">filter_and_select_latest</span><span class="op">(</span><span class="va">penguins</span>, <span class="va">bill_length_mm</span>, <span class="fl">55</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 1
+  bill_length_mm
+           &lt;dbl&gt;
+1           59.6
+2           55.9
+3           55.1
+4           58  
+5           55.8</code></pre>
+</div>
+</div>
+<ul>
+<li>데이터 마스킹: 변수를 사용하여 계산하는 <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> 등 함수에 사용.</li>
+<li>Tidy-selection: 변수를 선택하는 <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code>과 같은 함수에 사용.</li>
+</ul></section><section id="그룹별-평균" class="level2" data-number="14.5"><h2 data-number="14.5" class="anchored" data-anchor-id="그룹별-평균">
+<span class="header-section-number">14.5</span> 그룹별 평균</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/function_dataframe.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/function_dataframe.jpg" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<p>데이터프레임 요약통계량을 계산하는 코드를 작성해보자. 펭귄종(<code>species</code>) 별로 부리길이를 계산하는 코드를 작성해보자.</p>
+<div class="cell">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>부리길이_평균 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">bill_length_mm</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  species   부리길이_평균
+  &lt;fct&gt;             &lt;dbl&gt;
+1 Adelie             38.8
+2 Chinstrap          48.8
+3 Gentoo             47.5</code></pre>
+</div>
+</div>
+<p>이번에는 그룹변수와 데이터프레임 칼럼명을 달리하여 그룹별로 평균을 계사하는 함수를 작성하여 코드로 작성해보자.</p>
+<div class="cell">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">get_group_mean</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dataframe</span>, <span class="va">group_varname</span>, <span class="va">varname</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">dataframe</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">group_varname</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>부리길이_평균 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">varname</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">get_group_mean</span><span class="op">(</span><span class="va">penguins</span>, <span class="va">species</span>, <span class="va">bill_length_mm</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `group_by()`:
+! Must group by variables found in `.data`.
+✖ Column `group_varname` is not found.</code></pre>
+</div>
+</div>
+<p>상기 코드가 동작하지 않는 이유는 함수에 <code>tidyverse</code> 코드를 함수에 단순히 전달해서 넣기 때문에 발생했다. 다음과 같이 칼러명을 포용(embracing)하는 방식으로 <code>{ 칼럼명 }</code>과 같이 함수에 사용되는 데이터프레임 변수명을 명시적으로 작성할 경우 문제가 해결된다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">get_group_mean</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dataframe</span>, <span class="va">group_varname</span>, <span class="va">varname</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">dataframe</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span> <span class="op">{</span><span class="op">{</span> <span class="va">group_varname</span> <span class="op">}</span><span class="op">}</span> <span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>부리길이_평균 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span> <span class="op">{</span><span class="op">{</span> <span class="va">varname</span> <span class="op">}</span><span class="op">}</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">get_group_mean</span><span class="op">(</span><span class="va">penguins</span>, <span class="va">species</span>, <span class="va">bill_length_mm</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  species   부리길이_평균
+  &lt;fct&gt;             &lt;dbl&gt;
+1 Adelie             38.8
+2 Chinstrap          48.8
+3 Gentoo             47.5</code></pre>
+</div>
+</div>
+</section><section id="그래프" class="level2" data-number="14.6"><h2 data-number="14.6" class="anchored" data-anchor-id="그래프">
+<span class="header-section-number">14.6</span> 그래프</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/function_graph.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/function_graph.jpg" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<p>데이터프레임에서 범주형 변수를 하나 선택하여 빈도수를 시각화하는 스크립트를 다음과 같이 작성한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">island</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">island</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="functions_ds_files/figure-html/unnamed-chunk-12-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="functions_ds_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>범주형 변수를 막대그래프로 시각화하는 함수를 제작해보자.</p>
+<div class="cell">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">draw_bar_chart</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dataframe</span>, <span class="va">varname</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">dataframe</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span> <span class="op">{</span><span class="op">{</span> <span class="va">varname</span> <span class="op">}</span><span class="op">}</span> <span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="op">{</span><span class="op">{</span> <span class="va">varname</span> <span class="op">}</span><span class="op">}</span>, y <span class="op">=</span> <span class="va">n</span> <span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">draw_bar_chart</span><span class="op">(</span><span class="va">year</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="functions_ds_files/figure-html/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="functions_ds_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>함수내에서 새로운 변수 이름을 생성하는 경우 <code>:=</code> 연산자를 사용해야 한다. 깔끔한 평가(tidy evaluation)에서 <code>=</code> 와 동일한 역할을 수행하는 것이 <code>:=</code> 이기 때문이다. 예를 들어, 펭귄이 서식하고 있는 섬을 기준으로 빈도수를 내림차순 막대그래프를 작성할 경우, 함수 내부에서 범주형 변수를 다시 재정의해야 하는데 이 경우 <code>:=</code> 연산자의 도입이 필요하다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://forcats.tidyverse.org/">forcats</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">order_bar_chart</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dataframe</span>, <span class="va">varname</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">dataframe</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="op">{</span><span class="op">{</span> <span class="va">varname</span> <span class="op">}</span><span class="op">}</span> <span class="op">:=</span>  <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_rev.html">fct_rev</a></span><span class="op">(</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_infreq</a></span><span class="op">(</span> <span class="op">{</span><span class="op">{</span> <span class="va">varname</span> <span class="op">}</span><span class="op">}</span> <span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="op">{</span><span class="op">{</span> <span class="va">varname</span> <span class="op">}</span><span class="op">}</span> <span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">order_bar_chart</span><span class="op">(</span><span class="va">island</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="functions_ds_files/figure-html/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="functions_ds_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>그래프를 작성할 때 거의 항상 등장하는 문제가 그래프 x-축, y-축 라벨을 붙이고 그래프 제목, 범례 등 텍스트를 넣어야 한다. 이런 경우 <code>stringr</code>, <code>glue</code> 패키지의 다양한 함수를 깔끔한 평가(tidy evaluation)에서 지원하는 기능이 <code>rlang</code> 패키지 <code>englue()</code> 함수다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">draw_bar_chart</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dataframe</span>, <span class="va">varname</span>, <span class="va">penguin_species</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  </span>
+<span>  <span class="va">title_label</span> <span class="op">&lt;-</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/englue.html">englue</a></span><span class="op">(</span><span class="st">"남극에 서식하고 있는 펭귄 종 ({{ varname }}) {penguin_species} 빈도수"</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="va">dataframe</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">{</span><span class="op">{</span> <span class="va">varname</span> <span class="op">}</span><span class="op">}</span> <span class="op">==</span> <span class="va">penguin_species</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span> <span class="va">island</span> <span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">island</span>, y <span class="op">=</span> <span class="va">n</span> <span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="va">title_label</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">draw_bar_chart</span><span class="op">(</span><span class="va">species</span>, <span class="st">"Adelie"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="functions_ds_files/figure-html/unnamed-chunk-15-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="functions_ds_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="역사-1" class="level2" data-number="14.7"><h2 data-number="14.7" class="anchored" data-anchor-id="역사-1">
+<span class="header-section-number">14.7</span> 역사</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
@@ -749,8 +1158,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./quarto.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">쿼토</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./functions_purrr.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -766,7 +1175,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</p>
 </div>
   </div>
-</footer>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","loop":true,"descPosition":"bottom"});</script>
 
 
 </body></html>
