@@ -65,6 +65,11 @@ format:
     theme:
       - cosmo
       - chatGPT4ds.scss
+    number-depth: 3
+    number-sections: true
+    colorlinks: true
+    cite-method: biblatex
+    code-overflow: wrap
     code-link: true
 
     author-meta: "이광춘, 신종화"
