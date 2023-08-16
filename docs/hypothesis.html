@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.4.288">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘, 신종화">
 <title>챗GPT 데이터 과학 - 11&nbsp; 코딩 가설검정</title>
@@ -52,26 +52,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -80,7 +61,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./quarto.html" rel="next">
+<link href="./NHST.html" rel="next">
 <link href="./sampling.html" rel="prev">
 <link href="./cover.jpg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -101,6 +82,11 @@ div.csl-indent {
   "panel-placement": "start",
   "type": "textbox",
   "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "일치 없음",
     "search-matching-documents-text": "일치된 문서",
@@ -122,9 +108,9 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html">데이터 과학</a></li><li class="breadcrumb-item"><a href="./hypothesis.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html">데이터 과학</a></li><li class="breadcrumb-item"><a href="./hypothesis.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -135,7 +121,7 @@ div.csl-indent {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">챗GPT 데이터 과학</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/bit2r/chatGPT4ds" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/bit2r/chatGPT4ds" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="리더 모드 전환">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -259,12 +245,43 @@ div.csl-indent {
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./NHST.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">NHST.html</span></span></a>
+  </div>
+</li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">프로그래밍</span></span>
-  </li>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">프로그래밍</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
@@ -277,7 +294,7 @@ div.csl-indent {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
   </div>
 </li>
       </ul>
@@ -315,10 +332,10 @@ div.csl-indent {
   <li><a href="#mosquitoes-love-beer-drinkers-infer" id="toc-mosquitoes-love-beer-drinkers-infer" class="nav-link" data-scroll-target="#mosquitoes-love-beer-drinkers-infer"><span class="header-section-number">11.4.3</span> 의사결정</a></li>
   </ul>
 </li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/bit2r/chatGPT4ds/edit/main/hypothesis.qmd" class="toc-action">편집</a></p><p><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action">이슈 보고</a></p></div></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/hypothesis.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html">데이터 과학</a></li><li class="breadcrumb-item"><a href="./hypothesis.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title"><span id="computer-age-inference" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></h1>
 </div>
 
@@ -331,6 +348,7 @@ div.csl-indent {
     
   </div>
   
+
 
 </header><p>통계적 추론은 주로 모수 추정에 대한 품질 해석과 관련된다. 예를 들어, 전통적인 추정 질문은 다음과 같다. “추정한 평균 <span class="math inline">\(\bar{x}\)</span>가 모집단 평균 <span class="math inline">\(\mu\)</span>에 근처에 있다는 것을 얼마나 확신할 수 있는가?” 질문과 구체적인 사항이 설정에 따라 변할 수 있지만, 추정에 대한 토대는 모든 통계학에서 동일하다.</p>
 <p>컴퓨터가 활발히 사용되기 전에 통계적 검정에 대한 필요성은 과거에도 존재했다. 하지만, 그 당시에는 컴퓨터가 너무 희귀한 자원이고 컴퓨터를 잘 다둘 수 있는 사람도 극도로 적었기 때문에 수학을 바탕으로한 통계적 추론 방법(Analytic Method)이 발달했지만 여전히 진입장벽은 높기만 했다.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
@@ -356,7 +374,7 @@ div.csl-indent {
 <li>검정통계량 계산</li>
 <li>통계적인 의사결정</li>
 </ol>
-<p>통계적 가설검정(Statistical Testing)은 기존 통계학 전공자의 전유물이었으나, 컴퓨터의 일반화와 누구나 코딩을 할 수 있는 현재(2023-08-04)는 더 이상 기존 통념이 통용되지는 않게 되었다. 특히 <a href="https://www.python.org/">파이썬</a> 진영에서 이런 움직임이 활발하다. 그렇다고 <a href="https://www.r-project.org/">R</a> 진영에서도 기존의 방식을 고수하는 것은 아니다.</p>
+<p>통계적 가설검정(Statistical Testing)은 기존 통계학 전공자의 전유물이었으나, 컴퓨터의 일반화와 누구나 코딩을 할 수 있는 현재(2023-08-16)는 더 이상 기존 통념이 통용되지는 않게 되었다. 특히 <a href="https://www.python.org/">파이썬</a> 진영에서 이런 움직임이 활발하다. 그렇다고 <a href="https://www.r-project.org/">R</a> 진영에서도 기존의 방식을 고수하는 것은 아니다.</p>
 </section><section id="computer-age-tidyverse-inference" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="computer-age-tidyverse-inference">
 <span class="header-section-number">11.2</span> tidyverse 가설검정</h2>
 <p>데이터 과학을 이끌어 나가는 있는 R과 파이썬 진영의 현재 주도적인 흐름을 살펴보자. 우선 다소 차이가 있지만, <code>for</code> 반복루프를 이해하고 이를 코드로 구현할 수만 있다면 컴퓨터를 활용한 가설검정이 가능한 것은 사실이다. 하지만, 2011년 Allen Downey 교수가 주장했던 것처럼 오랜동안 검정된 해석학적 방법(Analytic Method)에 대한 교차검정하는 방식으로 활용하는 것이 추천된다. <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
@@ -382,7 +400,7 @@ div.csl-indent {
 </div>
 </section><section id="mosquitoes-love-beer-drinkers" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="mosquitoes-love-beer-drinkers">
 <span class="header-section-number">11.4</span> 사례: 맥주와 모기</h2>
-<p>맥주를 마시는 사람이 말라리아 모기에게 매력적으로 보여 더 잘 물리는가? 라는 흥미로운 논문이 발표되었다. <span class="citation" data-cites="lefevre2010beer">(<a href="references.html#ref-lefevre2010beer" role="doc-biblioref">Lefèvre 기타 2010</a>)</span> 이 연구는 맥주를 마신 후 사람의 냄새 (호흡 및 피부 방출 냄새)가 아노펠레스 감비아(Anopheles gambiae, 아프리카 주요 말라리아 매개체)에게 어떤 영향을 미치는지 조사하였다. 맥주를 마신 사람들의 몸 냄새는 모기의 활성화 (이륙 및 상향 풍속 비행에 참여하는 모기의 비율)와 방향성 (사람의 냄새를 향해 비행하는 모기의 비율)을 증가시켰다. 물을 마신 경우에는 사람이 모기에게 끌리는 것에 영향을 미치지 않았다.</p>
+<p>맥주를 마시는 사람이 말라리아 모기에게 매력적으로 보여 더 잘 물리는가? 라는 흥미로운 논문이 발표되었다. <span class="citation" data-cites="lefevre2010beer">[@lefevre2010beer]</span> 이 연구는 맥주를 마신 후 사람의 냄새 (호흡 및 피부 방출 냄새)가 아노펠레스 감비아(Anopheles gambiae, 아프리카 주요 말라리아 매개체)에게 어떤 영향을 미치는지 조사하였다. 맥주를 마신 사람들의 몸 냄새는 모기의 활성화 (이륙 및 상향 풍속 비행에 참여하는 모기의 비율)와 방향성 (사람의 냄새를 향해 비행하는 모기의 비율)을 증가시켰다. 물을 마신 경우에는 사람이 모기에게 끌리는 것에 영향을 미치지 않았다.</p>
 <section id="mosquitoes-love-beer-drinkers-setup" class="level3" data-number="11.4.1"><h3 data-number="11.4.1" class="anchored" data-anchor-id="mosquitoes-love-beer-drinkers-setup">
 <span class="header-section-number">11.4.1</span> 가설검정 환경설정</h3>
 <p>데이터 전처리와 시각화, 한글설정을 위한 팩키지를 준비한다. 특히 <code>infer</code> 코딩기반 가설검정을 위해 필수적인 팩키지로 활용하는데 기본적인 사용방법은 <code>mtcars</code>, <code>flights</code> 데이터를 활용한 사례를 살펴본다.</p>
@@ -577,8 +595,7 @@ div.csl-indent {
 </section><section id="mosquitoes-love-beer-drinkers-infer" class="level3" data-number="11.4.3"><h3 data-number="11.4.3" class="anchored" data-anchor-id="mosquitoes-love-beer-drinkers-infer">
 <span class="header-section-number">11.4.3</span> 의사결정</h3>
 <p>맥주를 마신 집단과 맹물을 마신 집단간에 평균적으로 4.38 모기개체수 만큼 차이가 나는데 이런 차이가 유의적인지 전통적인 t-검정과 코딩기반 모의실험을 통해서 살펴보자.</p>
-<section id="mosquitoes-love-beer-drinkers-infer-ttest" class="level4" data-number="11.4.3.1"><h4 data-number="11.4.3.1" class="anchored" data-anchor-id="mosquitoes-love-beer-drinkers-infer-ttest">
-<span class="header-section-number">11.4.3.1</span> 전통 t-검정</h4>
+<section id="mosquitoes-love-beer-drinkers-infer-ttest" class="level4"><h4 class="anchored" data-anchor-id="mosquitoes-love-beer-drinkers-infer-ttest">전통 t-검정</h4>
 <p>t-검정 결과 유의적인 차이가 나타나느 것으로 나타난다. p-값이 무척이나 작게 나온다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 3. 통계 검정 -----</span></span>
@@ -598,8 +615,7 @@ mean in group 맥주 mean in group 맹물
           23.60000           19.22222 </code></pre>
 </div>
 </div>
-</section><section id="mosquitoes-love-beer-drinkers-infer-computer" class="level4" data-number="11.4.3.2"><h4 data-number="11.4.3.2" class="anchored" data-anchor-id="mosquitoes-love-beer-drinkers-infer-computer">
-<span class="header-section-number">11.4.3.2</span> 코딩기반 t-검정</h4>
+</section><section id="mosquitoes-love-beer-drinkers-infer-computer" class="level4"><h4 class="anchored" data-anchor-id="mosquitoes-love-beer-drinkers-infer-computer">코딩기반 t-검정</h4>
 <p>코딩기반 t-검정은 다음 절차를 통해 준비한다.</p>
 <ol type="1">
 <li>코딩기반 t-검정을 수행할 경우 <code>beer_df</code>가 <span class="math inline">\(\delta^*\)</span>에 해당되어 데이터에서 사전에 계산해 놓는다.</li>
@@ -634,7 +650,7 @@ mean in group 맥주 mean in group 맹물
 <pre><code># A tibble: 1 × 1
   p_value
     &lt;dbl&gt;
-1   0.001</code></pre>
+1       0</code></pre>
 </div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">null_model</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">stat</span>, <span class="fl">0.025</span><span class="op">)</span>,</span>
@@ -643,7 +659,7 @@ mean in group 맥주 mean in group 맹물
 <pre><code># A tibble: 1 × 2
       l     u
   &lt;dbl&gt; &lt;dbl&gt;
-1 -2.69  2.66</code></pre>
+1 -2.50  2.66</code></pre>
 </div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### 3.2.4. 시각화</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">null_model</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">stat</span>, fill<span class="op">=</span><span class="st">"gray75"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -664,17 +680,12 @@ mean in group 맥주 mean in group 맹물
 </div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-lefevre2010beer" class="csl-entry" role="listitem">
-Lefèvre, Thierry, Louis-Clément Gouagna, Kounbobr Roch Dabiré, Eric Elguero, Didier Fontenille, François Renaud, Carlo Costantini, 와/과 Frédéric Thomas. 2010. <span>“Beer consumption increases human attractiveness to malaria mosquitoes”</span>. <em>PloS one</em> 5 (3): e9546.
-</div>
-</div>
-</section></section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+</section></section></section><aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
 <li id="fn1"><p><a href="http://allendowney.blogspot.kr/2016/06/there-is-still-only-one-test.html">Allen Downey (2016), There is still only one test</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p><a href="https://ko.wikipedia.org/wiki/%EA%B0%80%EC%84%A4_%EA%B2%80%EC%A0%95">위키 백과 - 가설 검정</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p><a href="https://cran.r-project.org/web/packages/tidyverse/vignettes/manifesto.html">Hadley Wickham(2017-11-13), The tidy tools manifesto</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</ol></aside></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -753,10 +764,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -766,8 +776,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -780,6 +799,81 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -823,6 +917,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -912,20 +1007,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./quarto.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">쿼토</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./NHST.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">NHST.html</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
-    <div class="nav-footer-left">이광춘, 신종화, 유충현, 홍성학이 ’챗GPT 데이터 사이언스’를 저작했습니다.</div>   
+    <div class="nav-footer-left">
+<p>이광춘, 신종화, 유충현, 홍성학이 ’챗GPT 데이터 사이언스’를 저작했습니다.</p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
-    <div class="nav-footer-right"><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</div>
+    <div class="nav-footer-right">
+<p><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</p>
+</div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":true,"descPosition":"bottom","openEffect":"zoom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom","loop":true});</script>
 
 
 </body></html>

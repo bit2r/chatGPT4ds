@@ -21,26 +21,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -50,7 +31,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./quarto.html" rel="next">
+<link href="./functions.html" rel="next">
 <link href="./hypothesis.html" rel="prev">
 <link href="./cover.jpg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -253,8 +234,33 @@ div.csl-indent {
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">프로그래밍</span></span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">프로그래밍</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
+  </div>
+</li>
+      </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
@@ -268,7 +274,7 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
   </div>
 </li>
       </ul>
@@ -298,8 +304,8 @@ div.csl-indent {
 
 
 
-<p>R.A. Fisher는 NHST의 토대를 만들었으며 분산분석의 개념과 제한된 표본을 이용해 실험을 설계하는 실험계획법에 큰 기여를 했다. 1925년에 그가 발표한 ’Statistical Methods for Research Workers’라는 책에서 유의성 검정(significance test) 개념이 소개된 것을 확인할 수 있다. <span class="citation" data-cites="fisher1970statistical">(<a href="references.html#ref-fisher1970statistical" role="doc-biblioref">Fisher 1970</a>)</span></p>
-<p>귀무가설(null hypothesis)과 대립가설(alternative hypothesis)을 바탕으로 한 가설검정(hypothesis testing) 개념을 Neyman과 Pearson이 정립했고, 이를 적용한 최초의 사례는 1940년에 발표한 “Statistical Analysis in Educational Research”라는 책에서 NHST(Null Hypothesis Significance Testing) 개념을 처음으로 사용한 것으로 알려져 있다. <span class="citation" data-cites="lindquist1940statistical">(<a href="references.html#ref-lindquist1940statistical" role="doc-biblioref">Lindquist 1940</a>)</span></p>
+<p>R.A. Fisher는 NHST의 토대를 만들었으며 분산분석의 개념과 제한된 표본을 이용해 실험을 설계하는 실험계획법에 큰 기여를 했다. 1925년에 그가 발표한 ’Statistical Methods for Research Workers’라는 책에서 유의성 검정(significance test) 개념이 소개된 것을 확인할 수 있다. <span class="citation" data-cites="fisher1970statistical">[@fisher1970statistical]</span></p>
+<p>귀무가설(null hypothesis)과 대립가설(alternative hypothesis)을 바탕으로 한 가설검정(hypothesis testing) 개념을 Neyman과 Pearson이 정립했고, 이를 적용한 최초의 사례는 1940년에 발표한 “Statistical Analysis in Educational Research”라는 책에서 NHST(Null Hypothesis Significance Testing) 개념을 처음으로 사용한 것으로 알려져 있다. <span class="citation" data-cites="lindquist1940statistical">[@lindquist1940statistical]</span></p>
 <div class="cell" data-fig-alig="center">
 <div class="cell-output-display">
 <div>
@@ -328,14 +334,6 @@ div.csl-indent {
 </div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-fisher1970statistical" class="csl-entry" role="listitem">
-Fisher, Ronald Aylmer. 1970. <span>“Statistical methods for research workers”</span>. In <em>Breakthroughs in statistics: Methodology and distribution</em>, 66–70. Springer.
-</div>
-<div id="ref-lindquist1940statistical" class="csl-entry" role="listitem">
-Lindquist, Everet Franklin. 1940. <span>“Statistical analysis in educational research.”</span>
-</div>
-</div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -662,8 +660,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./quarto.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">쿼토</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./functions.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">함수</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

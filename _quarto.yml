@@ -45,6 +45,10 @@ book:
         - hypothesis.qmd
         - NHST.qmd
 
+    - part: "모형"
+      chapters:
+        - models.qmd
+
     - part: "프로그래밍"
       chapters:
         - functions.qmd
