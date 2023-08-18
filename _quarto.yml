@@ -25,6 +25,7 @@ book:
     - part: "tidyverse"
       chapters:
         - intro.qmd
+        - whole_game.qmd
 
     - part: "데이터셋"
       chapters:
