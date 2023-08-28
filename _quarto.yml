@@ -49,6 +49,9 @@ book:
     - part: "모형"
       chapters:
         - models.qmd
+        - models_building.qmd
+        - models_many.qmd
+        - models_case_study.qmd
 
     - part: "프로그래밍"
       chapters:
@@ -73,7 +76,7 @@ format:
     number-depth: 3
     number-sections: true
     colorlinks: true
-    cite-method: biblatex
+    # cite-method: biblatex
     code-overflow: wrap
     code-link: true
 
