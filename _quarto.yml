@@ -62,6 +62,7 @@ book:
     - part: "커뮤니케이션"
       chapters:
         - quarto.qmd
+        - map.qmd
 
     - part: "챗GPT"
 
