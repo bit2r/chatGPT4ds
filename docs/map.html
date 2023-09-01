@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.4.288">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘, 신종화">
-<title>챗GPT 데이터 과학 - 22&nbsp; 공간정보</title>
+<title>챗GPT 데이터 과학 - 22&nbsp; 지리정보시스템과 프롭테크: 도구의 진화와 미래 방향</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -126,7 +126,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./quarto.html">커뮤니케이션</a></li><li class="breadcrumb-item"><a href="./map.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">공간정보</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./quarto.html">커뮤니케이션</a></li><li class="breadcrumb-item"><a href="./map.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">프롭빅스 2023년 9월호</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -359,7 +359,7 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./map.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">공간정보</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">프롭빅스 2023년 9월호</span></span></a>
   </div>
 </li>
       </ul>
@@ -392,9 +392,9 @@ div.csl-indent {
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/map.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./quarto.html">커뮤니케이션</a></li><li class="breadcrumb-item"><a href="./map.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">공간정보</span></a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./quarto.html">커뮤니케이션</a></li><li class="breadcrumb-item"><a href="./map.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">프롭빅스 2023년 9월호</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title">
-<span class="chapter-number">22</span>&nbsp; <span class="chapter-title">공간정보</span>
+<span class="chapter-number">22</span>&nbsp; <span class="chapter-title">지리정보시스템과 프롭테크: 도구의 진화와 미래 방향</span>
 </h1>
 </div>
 
@@ -409,13 +409,31 @@ div.csl-indent {
   
 
 
-</header><p>지리학(Geography)은 가장 오래된 과학 중 하나로 꼽히며, 학생때부터 교실 여기저기에서 볼 수 있는 지도는 처음 접한 데이터 시각화 산출물이다. 지리학은 지구의 곡률을 정확히 파악하여 지구의 크기와 모양, 중력에 대한 이해를 높이는 데 중요한 역할을 수행했을 뿐만 아니라 대항해 시대 지도가 매우 큰 기여를 했다.</p>
+</header><blockquote class="blockquote">
+<p>오픈소스 소프트웨어와 공간정보 공공데이터가 넘쳐나고 있는 가운데, 시민 데이터 과학자의 중요성이 증가하고 있다. 그러나, 지난 50년 동안 빠르게 발전해 온 지리 정보 시스템(GIS) 분야를 부동산 기술(프롭테크) 관점에서 바라보면 가속되고 있는 도구의 발전이 가져올 미래 방향을 유추할 수 있다. 다른 과학 및 엔지니어링 분야에서와 마찬가지로, GIS 분야 또한 지속적인 도구의 발전을 통해 큰 혁신이 일어나고 있다. 본 연구에서는 GIS 도구의 발전 과정을 살펴보고, 사례로 제시된 코드와 코드를 지탱하는 도구를 코드 뒤에 숨겨진 기술 생태계를 이해하고 프롭테크 미래발전 방향을 함께 가늠하고자 한다.</p>
+</blockquote>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+프롭빅스 2023년 9월호
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>주택학회 프롭테크빅데이터연구소는 2020년 설립되어, 프롭테크 관련 빅데이터를 분석하여 주택 및 부동산시장의 구조 변화를 파악하여 바람직한 정책방향을 제시하고 부동산학과 산업 발전에 기여하고 있다.</p>
+<p>본 기고문은 “프롭빅스 2023년 9월호”에 실릴 <strong>“지리정보시스템과 프롭테크: 도구의 진화와 미래 방향”</strong> 한국 R 사용자회 이광춘 이사가 작성한 기고글의 내용입니다.</p>
+</div>
+</div>
+<p>지리학의 역사와 발전을 통해 현대의 지리정보시스템(GIS)이 어떻게 다양한 분야에서 응용되고 있는지를 다룬 이 글은, 특히 기술의 진화와 도구 선택의 중요성에 초점을 둔다. 1980년대 고가 시스템에서 시작하여 <code>OpenEO</code>를 통한 새로운 표준화로 이어지는 GIS 시스템의 진화과정을 설명한다. 이 글은 또한 벡터와 래스터 데이터의 차이, 지리 좌표계와 투영 좌표계의 역할 등을 상세하게 다룬다. 특히, 데이터 과학자가 고려해야 할 도구의 선택에 대한 중요성과 <code>sf</code> 패키지가 지금의 R 공간정보 생태계에서 어떻게 중심 역할을 하고 있는지에 대해서도 깊이 설명한다. 이러한 배경을 바탕으로 공간정보를 통한 가치 창출이 얼마나 용이해졌는지를 강조한다.</p>
+<p>지리학(Geography)은 가장 오래된 과학 중 하나로 꼽히며, 학생때부터 교실 여기저기에서 볼 수 있는 지도는 처음 접한 데이터 시각화 산출물이다. 지리학은 지구의 곡률을 정확히 파악하여 지구의 크기와 모양, 중력에 대한 이해를 높이는 데 중요한 역할을 수행했을 뿐만 아니라 대항해 시대 지도가 매우 큰 기여를 했다.</p>
 <p>현대에 와서 지리학 데이터의 응용 범위는 더욱 확장되어, 민간과 국방 범위를 가리지 않고 입점위치 선정, 우주 탐사, 군사 작전, 인구이동 패턴 분석 등 다방면에서 매우 요긴한 역할을 수행하고 있다. <strong>지리정보시스템(GIS)</strong>은 공간 위치를 분석하고 정보를 지도와 3D로 시각화하여 데이터 패턴, 관계, 상황 등을 심도 깊은 이해를 통해 의사결정을 지원한다.</p>
 <p><strong>지도학(Cartography)</strong>은 지도를 그리는 실무분야로 대표적으로 벡터 데이터 형식으로 <code>Shapefile</code>로 점, 다각형, 선으로 지리적 정보를 표현했지만, GIS에 오픈소스 소프트웨어 문화가 침투하면서 <code>Geopackage</code>, <code>GeoJSON</code>, <code>KML</code>과 같은 다른 파일형식도 인기를 얻고 있다. GIS 데이터는 지도 뿐만 아니라 다른 형태의 정형 데이터와 결합한 교차분석이 일반화되면서 R 혹은 파이썬 데이터 조작 기능도 더불어 부각되고 있다.</p>
 <p><strong>벡터(Vector)</strong>와 <strong>래스터(Raster)</strong> 데이터는 GIS에서 큰 축을 담당하는 데이터 형식이다. 벡터 데이터가 점, 선, 다각형 등의 기하학적 형태로 구성되어 주로 경계선이나 위치 정보 등을 정확하게 표현할 때 사용되는 반면, 래스터 데이터는 픽셀이나 셀 배열로 정보를 표현한다는 점에서 차이가 난다. 각 픽셀은 고유값을 가지며, 색상, 높이, 밀도 등 다양한 형태 정보를 표현할 수 있다.</p>
 <p>GIS에서 데이터는 계층(레이어, Layer)별로 나눠 표현되고 이를 결합하여 공간정보를 지도형태로 얻을 수 있다. 한 구획의 토지(parcle), 공간 정보를 점, 선, 다각형 같은 벡터 데이터로 표현하고 비공간 정보 소유권, 토지 이용, 구역 분류, 평가 가치 등 다양한 속성(칼럼) 데이터프레임과 결합한 후 후속 분석과 모형개발 작업을 수행하는 것이 일반적이다.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/gis_layers.png" class="lightbox" title="GIS 벡터와 래스터 계층 사례" data-gallery="quarto-lightbox-gallery-1"><img src="images/gis_layers.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/gis_layers.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="GIS 벡터와 래스터 계층 사례"><img src="images/gis_layers.png" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">GIS 벡터와 래스터 계층 사례</figcaption></figure>
 </div>
 <p>지도 자체가 불가피하게 왜곡된 현실을 시각적으로 표현하기 때문에 ‘현실의 축소판’(Maps are scale models of reality)이라고 할 수 있다. 예를 들어, 사과 껍질을 벗겨 펼친 것처럼, 평면화시켜 지도를 제작한다. 특히, <strong>지리 좌표계(Geographic Coordinate System)</strong>와 <strong>투영 좌표계(Projected Coordinate System)</strong>는 지도 작성과 공간 분석에서 중요한 개념이다. 간단히 요약하면, 지리 좌표계는 정확한 위치 정보를 제공하는 반면, 투영 좌표계는 거리와 면적 측정에 더 적합하다.</p>
@@ -425,7 +443,7 @@ div.csl-indent {
 <p>초기 PC가 보급되면서 1980년대 GIS 시스템은 사일로 형태 고가 시스템이었으며, 1990년대에는 1980년대 개발된 GIS 시스템간 연결이 시작되면서 스파게티 현상이 심해지면서 새로운 애플리케이션과 파일 형식이 도입되는데 필요 이상의 낭비가 심해지는 구조가 되었다.</p>
 <p>2000년대 GDAL(Geospatial Data Abstraction Layer)이 등장하여 개발자가 각 파일 형식에 대한 드라이버를 작성하는 대신 GDAL 클라이언트 드라이버만 개발하면 되기 때문에 일대 혁신이 일어났다. 2010년대는 인공위성을 통한 대량의 데이터가 넘쳐나며 이를 저장하기 위해서 클라우드 서비스가 우후죽순처럼 생겨났고 각기 다른 진화과정을 거쳤다. 2 020년대 넘어서면서 1990년대와 유사한 상황이 되었고 이를 해결하고 새로운 전환점을 만들기 위해 <code>OpenEO</code>가 사용자와 데이터 센터 사이에서 새로운 표준으로 자리잡게 되면서 R, 파이썬 등 데이터 과학 프로그래밍 언어를 통해 공간정보를 통한 가치 창출이 용이해졌다.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/gis_evolution.jpg" class="lightbox" title="GIS 도구 진화과정" data-gallery="quarto-lightbox-gallery-2"><img src="images/gis_evolution.jpg" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/gis_evolution.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="GIS 도구 진화과정"><img src="images/gis_evolution.jpg" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">GIS 도구 진화과정</figcaption></figure>
 </div>
 </section><section id="도구-패키지" class="level2" data-number="22.2"><h2 data-number="22.2" class="anchored" data-anchor-id="도구-패키지">
@@ -433,7 +451,7 @@ div.csl-indent {
 <p>인간은 오랜 역사 동안 다양한 도구를 개발하고 사용해 왔으며, GIS에서 도구는 단순한 계산 작업부터 복잡한 데이터 분석, 시각화를 통한 의사결정지원, 최근 거대언어모형(LLM) 인공지능까지 다양한 형태로 업무를 지원하고 있다.</p>
 <p>앞서 공간 데이터를 분석하는데 사용되는 도구의 진화과정을 살펴봤다. 현재 직면한 문제를 해결하는데 과거 도구를 사용하는 것은 철기시대에 석기시대 도구를 사용하는 것과 다름이 없다. 따라서, 데이터를 통해 가치를 만드는 데이터 과학자 입장에서 도구의 선택은 매우 중요하다.</p>
 <div id="fig-evolution" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><a href="images/sf_deps.png" class="lightbox" title="sf 패키지와 의존성 - 화살표는 강한 의존성, 점선 화살표는 약한 의존성" data-gallery="quarto-lightbox-gallery-3"><img src="images/sf_deps.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/sf_deps.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="sf 패키지와 의존성 - 화살표는 강한 의존성, 점선 화살표는 약한 의존성"><img src="images/sf_deps.png" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">그림&nbsp;22.1: <code>sf</code> 패키지와 의존성 - 화살표는 강한 의존성, 점선 화살표는 약한 의존성</figcaption></figure>
 </div>
 <p>현재 R 공간정보 생태계는 앞선 공간정보 도구의 진화과정을 몇차례 경험한 후에 <a href="#fig-evolution" class="quarto-xref">그림&nbsp;<span>22.1</span></a> 처럼 자리를 잡았다. 결론부터 들어가면 <code>sf</code> 패키지가 생태계의 중심을 잡았으며 사용자와 개발자는 <code>sf</code> 패키지를 통해 상당수 공간정보 데이터 문제를 해결할 수 있다. 하지만, <code>sf</code>는 C/C++ 라이브러리에 크게 의존성하기 때문에 각 라이브러리를 살펴보는 것은 향후 GIS 개발자와 분석가로 현업에서 활약하는데 큰 도움이 될 것으로 보인다.</p>
@@ -480,7 +498,7 @@ div.csl-indent {
 <span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/GIS_tools.jpeg" class="lightbox" title="GIS 도구 활용 대한민국 시도별 인구수" data-gallery="quarto-lightbox-gallery-4"><img src="images/GIS_tools.jpeg" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/GIS_tools.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="GIS 도구 활용 대한민국 시도별 인구수"><img src="images/GIS_tools.jpeg" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">GIS 도구 활용 대한민국 시도별 인구수</figcaption></figure>
 </div>
 
@@ -829,7 +847,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","loop":true,"descPosition":"bottom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","loop":true,"openEffect":"zoom","closeEffect":"zoom"});</script>
 
 
 </body></html>
