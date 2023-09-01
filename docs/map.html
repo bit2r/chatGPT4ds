@@ -386,8 +386,9 @@ div.csl-indent {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-<li><a href="#%EB%8F%84%EA%B5%AC-%ED%8C%A8%ED%82%A4%EC%A7%80" id="toc-도구-패키지" class="nav-link active" data-scroll-target="#%EB%8F%84%EA%B5%AC-%ED%8C%A8%ED%82%A4%EC%A7%80"><span class="header-section-number">22.1</span> 도구 패키지</a></li>
-  <li><a href="#%EC%82%AC%EB%A1%80" id="toc-사례" class="nav-link" data-scroll-target="#%EC%82%AC%EB%A1%80"><span class="header-section-number">22.2</span> 사례</a></li>
+<li><a href="#%EB%8F%84%EA%B5%AC-%EC%A7%84%ED%99%94%EA%B3%BC%EC%A0%95" id="toc-도구-진화과정" class="nav-link active" data-scroll-target="#%EB%8F%84%EA%B5%AC-%EC%A7%84%ED%99%94%EA%B3%BC%EC%A0%95"><span class="header-section-number">22.1</span> 도구 진화과정</a></li>
+  <li><a href="#%EB%8F%84%EA%B5%AC-%ED%8C%A8%ED%82%A4%EC%A7%80" id="toc-도구-패키지" class="nav-link" data-scroll-target="#%EB%8F%84%EA%B5%AC-%ED%8C%A8%ED%82%A4%EC%A7%80"><span class="header-section-number">22.2</span> 도구 패키지</a></li>
+  <li><a href="#%EC%82%AC%EB%A1%80" id="toc-사례" class="nav-link" data-scroll-target="#%EC%82%AC%EB%A1%80"><span class="header-section-number">22.3</span> 사례</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/map.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -414,35 +415,44 @@ div.csl-indent {
 <p><strong>벡터(Vector)</strong>와 <strong>래스터(Raster)</strong> 데이터는 GIS에서 큰 축을 담당하는 데이터 형식이다. 벡터 데이터가 점, 선, 다각형 등의 기하학적 형태로 구성되어 주로 경계선이나 위치 정보 등을 정확하게 표현할 때 사용되는 반면, 래스터 데이터는 픽셀이나 셀 배열로 정보를 표현한다는 점에서 차이가 난다. 각 픽셀은 고유값을 가지며, 색상, 높이, 밀도 등 다양한 형태 정보를 표현할 수 있다.</p>
 <p>GIS에서 데이터는 계층(레이어, Layer)별로 나눠 표현되고 이를 결합하여 공간정보를 지도형태로 얻을 수 있다. 한 구획의 토지(parcle), 공간 정보를 점, 선, 다각형 같은 벡터 데이터로 표현하고 비공간 정보 소유권, 토지 이용, 구역 분류, 평가 가치 등 다양한 속성(칼럼) 데이터프레임과 결합한 후 후속 분석과 모형개발 작업을 수행하는 것이 일반적이다.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/gis_layers.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="GIS 벡터와 래스터 계층 사례"><img src="images/gis_layers.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/gis_layers.png" class="lightbox" title="GIS 벡터와 래스터 계층 사례" data-gallery="quarto-lightbox-gallery-1"><img src="images/gis_layers.png" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">GIS 벡터와 래스터 계층 사례</figcaption></figure>
 </div>
 <p>지도 자체가 불가피하게 왜곡된 현실을 시각적으로 표현하기 때문에 ‘현실의 축소판’(Maps are scale models of reality)이라고 할 수 있다. 예를 들어, 사과 껍질을 벗겨 펼친 것처럼, 평면화시켜 지도를 제작한다. 특히, <strong>지리 좌표계(Geographic Coordinate System)</strong>와 <strong>투영 좌표계(Projected Coordinate System)</strong>는 지도 작성과 공간 분석에서 중요한 개념이다. 간단히 요약하면, 지리 좌표계는 정확한 위치 정보를 제공하는 반면, 투영 좌표계는 거리와 면적 측정에 더 적합하다.</p>
 <p>지리 좌표계는 지구상 위치를 설명하며, 지구가 둥글기 때문에 주로 각도 단위로 측정되고, 기준점에 상관없이 위치가 달라지지 않으므로 절대 좌표계다. 투영 좌표계는 지리 좌표계를 평면화한 것으로, 투영 좌표계를 사용할 경우 직선을 이용해 거리를 측정할 수 있어, 토지 이용 계획, 건물 배치, 거리 측정 등에서 유용하다.</p>
-<section id="도구-패키지" class="level2" data-number="22.1"><h2 data-number="22.1" class="anchored" data-anchor-id="도구-패키지">
-<span class="header-section-number">22.1</span> 도구 패키지</h2>
+<section id="도구-진화과정" class="level2" data-number="22.1"><h2 data-number="22.1" class="anchored" data-anchor-id="도구-진화과정">
+<span class="header-section-number">22.1</span> 도구 진화과정</h2>
+<p>초기 PC가 보급되면서 1980년대 GIS 시스템은 사일로 형태 고가 시스템이었으며, 1990년대에는 1980년대 개발된 GIS 시스템간 연결이 시작되면서 스파게티 현상이 심해지면서 새로운 애플리케이션과 파일 형식이 도입되는데 필요 이상의 낭비가 심해지는 구조가 되었다.</p>
+<p>2000년대 GDAL(Geospatial Data Abstraction Layer)이 등장하여 개발자가 각 파일 형식에 대한 드라이버를 작성하는 대신 GDAL 클라이언트 드라이버만 개발하면 되기 때문에 일대 혁신이 일어났다. 2010년대는 인공위성을 통한 대량의 데이터가 넘쳐나며 이를 저장하기 위해서 클라우드 서비스가 우후죽순처럼 생겨났고 각기 다른 진화과정을 거쳤다. 2 020년대 넘어서면서 1990년대와 유사한 상황이 되었고 이를 해결하고 새로운 전환점을 만들기 위해 <code>OpenEO</code>가 사용자와 데이터 센터 사이에서 새로운 표준으로 자리잡게 되면서 R, 파이썬 등 데이터 과학 프로그래밍 언어를 통해 공간정보를 통한 가치 창출이 용이해졌다.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/sf_deps.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="sf 패키지와 의존성 - 화살표는 강한 의존성, 점선 화살표는 약한 의존성"><img src="images/sf_deps.png" class="img-fluid figure-img"></a></p>
-<figcaption class="figure-caption"><code>sf</code> 패키지와 의존성 - 화살표는 강한 의존성, 점선 화살표는 약한 의존성</figcaption></figure>
+<figure class="figure"><p><a href="images/gis_evolution.jpg" class="lightbox" title="GIS 도구 진화과정" data-gallery="quarto-lightbox-gallery-2"><img src="images/gis_evolution.jpg" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">GIS 도구 진화과정</figcaption></figure>
 </div>
+</section><section id="도구-패키지" class="level2" data-number="22.2"><h2 data-number="22.2" class="anchored" data-anchor-id="도구-패키지">
+<span class="header-section-number">22.2</span> 도구 패키지</h2>
+<p>인간은 오랜 역사 동안 다양한 도구를 개발하고 사용해 왔으며, GIS에서 도구는 단순한 계산 작업부터 복잡한 데이터 분석, 시각화를 통한 의사결정지원, 최근 거대언어모형(LLM) 인공지능까지 다양한 형태로 업무를 지원하고 있다.</p>
+<p>앞서 공간 데이터를 분석하는데 사용되는 도구의 진화과정을 살펴봤다. 현재 직면한 문제를 해결하는데 과거 도구를 사용하는 것은 철기시대에 석기시대 도구를 사용하는 것과 다름이 없다. 따라서, 데이터를 통해 가치를 만드는 데이터 과학자 입장에서 도구의 선택은 매우 중요하다.</p>
+<div id="fig-evolution" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><a href="images/sf_deps.png" class="lightbox" title="sf 패키지와 의존성 - 화살표는 강한 의존성, 점선 화살표는 약한 의존성" data-gallery="quarto-lightbox-gallery-3"><img src="images/sf_deps.png" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">그림&nbsp;22.1: <code>sf</code> 패키지와 의존성 - 화살표는 강한 의존성, 점선 화살표는 약한 의존성</figcaption></figure>
+</div>
+<p>현재 R 공간정보 생태계는 앞선 공간정보 도구의 진화과정을 몇차례 경험한 후에 <a href="#fig-evolution" class="quarto-xref">그림&nbsp;<span>22.1</span></a> 처럼 자리를 잡았다. 결론부터 들어가면 <code>sf</code> 패키지가 생태계의 중심을 잡았으며 사용자와 개발자는 <code>sf</code> 패키지를 통해 상당수 공간정보 데이터 문제를 해결할 수 있다. 하지만, <code>sf</code>는 C/C++ 라이브러리에 크게 의존성하기 때문에 각 라이브러리를 살펴보는 것은 향후 GIS 개발자와 분석가로 현업에서 활약하는데 큰 도움이 될 것으로 보인다.</p>
 <p><code>GDAL</code>, <code>GEOS</code>, <code>PROJ</code>, <code>liblwgeom</code>, <code>s2geometry</code>, <code>NetCDF</code>, <code>udunits2</code>는 C/C++ 라이브러리를 개발, 유지보수, 지원하는 커뮤니티가 존재하는 반면 R, 파이썬, 줄리아(Julia), 자바스크립트는 대화형 인터페이스를 통해 라이브러리를 활용하는 커뮤니티도 존재한다. <span class="citation" data-cites="sds">(<a href="references.html#ref-sds" role="doc-biblioref">Pebesma 와/과 Bivand 2023</a>)</span></p>
 <p><code>GDAL</code> (Geospatial Data Abstraction Library) 라이브러리는 공간 데이터 처리에 있어 멀티툴의 대명사인 스위스군 칼(SAK, Swiss Army Knife)이라는 별명을 갖고 있고 100개가 넘는 다른 라이브러리와 연결되어 다양한 공간 데이터를 불러오고, 처리하고, 내보내는 기능을 제공한다.</p>
 <p><code>PROJ</code>는 지도 투영 및 데이터 변환을 위한 라이브러리로, 하나의 좌표계에서 다른 좌표계로 좌표를 변환할 때 유용하다.</p>
 <p><code>GEOS</code> (Geometry Engine Open Source)와 <code>s2geometry</code> 라이브러리는 기하학 연산에 사용하며, 길이, 면적, 거리를 측정하거나 연산작업에 사용되며 <span class="math inline">\(R^2\)</span>로 표기되며 <code>GEOS</code>는 평평한 2차원 공간에, <span class="math inline">\(S^2\)</span>로 표기되며 <code>s2geometry</code>는 구형 공간에 사용한다.</p>
-<p><code>NetCDF</code>는 파일 형식이며 C 라이브러리로, 어떤 차원 배열도 정의할 수 있으며 특히 (기후) 모형개발 커뮤니티에서 널리 사용된다. <code>Udunits2</code>는 측정 단위의 데이터베이스 및 소프트웨어 라이브러리로, 단위의 변환과 파생 단위, 사용자 정의 단위를 처리한다. <code>liblwgeom</code>은 PostGIS 구성 요소로, <code>GDAL</code>, <code>GEOS</code>에서 누락된 몇 가지 루틴을 포함한다.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/gis_evolution.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/gis_evolution.jpg" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
-</section><section id="사례" class="level2" data-number="22.2"><h2 data-number="22.2" class="anchored" data-anchor-id="사례">
-<span class="header-section-number">22.2</span> 사례</h2>
+<p><code>NetCDF</code>는 파일 형식이며 C 라이브러리로, 어떤 차원 배열도 정의할 수 있으며 특히 (기후) 모형개발 커뮤니티에서 널리 사용된다. <code>Udunits2</code>는 측정 단위의 데이터베이스 및 소프트웨어 라이브러리로, 단위의 변환과 파생 단위, 사용자 정의 단위를 처리한다. <code>liblwgeom</code>은 PostGIS 구성 요소로, <code>GDAL</code>, <code>GEOS</code>에서 누락된 몇 가지 루틴을 포함한다. <span class="citation" data-cites="Pebesma2016">(<a href="references.html#ref-Pebesma2016" role="doc-biblioref">Pebesma 기타 2016</a>)</span></p>
+</section><section id="사례" class="level2" data-number="22.3"><h2 data-number="22.3" class="anchored" data-anchor-id="사례">
+<span class="header-section-number">22.3</span> 사례</h2>
+<p>공간정보 개발자와 사용자가 개발한 코드는 기계보다 사람 친화적으로 바뀌었으며, 효과적인 디버그와 신속한 개발을 위해 파이프 철학도 도입되어 생산성 향상이 비약적으로 높아졌고 도구의 추상화 수준도 대폭 향상되어 누구나 공간정보를 통해 의미있는 산출물을 제작하고 도구도 개발할 수 있게 되었다.</p>
+<p>GIS 도구를 활용하여 2023년 7월 기준 시도별 인구수를 대한민국 지도위에 그려보자. 지도 데이터를 다루기 위해 <code>sf</code> 패키지를 사용하고 통계청(KOSIS) 데이터를 처리하기 위해 <code>tidyverse</code> 패키지 도구를 활용하고 오픈지도 개발자가 공개한 <code>geojson</code> 파일을 결합하여 인구수를 시도 수준에서 시도별 인구수 색상을 달리하여 지도위에 시각화한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/s2.html">sf_use_s2</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## 지도</span></span>
-<span><span class="va">korea_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf</a></span><span class="op">(</span><span class="st">"../map_challenge/data/HangJeongDong_ver20230401.geojson"</span><span class="op">)</span></span>
+<span><span class="va">korea_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf</a></span><span class="op">(</span><span class="st">"data/HangJeongDong_ver20230401.geojson"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">sido_map</span> <span class="op">&lt;-</span> <span class="va">korea_map</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">sidonm</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -452,30 +462,35 @@ div.csl-indent {
 <span></span>
 <span><span class="va">pop_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/행정구역_시군구_별__성별_인구수_20230831223248.csv"</span>,</span>
 <span>         locale<span class="op">=</span><span class="fu"><a href="https://readr.tidyverse.org/reference/locale.html">locale</a></span><span class="op">(</span>encoding<span class="op">=</span><span class="st">"euc-kr"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names</a></span><span class="op">(</span>ascii <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rlang.r-lib.org/reference/set_names.html">set_names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sidonm"</span>, <span class="st">"인구수"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>sidonm <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">sidonm</span> <span class="op">==</span> <span class="st">"강원특별자치도"</span>, <span class="st">"강원도"</span>, <span class="va">sidonm</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">sido_map</span> <span class="op">|&gt;</span> </span>
+<span><span class="va">sigo_gg</span> <span class="op">&lt;-</span> <span class="va">sido_map</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">pop_tbl</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>geometry <span class="op">=</span> <span class="va">geometry</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span><span class="va">인구수</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">ggrepel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_label_repel</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">sidonm</span>, geometry <span class="op">=</span> <span class="va">geometry</span><span class="op">)</span>, </span>
 <span>                              size <span class="op">=</span> <span class="fl">3</span>, stat <span class="op">=</span> <span class="st">"sf_coordinates"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"OrRd"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"OrRd"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">ragg</span><span class="fu">::</span><span class="fu"><a href="https://ragg.r-lib.org/reference/agg_jpeg.html">agg_jpeg</a></span><span class="op">(</span><span class="st">"images/GIS_tools.jpeg"</span>,</span>
+<span>               width <span class="op">=</span> <span class="fl">10</span>, height <span class="op">=</span> <span class="fl">7</span>, units <span class="op">=</span> <span class="st">"in"</span>, res <span class="op">=</span> <span class="fl">600</span><span class="op">)</span></span>
+<span><span class="va">sigo_gg</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="map_files/figure-html/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="map_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
-</div>
-</div>
+<figure class="figure"><p><a href="images/GIS_tools.jpeg" class="lightbox" title="GIS 도구 활용 대한민국 시도별 인구수" data-gallery="quarto-lightbox-gallery-4"><img src="images/GIS_tools.jpeg" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">GIS 도구 활용 대한민국 시도별 인구수</figcaption></figure>
 </div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-sds" class="csl-entry" role="listitem">
 Pebesma, Edzer, 와/과 Roger Bivand. 2023. <em><span>Spatial Data Science: With Applications in R</span></em>. Chapman; Hall/CRC. <a href="https://doi.org/10.1201/9780429459016">https://doi.org/10.1201/9780429459016</a>.
+</div>
+<div id="ref-Pebesma2016" class="csl-entry" role="listitem">
+Pebesma, Edzer, Wolfgang Wagner, Jan Verbesselt, Erwin Goor, Christian Briese, 와/과 Markus Neteler. 2016. <span>“OpenEO: a GDAL for Earth Observation Analytics”</span>. 2016년. <a href="https://r-spatial.org/2016/11/29/openeo.html">https://r-spatial.org/2016/11/29/openeo.html</a>.
 </div>
 </div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -814,7 +829,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom","loop":true,"selector":".lightbox"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","loop":true,"descPosition":"bottom"});</script>
 
 
 </body></html>
