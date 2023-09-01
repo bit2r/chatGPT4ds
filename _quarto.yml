@@ -1,6 +1,8 @@
 project:
   type: book
   output-dir: docs
+  render:
+    - "!map_pdf.qmd"
 
 lang: ko-KR
 
