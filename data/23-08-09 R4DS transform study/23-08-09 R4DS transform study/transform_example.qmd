@@ -1,0 +1,651 @@
+---
+title: "R4DS transform study "
+subtitle: "학교 데이터 전처리 작업기"
+lang: kr
+author: "장명헌"
+date: "2023-08-09"
+format: 
+  html:
+    fig-width: 8
+    fig-height: 4
+    code-fold: true
+  # revealjs:
+  #   incremental: true   
+  #   theme: white
+  #   # css: "index.css"
+  #   transition: concave
+  #   background-transition: fade
+  #   smaller: false
+  #   scrollable: false
+  #   #self-contained: true
+  #   view-distance: 5
+  # pdf:
+  #   # toc: true
+  #   # toc-depth: 2
+  #   papersize: a4
+  #   geometry:
+  #     - top=20mm
+  #     - left=20mm
+  #     - right=20mm
+  #     - bottom=20mm
+  #   code-block-bg: "#D3D3D3"
+mainfont: NanumGothic
+sansfont: NanumGothic
+monofont: D2Coding
+---
+
+# R4DS transform study review
+
+총 8개의 챕터
+
+Logical Vectors, Numbers, Strings, Regular expressions, Factors, Dates and times, Missing values, joins
+
+전반적으로 많은 내용을 다루고 있어 하나씩 다 볼순 없고, 업무 중 사용했던 기능을 중심으로 리뷰하고자 함
+
+작업 방식에 대한 개선의견 적극 환영!!!
+
+# 사전 지식
+
+## 우리나라의 교육행정기관 체계
+
+학교별 자료를 전처리하려면 교육행정기관 체계에 대한 이해가 필요
+
+![](./source/hierarchy.png)
+
+※ 2022년 기준
+
+# sample 설명 및 작업 목적
+
+시도교육청별로 학교명과 제출일자가 포함된 자료인데, 
+
+자료별 컬럼이 다소 상이하고, 학교명과 일자 자료도 정제할 필요
+
+→ 1. 시도별 자료를 합치고 미제출 학교가 어느정도 되는지 파악
+
+→ 2. 학교 소재지(시군구) 정보와 다른 기초지자체별 정보와 합쳐보기
+
+# 자료 전처리
+
+## 시도별 제출받은 자료 합치기
+
+### 자료 불러오기
+```{r}
+#| warning: false
+
+library(tidyverse)
+library(readxl)
+
+dir("./data/")
+```
+
+맥에서 엑셀 파일을 열어볼때 파일명 앞에 '~'가 붙는 임시파일이 생성되므로, 
+
+이걸 제외하고 가져오기 위해 `pattern` 옵션 사용
+
+학교별 자료는 1번 시트에 있음
+
+```{r}
+merge_file_path <- dir(
+  # 임시파일 제외
+  "./data/", pattern = "^[^~]*.xlsx$", full.names = TRUE
+  ) %>%
+  # 벡터에 이름 부여하기
+  set_names(
+    \(x) basename(x) %>%
+      str_remove(".xlsx$") %>%
+      # 파일 이름이 00. 형식이 아닌경우 앞에 0 추가
+      str_replace_all("(^\\w{1}\\.)", "0\\1")
+  ) %>%
+  .[order(names(.))]
+
+# 시도별 엑셀파일 읽어오기
+merge_data <- merge_file_path %>%
+  map(\(x) read_xlsx(
+    x,
+    # 필요한 자료는 1번 시트에 1번째 행부터 있음
+    sheet = 1,
+    # type 관련 에러 방지를 위해 모두 text로 읽기
+    col_types = "text"
+  ))
+```
+
+
+### 컬럼 정리 및 데이터프레임 합치기
+
+시도별 컬럼이 달라서 합치기가 어려우므로 컬럼 정리
+
+list로 개별 파일을 불러오고, list를 하나의 dataframe으로 합칠때 list 이름을 하나의 컬럼으로 추가하는 방식이 유용(R4DS 27장 iteration 참고)
+
+```{r}
+# 시도별 컬럼 수 확인
+merge_data %>%
+  map(
+    \(x) NCOL(x) %>% as_tibble()
+  ) %>%
+  list_rbind(names_to = "시도")
+
+# 시도별 샘플자료 보기
+merge_data %>%
+  map(\(x) head(x, 3)) %>%
+  .[c(1, 2, 3, 9, 17)]
+
+## 컬럼명 정의
+col_names <- c("연도", "시도", "지역", "학교명", "차수", "제출일")
+
+# 시도별 컬럼 정리
+
+merge_data2 <- merge_data %>%
+  ## 지역(교육지원청) 컬럼 없는 곳
+  imap(
+    \(x, idx) if (!str_detect(idx, "01|02|09|10|15|16")) {
+      x %>% mutate(교육지원청 = NA, .before = 3)
+    } else {
+      x
+    }
+  ) %>%
+  ## 부산 연번 컬럼 삭제
+  imap(
+    \(x, idx) if (str_detect(idx, "02")) {
+      x %>% select(-4)
+    } else {
+      x
+    }
+  ) %>%
+  ## 컬럼명 부여
+  map(\(x) x %>% rename_with(\(x) col_names))
+```
+
+각 학교별로 2개 row가 있고, 1차는 1학기, 2차는 2학기 제출일이므로 
+
+na.locf 사용 후, 데이터만 필터링
+
+```{r}
+# NA sample
+merge_data2[[3]]
+
+# na fill 이후 데이터프레임으로 합치기
+merge_data_tb <- merge_data2 %>%
+  map(
+    \(x) x %>% 
+      fill(1:4, .direction = "down") %>%
+      filter(!(is.na(시도) | str_detect(시도, "시도")))
+  ) %>%
+  list_rbind() %>%
+  # 학교 명단과 조인하기 위해 no 부여
+  rowid_to_column("no") %>%
+  mutate(
+    차수 = ifelse(str_detect(차수, "상반기"), 1, 차수),
+    차수 = ifelse(str_detect(차수, "하반기"), 2, 차수),
+    차수 = parse_number(차수)
+  )
+```
+
+## 학교명 전처리
+
+### 학교명 처리 시 고려 사항
+
+1. 학교명의 unique 여부
+
+시도 - 교육지원청 - 학교명 기준으로는 학교명이 unique
+
+전국 또는 시도 기준으로는 학교명이 non-unique
+
+학교 코드값이 있긴 하나, 학교에서 자기 학교코드를 모름
+(코드값도 바뀌는 경우도 있음)
+
+2. 학교명 변경
+
+매년 학교명 변경이 발생해서 자료 제출시점의 학교명과 기준 시점의 학교명단 불일치
+
+이번 사례에서 전체 학교명단은 2022년 기준이나, 제출시점은 2023년
+
+3. 학교명 축약
+
+유, 초, 중, 고는 기본 / 외대부초, 교대부초, 사대부초 등
+
+과고, 외고, 종고, 공고 / 여중, 여고
+
+서울삼육초, 강원 원주삼육초, 강원 동해삼육초, 강원 서해삼육초 → 모두 삼육초
+(교육지원청 입장에서는 그냥 삼육초)
+
+※ 학교 전체이름을 기재해달라고 해도 잘 안되는 경우가 많음
+
+4. 병설교, 부설교, 분교, 통합교 등
+
+병설교 : 병설유치원 해당 / 교육통계에서는 개별 학교로 취급
+
+분교 : 교동초등학교지석분교장 / 교육통계에서는 본교만 취급
+
+통합교 : 위도중학교, 위도고등학교 / 교육통계에서는 개별 학교로 취급
+
+※ 휴교도 교육통계의 전체 학교 수에 포함
+
+### 전체 학교명단 불러오기(2022년 기준)
+
+```{r}
+school_info <- dir("./reference/", full.names = TRUE) %>%
+  .[2] %>%
+  read_xlsx(skip = 3, col_types = "text") %>%
+  filter(학교상태 != "폐(원)교") %>%
+  rename("세부유형" = "학교 세부 유형") %>%
+  # 학교명에 빈칸 있는 곳들 제거
+  mutate(학교명_o = 학교명, 학교명 = str_replace_all(학교명, " ", "")) %>%
+  # 교육지원청 중 안양· 과천 같은 곳들을 안양과천으로 변경
+  mutate(교육지원청_o = 교육지원청, 교육지원청 = str_replace_all(교육지원청, "\\·", "")) %>%
+  rowid_to_column("s_no")
+```
+
+### 자료 검토
+
+```{r}
+# 제출자료의 학교 중복 여부 / 1개 학교별 2개 행만 있어야 함
+
+## 1개만 제출된 학교
+merge_data_tb %>%
+  summarise(n = n(), .by = c(시도, 지역, 학교명)) %>%
+  filter(n == 1)
+
+## 2개 이상 제출된 학교
+merge_data_tb %>%
+  summarise(n = n(), .by = c(시도, 지역, 학교명)) %>%
+  filter(n > 2)
+
+# 중복 학교들 no 조회
+merge_data_tb %>%
+  summarise(n = n(), .by = c(시도, 지역, 학교명)) %>%
+  filter(n > 2) %>%
+  select(-4) %>%
+  inner_join(merge_data_tb) %>%
+  select(no, 시도, 지역, 학교명)
+```
+
+### 교육지원청, 학교명 수기 입력
+
+하단의 전처리 결과 남은 자료들을 수기로 대조하고,
+
+그 결과값을 이 단계에서 먼저 입력
+
+(join시 many-to-many 에러 방지를 위함)
+
+```{r}
+# 전처리 결과 남은 자료들을 이 단계에서 먼저 입력
+
+# 부산 남부 우암초병설유치원 -> 전포유치원 변경
+merge_data_tb[4653:4654, 5] <- "전포유치원"
+
+# 인천 북부 강화 삼산초등학교
+merge_data_tb[7489:7490, 4] <- "북부"
+merge_data_tb[8260:8261, 4] <- "강화"
+
+# 대전 동부, 남부 꿈나무유치원, 꿈내리유치원, 혜원유치원, 상아유치원 중복
+merge_data_tb[9112:9115, 4] <- "동부"
+merge_data_tb[9112:9113, 5] <- "꿈나무유치원(동부)"
+merge_data_tb[9452:9455, 4] <- "서부"
+merge_data_tb[9452:9453, 5] <- "꿈나무유치원(서부)"
+merge_data_tb[9208:9209, 4] <- "동부"
+merge_data_tb[9618:9619, 4] <- "서부"
+merge_data_tb[9516:9517, 4] <- "서부"
+
+# 충남 아산, 금산 금성초등학교 중복
+merge_data_tb[19797:19798, 4] <- "아산"
+merge_data_tb[20255:20256, 4] <- "금산"
+
+# 전북 고창, 부안 부안초등학교 중복
+merge_data_tb[22201:22202, 4] <- "고창"
+merge_data_tb[22287:22288, 4] <- "부안"
+
+# 전남 고창, 부안 동강초등학교, 금성초등학교, 오산초등학교, 북일초등학교 중복
+merge_data_tb[22631:22632, 4] <- "나주"
+merge_data_tb[22809:22810, 4] <- "고흥"
+merge_data_tb[22725:22726, 4] <- "담양"
+merge_data_tb[23181:23182, 4] <- "진도"
+merge_data_tb[22757:22758, 4] <- "곡성"
+merge_data_tb[23185:23186, 4] <- "진도"
+merge_data_tb[22963:22964, 4] <- "해남"
+merge_data_tb[23123:23124, 4] <- "장성"
+```
+
+### 학교명 기본 전처리
+
+```{r}
+merge_data_tb <- merge_data_tb %>%
+  mutate(
+    학교명 = str_trim(학교명, side = "both") %>%
+      # 줄바꿈 제거
+      str_replace_all("\\r|\\n| |_", "") %>%
+      # 00분교 → 00분교장
+      str_replace_all("분교$", "분교장") %>%
+      # 00초xx분교장 → 00초등학교xx분교장
+      str_replace_all("(.*)초(?!.*등학교)(.*)분교장$", "\\1초등학교\\2분교장") %>%
+      # 00초xx분교장병설유치원 → 00초등학교xx분교장병설유치원
+      str_replace_all("(.*)초(?!.*등학교)(.*)병설유치원$", "\\1초등학교\\2병설유치원")
+  ) %>%
+  # 끝자리 유~고 바꿔주기
+  mutate(학교명 = case_when(
+    str_detect(학교명, "유$") ~ paste0(학교명, "치원"),
+    str_detect(학교명, "초$|고$") ~ paste0(학교명, "등학교"),
+    str_detect(학교명, "중$") ~ paste0(학교명, "학교"),
+    TRUE ~ 학교명
+  )) %>%
+  # 여중, 여고 처리
+  mutate(학교명 = ifelse(
+    str_detect(학교명, "([^반|부])여중학교|([^반|부])여고등학교"),
+    str_replace_all(학교명, "(.*)여(.*)", "\\1여자\\2"), 학교명
+  ))
+```
+
+### (1) 시도, 교육지원청, 학교명이 unique한 곳 join table 생성
+
+```{r}
+join_key_df0 <- merge_data_tb %>%
+  inner_join(school_info, join_by(시도, 학교명, 지역 == 교육지원청)) %>%
+  select(no, s_no)
+```
+
+### (2) 시도, 학교명이 unique한 곳 join table 생성
+
+```{r}
+# 전체 학교명단에서 시도, 학교명 기준으로 unique 추출
+school_info_uniq <- school_info %>%
+  count(시도, 학교명) %>%
+  filter(n > 1) %>%
+  anti_join(x = school_info, y = ., join_by(시도, 학교명))
+
+join_key_df1 <- anti_join(merge_data_tb, join_key_df0, join_by(no)) %>%
+  # 인천, 광주는 학교명에 인천, 광주명이 들어가는 경우가 많음
+  mutate(학교명 = ifelse(
+    시도 == "인천" & str_detect(학교명, "^(?!인천).*학교$"), paste0("인천", 학교명), 학교명
+  )) %>%
+  mutate(학교명 = ifelse(
+    시도 == "광주" & str_detect(학교명, "^(?!광주).*학교$"), paste0("광주", 학교명), 학교명
+  )) %>%
+  mutate(학교명 = ifelse(
+    str_detect(학교명, "유치원치원"),
+    str_replace_all(학교명, "유치원치원", "유치원"),
+    학교명
+  )) %>%
+  inner_join(school_info_uniq, join_by(시도, 학교명)) %>%
+  select(no, s_no)
+```
+
+### (3) 대학교 부속학교
+
+국립대학은 부설학교, 사립대학은 부속학교
+
+```{r}
+join_key_df2 <- anti_join(
+  merge_data_tb,
+  # 기존 조인키 데이터프레임과 합치기 위해 mget, bind_rows 사용 후 anti_join
+  bind_rows(mget(ls(pattern = "join_key_df[0-1]"))),
+  join_by(no)
+) %>%
+  mutate(학교명 = str_replace_all(학교명, "대학?교?(.*)부속", "대학교\\1부속")) %>%
+  select(no, 시도, 지역, 학교명) %>%
+  inner_join(school_info_uniq, join_by(시도, 학교명)) %>%
+  select(no, s_no)
+```
+
+### (4) 지역별 특성
+
+```{r}
+join_key_df3 <- anti_join(
+  merge_data_tb,
+  bind_rows(mget(ls(pattern = "join_key_df[0-2]"))),
+  join_by(no)
+) %>%
+  # 광주
+  mutate(학교명 = ifelse(시도 == "광주", str_remove_all(학교명, "광주"), 학교명)) %>%
+  # 전북 전주, 군산
+  mutate(
+    학교명 = ifelse(시도 == "전북",
+      ifelse(no <= 21046, paste0("전주", 학교명), paste0("군산", 학교명)), 학교명
+    )
+  ) %>%
+  # 경북 포항 / 지역명이 기재된 시도
+  mutate(
+    학교명 = ifelse(시도 == "경북" & 지역 == "포항",
+      ifelse(str_sub(학교명, 1, 2) == "포항",
+        str_remove_all(학교명, "포항"), paste0("포항", 학교명)
+      ), 학교명
+    )
+  ) %>%
+  # 경남 창원, 진주 / 지역명이 기재된 시도
+  mutate(
+    학교명 = ifelse(시도 == "경북" & 지역 == "창원",
+      ifelse(str_sub(학교명, 1, 2) == "창원",
+        str_remove_all(학교명, "창원"), paste0("창원", 학교명)
+      ), 학교명
+    ),
+    학교명 = ifelse(시도 == "경북" & 지역 == "진주", paste0("진주", 학교명), 학교명)
+  ) %>%
+  inner_join(school_info, join_by(시도, 학교명)) %>%
+  select(no, s_no)
+```
+
+### join table 중복 확인
+
+```{r}
+join_key <- bind_rows(mget(ls(pattern = "join_key_df[0-3]")))
+
+join_key %>% count(no) %>% filter(n > 1)
+
+# 남은 학교 확인
+anti_join(
+  merge_data_tb,
+  join_key,
+  join_by(no)
+) %>%
+  select(no, 시도, 지역, 학교명) %>%
+  distinct(시도, 지역, 학교명, .keep_all = TRUE)
+```
+
+이 단계까지 안나오는 학교들은 수기로 다 집어넣어야...
+
+다 정리가 되었다 치면 이제 미제출 학교가 얼마나 되는지와
+
+학교 소재지(시군구)까지 파악가능
+
+```{r}
+# 시도 테이블 생성
+
+sido_tb <- tibble(
+  sido = c(
+    "서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종",
+    "경기", "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주"
+  ),
+  type = c(rep("시", 8), rep("도", 9))
+) %>%
+  rowid_to_column("no") %>%
+  mutate(sido_fn = case_when(
+    sido == "서울" ~ paste0(sido, "특별시"),
+    sido == "세종" ~ paste0(sido, "특별자치시"),
+    sido == "제주" ~ paste0(sido, "특별자치도"),
+    type == "시" ~ paste0(sido, "광역시"),
+    sido %in% c("충북", "충남") ~ str_replace_all(sido, "(.)(.)", "\\1청\\2도"),
+    sido %in% c("전북", "전남") ~ str_replace_all(sido, "(.)(.)", "\\1라\\2도"),
+    sido %in% c("경북", "경남") ~ str_replace_all(sido, "(.)(.)", "\\1상\\2도"),
+    TRUE ~ paste0(sido, "도")
+  ), .after = sido) %>%
+  mutate(
+    near_seoul = ifelse(sido %in% c("서울", "인천", "경기"), "수도권", "지방"),
+    area = case_when(
+      sido %in% c("서울", "인천", "경기") ~ "수도권",
+      sido %in% c("부산", "울산", "경남") ~ "경남권",
+      sido %in% c("대구", "경북") ~ "경북권",
+      sido %in% c("광주", "전북", "전남") ~ "전라권",
+      sido %in% c("대전", "세종", "충북", "충남") ~ "충청권",
+      sido %in% c("강원", "제주") ~ "강원제주권"
+    )
+  )
+
+# 시도별 학교 현황
+
+total <- school_info %>%
+  count(시도, 학제) %>%
+  pivot_wider(id_cols = 시도, names_from = 학제, values_from = n) %>%
+  select(시도, 유치원, 초등학교, 중학교, 고등학교, 고등공민학교, 고등기술학교, 각종학교) %>%
+  rename_with(~ c("시도", "유", "초", "중", "고", "고등공민", "고등기술", "각종")) %>%
+  mutate(시도 = parse_factor(시도, levels = sido_tb$sido)) %>%
+  arrange(시도) %>%
+  janitor::adorn_totals(c("row", "col"))
+
+# 시도별 미제출 학교 현황
+
+not_submitted <- school_info %>%
+  anti_join(join_key, join_by(s_no)) %>%
+  count(시도, 학제) %>%
+  pivot_wider(id_cols = 시도, names_from = 학제, values_from = n) %>%
+  select(시도, 유치원, 초등학교, 중학교, 고등학교, 고등공민학교, 고등기술학교, 각종학교) %>%
+  rename_with(~ c("시도", "유", "초", "중", "고", "고등공민", "고등기술", "각종")) %>%
+  mutate(시도 = parse_factor(시도, levels = sido_tb$sido)) %>%
+  arrange(시도) %>%
+  janitor::adorn_totals(c("row", "col"))
+
+# 시도별 미제출율
+
+list(not_submitted, total) %>%
+  map(\(x) x %>%
+    mutate(across(everything(), \(y) replace_na(y, 0))) %>%
+    .[2:8]
+  ) %>%
+  reduce(`/`) %>%
+  mutate(across(everything(), \(x) x * 100)) %>%
+  mutate(across(
+    everything(),
+    \(x) janitor::round_half_up(x, digits = 2) %>% replace_na(0)
+  )) %>%
+  mutate(across(everything(), \(x) ifelse(x == 0, "-", x))) %>%
+  mutate(시도 = c(sido_tb$sido, "Total"), .before = 1)
+```
+
+
+## 날짜 전처리
+
+openxlsx::convertToDate() 함수가 엑셀의 날짜를 처리해줌
+
+origin = "1970-01-02"
+
+```{r}
+merge_data_tb %>%
+  mutate(
+    제출일 = str_replace_all(제출일, "\\.$", "") %>% str_replace_all(" |\\r\\n", ""),
+    # 2022.5.6. ~ 9.10. 이런식으로 기재된 자료는 2022.5.6.만 반영
+    제출일 = ifelse(str_detect(제출일, "~"), str_split(제출일, "~", simplify = TRUE), 제출일)
+  ) %>%
+  mutate(
+    new_date = openxlsx::convertToDate(제출일),
+    # 2022.3.1 형식
+    new_date2 = ifelse(is.na(new_date), parse_date(제출일, format = "%Y.%m.%d"), new_date) %>% as.Date(., origin = "1970-01-01"),
+    # 2022-3-1 형식
+    new_date3 = ifelse(is.na(new_date2), parse_date(제출일, format = "%Y-%m-%d"), new_date) %>% as.Date(., origin = "1970-01-01"),
+    # 2022.03.01 형식
+    new_date4 = ifelse(is.na(new_date3), make_date(str_sub(제출일, 1, 4), str_sub(제출일, 6, 7), str_sub(제출일, 9, 10)), new_date) %>% as.Date(., origin = "1970-01-01")
+  ) %>%
+  select(no, 제출일, new_date, new_date2, new_date3, new_date4) %>%
+  filter(is.na(new_date) & is.na(new_date2) & is.na(new_date3) & is.na(new_date4))
+```
+
+# 시군구별 정보 자료 처리
+
+airkorea에서 제공하는 권역별 미세먼지 예경보 자료 중
+
+권역별 자료를 가공하는 예시
+
+```{r}
+area <- dir("./reference/", full.names = TRUE)[1] %>%
+  read_xlsx() %>%
+  rename_with(~ c("시도", "연번", "권역", "지역", "비고")) %>%
+  fill(시도, .direction = "down")
+  
+area
+
+# data tidy
+area_tidy <- area %>%
+  mutate(지역 = str_split(지역, ", ")) %>%
+  unnest(지역)
+
+area_tidy
+
+# reverse
+area_tidy %>%
+  summarise(지역 = str_c(지역, collapse = ", "), .by = c(시도, 권역))
+```
+
+
+# 그 외 r4ds 참고
+
+```{r}
+
+# vector 생성
+interaction(c(1:12), letters[1:12])
+
+# tibble 생성
+expand_grid(c(1:12), letters[1:12])
+
+# mutate 시 1개 값만 반환
+tibble(
+  big = LETTERS[1:12],
+  small = letters[1:12]
+) %>%
+  mutate(inter = interaction(big, small))
+
+
+name <- "Joe"
+age <- NA
+anniversary <- as.Date("2001-10-12")
+
+str_glue(
+  "My name is {name}, ",
+  "my age next year is {age + 1}, ",
+  "and my anniversary is {format(anniversary, '%A, %B %d, %Y')}."
+)
+
+# single braces can be inserted by doubling them
+str_glue("My name is {name}, not {{name}}.")
+
+# You can also used named arguments
+str_glue(
+  "My name is {name}, ",
+  "and my age next year is {age + 1}.",
+  name = "Joe",
+  age = NA
+)
+
+# `str_glue_data()` is useful in data pipelines
+mtcars %>% str_glue_data("{rownames(.)} has {hp} hp")
+
+dplyr::setdiff(
+  tribble(
+    ~name, ~fruit,
+    "Carmen", "banana",
+    "Carmen", "apple",
+    "Marvin", "nectarine",
+    "Terence", "cantaloupe",
+    "Terence", "papaya",
+    "Terence", "mandarin"
+  ) %>%
+    group_by(name) %>%
+    summarise(
+      fruits = str_c(fruit, collapse = ", ")
+    ),
+  tribble(
+    ~name, ~fruit,
+    "Carmen", "banana",
+    "Carmen", "apple",
+    "Marvin", "nectarine",
+    "Terence", "cantaloupe",
+    "Terence", "papaya",
+    "Terence", "mandarin"
+  ) %>%
+    group_by(name) %>%
+    summarise(
+      fruits = str_flatten(fruit, collapse = ", ", last = " and ")
+    )
+)
+```
+
+# 참고자료
+
+2022학년도 기준 유초중등학교 명단: <https://www.airkorea.or.kr/web/pmWarning?pMENU_NO=115>
+
+미세먼지 측정망 권역 구분: 대기환경연보(매년 발간)<https://www.airkorea.or.kr/web/detailViewDown?pMENU_NO=125>

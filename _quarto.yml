@@ -67,6 +67,9 @@ book:
         - map.qmd
 
     - part: "챗GPT"
+      chapters:
+        - prompt.qmd
+        - langchain.qmd
 
     - part: "-----"
     - references.qmd
