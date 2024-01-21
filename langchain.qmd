@@ -6,5 +6,46 @@ editor_options:
 
 # 랭체인
 
+**랭체인(langcahin)**은 대규모 언어 모델(LLM)을 활용한 애플리케이션 개발을 위한 소프트웨어 개발 프레임워크로, LLM을 다양한 애플리케이션과 통합하는 것을 용이하기 쉽기 때문에 인기를 얻고 있다.
+랭체인은 LLM과 인터페이스, 다양한 구성 요소 연결, 메모리 관리 등이 수월하기 때문에 특히 개발자 사이에서 인기가 높다.
+
+
+## 허깅페이스
+
+
+
+![](images/hf_token.jpg)
+
+
+- `pip install langchain_community`
+- `pip install dotenv`
+- `pip install huggingface_hub`
+
+```{r}
+library(reticulate)
+
+use_condaenv("langchain", required = TRUE)
+
+```
+
+
+
+```{python}
+from langchain_community.llms import HuggingFaceHub
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+huggingfacehub_api_token = os.getenv('HF_TOKEN')
+
+llm = HuggingFaceHub(repo_id='tiiuae/falcon-7b-instruct', 
+                     huggingfacehub_api_token = huggingfacehub_api_token)
+
+question = 'what is an Large Language Model in artificial intelligence?'
+output = llm.invoke(question)
+
+print(output)
+```
 
 
