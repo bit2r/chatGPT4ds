@@ -15,8 +15,8 @@ book:
       이광춘, 신종화, 유충현, 홍성학이 '챗GPT 데이터 사이언스'를 저작했습니다.
     right: |
       <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.
-  cover-image: cover.jpg
-  favicon: cover.jpg
+  cover-image: images/logo.png
+  favicon: images/logo.png
   site-url: https://r2bit.com/chatGPT4ds/
   repo-url: https://github.com/bit2r/chatGPT4ds
   repo-branch: main
