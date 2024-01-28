@@ -1,0 +1,12 @@
+{
+  "hash": "b494aa707552c46f22c572bdb0225239",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"파이썬\"\n---\n\nAbout this site\n\n::: {#638a41c2 .cell execution_count=1}\n``` {.python .cell-code}\nprint(\"챗GPT 데이터 과학 세상에 오신 것을 환영합니다.\")\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n챗GPT 데이터 과학 세상에 오신 것을 환영합니다.\n```\n:::\n:::\n\n\n",
+    "supporting": [
+      "lang_py_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

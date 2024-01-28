@@ -1,0 +1,15 @@
+{
+  "hash": "997bcb3743ba44e4ac30a4e8d9b175fe",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"소개\"\n---\n\n\nAbout this site\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 2\n```\n\n\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

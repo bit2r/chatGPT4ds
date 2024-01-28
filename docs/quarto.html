@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.288">
+<meta name="generator" content="quarto-1.4.549">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘, 신종화">
-<title>챗GPT 데이터 과학 - 15&nbsp; 쿼토</title>
+<title>챗GPT 데이터 과학 - 21&nbsp; 쿼토</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -61,8 +61,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./functions_ds.html" rel="prev">
-<link href="./cover.jpg" rel="icon" type="image/jpeg">
+<link href="./map.html" rel="next">
+<link href="./functions_purrr.html" rel="prev">
+<link href="./images/logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -80,12 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "일치 없음",
     "search-matching-documents-text": "일치된 문서",
@@ -94,21 +96,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "추가 검색결과",
     "search-more-matches-text": "추가 검색결과",
     "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "취소",
     "search-submit-button-title": "검색",
     "search-label": "검색"
   }
-}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./quarto.html">커뮤니케이션</a></li><li class="breadcrumb-item"><a href="./quarto.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">쿼토</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./quarto.html">커뮤니케이션</a></li><li class="breadcrumb-item"><a href="./quarto.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">쿼토</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -116,11 +144,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">챗GPT 데이터 과학</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/bit2r/chatGPT4ds" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/bit2r/chatGPT4ds" title="소스 코드" class="quarto-navigation-tool px-1" aria-label="소스 코드"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="리더 모드 전환">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -157,6 +185,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">소개</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./whole_game.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">데이터 과학 맛보기</span></span></a>
+  </div>
+</li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -171,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./penguins.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
   </div>
 </li>
       </ul>
@@ -188,25 +222,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lang_r.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R 언어</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R 언어</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lang_py.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lang_sql.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
   </div>
 </li>
       </ul>
@@ -223,31 +257,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simpson.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./basic_stat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">통계</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">통계</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sampling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./hypothesis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./NHST.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">NHST.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">NHST.html</span></span></a>
   </div>
 </li>
       </ul>
@@ -255,7 +289,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">프로그래밍</span></a>
+ <span class="menu-text">모형</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -263,14 +297,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+  <a href="./models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_many.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
   </div>
 </li>
       </ul>
@@ -278,7 +324,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text">커뮤니케이션</span></a>
+ <span class="menu-text">프로그래밍</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -286,16 +332,88 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./quarto.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">챗GPT</span></span>
-  </li>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text">커뮤니케이션</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quarto.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text">챗GPT</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prompt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./langchain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./llm_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./local_llm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
  <span class="menu-text">-----</span></span>
@@ -308,51 +426,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
 <li>
-<a href="#%EC%BF%BC%ED%86%A0%EC%84%A4%EC%B9%98" id="toc-쿼토설치" class="nav-link active" data-scroll-target="#%EC%BF%BC%ED%86%A0%EC%84%A4%EC%B9%98"><span class="header-section-number">15.1</span> 쿼토설치</a>
+<a href="#%EC%BF%BC%ED%86%A0%EC%84%A4%EC%B9%98" id="toc-쿼토설치" class="nav-link active" data-scroll-target="#%EC%BF%BC%ED%86%A0%EC%84%A4%EC%B9%98"><span class="header-section-number">21.1</span> 쿼토설치</a>
   <ul class="collapse">
-<li><a href="#%EC%84%A4%EC%B9%98%EB%B0%A9%EB%B2%95" id="toc-설치방법" class="nav-link" data-scroll-target="#%EC%84%A4%EC%B9%98%EB%B0%A9%EB%B2%95"><span class="header-section-number">15.1.1</span> 설치방법</a></li>
-  <li><a href="#%EC%9C%88%EB%8F%84%EC%9A%B0-%EC%84%A4%EC%B9%98" id="toc-윈도우-설치" class="nav-link" data-scroll-target="#%EC%9C%88%EB%8F%84%EC%9A%B0-%EC%84%A4%EC%B9%98"><span class="header-section-number">15.1.2</span> 윈도우 설치</a></li>
+<li><a href="#%EC%84%A4%EC%B9%98%EB%B0%A9%EB%B2%95" id="toc-설치방법" class="nav-link" data-scroll-target="#%EC%84%A4%EC%B9%98%EB%B0%A9%EB%B2%95"><span class="header-section-number">21.1.1</span> 설치방법</a></li>
+  <li><a href="#%EC%9C%88%EB%8F%84%EC%9A%B0-%EC%84%A4%EC%B9%98" id="toc-윈도우-설치" class="nav-link" data-scroll-target="#%EC%9C%88%EB%8F%84%EC%9A%B0-%EC%84%A4%EC%B9%98"><span class="header-section-number">21.1.2</span> 윈도우 설치</a></li>
   </ul>
 </li>
   <li>
-<a href="#%EC%BF%BC%ED%86%A0-%EC%B6%9C%ED%8C%90" id="toc-쿼토-출판" class="nav-link" data-scroll-target="#%EC%BF%BC%ED%86%A0-%EC%B6%9C%ED%8C%90"><span class="header-section-number">15.2</span> 쿼토 출판</a>
+<a href="#%EC%BF%BC%ED%86%A0-%EC%B6%9C%ED%8C%90" id="toc-쿼토-출판" class="nav-link" data-scroll-target="#%EC%BF%BC%ED%86%A0-%EC%B6%9C%ED%8C%90"><span class="header-section-number">21.2</span> 쿼토 출판</a>
   <ul class="collapse">
-<li><a href="#%EC%B6%9C%ED%8C%90-%ED%94%8C%EB%9E%AB%ED%8F%BC" id="toc-출판-플랫폼" class="nav-link" data-scroll-target="#%EC%B6%9C%ED%8C%90-%ED%94%8C%EB%9E%AB%ED%8F%BC"><span class="header-section-number">15.2.1</span> 출판 플랫폼</a></li>
-  <li><a href="#quarto-pub-%EC%B6%9C%ED%8C%90-quarto-pub" id="toc-quarto-pub-출판-quarto-pub" class="nav-link" data-scroll-target="#quarto-pub-%EC%B6%9C%ED%8C%90-quarto-pub"><span class="header-section-number">15.2.2</span> Quarto Pub 출판 </a></li>
+<li><a href="#%EC%B6%9C%ED%8C%90-%ED%94%8C%EB%9E%AB%ED%8F%BC" id="toc-출판-플랫폼" class="nav-link" data-scroll-target="#%EC%B6%9C%ED%8C%90-%ED%94%8C%EB%9E%AB%ED%8F%BC"><span class="header-section-number">21.2.1</span> 출판 플랫폼</a></li>
+  <li><a href="#quarto-pub-%EC%B6%9C%ED%8C%90-quarto-pub" id="toc-quarto-pub-출판-quarto-pub" class="nav-link" data-scroll-target="#quarto-pub-%EC%B6%9C%ED%8C%90-quarto-pub"><span class="header-section-number">21.2.2</span> Quarto Pub 출판 </a></li>
   </ul>
 </li>
-  <li><a href="#%EB%AC%B8%EC%84%9C-%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%AC-1" id="toc-문서-컴파일러-1" class="nav-link" data-scroll-target="#%EB%AC%B8%EC%84%9C-%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%AC-1"><span class="header-section-number">15.3</span> 문서 컴파일러 </a></li>
-  <li><a href="#single-sourcing-%EC%B6%9C%ED%8C%90%EC%A0%80%EC%9E%91" id="toc-single-sourcing-출판저작" class="nav-link" data-scroll-target="#single-sourcing-%EC%B6%9C%ED%8C%90%EC%A0%80%EC%9E%91"><span class="header-section-number">15.4</span> Single Sourcing 출판저작</a></li>
-  <li><a href="#%EC%9E%91%EC%97%85%ED%9D%90%EB%A6%84" id="toc-작업흐름" class="nav-link" data-scroll-target="#%EC%9E%91%EC%97%85%ED%9D%90%EB%A6%84"><span class="header-section-number">15.5</span> 작업흐름</a></li>
-  <li><a href="#%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5" id="toc-주요-기능" class="nav-link" data-scroll-target="#%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5"><span class="header-section-number">15.6</span> 주요 기능</a></li>
+  <li><a href="#%EB%AC%B8%EC%84%9C-%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%AC-1" id="toc-문서-컴파일러-1" class="nav-link" data-scroll-target="#%EB%AC%B8%EC%84%9C-%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%AC-1"><span class="header-section-number">21.3</span> 문서 컴파일러 </a></li>
+  <li><a href="#single-sourcing-%EC%B6%9C%ED%8C%90%EC%A0%80%EC%9E%91" id="toc-single-sourcing-출판저작" class="nav-link" data-scroll-target="#single-sourcing-%EC%B6%9C%ED%8C%90%EC%A0%80%EC%9E%91"><span class="header-section-number">21.4</span> Single Sourcing 출판저작</a></li>
+  <li><a href="#%EC%9E%91%EC%97%85%ED%9D%90%EB%A6%84" id="toc-작업흐름" class="nav-link" data-scroll-target="#%EC%9E%91%EC%97%85%ED%9D%90%EB%A6%84"><span class="header-section-number">21.5</span> 작업흐름</a></li>
+  <li><a href="#%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5" id="toc-주요-기능" class="nav-link" data-scroll-target="#%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5"><span class="header-section-number">21.6</span> 주요 기능</a></li>
   <li>
-<a href="#%EC%9C%84%EC%A7%80%EC%9C%85-vs-%EC%9C%84%EC%A7%80%EC%9C%94" id="toc-위지윅-vs-위지윔" class="nav-link" data-scroll-target="#%EC%9C%84%EC%A7%80%EC%9C%85-vs-%EC%9C%84%EC%A7%80%EC%9C%94"><span class="header-section-number">15.7</span> 위지윅 vs 위지윔</a>
+<a href="#%EC%9C%84%EC%A7%80%EC%9C%85-vs-%EC%9C%84%EC%A7%80%EC%9C%94" id="toc-위지윅-vs-위지윔" class="nav-link" data-scroll-target="#%EC%9C%84%EC%A7%80%EC%9C%85-vs-%EC%9C%84%EC%A7%80%EC%9C%94"><span class="header-section-number">21.7</span> 위지윅 vs 위지윔</a>
   <ul class="collapse">
-<li><a href="#%EB%B8%94%EB%A1%9C%EA%B7%B8-%EC%A0%80%EC%9E%91-%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4" id="toc-블로그-저작-소프트웨어" class="nav-link" data-scroll-target="#%EB%B8%94%EB%A1%9C%EA%B7%B8-%EC%A0%80%EC%9E%91-%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4"><span class="header-section-number">15.7.1</span> 블로그 저작 소프트웨어</a></li>
+<li><a href="#%EB%B8%94%EB%A1%9C%EA%B7%B8-%EC%A0%80%EC%9E%91-%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4" id="toc-블로그-저작-소프트웨어" class="nav-link" data-scroll-target="#%EB%B8%94%EB%A1%9C%EA%B7%B8-%EC%A0%80%EC%9E%91-%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4"><span class="header-section-number">21.7.1</span> 블로그 저작 소프트웨어</a></li>
   </ul>
 </li>
   <li>
-<a href="#%EC%BF%BC%ED%86%A0-%EC%A0%80%EC%9E%91" id="toc-쿼토-저작" class="nav-link" data-scroll-target="#%EC%BF%BC%ED%86%A0-%EC%A0%80%EC%9E%91"><span class="header-section-number">15.8</span> 쿼토 저작</a>
+<a href="#%EC%BF%BC%ED%86%A0-%EC%A0%80%EC%9E%91" id="toc-쿼토-저작" class="nav-link" data-scroll-target="#%EC%BF%BC%ED%86%A0-%EC%A0%80%EC%9E%91"><span class="header-section-number">21.8</span> 쿼토 저작</a>
   <ul class="collapse">
-<li><a href="#yaml" id="toc-yaml" class="nav-link" data-scroll-target="#yaml"><span class="header-section-number">15.8.1</span> YAML</a></li>
-  <li><a href="#%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4" id="toc-마크다운" class="nav-link" data-scroll-target="#%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4"><span class="header-section-number">15.8.2</span> 마크다운</a></li>
-  <li><a href="#%EC%BD%94%EB%93%9C" id="toc-코드" class="nav-link" data-scroll-target="#%EC%BD%94%EB%93%9C"><span class="header-section-number">15.8.3</span> 코드</a></li>
-  <li><a href="#yaml-%EC%BD%94%EB%93%9C%ED%8E%B8%EC%A7%91" id="toc-yaml-코드편집" class="nav-link" data-scroll-target="#yaml-%EC%BD%94%EB%93%9C%ED%8E%B8%EC%A7%91"><span class="header-section-number">15.8.4</span> YAML 코드편집</a></li>
+<li><a href="#yaml" id="toc-yaml" class="nav-link" data-scroll-target="#yaml"><span class="header-section-number">21.8.1</span> YAML</a></li>
+  <li><a href="#%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4" id="toc-마크다운" class="nav-link" data-scroll-target="#%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4"><span class="header-section-number">21.8.2</span> 마크다운</a></li>
+  <li><a href="#%EC%BD%94%EB%93%9C" id="toc-코드" class="nav-link" data-scroll-target="#%EC%BD%94%EB%93%9C"><span class="header-section-number">21.8.3</span> 코드</a></li>
+  <li><a href="#yaml-%EC%BD%94%EB%93%9C%ED%8E%B8%EC%A7%91" id="toc-yaml-코드편집" class="nav-link" data-scroll-target="#yaml-%EC%BD%94%EB%93%9C%ED%8E%B8%EC%A7%91"><span class="header-section-number">21.8.4</span> YAML 코드편집</a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/quarto.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./quarto.html">커뮤니케이션</a></li><li class="breadcrumb-item"><a href="./quarto.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">쿼토</span></a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./quarto.html">커뮤니케이션</a></li><li class="breadcrumb-item"><a href="./quarto.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">쿼토</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title">
-<span class="chapter-number">15</span>&nbsp; <span class="chapter-title">쿼토</span>
+<span class="chapter-number">21</span>&nbsp; <span class="chapter-title">쿼토</span>
 </h1>
 </div>
 
@@ -375,17 +493,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>쿼토는 R 패키지가 아니면 차세대 R마크다운 별명을 갖고 있듯이 R마크다운 이전 R 생태계에서 축적한 경험을 집대성한 문서저작 프로그램으로 R 뿐만 아니라 파이썬, 자바스크립트, 쥴리아도 지원한다. R마크다운에 익숙한 분이라면 쿼토가 차세대 R마크다운이라는 사실을 지원되는 언어와 일관되고 통합된 인터페이스를 통해 쉽게 확인할 수 있다.</p>
 <!-- <kbd>Enter</kbd> -->
-<section id="쿼토설치" class="level2" data-number="15.1"><h2 data-number="15.1" class="anchored" data-anchor-id="쿼토설치">
-<span class="header-section-number">15.1</span> 쿼토설치</h2>
-<section id="설치방법" class="level3" data-number="15.1.1"><h3 data-number="15.1.1" class="anchored" data-anchor-id="설치방법">
-<span class="header-section-number">15.1.1</span> 설치방법</h3>
+<section id="쿼토설치" class="level2" data-number="21.1"><h2 data-number="21.1" class="anchored" data-anchor-id="쿼토설치">
+<span class="header-section-number">21.1</span> 쿼토설치</h2>
+<section id="설치방법" class="level3" data-number="21.1.1"><h3 data-number="21.1.1" class="anchored" data-anchor-id="설치방법">
+<span class="header-section-number">21.1.1</span> 설치방법</h3>
 <p><a href="https://quarto.org/">quarto</a> 웹사이트에서 Quarto CLI 엔진을 설치한다. 통합개발도구(IDE)를 설치한다. Quarto CLI를 지원하는 IDE는 VS Code, RStudio, Jupyter, VIM/Emacs 와 같은 텍스트 편집기가 포함된다. IDE까지 설치를 했다면 literate programming 방식으로 마크다운과 프로그래밍 언어를 결합하여 출판을 위한 전문 문서 저작을 시작한다.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/quarto-toolchain.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/quarto-toolchain.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
-</section><section id="윈도우-설치" class="level3" data-number="15.1.2"><h3 data-number="15.1.2" class="anchored" data-anchor-id="윈도우-설치">
-<span class="header-section-number">15.1.2</span> 윈도우 설치</h3>
+<p><a href="images/quarto-toolchain.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/quarto-toolchain.png" class="img-fluid"></a></p>
+</section><section id="윈도우-설치" class="level3" data-number="21.1.2"><h3 data-number="21.1.2" class="anchored" data-anchor-id="윈도우-설치">
+<span class="header-section-number">21.1.2</span> 윈도우 설치</h3>
 <p><a href="https://quarto.org/">Quarto</a>를 운영체제에 맞춰 설치한다. Quarto 는 기본적으로 CLI 라서 설치 후 제대로 설정이 되었는지는 환경설정에 경로를 등록해줘야 한다.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
@@ -395,35 +510,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/quarto_install/quarto-download.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/quarto_install/quarto-download.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/quarto_install/quarto-download.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/quarto_install/quarto-download.png" class="img-fluid"></a></p>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/quarto_install/quarto-install.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/quarto_install/quarto-install.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/quarto_install/quarto-install.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/quarto_install/quarto-install.png" class="img-fluid"></a></p>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/quarto_install/quarto-cli.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="images/quarto_install/quarto-cli.png" class="img-fluid figure-img"></a></p>
-</figure>
+<p><a href="images/quarto_install/quarto-cli.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="images/quarto_install/quarto-cli.png" class="img-fluid"></a></p>
 </div>
 </div>
 </div>
-</div>
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <p>윈도우 시스템의 경우 <code>quarto.exe</code>가 아니고 <code>quarto.cmd</code> 라 이에 유의한다. 즉, 제어판 → 환경 변수 설정 … 에서 <code>"C:\Users\사용자명\AppData\Local\Programs\Quarto\bin</code> 디렉토리를 등록한 후 <code>quarto.cmd</code> 을 사용해서 출판한다. 쿼토 1.3 버전이 출시되면서 이런 문제는 해결되었다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.which.html">Sys.which</a></span><span class="op">(</span><span class="st">"quarto"</span><span class="op">)</span></span>
@@ -432,17 +534,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section></section><section id="쿼토-출판" class="level2" data-number="15.2"><h2 data-number="15.2" class="anchored" data-anchor-id="쿼토-출판">
-<span class="header-section-number">15.2</span> 쿼토 출판</h2>
-<section id="출판-플랫폼" class="level3" data-number="15.2.1"><h3 data-number="15.2.1" class="anchored" data-anchor-id="출판-플랫폼">
-<span class="header-section-number">15.2.1</span> 출판 플랫폼</h3>
-<p>데이터 사이언스 저작물을 제작하게 되면 그 다음 단계로 출판을 해야하는데 다양한 문서를 모아 프로젝트로 담아 <a href="https://quartopub.com/"><code>Quarto Pub</code></a>에 전자출판한다. 다른 출판 플랫폼으로 <a href="https://netlify.com/">netlify</a>, <a href="https://github.com/">GitHub Pages</a>, <a href="https://www.rstudio.com/products/connect/">RStudio Connect</a>가 많이 사용된다.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/quarto-publishing.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="images/quarto-publishing.png" class="img-fluid figure-img"></a></p>
-</figure>
 </div>
-</section><section id="quarto-pub-출판-quarto-pub" class="level3" data-number="15.2.2"><h3 data-number="15.2.2" class="anchored" data-anchor-id="quarto-pub-출판-quarto-pub">
-<span class="header-section-number">15.2.2</span> Quarto Pub 출판 <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+</section></section><section id="쿼토-출판" class="level2" data-number="21.2"><h2 data-number="21.2" class="anchored" data-anchor-id="쿼토-출판">
+<span class="header-section-number">21.2</span> 쿼토 출판</h2>
+<section id="출판-플랫폼" class="level3" data-number="21.2.1"><h3 data-number="21.2.1" class="anchored" data-anchor-id="출판-플랫폼">
+<span class="header-section-number">21.2.1</span> 출판 플랫폼</h3>
+<p>데이터 사이언스 저작물을 제작하게 되면 그 다음 단계로 출판을 해야하는데 다양한 문서를 모아 프로젝트로 담아 <a href="https://quartopub.com/"><code>Quarto Pub</code></a>에 전자출판한다. 다른 출판 플랫폼으로 <a href="https://netlify.com/">netlify</a>, <a href="https://github.com/">GitHub Pages</a>, <a href="https://www.rstudio.com/products/connect/">RStudio Connect</a>가 많이 사용된다.</p>
+<p><a href="images/quarto-publishing.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="images/quarto-publishing.png" class="img-fluid"></a></p>
+</section><section id="quarto-pub-출판-quarto-pub" class="level3" data-number="21.2.2"><h3 data-number="21.2.2" class="anchored" data-anchor-id="quarto-pub-출판-quarto-pub">
+<span class="header-section-number">21.2.2</span> Quarto Pub 출판 <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
 </h3>
 <p><a href="https://quartopub.com/"><code>Quarto Pub</code></a> 웹사이트에 출판하는 방식은 Quarto CLI 를 사용한다. <strong>필히 RStudio 내부 Terminal</strong>을 사용해서 <code>Quarto Pub</code>으로 출판한다.</p>
 <div class="cell">
@@ -463,17 +563,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>이제 모든 준비가 되었기 때문에 다음 명령어로 작성한 출판 문서를 포함한 웹사이트를 로컬에서 미리 확인 한 후에 <a href="https://quartopub.com/"><code>Quarto Pub</code></a>으로 전자출판한다. 윈도우에서는 <strong>RStudio 내부 Terminal CLI</strong>를 사용하는 것을 권장한다.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish quarto-pub</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="at">quarto preview</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">quarto publish quarto-pub</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="문서-컴파일러-1" class="level2" data-number="15.3"><h2 data-number="15.3" class="anchored" data-anchor-id="문서-컴파일러-1">
-<span class="header-section-number">15.3</span> 문서 컴파일러 <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>
+</section></section><section id="문서-컴파일러-1" class="level2" data-number="21.3"><h2 data-number="21.3" class="anchored" data-anchor-id="문서-컴파일러-1">
+<span class="header-section-number">21.3</span> 문서 컴파일러 <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>
 </h2>
 <p>Quarto 는 <a href="https://pandoc.org/">Pandoc</a>에 기반한 오픈소스 과학기술 출판시스템이다. 하지만 특정 언어에 종속되지 않고 R, 파이썬, 쥴리아, 자바스크립트(Observable JS) 를 지원하고 있으며 이를 통해 다음 출판 저작물 작성이 가능하다.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/horst_quarto_schematic.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="images/horst_quarto_schematic.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/horst_quarto_schematic.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="images/horst_quarto_schematic.png" class="img-fluid"></a></p>
 <p>크게 세가지 부분에 대해 출판시스템에 대한 고민이 필요하다.</p>
 <ul>
 <li>콘텐츠(Content): 저작과 관련된 문서 내용</li>
@@ -502,8 +599,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>문서저작(pandoc): 마크다운, 수식, 인용, 서지관리, 콜아웃(callout), 고급 layout 등</li>
 <li>출판산출물: 고품질 기사(article), 보고서, PPT, 웹사이트, 블로그, (HTML, PDF, MS 워드, ePub 등) 전자책</li>
-</ul></section><section id="single-sourcing-출판저작" class="level2" data-number="15.4"><h2 data-number="15.4" class="anchored" data-anchor-id="single-sourcing-출판저작">
-<span class="header-section-number">15.4</span> Single Sourcing 출판저작</h2>
+</ul></section><section id="single-sourcing-출판저작" class="level2" data-number="21.4"><h2 data-number="21.4" class="anchored" data-anchor-id="single-sourcing-출판저작">
+<span class="header-section-number">21.4</span> Single Sourcing 출판저작</h2>
 <p>데이터 사이언스 출판저작에 다소 차이는 있지만 출판에 대한 대체적인 방식은 유사할 것으로 보인다. 즉, Single Sourcing 을 콘텐츠 저작, 디자인, 최종 출판물 관리까지 일원화되어 자동화되어 체계적으로 관리된다면 중복되는 낭비는 물론 재현가능성도 높여 과학기술 출판저작물로 가장 이상적으로 간주되고 있다.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
@@ -513,27 +610,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div id="fig-problem" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><a href="images/single-sourcing-problem.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="문제점"><img src="images/single-sourcing-problem.jpg" class="img-fluid figure-img"></a></p>
-<figcaption class="figure-caption">그림&nbsp;15.1: 문제점</figcaption></figure>
+<div id="fig-problem" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-problem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/single-sourcing-problem.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-7" data-gallery="quarto-lightbox-gallery-7"><img src="images/single-sourcing-problem.jpg" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-problem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;21.1: 문제점
+</figcaption></figure>
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div id="fig-concept" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><a href="images/single-sourcing-concept.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Single Sourcing 개념"><img src="images/single-sourcing-concept.jpg" class="img-fluid figure-img"></a></p>
-<figcaption class="figure-caption">그림&nbsp;15.2: Single Sourcing 개념</figcaption></figure>
+<div id="fig-concept" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-concept-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/single-sourcing-concept.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-8" data-gallery="quarto-lightbox-gallery-8"><img src="images/single-sourcing-concept.jpg" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-concept-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;21.2: Single Sourcing 개념
+</figcaption></figure>
 </div>
 </div>
 <div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
-<div id="fig-publishing" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><a href="images/single-sourcing-publishing.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Single Sourcing Multi-Use"><img src="images/single-sourcing-publishing.jpg" class="img-fluid figure-img"></a></p>
-<figcaption class="figure-caption">그림&nbsp;15.3: Single Sourcing Multi-Use</figcaption></figure>
+<div id="fig-publishing" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-publishing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/single-sourcing-publishing.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-9" data-gallery="quarto-lightbox-gallery-9"><img src="images/single-sourcing-publishing.jpg" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-publishing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;21.3: Single Sourcing Multi-Use
+</figcaption></figure>
 </div>
 </div>
 </div>
 </div>
-</section><section id="작업흐름" class="level2" data-number="15.5"><h2 data-number="15.5" class="anchored" data-anchor-id="작업흐름">
-<span class="header-section-number">15.5</span> 작업흐름</h2>
+</section><section id="작업흐름" class="level2" data-number="21.5"><h2 data-number="21.5" class="anchored" data-anchor-id="작업흐름">
+<span class="header-section-number">21.5</span> 작업흐름</h2>
 <p>기존 R <code>.Rmd</code>, 파이썬 <code>.ipynb</code> 확장자를 갖는 작업흐름이 <code>.qmd</code> 파일로 단일화되는 것이 가장 큰 특징이다. 따라서 마크다운으로 콘텐츠를 작성하고 프로그래밍 코드를 R, 파이썬, 자바스크립트, 쥴리아 로 작성하게 되면 자동으로 계산을 수행하고 결과물을 마크다운으로 변환시키기 때문에 후속 작업을 신경쓰지 않고 원하는 결과물을 얻을 수 있는 장점이 있다.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
@@ -544,33 +653,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/quarto_workflow/rmd-knitr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="images/quarto_workflow/rmd-knitr.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/quarto_workflow/rmd-knitr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="images/quarto_workflow/rmd-knitr.png" class="img-fluid"></a></p>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/quarto_workflow/jupyter-alone.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="images/quarto_workflow/jupyter-alone.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/quarto_workflow/jupyter-alone.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="images/quarto_workflow/jupyter-alone.png" class="img-fluid"></a></p>
 </div>
 <div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/quarto_workflow/qmd-knitr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="images/quarto_workflow/qmd-knitr.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/quarto_workflow/qmd-knitr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="images/quarto_workflow/qmd-knitr.png" class="img-fluid"></a></p>
 </div>
 <div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/quarto_workflow/qmd-jupyter.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="images/quarto_workflow/qmd-jupyter.png" class="img-fluid figure-img"></a></p>
-</figure>
+<p><a href="images/quarto_workflow/qmd-jupyter.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="images/quarto_workflow/qmd-jupyter.png" class="img-fluid"></a></p>
 </div>
 </div>
 </div>
-</div>
-</section><section id="주요-기능" class="level2" data-number="15.6"><h2 data-number="15.6" class="anchored" data-anchor-id="주요-기능">
-<span class="header-section-number">15.6</span> 주요 기능</h2>
+</section><section id="주요-기능" class="level2" data-number="21.6"><h2 data-number="21.6" class="anchored" data-anchor-id="주요-기능">
+<span class="header-section-number">21.6</span> 주요 기능</h2>
 <table class="table">
 <thead><tr class="header">
 <th>Feature</th>
@@ -680,15 +777,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>Fall 2022</td>
 </tr>
 </tbody>
-</table></section><section id="위지윅-vs-위지윔" class="level2" data-number="15.7"><h2 data-number="15.7" class="anchored" data-anchor-id="위지윅-vs-위지윔">
-<span class="header-section-number">15.7</span> 위지윅 vs 위지윔</h2>
+</table></section><section id="위지윅-vs-위지윔" class="level2" data-number="21.7"><h2 data-number="21.7" class="anchored" data-anchor-id="위지윅-vs-위지윔">
+<span class="header-section-number">21.7</span> 위지윅 vs 위지윔</h2>
 <p>신속하고 빠르게 누구나 짧은 학습을 통해서 문서를 저작하고 출판할 수 있는 방식은 아래한글 혹은 MS워드 워드프로세서를 사용하는데 이는 <strong>위지위그(WYSIWYG: What You See Is What You Get, “보는 대로 얻는다”)</strong>에 기초한 것으로 문서 편집 과정에서 화면에 포맷된 낱말, 문장이 출력물과 동일하게 나오는 방식을 말한다. 위지윅의 대척점에 있는 것이 <strong>위지윔(WYSIWYM, What You See Is What You Mean)</strong>으로 대표적인 것인 <span class="math inline">\(\LaTeX\)</span> 으로 구조화된 방식으로 문서를 작성하면 컴파일을 통해서 최종 문서가 미려한 출판가능한 PDF, PS, DVI 등 확장자를 갖는 출판결과물을 얻을 수 있다.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/two-paradigms.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="images/two-paradigms.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
-<section id="블로그-저작-소프트웨어" class="level3" data-number="15.7.1"><h3 data-number="15.7.1" class="anchored" data-anchor-id="블로그-저작-소프트웨어">
-<span class="header-section-number">15.7.1</span> 블로그 저작 소프트웨어</h3>
+<p><a href="images/two-paradigms.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="images/two-paradigms.png" class="img-fluid"></a></p>
+<section id="블로그-저작-소프트웨어" class="level3" data-number="21.7.1"><h3 data-number="21.7.1" class="anchored" data-anchor-id="블로그-저작-소프트웨어">
+<span class="header-section-number">21.7.1</span> 블로그 저작 소프트웨어</h3>
 <p>개인용 컴퓨터가 보급되면서 아래한글과 같은 워드 프로세서를 사용해서 저작을 하는 것이 일반화되었지만 곧이어 인터넷이 보급되면서 웹에 문서를 저작하는 것이 이제는 더욱 중요하게 되었다. 전문 개발자가 아닌 일반인이 HTML, CSS, JavaScript를 학습하여 웹에 문서를 제작하고 출판하는 것은 난이도가 있다보니 워드프레스와 티스토리 같은 위지위그 패러다임을 채택한 저작도구가 사용되고 있으나 상대적으로 HTML, CSS, JavaScript을 조합한 방식과 비교하여 고급스러운 면과 함께 정교함에 있어 아쉬움이 있는 것도 사실이다.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
@@ -697,26 +791,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/blog-authoring.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="images/blog-authoring.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/blog-authoring.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="images/blog-authoring.png" class="img-fluid"></a></p>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/blog-html-css-js.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="images/blog-html-css-js.jpg" class="img-fluid figure-img"></a></p>
-</figure>
+<p><a href="images/blog-html-css-js.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="images/blog-html-css-js.jpg" class="img-fluid"></a></p>
 </div>
 </div>
 </div>
-</div>
-</section></section><section id="쿼토-저작" class="level2" data-number="15.8"><h2 data-number="15.8" class="anchored" data-anchor-id="쿼토-저작">
-<span class="header-section-number">15.8</span> 쿼토 저작</h2>
+</section></section><section id="쿼토-저작" class="level2" data-number="21.8"><h2 data-number="21.8" class="anchored" data-anchor-id="쿼토-저작">
+<span class="header-section-number">21.8</span> 쿼토 저작</h2>
 <p>Quarto 는 10년전부터 시작된 <code>knitr</code> 경험을 많이 녹여냈고 위지윔 패러다임에 기초를 하고 있다고 볼 수 있다. RStudio를 IDE로 Quarto CLI와 함께 출판물을 저작한다면 편집기에 있는 <code>Visual</code> 모드가 있어 위지윅 패러다임도 문서저작에 사용이 가능하다. 특히, R, 파이썬, SQL, 자바스크립트 등 컴퓨팅 엔진을 달리하여 문서에 그래프, 표, 인터랙티브 결과물도 함께 담을 수 있는 것은 커다란 장점이다.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/quarto-unification.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="images/quarto-unification.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/quarto-unification.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="images/quarto-unification.png" class="img-fluid"></a></p>
 <p>Quarto 저작은 크게 3가지 구성요소로 되어 있다.</p>
 <ul>
 <li>메타데이터: YAML</li>
@@ -726,11 +811,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>상기 구성요소를 조합하게 되면 다양한 데이터 사이언스 웹사이트를 비롯한 출판물을 제작하게 된다.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/quarto-anatomy.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="Quarto 문서 구성요소"><img src="images/quarto-anatomy.png" class="img-fluid figure-img"></a></p>
-<figcaption class="figure-caption">Quarto 문서 구성요소</figcaption></figure>
+<figure class="figure"><p><a href="images/quarto-anatomy.png" class="lightbox" data-glightbox="description: .lightbox-desc-18" data-gallery="quarto-lightbox-gallery-18" title="Quarto 문서 구성요소"><img src="images/quarto-anatomy.png" class="img-fluid figure-img" alt="Quarto 문서 구성요소"></a></p>
+<figcaption>Quarto 문서 구성요소</figcaption></figure>
 </div>
-<section id="yaml" class="level3" data-number="15.8.1"><h3 data-number="15.8.1" class="anchored" data-anchor-id="yaml">
-<span class="header-section-number">15.8.1</span> YAML</h3>
+<section id="yaml" class="level3" data-number="21.8.1"><h3 data-number="21.8.1" class="anchored" data-anchor-id="yaml">
+<span class="header-section-number">21.8.1</span> YAML</h3>
 <p>메타데이터는 YAML인데 GNU처럼 “Yet Another Markup Language” 혹은 “YAML Ain’t Markup Language”을 줄인단어다.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
@@ -776,7 +861,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render document.qmd <span class="at">--to</span> html</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11" data-filename="terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render document.qmd <span class="at">--to</span> html</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:5%;">
 
@@ -793,7 +878,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render document.qmd <span class="at">--to</span> html <span class="at">-M</span> code fold:true</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13" data-filename="terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render document.qmd <span class="at">--to</span> html <span class="at">-M</span> code fold:true</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:5%;">
 
@@ -806,40 +891,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-</section><section id="마크다운" class="level3" data-number="15.8.2"><h3 data-number="15.8.2" class="anchored" data-anchor-id="마크다운">
-<span class="header-section-number">15.8.2</span> 마크다운</h3>
+</section><section id="마크다운" class="level3" data-number="21.8.2"><h3 data-number="21.8.2" class="anchored" data-anchor-id="마크다운">
+<span class="header-section-number">21.8.2</span> 마크다운</h3>
 <p><a href="http://aispiration.com/comp_document/">데이터 과학 문서</a> 웹사이트에 “마크다운 기초”, “고급 마크다운”, “R 마크다운 실무” 를 참조한다.</p>
-</section><section id="코드" class="level3" data-number="15.8.3"><h3 data-number="15.8.3" class="anchored" data-anchor-id="코드">
-<span class="header-section-number">15.8.3</span> 코드</h3>
+</section><section id="코드" class="level3" data-number="21.8.3"><h3 data-number="21.8.3" class="anchored" data-anchor-id="코드">
+<span class="header-section-number">21.8.3</span> 코드</h3>
 <p>R, 파이썬, SQL, 자바스크립트 등 버그 없이 정상 동작하는 프로그램을 작성하여 포함시킨다.</p>
-</section><section id="yaml-코드편집" class="level3" data-number="15.8.4"><h3 data-number="15.8.4" class="anchored" data-anchor-id="yaml-코드편집">
-<span class="header-section-number">15.8.4</span> YAML 코드편집</h3>
+</section><section id="yaml-코드편집" class="level3" data-number="21.8.4"><h3 data-number="21.8.4" class="anchored" data-anchor-id="yaml-코드편집">
+<span class="header-section-number">21.8.4</span> YAML 코드편집</h3>
 <p>RStudio, VSCode IDE는 탭-자동완성(tab-completion)을 제공한다. 즉, 첫단어를 타이핑하고 탭을 연결하여 키보드를 치게되면 연관 명령어가 나와 선택하면 된다. 혹은 <kbd><code>Ctrl + space</code></kbd> 단축키를 치게되면 전체 명령어가 나온다.</p>
 <div class="columns">
 <div class="column">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/yaml-autocomplete.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="images/yaml-autocomplete.gif" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/yaml-autocomplete.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="images/yaml-autocomplete.gif" class="img-fluid"></a></p>
 </div><div class="column">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/yaml-ctrl.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img src="images/yaml-ctrl.gif" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/yaml-ctrl.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img src="images/yaml-ctrl.gif" class="img-fluid"></a></p>
 </div><div class="column">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/yaml_python.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-21"><img src="images/yaml_python.gif" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/yaml_python.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-21"><img src="images/yaml_python.gif" class="img-fluid"></a></p>
 </div>
 </div>
 
 
-</section></section><aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-7">그림&nbsp;21.1: 문제점</span>
+<span class="glightbox-desc lightbox-desc-8">그림&nbsp;21.2: Single Sourcing 개념</span>
+<span class="glightbox-desc lightbox-desc-9">그림&nbsp;21.3: Single Sourcing Multi-Use</span>
+<span class="glightbox-desc lightbox-desc-18">Quarto 문서 구성요소</span>
+</div>
+</section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
 <li id="fn1"><p><a href="https://quarto.org/docs/publishing/quarto-pub.html">Quarto Pub</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p><a href="https://coko.foundation/articles/single-source-publishing.html">Adam Hyde (Aug 16, 2021), “Single Source Publishing - A investigation of what Single Source Publishing is and how this ‘holy grail’ can be achieved.”</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol></aside></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -967,15 +1049,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    if (id.startsWith('sec-')) {
+    if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
         }
         return container.innerHTML
       } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -984,7 +1079,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -1026,6 +1129,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
       }
     }, function(instance) {
     });
@@ -1097,6 +1223,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1156,11 +1308,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./functions_ds.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span>
+      <a href="./functions_purrr.html" class="pagination-link  aria-label=">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./map.html" class="pagination-link" aria-label="<span class='chapter-number'>22</span>&nbsp; <span class='chapter-title'>지도 공간정보</span>">
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -1170,12 +1325,36 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/quarto.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","openEffect":"zoom","loop":true,"closeEffect":"zoom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","loop":false,"selector":".lightbox"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
 
 
 </body></html>

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.288">
+<meta name="generator" content="quarto-1.4.549">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="author" content="이광춘, 신종화">
+
 <title>챗GPT 데이터 과학 - 15&nbsp; 모형 개발</title>
 <style>
 code{white-space: pre-wrap;}
@@ -20,7 +23,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -56,6 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -73,6 +77,7 @@ div.csl-indent {
   margin-left: 2em;
 }</style>
 
+
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -82,7 +87,7 @@ div.csl-indent {
 <meta name="quarto:offset" content="./">
 <link href="./models_many.html" rel="next">
 <link href="./models.html" rel="prev">
-<link href="./cover.jpg" rel="icon" type="image/jpeg">
+<link href="./images/logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -94,18 +99,20 @@ div.csl-indent {
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "일치 없음",
     "search-matching-documents-text": "일치된 문서",
@@ -114,33 +121,72 @@ div.csl-indent {
     "search-more-match-text": "추가 검색결과",
     "search-more-matches-text": "추가 검색결과",
     "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "취소",
     "search-submit-button-title": "검색",
     "search-label": "검색"
   }
-}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 </head>
+
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./models.html">모형</a></li><li class="breadcrumb-item"><a href="./models_building.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">모형 개발</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">챗GPT 데이터 과학</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/bit2r/chatGPT4ds" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/bit2r/chatGPT4ds" title="소스 코드" class="quarto-navigation-tool px-1" aria-label="소스 코드"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="리더 모드 전환">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -156,7 +202,7 @@ div.csl-indent {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">챗GPT 데이터 과학</span></span></a>
@@ -170,8 +216,8 @@ div.csl-indent {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">소개</span></span></a>
@@ -184,7 +230,7 @@ div.csl-indent {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
@@ -193,15 +239,15 @@ div.csl-indent {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./penguins.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
@@ -210,8 +256,8 @@ div.csl-indent {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
@@ -236,7 +282,7 @@ div.csl-indent {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
@@ -245,8 +291,8 @@ div.csl-indent {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simpson.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
@@ -277,7 +323,7 @@ div.csl-indent {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
@@ -286,8 +332,8 @@ div.csl-indent {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">모형</span></span></a>
@@ -312,7 +358,7 @@ div.csl-indent {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
@@ -321,8 +367,8 @@ div.csl-indent {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">함수</span></span></a>
@@ -341,7 +387,7 @@ div.csl-indent {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
@@ -350,18 +396,61 @@ div.csl-indent {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
   </div>
 </li>
-      </ul>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
+  </div>
 </li>
+      </ul>
+  </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">챗GPT</span></span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text">챗GPT</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prompt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./langchain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./llm_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./local_llm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
+  </div>
+</li>
+      </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
@@ -374,24 +463,28 @@ div.csl-indent {
   </div>
 </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
    
   <ul>
-<li><a href="#ml-basic-elements" id="toc-ml-basic-elements" class="nav-link active" data-scroll-target="#ml-basic-elements"><span class="header-section-number">15.1</span> 기계학습/회귀모형 구성요소</a></li>
-  <li><a href="#%EB%8C%80-%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5-%EC%9B%90%EB%A6%AC" id="toc-대-기계학습-원리" class="nav-link" data-scroll-target="#%EB%8C%80-%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5-%EC%9B%90%EB%A6%AC"><span class="header-section-number">15.2</span> 3대 기계학습 원리</a></li>
-  <li><a href="#%EB%AA%A8%ED%98%95-%EA%B0%9C%EB%B0%9C%EA%B3%BC%EC%A0%95" id="toc-모형-개발과정" class="nav-link" data-scroll-target="#%EB%AA%A8%ED%98%95-%EA%B0%9C%EB%B0%9C%EA%B3%BC%EC%A0%95"><span class="header-section-number">15.3</span> 모형 개발과정</a></li>
-  <li><a href="#%EA%B3%BC%EB%8C%80%EC%A0%81%ED%95%A9-%EC%82%AC%EB%A1%80" id="toc-과대적합-사례" class="nav-link" data-scroll-target="#%EA%B3%BC%EB%8C%80%EC%A0%81%ED%95%A9-%EC%82%AC%EB%A1%80"><span class="header-section-number">15.4</span> 과대적합 사례</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/models_building.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
+  <li><a href="#ml-basic-elements" id="toc-ml-basic-elements" class="nav-link active" data-scroll-target="#ml-basic-elements"><span class="header-section-number">15.1</span> 기계학습/회귀모형 구성요소</a></li>
+  <li><a href="#대-기계학습-원리" id="toc-대-기계학습-원리" class="nav-link" data-scroll-target="#대-기계학습-원리"><span class="header-section-number">15.2</span> 3대 기계학습 원리</a></li>
+  <li><a href="#모형-개발과정" id="toc-모형-개발과정" class="nav-link" data-scroll-target="#모형-개발과정"><span class="header-section-number">15.3</span> 모형 개발과정</a></li>
+  <li><a href="#과대적합-사례" id="toc-과대적합-사례" class="nav-link" data-scroll-target="#과대적합-사례"><span class="header-section-number">15.4</span> 과대적합 사례</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/models_building.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./models.html">모형</a></li><li class="breadcrumb-item"><a href="./models_building.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">모형 개발</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title">
-<span class="chapter-number">15</span>&nbsp; <span class="chapter-title">모형 개발</span>
-</h1>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./models.html">모형</a></li><li class="breadcrumb-item"><a href="./models_building.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">모형 개발</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">모형 개발</span></h1>
 </div>
 
 
@@ -405,54 +498,59 @@ div.csl-indent {
   
 
 
-</header><p>기계학습은 다음 세가지 사항을 기반으로 하고 있다. 패턴은 존재한다고 가정하는 부분에서 통계학의 회귀분석과 유사하나, 수학적으로 명세를 할 수 없다는 점에서 차이가 난다. 기계학습이나 회귀모형이나 둘다 데이터를 기반으로 한다.</p>
+</header>
+
+
+<p>기계학습은 다음 세가지 사항을 기반으로 하고 있다. 패턴은 존재한다고 가정하는 부분에서 통계학의 회귀분석과 유사하나, 수학적으로 명세를 할 수 없다는 점에서 차이가 난다. 기계학습이나 회귀모형이나 둘다 데이터를 기반으로 한다.</p>
 <ol type="1">
 <li>패턴이 존재한다.</li>
 <li>수학적으로 명시적으로 명세할 수 없다.</li>
 <li>데이터를 갖고 있다.</li>
 </ol>
-<p>기계학습을 구성하는 이론은 편향-분산(bias-variance), 복잡성, <a href="https://en.wikipedia.org/wiki/Vapnik%E2%80%93Chervonenkis_theory">Vapnik–Chervonenkis 이론</a>, 베이즈통계가 이론이 되고, 선형회귀모형을 비롯한 다양한 모형이 존재하고, 모형의 성능과 신뢰성을 높이고자 데이터 전처리, 교차타당성(cross validation), 정규화(regularization)등이 동원된다. <span class="citation" data-cites="abu2012learning">(<a href="references.html#ref-abu2012learning" role="doc-biblioref">Abu-Mostafa, Magdon-Ismail, 와/과 Lin 2012</a>)</span></p>
+<p>기계학습을 구성하는 이론은 편향-분산(bias-variance), 복잡성, <a href="https://en.wikipedia.org/wiki/Vapnik%E2%80%93Chervonenkis_theory">Vapnik–Chervonenkis 이론</a>, 베이즈통계가 이론이 되고, 선형회귀모형을 비롯한 다양한 모형이 존재하고, 모형의 성능과 신뢰성을 높이고자 데이터 전처리, 교차타당성(cross validation), 정규화(regularization)등이 동원된다. <span class="citation" data-cites="abu2012learning">(<a href="#ref-abu2012learning" role="doc-biblioref">Abu-Mostafa, Magdon-Ismail, 와/과 Lin 2012</a>)</span></p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/ml-map.png" class="lightbox" title="기계학습 지도" data-gallery="quarto-lightbox-gallery-1"><img src="images/ml-map.png" class="img-fluid figure-img"></a></p>
-<figcaption class="figure-caption">기계학습 지도</figcaption></figure>
+<figure class="figure">
+<p><a href="images/ml-map.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1" title="기계학습 지도"><img src="images/ml-map.png" class="img-fluid figure-img" alt="기계학습 지도"></a></p>
+<figcaption>기계학습 지도</figcaption>
+</figure>
 </div>
-<section id="ml-basic-elements" class="level2" data-number="15.1"><h2 data-number="15.1" class="anchored" data-anchor-id="ml-basic-elements">
-<span class="header-section-number">15.1</span> 기계학습/회귀모형 구성요소</h2>
+<section id="ml-basic-elements" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="ml-basic-elements"><span class="header-section-number">15.1</span> 기계학습/회귀모형 구성요소</h2>
 <p>일반 모형을 “신호 + 잡음(signal + noise)”로 가정하고 다음과 같은 수식으로 표현할 수 있다.</p>
 <p><span class="math display">\[y = f(x) + \epsilon\]</span></p>
 <ol type="1">
 <li>출력 : <span class="math inline">\(y\)</span>, 관심갖고 있는 결과변수</li>
 <li>입력 : <span class="math inline">\(x\)</span>, 설명/예측 변수
 <ul>
-<li>
-<span class="math inline">\(y\)</span>의 변동성을 설명하는 목적의 모형을 구축하는 경우 <span class="math inline">\(x\)</span>는 설명변수</li>
-<li>
-<span class="math inline">\(y\)</span>의 변동성을 예측하는 목적의 모형을 구축하는 경우 <span class="math inline">\(x\)</span>는 예측변수</li>
-</ul>
-</li>
+<li><span class="math inline">\(y\)</span>의 변동성을 설명하는 목적의 모형을 구축하는 경우 <span class="math inline">\(x\)</span>는 설명변수</li>
+<li><span class="math inline">\(y\)</span>의 변동성을 예측하는 목적의 모형을 구축하는 경우 <span class="math inline">\(x\)</span>는 예측변수</li>
+</ul></li>
 <li>가설: : <span class="math inline">\(g: x \rightarrow y\)</span>, <span class="math inline">\(x\)</span>는 <span class="math inline">\(y\)</span>에 영향을 주는 인과관계가 존재한다.</li>
 <li>목적함수 : <span class="math inline">\(f: x \rightarrow y\)</span>, <span class="math inline">\(y\)</span>와 <span class="math inline">\(x\)</span>를 연관시켜주는 함수</li>
-<li>데이터: <span class="math inline">\((x_1 , y_1 ), (x_2 , y_2 ), \dots, (x_n , y_n )\)</span>
-</li>
+<li>데이터: <span class="math inline">\((x_1 , y_1 ), (x_2 , y_2 ), \dots, (x_n , y_n )\)</span></li>
 <li>오차: <span class="math inline">\(\epsilon\)</span>, <span class="math inline">\(f: x \rightarrow y\)</span>으로 설명되지 않는 부분</li>
 </ol>
 <p>결국, 잡음이 낀 데이터에서 잡음을 제거하고 신호만 뽑아내는 것이 회귀모형, 기계학습 모형이라고 볼 수 있다. 회귀모형과 기계학습 모형은 회귀모형이 특정 함수형태를 가정하고 데이터에서 신호와 잡음을 구부하는데 초점이 과거 맞춰졌다면, 기계학습모형은 <span class="math inline">\(x\)</span>는 <span class="math inline">\(y\)</span>의 인과관계를 가정으로 놓고 신호와 잡음을 가장 잘 발라낼 수 있는 함수를 찾아내는데 초점을 두고 있다.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/ml-process-math.png" class="lightbox" title="기계학습 도해" data-gallery="quarto-lightbox-gallery-2"><img src="images/ml-process-math.png" class="img-fluid figure-img"></a></p>
-<figcaption class="figure-caption">기계학습 도해</figcaption></figure>
+<figure class="figure">
+<p><a href="images/ml-process-math.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2" title="기계학습 도해"><img src="images/ml-process-math.png" class="img-fluid figure-img" alt="기계학습 도해"></a></p>
+<figcaption>기계학습 도해</figcaption>
+</figure>
 </div>
-</section><section id="대-기계학습-원리" class="level2" data-number="15.2"><h2 data-number="15.2" class="anchored" data-anchor-id="대-기계학습-원리">
-<span class="header-section-number">15.2</span> 3대 기계학습 원리</h2>
+</section>
+<section id="대-기계학습-원리" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="대-기계학습-원리"><span class="header-section-number">15.2</span> 3대 기계학습 원리</h2>
 <p>기계학습 알고리즘 개발자가 데이터를 학습시켜 기계학습 알고리즘을 뽑아내는 과정에 3대 기계학습 원리가 적용된다. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <ul>
-<li>
-<a href="https://ko.wikipedia.org/wiki/%EC%98%A4%EC%BB%B4%EC%9D%98_%EB%A9%B4%EB%8F%84%EB%82%A0">오컴의 면도날(Occam’s Razor)</a>: 사고 절약의 원리(Principle of Parsimony)라고도 불리며, 같은 현상을 설명하는 두가지 모형이 있다면, 단순한 모형을 선택한다.</li>
+<li><a href="https://ko.wikipedia.org/wiki/오컴의_면도날">오컴의 면도날(Occam’s Razor)</a>: 사고 절약의 원리(Principle of Parsimony)라고도 불리며, 같은 현상을 설명하는 두가지 모형이 있다면, 단순한 모형을 선택한다.</li>
 <li>표집 편향(Sampling Bias): 모집단을 대표성의 원리에 따라 표본을 추출하지 못할 때, 기계학습 알고리즘도 편향된 표본을 학습하여 결과를 왜곡시킨다.</li>
 <li>데이터 염탐 편향(Data Snooping Bias): 데이터를 본 후에 기계학습 알고리즘을 결정하는 것으로, 사실 데이터를 보기 전에 기계학습 알고리즘을 선정해야 된다.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/ml-three-principle.png" class="lightbox" title="3대 기계학습 원리" data-gallery="quarto-lightbox-gallery-3"><img src="images/ml-three-principle.png" class="img-fluid figure-img"></a></p>
-<figcaption class="figure-caption">3대 기계학습 원리</figcaption></figure>
+<figure class="figure">
+<p><a href="images/ml-three-principle.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3" title="3대 기계학습 원리"><img src="images/ml-three-principle.png" class="img-fluid figure-img" alt="3대 기계학습 원리"></a></p>
+<figcaption>3대 기계학습 원리</figcaption>
+</figure>
 </div>
 <ul>
 <li>오컴의 면도날</li>
@@ -476,23 +574,21 @@ div.csl-indent {
 <blockquote class="blockquote">
 <p>If you torture the data long enough, it will confess</p>
 </blockquote>
-</section><section id="모형-개발과정" class="level2" data-number="15.3"><h2 data-number="15.3" class="anchored" data-anchor-id="모형-개발과정">
-<span class="header-section-number">15.3</span> 모형 개발과정</h2>
+</section>
+<section id="모형-개발과정" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="모형-개발과정"><span class="header-section-number">15.3</span> 모형 개발과정</h2>
 <p>통계모형 개발과정은 데이터 과학 프로세스에서 크게 차이가 나지 않는다. 다만, 일반적인 통계모형을 개발할 경우 다음과 같은 과정을 거치게 되고, 지난한 과정이 될 수도 있다.</p>
 <ol type="1">
 <li>데이터를 정제하고, 모형에 적합한 데이터(R/파이썬과 모형 팩키지와 소통이 될 수 있는 데이터형태)가 되도록 준비한다.</li>
 <li>변수에 대한 분포를 분석하고 기울어짐이 심한 경우 변수변환도 적용한다.</li>
 <li>변수와 변수간에, 종속변수와 설명변수간에 산점도와 상관계수를 계산한다. 특히 변수간 상관관계가 <span class="math inline">\(r &gt; 0.9\)</span> 혹은 근처인 경우 변수를 빼거나 다른 방법을 강구한다.</li>
-<li>동일한 척도로 회귀계수를 추정하고 평가하려는 경우, <code><a href="https://rdrr.io/r/base/scale.html">scale()</a></code> 함수로 척도로 표준화한다.</li>
+<li>동일한 척도로 회귀계수를 추정하고 평가하려는 경우, <code>scale()</code> 함수로 척도로 표준화한다.</li>
 <li>모형을 적합시킨 후에 잔차를 보고, 백색잡음(whitenoise)인지 확인한다. 만약, 잔차에 특정한 패턴이 보이는 경우 패턴을 잡아내는 모형을 새로 개발한다.
 <ol type="1">
-<li>
-<code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> 함수를 사용해서 이상점이 있는지, 비선형관계를 잘 잡아냈는지 시각적으로 확인한다.</li>
+<li><code>plot()</code> 함수를 사용해서 이상점이 있는지, 비선형관계를 잘 잡아냈는지 시각적으로 확인한다.</li>
 <li>다양한 모형을 적합시키고 <code>R^2</code> 와 <code>RMSE</code>, 정확도 등 모형평가 결과가 가장 좋은 것을 선정한다.</li>
-<li>절약성의 원리(principle of parsimony)를 필히 준수하여 가장 간결한 모형이 되도록 노력한다.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>
-</li>
-</ol>
-</li>
+<li>절약성의 원리(principle of parsimony)를 필히 준수하여 가장 간결한 모형이 되도록 노력한다.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
+</ol></li>
 <li>최종 모형을 선택하고 모형에 대한 해석결과와 더불어 신뢰구간 정보를 넣어 마무리한다.</li>
 </ol>
 <div class="callout callout-style-simple callout-note callout-titled">
@@ -520,158 +616,166 @@ div.csl-indent {
 <col style="width: 26%">
 <col style="width: 51%">
 </colgroup>
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th>R 공식구문</th>
 <th>수학적 표현</th>
 <th>설명</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td><code>y~x</code></td>
 <td><span class="math inline">\(y_i = \beta_0 + \beta_1 x_i + \epsilon_i\)</span></td>
-<td>
-<code>x</code>를 <code>y</code>에 적합시키는 1차 선형회귀식</td>
+<td><code>x</code>를 <code>y</code>에 적합시키는 1차 선형회귀식</td>
 </tr>
 <tr class="even">
 <td><code>y~x -1</code></td>
 <td><span class="math inline">\(y_i = \beta_1 x_i + \epsilon_i\)</span></td>
-<td>
-<code>x</code>를 <code>y</code>에 적합시 절편 없는 1차 선형회귀식</td>
+<td><code>x</code>를 <code>y</code>에 적합시 절편 없는 1차 선형회귀식</td>
 </tr>
 <tr class="odd">
 <td><code>y~x+z</code></td>
 <td><span class="math inline">\(y_i = \beta_0 + \beta_1 x_i + \beta_2 z_i +\epsilon_i\)</span></td>
-<td>
-<code>x</code>와 <code>z</code>를 <code>y</code>에 적합시키는 1차 선형회귀식</td>
+<td><code>x</code>와 <code>z</code>를 <code>y</code>에 적합시키는 1차 선형회귀식</td>
 </tr>
 <tr class="even">
 <td><code>y~x:z</code></td>
 <td><span class="math inline">\(y_i = \beta_0 + \beta_1 x_i \times z_i +\epsilon_i\)</span></td>
-<td>
-<code>x</code>와 <code>z</code> 교호작용 항을 <code>y</code>에 적합시키는 1차 선형회귀식</td>
+<td><code>x</code>와 <code>z</code> 교호작용 항을 <code>y</code>에 적합시키는 1차 선형회귀식</td>
 </tr>
 <tr class="odd">
 <td><code>y~x*z</code></td>
 <td><span class="math inline">\(y_i = \beta_0 + \beta_1 x_i + \beta_2 z_i + \beta_1 x_i \times z_i +\epsilon_i\)</span></td>
-<td>
-<code>x</code>와 <code>z</code>, 교호작용항을 <code>y</code>에 적합시키는 1차 선형회귀식</td>
+<td><code>x</code>와 <code>z</code>, 교호작용항을 <code>y</code>에 적합시키는 1차 선형회귀식</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-</section><section id="과대적합-사례" class="level2" data-number="15.4"><h2 data-number="15.4" class="anchored" data-anchor-id="과대적합-사례">
-<span class="header-section-number">15.4</span> 과대적합 사례</h2>
+</section>
+<section id="과대적합-사례" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="과대적합-사례"><span class="header-section-number">15.4</span> 과대적합 사례</h2>
 <p><span class="math inline">\(y=x^2 + \epsilon\)</span> 오차는 정규분포 평균 0, 표준편차 0.2를 갖는 모형을 따른다고 가정하고, 이를 차수가 높은 다항식을 사용하여 적합시킨 결과를 확인하는 절차는 다음과 같다.</p>
 <ol type="1">
-<li>
-<code>tidyr</code>, <code>modelr</code>, <code>ggplot2</code> 팩키지를 불러와서 환경을 설정한다.</li>
-<li>
-<span class="math inline">\(y=x^2 + \epsilon\)</span>, 오차는 <span class="math inline">\(N(0, 0.25)\)</span>을 따르는 모형을 생성하고, <code>df</code> 데이터프레임에 결과를 저장한다.</li>
-<li>
-<code>poly_fit_model</code> 함수를 통해 7차 다항식으로 적합시킨다.</li>
+<li><code>tidyr</code>, <code>modelr</code>, <code>ggplot2</code> 팩키지를 불러와서 환경을 설정한다.</li>
+<li><span class="math inline">\(y=x^2 + \epsilon\)</span>, 오차는 <span class="math inline">\(N(0, 0.25)\)</span>을 따르는 모형을 생성하고, <code>df</code> 데이터프레임에 결과를 저장한다.</li>
+<li><code>poly_fit_model</code> 함수를 통해 7차 다항식으로 적합시킨다.</li>
 <li>적합결과를 <code>ggplot</code>을 통해 시각화한다.</li>
 </ol>
 <p>1차에서 10차까지 차수를 달리하여 적합시켜 시각적으로 적합도를 확인할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#--------------------------------------------------------------------------------</span></span>
-<span><span class="co"># 01. 환경설정</span></span>
-<span><span class="co">#--------------------------------------------------------------------------------</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://modelr.tidyverse.org">modelr</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">#--------------------------------------------------------------------------------</span></span>
-<span><span class="co"># 02. 참모형 데이터 생성: y = x**2</span></span>
-<span><span class="co">#--------------------------------------------------------------------------------</span></span>
-<span></span>
-<span><span class="va">true_model</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">y</span> <span class="op">=</span> <span class="va">x</span> <span class="op">**</span> <span class="fl">2</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, sd<span class="op">=</span><span class="fl">0.25</span><span class="op">)</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, length<span class="op">=</span><span class="fl">20</span><span class="op">)</span></span>
-<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">true_model</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">x</span>,<span class="va">y</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">#--------------------------------------------------------------------------------</span></span>
-<span><span class="co"># 03. 10차 다항식 적합</span></span>
-<span><span class="co">#--------------------------------------------------------------------------------</span></span>
-<span></span>
-<span><span class="va">poly_fit_model</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span>, <span class="va">order</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">order</span><span class="op">)</span>, data<span class="op">=</span><span class="va">df</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="co"># fitted_mod &lt;- poly_fit_model(df, 10)</span></span>
-<span></span>
-<span><span class="co">#--------------------------------------------------------------------------------</span></span>
-<span><span class="co"># 04. 적합결과 시각화</span></span>
-<span><span class="co">#--------------------------------------------------------------------------------</span></span>
-<span></span>
-<span><span class="va">fitted_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>차수 <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>데이터 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>적합된모형 <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span><span class="op">(</span><span class="va">데이터</span>, <span class="va">차수</span>, <span class="va">poly_fit_model</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>예측  <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">적합된모형</span>, <span class="va">fitted</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, length<span class="op">=</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fitted_df <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">예측</span>, <span class="op">~</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x_value <span class="op">=</span> <span class="va">.x</span>, </span>
-<span>                                         prediction <span class="op">=</span> <span class="va">.y</span>, </span>
-<span>                                         .name_repair <span class="op">=</span> <span class="st">"unique"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">차수</span>, <span class="va">fitted_df</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>차수 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">차수</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span>   </span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest.html">unnest</a></span><span class="op">(</span><span class="va">fitted_df</span><span class="op">)</span> </span>
-<span></span>
-<span></span>
-<span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitted_tbl</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x_value</span>, y <span class="op">=</span> <span class="va">prediction</span>, color <span class="op">=</span> <span class="va">차수</span>, group <span class="op">=</span> <span class="va">차수</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#--------------------------------------------------------------------------------</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 01. 환경설정</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#--------------------------------------------------------------------------------</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modelr)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#--------------------------------------------------------------------------------</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 02. 참모형 데이터 생성: y = x**2</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#--------------------------------------------------------------------------------</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>true_model <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">=</span> x <span class="sc">**</span> <span class="dv">2</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(x), <span class="at">sd=</span><span class="fl">0.25</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(y)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="at">length=</span><span class="dv">20</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">true_model</span>(x)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(x,y)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#--------------------------------------------------------------------------------</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 03. 10차 다항식 적합</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">#--------------------------------------------------------------------------------</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>poly_fit_model <span class="ot">&lt;-</span> <span class="cf">function</span>(df, order) {</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x, order), <span class="at">data=</span>df)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># fitted_mod &lt;- poly_fit_model(df, 10)</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">#--------------------------------------------------------------------------------</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 04. 적합결과 시각화</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">#--------------------------------------------------------------------------------</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>fitted_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(차수 <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(데이터 <span class="ot">=</span> <span class="fu">list</span>(df)) <span class="sc">|&gt;</span> </span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(적합된모형 <span class="ot">=</span> <span class="fu">map2</span>(데이터, 차수, poly_fit_model)) <span class="sc">|&gt;</span> </span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(예측  <span class="ot">=</span> <span class="fu">map</span>(적합된모형, fitted)) <span class="sc">|&gt;</span> </span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">x =</span> <span class="fu">list</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="at">length=</span><span class="dv">20</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fitted_df =</span> <span class="fu">map2</span>(x, 예측, <span class="sc">~</span><span class="fu">tibble</span>(<span class="at">x_value =</span> .x, </span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">prediction =</span> .y, </span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">.name_repair =</span> <span class="st">"unique"</span>))) <span class="sc">|&gt;</span> </span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(차수, fitted_df) <span class="sc">|&gt;</span> </span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(차수 <span class="ot">=</span> <span class="fu">as.factor</span>(차수)) <span class="sc">|&gt;</span>   </span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(fitted_df) </span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> fitted_tbl, <span class="fu">aes</span>(<span class="at">x =</span> x_value, <span class="at">y =</span> prediction, <span class="at">color =</span> 차수, <span class="at">group =</span> 차수))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="models_building_files/figure-html/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="models_building_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></a></p>
+<div>
+<figure class="figure">
+<p><a href="models_building_files/figure-html/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="models_building_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
 </div>
 <p>다항식 차수를 달리하여 데이터에 1~10차 다항식을 적합시킨 후에 오차를 계산했다. 1차보다 2차 다항식으로 적합시킬 때 오차가 확연히 줄어들지만 그 이후에는 오차의 감소폭이 크지는 않다. 물론 오차는 다항식 차수를 높일수록 낮아지지만 절약성의 원칙을 생각하면 이와 같은 고차 다항식 함수가 필요한지는 의문이다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>차수 <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>데이터 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>적합된모형 <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span><span class="op">(</span><span class="va">데이터</span>, <span class="va">차수</span>, <span class="va">poly_fit_model</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>예측  <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">적합된모형</span>, <span class="va">fitted</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>true_y <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">데이터</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="co"># 참값과 모형예측값</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>error_df <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span><span class="op">(</span><span class="va">true_y</span>, <span class="va">예측</span>, <span class="op">~</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>true_y <span class="op">=</span> <span class="va">.x</span>,  fitted_y <span class="op">=</span> <span class="va">.y</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="co"># 오차</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>rmse <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">error_df</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="op">(</span><span class="va">.x</span><span class="op">$</span><span class="va">true_y</span> <span class="op">-</span> <span class="va">.x</span><span class="op">$</span><span class="va">fitted_y</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>차수 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">차수</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"gray30"</span>, <span class="st">"blue"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"gray30"</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="co"># 시각화</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_rev.html">fct_rev</a></span><span class="op">(</span><span class="va">차수</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">rmse</span>, fill <span class="op">=</span> <span class="va">color</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span> x <span class="op">=</span> <span class="st">"차수"</span>,</span>
-<span>          y <span class="op">=</span> <span class="st">"RMSE 오차"</span>,</span>
-<span>          title <span class="op">=</span> <span class="st">"다항식 차수를 달리하여 계산한 RMSE 오차"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="st">"gray30"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(차수 <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(데이터 <span class="ot">=</span> <span class="fu">list</span>(df)) <span class="sc">|&gt;</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(적합된모형 <span class="ot">=</span> <span class="fu">map2</span>(데이터, 차수, poly_fit_model)) <span class="sc">|&gt;</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(예측  <span class="ot">=</span> <span class="fu">map</span>(적합된모형, fitted)) <span class="sc">|&gt;</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">true_y =</span> <span class="fu">map</span>(데이터, <span class="dv">2</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 참값과 모형예측값</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">error_df =</span> <span class="fu">map2</span>(true_y, 예측, <span class="sc">~</span><span class="fu">tibble</span>(<span class="at">true_y =</span> .x,  <span class="at">fitted_y =</span> .y))) <span class="sc">|&gt;</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 오차</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rmse =</span> <span class="fu">map_dbl</span>(error_df, <span class="sc">~</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((.x<span class="sc">$</span>true_y <span class="sc">-</span> .x<span class="sc">$</span>fitted_y)<span class="sc">^</span><span class="dv">2</span>)))) <span class="sc">|&gt;</span> </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(차수 <span class="ot">=</span> <span class="fu">factor</span>(차수)) <span class="sc">|&gt;</span> </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">color =</span> <span class="fu">c</span>(<span class="st">"gray30"</span>, <span class="st">"blue"</span>, <span class="fu">rep</span>(<span class="st">"gray30"</span>, <span class="dv">8</span>))) <span class="sc">|&gt;</span> </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 시각화</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_rev</span>(차수), <span class="at">y =</span> rmse, <span class="at">fill =</span> color)) <span class="sc">+</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">x =</span> <span class="st">"차수"</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"RMSE 오차"</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">"다항식 차수를 달리하여 계산한 RMSE 오차"</span>) <span class="sc">+</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"gray30"</span>, <span class="fu">rep</span>(<span class="st">"blue"</span>, <span class="dv">8</span>))) <span class="sc">+</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="models_building_files/figure-html/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="models_building_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></a></p>
+<div>
+<figure class="figure">
+<p><a href="models_building_files/figure-html/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="models_building_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
 </div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">기계학습 지도</span>
+<span class="glightbox-desc lightbox-desc-2">기계학습 도해</span>
+<span class="glightbox-desc lightbox-desc-3">3대 기계학습 원리</span>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-abu2012learning" class="csl-entry" role="listitem">
 Abu-Mostafa, Yaser S, Malik Magdon-Ismail, 와/과 Hsuan-Tien Lin. 2012. <em>Learning from data</em>. Vol 4. AMLBook New York.
 </div>
 </div>
-</section><aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
 <ol>
 <li id="fn1"><p><a href="https://work.caltech.edu/telecourse.html">Caltech MOOC, Yaser Abu-Mostafa, Introductory Machine Learning, 2012</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>간결성 원칙으로도 번역되며, 오캄의 면도날(“Occam’s razor”)라는 이름으로도 알려져 있으며, 연구나 문제 해결의 맥락에서 가장 단순한 설명이나 가설을 우선적으로 고려해야 한다는 의미로, 두 개 이상의 설명이 관찰된 현상을 동등하게 설명할 수 있을 때, 더 적은 가정이 필요한 또는 더 단순한 설명을 선호해야 한다는 것이다.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol></aside></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -799,15 +903,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    if (id.startsWith('sec-')) {
+    if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
         }
         return container.innerHTML
       } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -816,7 +933,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -858,6 +983,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
       }
     }, function(instance) {
     });
@@ -929,6 +1077,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -987,30 +1161,60 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./models.html" class="pagination-link">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./models.html" class="pagination-link  aria-label=" &lt;span="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">모형</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./models_many.html" class="pagination-link">
+      <a href="./models_many.html" class="pagination-link" aria-label="<span class='chapter-number'>16</span>&nbsp; <span class='chapter-title'>많은 회귀모형</span>">
         <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
 <p>이광춘, 신종화, 유충현, 홍성학이 ’챗GPT 데이터 사이언스’를 저작했습니다.</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/models_building.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":true,"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});</script>
+</footer>
+<script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
+
+
 
 
 </body></html>

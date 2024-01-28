@@ -34,7 +34,7 @@
   </url>
   <url>
     <loc>https://r2bit.com/chatGPT4ds/quarto.html</loc>
-    <lastmod>2023-07-30T13:12:28.840Z</lastmod>
+    <lastmod>2024-01-28T12:52:25.041Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/chatGPT4ds/statistics.html</loc>
@@ -58,7 +58,7 @@
   </url>
   <url>
     <loc>https://r2bit.com/chatGPT4ds/references.html</loc>
-    <lastmod>2023-08-01T09:56:54.411Z</lastmod>
+    <lastmod>2024-01-28T12:10:42.172Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/chatGPT4ds/NHST.html</loc>
@@ -102,15 +102,15 @@
   </url>
   <url>
     <loc>https://r2bit.com/chatGPT4ds/map.html</loc>
-    <lastmod>2024-01-21T00:54:29.598Z</lastmod>
+    <lastmod>2024-01-28T12:10:42.155Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/chatGPT4ds/prompt.html</loc>
-    <lastmod>2024-01-21T00:47:00.499Z</lastmod>
+    <lastmod>2024-01-28T12:10:42.172Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/chatGPT4ds/langchain.html</loc>
-    <lastmod>2024-01-24T02:01:43.701Z</lastmod>
+    <lastmod>2024-01-28T12:10:42.155Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/chatGPT4ds/code_interpreter.html</loc>
@@ -118,6 +118,10 @@
   </url>
   <url>
     <loc>https://r2bit.com/chatGPT4ds/llm_python.html</loc>
-    <lastmod>2024-01-28T00:42:24.422Z</lastmod>
+    <lastmod>2024-01-28T12:10:42.155Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r2bit.com/chatGPT4ds/local_llm.html</loc>
+    <lastmod>2024-01-28T12:10:42.155Z</lastmod>
   </url>
 </urlset>

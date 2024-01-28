@@ -189,9 +189,13 @@
   {
     "objectID": "quarto.html",
     "href": "quarto.html",
-    "title": "9  쿼토",
+    "title": "\n21  쿼토\n",
     "section": "",
-    "text": "쿼토(Quarto)는 데이터 과학을 위한 통합 저작 프레임워크로 프로그래밍 코드, 실행산출물, 저작 텍스트를 통합한다. 쿼토는 재현가능한 과학기술 문서 저작을 지원하고 PDF, 마이크로소프트 워드 파일, PPT 슬라이드 등 수십 가지 출력 형식을 지원한다. 쿼토의 설계 사상은 다음과 같이 정리할 수 있다.\n\n분석 이면의 코드가 아닌 결론에 집중하고자 하는 의사 결정권자와 커뮤니케이션.\n결론과 결론에 도달한 방법(즉, 코드)에 관심이 있는 다른 데이터 과학자(미래 자신 포함!)와 공동 작업.\n데이터 과학을 수행할 수 있는 환경으로서, 자신이 수행한 작업뿐만 아니라 생각한 내용까지 담아낼 수 있는 최신 연구실 연구노트.\n\n쿼토는 R 패키지가 아니면 차세대 R마크다운 별명을 갖고 있듯이 R마크다운 이전 R 생태계에서 축적한 경험을 집대성한 문서저작 프로그램으로 R 뿐만 아니라 파이썬, 자바스크립트, 쥴리아도 지원한다. R마크다운에 익숙한 분이라면 쿼토가 차세대 R마크다운이라는 사실을 지원되는 언어와 일관되고 통합된 인터페이스를 통해 쉽게 확인할 수 있다.\nEnter"
+    "text": "21.1 쿼토설치",
+    "crumbs": [
+      "커뮤니케이션",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>쿼토</span>"
+    ]
   },
   {
     "objectID": "quarto.html#윈도우-설치",
@@ -210,65 +214,101 @@
   {
     "objectID": "quarto.html#쿼토-출판",
     "href": "quarto.html#쿼토-출판",
-    "title": "\n15  쿼토\n",
-    "section": "\n15.2 쿼토 출판",
-    "text": "15.2 쿼토 출판\n\n15.2.1 출판 플랫폼\n데이터 사이언스 저작물을 제작하게 되면 그 다음 단계로 출판을 해야하는데 다양한 문서를 모아 프로젝트로 담아 Quarto Pub에 전자출판한다. 다른 출판 플랫폼으로 netlify, GitHub Pages, RStudio Connect가 많이 사용된다.\n\n\n\n\n\n15.2.2 Quarto Pub 출판 1\n\nQuarto Pub 웹사이트에 출판하는 방식은 Quarto CLI 를 사용한다. 필히 RStudio 내부 Terminal을 사용해서 Quarto Pub으로 출판한다.\n\nquarto.cmd publish quarto-pub\n? Authorize (Y/n) › \n❯ In order to publish to Quarto Pub you need to\n  authorize your account. Please be sure you are\n  logged into the correct Quarto Pub account in \n  your default web browser, then press Enter or \n  'Y' to authorize.\n\n첫번째 출판하게 되면 인증작업을 수행하고 나면 _publish.yml 파일이 하나 생성된다.\n\n- source: project\n  quarto-pub:\n    - id: 1fa3ab1f-c010-453a-aaf2-f462bd074a66\n      url: 'https://quartopub.com/sites/statkclee/quarto-ds'\n\n이제 모든 준비가 되었기 때문에 다음 명령어로 작성한 출판 문서를 포함한 웹사이트를 로컬에서 미리 확인 한 후에 Quarto Pub으로 전자출판한다. 윈도우에서는 RStudio 내부 Terminal CLI를 사용하는 것을 권장한다.\n\nquarto preview\nquarto publish quarto-pub"
+    "title": "\n21  쿼토\n",
+    "section": "\n21.2 쿼토 출판",
+    "text": "21.2 쿼토 출판\n\n21.2.1 출판 플랫폼\n데이터 사이언스 저작물을 제작하게 되면 그 다음 단계로 출판을 해야하는데 다양한 문서를 모아 프로젝트로 담아 Quarto Pub에 전자출판한다. 다른 출판 플랫폼으로 netlify, GitHub Pages, RStudio Connect가 많이 사용된다.\n\n\n21.2.2 Quarto Pub 출판 1\n\nQuarto Pub 웹사이트에 출판하는 방식은 Quarto CLI 를 사용한다. 필히 RStudio 내부 Terminal을 사용해서 Quarto Pub으로 출판한다.\n\nquarto.cmd publish quarto-pub\n? Authorize (Y/n) › \n❯ In order to publish to Quarto Pub you need to\n  authorize your account. Please be sure you are\n  logged into the correct Quarto Pub account in \n  your default web browser, then press Enter or \n  'Y' to authorize.\n\n첫번째 출판하게 되면 인증작업을 수행하고 나면 _publish.yml 파일이 하나 생성된다.\n\n- source: project\n  quarto-pub:\n    - id: 1fa3ab1f-c010-453a-aaf2-f462bd074a66\n      url: 'https://quartopub.com/sites/statkclee/quarto-ds'\n\n이제 모든 준비가 되었기 때문에 다음 명령어로 작성한 출판 문서를 포함한 웹사이트를 로컬에서 미리 확인 한 후에 Quarto Pub으로 전자출판한다. 윈도우에서는 RStudio 내부 Terminal CLI를 사용하는 것을 권장한다.\n\nquarto preview\nquarto publish quarto-pub",
+    "crumbs": [
+      "커뮤니케이션",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>쿼토</span>"
+    ]
   },
   {
     "objectID": "quarto.html#footnotes",
     "href": "quarto.html#footnotes",
-    "title": "\n12  쿼토\n",
+    "title": "\n21  쿼토\n",
     "section": "",
-    "text": "Quarto Pub↩︎\nAdam Hyde (Aug 16, 2021), “Single Source Publishing - A investigation of what Single Source Publishing is and how this ‘holy grail’ can be achieved.”↩︎"
+    "text": "Quarto Pub↩︎\nAdam Hyde (Aug 16, 2021), “Single Source Publishing - A investigation of what Single Source Publishing is and how this ‘holy grail’ can be achieved.”↩︎",
+    "crumbs": [
+      "커뮤니케이션",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>쿼토</span>"
+    ]
   },
   {
     "objectID": "quarto.html#쿼토설치",
     "href": "quarto.html#쿼토설치",
-    "title": "\n15  쿼토\n",
-    "section": "\n15.1 쿼토설치",
-    "text": "15.1 쿼토설치\n\n15.1.1 설치방법\nquarto 웹사이트에서 Quarto CLI 엔진을 설치한다. 통합개발도구(IDE)를 설치한다. Quarto CLI를 지원하는 IDE는 VS Code, RStudio, Jupyter, VIM/Emacs 와 같은 텍스트 편집기가 포함된다. IDE까지 설치를 했다면 literate programming 방식으로 마크다운과 프로그래밍 언어를 결합하여 출판을 위한 전문 문서 저작을 시작한다.\n\n\n\n\n\n15.1.2 윈도우 설치\nQuarto를 운영체제에 맞춰 설치한다. Quarto 는 기본적으로 CLI 라서 설치 후 제대로 설정이 되었는지는 환경설정에 경로를 등록해줘야 한다.\n\n\nQuarto 다운로드\nQuarto 설치\nQuarto CLI\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n윈도우 시스템의 경우 quarto.exe가 아니고 quarto.cmd 라 이에 유의한다. 즉, 제어판 → 환경 변수 설정 … 에서 \"C:\\Users\\사용자명\\AppData\\Local\\Programs\\Quarto\\bin 디렉토리를 등록한 후 quarto.cmd 을 사용해서 출판한다. 쿼토 1.3 버전이 출시되면서 이런 문제는 해결되었다.\n\nSys.which(\"quarto\")\n                                                                  quarto \n\"C:\\\\Users\\\\STATKC~1\\\\AppData\\\\Local\\\\Programs\\\\Quarto\\\\bin\\\\quarto.cmd\""
+    "title": "\n21  쿼토\n",
+    "section": "",
+    "text": "21.1.1 설치방법\nquarto 웹사이트에서 Quarto CLI 엔진을 설치한다. 통합개발도구(IDE)를 설치한다. Quarto CLI를 지원하는 IDE는 VS Code, RStudio, Jupyter, VIM/Emacs 와 같은 텍스트 편집기가 포함된다. IDE까지 설치를 했다면 literate programming 방식으로 마크다운과 프로그래밍 언어를 결합하여 출판을 위한 전문 문서 저작을 시작한다.\n\n\n21.1.2 윈도우 설치\nQuarto를 운영체제에 맞춰 설치한다. Quarto 는 기본적으로 CLI 라서 설치 후 제대로 설정이 되었는지는 환경설정에 경로를 등록해줘야 한다.\n\n\nQuarto 다운로드\nQuarto 설치\nQuarto CLI\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n윈도우 시스템의 경우 quarto.exe가 아니고 quarto.cmd 라 이에 유의한다. 즉, 제어판 → 환경 변수 설정 … 에서 \"C:\\Users\\사용자명\\AppData\\Local\\Programs\\Quarto\\bin 디렉토리를 등록한 후 quarto.cmd 을 사용해서 출판한다. 쿼토 1.3 버전이 출시되면서 이런 문제는 해결되었다.\n\nSys.which(\"quarto\")\n                                                                  quarto \n\"C:\\\\Users\\\\STATKC~1\\\\AppData\\\\Local\\\\Programs\\\\Quarto\\\\bin\\\\quarto.cmd\"",
+    "crumbs": [
+      "커뮤니케이션",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>쿼토</span>"
+    ]
   },
   {
     "objectID": "quarto.html#문서-컴파일러-1",
     "href": "quarto.html#문서-컴파일러-1",
-    "title": "\n15  쿼토\n",
-    "section": "\n15.3 문서 컴파일러 2\n",
-    "text": "15.3 문서 컴파일러 2\n\nQuarto 는 Pandoc에 기반한 오픈소스 과학기술 출판시스템이다. 하지만 특정 언어에 종속되지 않고 R, 파이썬, 쥴리아, 자바스크립트(Observable JS) 를 지원하고 있으며 이를 통해 다음 출판 저작물 작성이 가능하다.\n\n\n\n\n크게 세가지 부분에 대해 출판시스템에 대한 고민이 필요하다.\n\n콘텐츠(Content): 저작과 관련된 문서 내용\n디자인(Design): 출판 결과물에 대한 외양(Look and Feel)\n형식(Format): 출판물 최종 산출물\n\nQuarto 는 Literate Programming System 으로 다양한 언어를 지원하고 다양한 출판결과물을 연결시키는 핵심 엔진으로 Pandoc 을 사용한다.\n\n\n\n\n\n\n\nComputations\n문서 저작\n출력물\n\n\nPython, R, Julia, Observable JS\nPandoc, 마크다운 (Markdown)\n문서, 웹사이트, PPT, 책, 블로그등\n\n\n좀더 구체적으로 전문적인 출판을 위해서 문서저작에 다양한 기능과 함께 출판 산출물을 지원한다.\n\n문서저작(pandoc): 마크다운, 수식, 인용, 서지관리, 콜아웃(callout), 고급 layout 등\n출판산출물: 고품질 기사(article), 보고서, PPT, 웹사이트, 블로그, (HTML, PDF, MS 워드, ePub 등) 전자책"
+    "title": "\n21  쿼토\n",
+    "section": "\n21.3 문서 컴파일러 2\n",
+    "text": "21.3 문서 컴파일러 2\n\nQuarto 는 Pandoc에 기반한 오픈소스 과학기술 출판시스템이다. 하지만 특정 언어에 종속되지 않고 R, 파이썬, 쥴리아, 자바스크립트(Observable JS) 를 지원하고 있으며 이를 통해 다음 출판 저작물 작성이 가능하다.\n\n크게 세가지 부분에 대해 출판시스템에 대한 고민이 필요하다.\n\n콘텐츠(Content): 저작과 관련된 문서 내용\n디자인(Design): 출판 결과물에 대한 외양(Look and Feel)\n형식(Format): 출판물 최종 산출물\n\nQuarto 는 Literate Programming System 으로 다양한 언어를 지원하고 다양한 출판결과물을 연결시키는 핵심 엔진으로 Pandoc 을 사용한다.\n\n\n\n\n\n\n\nComputations\n문서 저작\n출력물\n\n\nPython, R, Julia, Observable JS\nPandoc, 마크다운 (Markdown)\n문서, 웹사이트, PPT, 책, 블로그등\n\n\n좀더 구체적으로 전문적인 출판을 위해서 문서저작에 다양한 기능과 함께 출판 산출물을 지원한다.\n\n문서저작(pandoc): 마크다운, 수식, 인용, 서지관리, 콜아웃(callout), 고급 layout 등\n출판산출물: 고품질 기사(article), 보고서, PPT, 웹사이트, 블로그, (HTML, PDF, MS 워드, ePub 등) 전자책",
+    "crumbs": [
+      "커뮤니케이션",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>쿼토</span>"
+    ]
   },
   {
     "objectID": "quarto.html#single-sourcing-출판저작",
     "href": "quarto.html#single-sourcing-출판저작",
-    "title": "\n15  쿼토\n",
-    "section": "\n15.4 Single Sourcing 출판저작",
-    "text": "15.4 Single Sourcing 출판저작\n데이터 사이언스 출판저작에 다소 차이는 있지만 출판에 대한 대체적인 방식은 유사할 것으로 보인다. 즉, Single Sourcing 을 콘텐츠 저작, 디자인, 최종 출판물 관리까지 일원화되어 자동화되어 체계적으로 관리된다면 중복되는 낭비는 물론 재현가능성도 높여 과학기술 출판저작물로 가장 이상적으로 간주되고 있다.\n\n\n문제점\n개념\nSingle Sourcing Multi-Use\n\n\n\n\n\n그림 15.1: 문제점\n\n\n\n\n\n그림 15.2: Single Sourcing 개념\n\n\n\n\n\n그림 15.3: Single Sourcing Multi-Use"
+    "title": "\n21  쿼토\n",
+    "section": "\n21.4 Single Sourcing 출판저작",
+    "text": "21.4 Single Sourcing 출판저작\n데이터 사이언스 출판저작에 다소 차이는 있지만 출판에 대한 대체적인 방식은 유사할 것으로 보인다. 즉, Single Sourcing 을 콘텐츠 저작, 디자인, 최종 출판물 관리까지 일원화되어 자동화되어 체계적으로 관리된다면 중복되는 낭비는 물론 재현가능성도 높여 과학기술 출판저작물로 가장 이상적으로 간주되고 있다.\n\n\n문제점\n개념\nSingle Sourcing Multi-Use\n\n\n\n\n\n\n\n\n그림 21.1: 문제점\n\n\n\n\n\n\n\n\n\n그림 21.2: Single Sourcing 개념\n\n\n\n\n\n\n\n\n\n그림 21.3: Single Sourcing Multi-Use",
+    "crumbs": [
+      "커뮤니케이션",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>쿼토</span>"
+    ]
   },
   {
     "objectID": "quarto.html#작업흐름",
     "href": "quarto.html#작업흐름",
-    "title": "\n15  쿼토\n",
-    "section": "\n15.5 작업흐름",
-    "text": "15.5 작업흐름\n기존 R .Rmd, 파이썬 .ipynb 확장자를 갖는 작업흐름이 .qmd 파일로 단일화되는 것이 가장 큰 특징이다. 따라서 마크다운으로 콘텐츠를 작성하고 프로그래밍 코드를 R, 파이썬, 자바스크립트, 쥴리아 로 작성하게 되면 자동으로 계산을 수행하고 결과물을 마크다운으로 변환시키기 때문에 후속 작업을 신경쓰지 않고 원하는 결과물을 얻을 수 있는 장점이 있다.\n\n\nR (.Rmd)\n파이썬 (주피터)\nQuarto - R\nQuarto - 파이썬"
+    "title": "\n21  쿼토\n",
+    "section": "\n21.5 작업흐름",
+    "text": "21.5 작업흐름\n기존 R .Rmd, 파이썬 .ipynb 확장자를 갖는 작업흐름이 .qmd 파일로 단일화되는 것이 가장 큰 특징이다. 따라서 마크다운으로 콘텐츠를 작성하고 프로그래밍 코드를 R, 파이썬, 자바스크립트, 쥴리아 로 작성하게 되면 자동으로 계산을 수행하고 결과물을 마크다운으로 변환시키기 때문에 후속 작업을 신경쓰지 않고 원하는 결과물을 얻을 수 있는 장점이 있다.\n\n\nR (.Rmd)\n파이썬 (주피터)\nQuarto - R\nQuarto - 파이썬",
+    "crumbs": [
+      "커뮤니케이션",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>쿼토</span>"
+    ]
   },
   {
     "objectID": "quarto.html#주요-기능",
     "href": "quarto.html#주요-기능",
-    "title": "\n15  쿼토\n",
-    "section": "\n15.6 주요 기능",
-    "text": "15.6 주요 기능\n\n\nFeature\nR Markdown\nQuarto\n\n\n\nBasic Formats\n\nhtml_document\npdf_document\nword_document\n\n\nhtml\npdf\ndocx\n\n\n\nBeamer\n\nbeamer_presentation\n\n\nbeamer\n\n\n\nPowerPoint\n\npowerpoint_presentation\n\n\npptx\n\n\n\nHTML Slides\n\nxaringan\nrevealjs\n\n\nrevealjs\n\n\n\nAdvanced Layout\n\ntufte\ndistill\n\n\nQuarto Article Layout\n\n\n\nCross References\n\nhtml_document2\npdf_document2\nword_document2\n\n\nQuarto Crossrefs\n\n\n\nWebsites & Blogs\n\nblogdown\ndistill\n\n\nQuarto Websites\nQuarto Blogs\n\n\n\nBooks\n\nbookdown\n\nQuarto Books\n\n\nInteractivity\nShiny Documents\nQuarto Interactive Documents\n\n\nPaged HTML\npagedown\nSummer 2022\n\n\nJournal Articles\nrticles\nSummer 2022\n\n\nDashboards\n\nflexdashboard |\nFall 2022"
+    "title": "\n21  쿼토\n",
+    "section": "\n21.6 주요 기능",
+    "text": "21.6 주요 기능\n\n\nFeature\nR Markdown\nQuarto\n\n\n\nBasic Formats\n\nhtml_document\npdf_document\nword_document\n\n\nhtml\npdf\ndocx\n\n\n\nBeamer\n\nbeamer_presentation\n\n\nbeamer\n\n\n\nPowerPoint\n\npowerpoint_presentation\n\n\npptx\n\n\n\nHTML Slides\n\nxaringan\nrevealjs\n\n\nrevealjs\n\n\n\nAdvanced Layout\n\ntufte\ndistill\n\n\nQuarto Article Layout\n\n\n\nCross References\n\nhtml_document2\npdf_document2\nword_document2\n\n\nQuarto Crossrefs\n\n\n\nWebsites & Blogs\n\nblogdown\ndistill\n\n\nQuarto Websites\nQuarto Blogs\n\n\n\nBooks\n\nbookdown\n\nQuarto Books\n\n\nInteractivity\nShiny Documents\nQuarto Interactive Documents\n\n\nPaged HTML\npagedown\nSummer 2022\n\n\nJournal Articles\nrticles\nSummer 2022\n\n\nDashboards\n\nflexdashboard |\nFall 2022",
+    "crumbs": [
+      "커뮤니케이션",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>쿼토</span>"
+    ]
   },
   {
     "objectID": "quarto.html#위지윅-vs-위지윔",
     "href": "quarto.html#위지윅-vs-위지윔",
-    "title": "\n15  쿼토\n",
-    "section": "\n15.7 위지윅 vs 위지윔",
-    "text": "15.7 위지윅 vs 위지윔\n신속하고 빠르게 누구나 짧은 학습을 통해서 문서를 저작하고 출판할 수 있는 방식은 아래한글 혹은 MS워드 워드프로세서를 사용하는데 이는 위지위그(WYSIWYG: What You See Is What You Get, “보는 대로 얻는다”)에 기초한 것으로 문서 편집 과정에서 화면에 포맷된 낱말, 문장이 출력물과 동일하게 나오는 방식을 말한다. 위지윅의 대척점에 있는 것이 위지윔(WYSIWYM, What You See Is What You Mean)으로 대표적인 것인 \\(\\LaTeX\\) 으로 구조화된 방식으로 문서를 작성하면 컴파일을 통해서 최종 문서가 미려한 출판가능한 PDF, PS, DVI 등 확장자를 갖는 출판결과물을 얻을 수 있다.\n\n\n\n\n\n15.7.1 블로그 저작 소프트웨어\n개인용 컴퓨터가 보급되면서 아래한글과 같은 워드 프로세서를 사용해서 저작을 하는 것이 일반화되었지만 곧이어 인터넷이 보급되면서 웹에 문서를 저작하는 것이 이제는 더욱 중요하게 되었다. 전문 개발자가 아닌 일반인이 HTML, CSS, JavaScript를 학습하여 웹에 문서를 제작하고 출판하는 것은 난이도가 있다보니 워드프레스와 티스토리 같은 위지위그 패러다임을 채택한 저작도구가 사용되고 있으나 상대적으로 HTML, CSS, JavaScript을 조합한 방식과 비교하여 고급스러운 면과 함께 정교함에 있어 아쉬움이 있는 것도 사실이다.\n\n\n워드프레스와 티스토리\nHTML + CSS + 자바스크립트"
+    "title": "\n21  쿼토\n",
+    "section": "\n21.7 위지윅 vs 위지윔",
+    "text": "21.7 위지윅 vs 위지윔\n신속하고 빠르게 누구나 짧은 학습을 통해서 문서를 저작하고 출판할 수 있는 방식은 아래한글 혹은 MS워드 워드프로세서를 사용하는데 이는 위지위그(WYSIWYG: What You See Is What You Get, “보는 대로 얻는다”)에 기초한 것으로 문서 편집 과정에서 화면에 포맷된 낱말, 문장이 출력물과 동일하게 나오는 방식을 말한다. 위지윅의 대척점에 있는 것이 위지윔(WYSIWYM, What You See Is What You Mean)으로 대표적인 것인 \\(\\LaTeX\\) 으로 구조화된 방식으로 문서를 작성하면 컴파일을 통해서 최종 문서가 미려한 출판가능한 PDF, PS, DVI 등 확장자를 갖는 출판결과물을 얻을 수 있다.\n\n\n21.7.1 블로그 저작 소프트웨어\n개인용 컴퓨터가 보급되면서 아래한글과 같은 워드 프로세서를 사용해서 저작을 하는 것이 일반화되었지만 곧이어 인터넷이 보급되면서 웹에 문서를 저작하는 것이 이제는 더욱 중요하게 되었다. 전문 개발자가 아닌 일반인이 HTML, CSS, JavaScript를 학습하여 웹에 문서를 제작하고 출판하는 것은 난이도가 있다보니 워드프레스와 티스토리 같은 위지위그 패러다임을 채택한 저작도구가 사용되고 있으나 상대적으로 HTML, CSS, JavaScript을 조합한 방식과 비교하여 고급스러운 면과 함께 정교함에 있어 아쉬움이 있는 것도 사실이다.\n\n\n워드프레스와 티스토리\nHTML + CSS + 자바스크립트",
+    "crumbs": [
+      "커뮤니케이션",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>쿼토</span>"
+    ]
   },
   {
     "objectID": "quarto.html#쿼토-저작",
     "href": "quarto.html#쿼토-저작",
-    "title": "\n15  쿼토\n",
-    "section": "\n15.8 쿼토 저작",
-    "text": "15.8 쿼토 저작\nQuarto 는 10년전부터 시작된 knitr 경험을 많이 녹여냈고 위지윔 패러다임에 기초를 하고 있다고 볼 수 있다. RStudio를 IDE로 Quarto CLI와 함께 출판물을 저작한다면 편집기에 있는 Visual 모드가 있어 위지윅 패러다임도 문서저작에 사용이 가능하다. 특히, R, 파이썬, SQL, 자바스크립트 등 컴퓨팅 엔진을 달리하여 문서에 그래프, 표, 인터랙티브 결과물도 함께 담을 수 있는 것은 커다란 장점이다.\n\n\n\n\nQuarto 저작은 크게 3가지 구성요소로 되어 있다.\n\n메타데이터: YAML\n텍스트: 마크다운\n코드: knitr, jupyter\n\n\n상기 구성요소를 조합하게 되면 다양한 데이터 사이언스 웹사이트를 비롯한 출판물을 제작하게 된다.\n\n\nQuarto 문서 구성요소\n\n\n15.8.1 YAML\n메타데이터는 YAML인데 GNU처럼 “Yet Another Markup Language” 혹은 “YAML Ain’t Markup Language”을 줄인단어다.\n\n\n키값\n출력옵션\n상세 출력옵션\n\n\n\n---\nkey: value\n---\n\n\n---\nformat: something\n---\n. . .\n---\nformat: pdf\n---\n---\nformat: pdf\n---\n---\nformat: revealjs\n---\n\n\n---\nformat: \n  html:\n    toc: true\n    code-fold: true\n---\n\n\n\n왜 YAML이 필요하게 된 것인가? YAML은 단순히 KEY: Value 에 불과한데 CLI를 이해하게 되면 왜 YAML을 사용하는 것이 유용한지 이해할 수 있다. 먼저 간단한 CLI 명령어를 YAML로 변환해보자.\n\n\n\n\nterminal\n\nquarto render document.qmd --to html\n\n\n\n\n---\nformat: pdf\n---\n\n\n한단계 더 들어가서 좀더 많은 선택옵션을 넣어 고급 기능을 넣는 사례를 살펴본다.\n\n\n\n\nterminal\n\nquarto render document.qmd --to html -M code fold:true\n\n\n\n\n---\nformat: \n  html:\n    toc: true\n    code-fold: true\n---\n\n\n\n15.8.2 마크다운\n데이터 과학 문서 웹사이트에 “마크다운 기초”, “고급 마크다운”, “R 마크다운 실무” 를 참조한다.\n\n15.8.3 코드\nR, 파이썬, SQL, 자바스크립트 등 버그 없이 정상 동작하는 프로그램을 작성하여 포함시킨다.\n\n15.8.4 YAML 코드편집\nRStudio, VSCode IDE는 탭-자동완성(tab-completion)을 제공한다. 즉, 첫단어를 타이핑하고 탭을 연결하여 키보드를 치게되면 연관 명령어가 나와 선택하면 된다. 혹은 Ctrl + space 단축키를 치게되면 전체 명령어가 나온다."
+    "title": "\n21  쿼토\n",
+    "section": "\n21.8 쿼토 저작",
+    "text": "21.8 쿼토 저작\nQuarto 는 10년전부터 시작된 knitr 경험을 많이 녹여냈고 위지윔 패러다임에 기초를 하고 있다고 볼 수 있다. RStudio를 IDE로 Quarto CLI와 함께 출판물을 저작한다면 편집기에 있는 Visual 모드가 있어 위지윅 패러다임도 문서저작에 사용이 가능하다. 특히, R, 파이썬, SQL, 자바스크립트 등 컴퓨팅 엔진을 달리하여 문서에 그래프, 표, 인터랙티브 결과물도 함께 담을 수 있는 것은 커다란 장점이다.\n\nQuarto 저작은 크게 3가지 구성요소로 되어 있다.\n\n메타데이터: YAML\n텍스트: 마크다운\n코드: knitr, jupyter\n\n\n상기 구성요소를 조합하게 되면 다양한 데이터 사이언스 웹사이트를 비롯한 출판물을 제작하게 된다.\n\n\nQuarto 문서 구성요소\n\n\n21.8.1 YAML\n메타데이터는 YAML인데 GNU처럼 “Yet Another Markup Language” 혹은 “YAML Ain’t Markup Language”을 줄인단어다.\n\n\n키값\n출력옵션\n상세 출력옵션\n\n\n\n---\nkey: value\n---\n\n\n---\nformat: something\n---\n. . .\n---\nformat: pdf\n---\n---\nformat: pdf\n---\n---\nformat: revealjs\n---\n\n\n---\nformat: \n  html:\n    toc: true\n    code-fold: true\n---\n\n\n\n왜 YAML이 필요하게 된 것인가? YAML은 단순히 KEY: Value 에 불과한데 CLI를 이해하게 되면 왜 YAML을 사용하는 것이 유용한지 이해할 수 있다. 먼저 간단한 CLI 명령어를 YAML로 변환해보자.\n\n\n\n\nterminal\n\nquarto render document.qmd --to html\n\n\n\n\n---\nformat: pdf\n---\n\n\n한단계 더 들어가서 좀더 많은 선택옵션을 넣어 고급 기능을 넣는 사례를 살펴본다.\n\n\n\n\nterminal\n\nquarto render document.qmd --to html -M code fold:true\n\n\n\n\n---\nformat: \n  html:\n    toc: true\n    code-fold: true\n---\n\n\n\n21.8.2 마크다운\n데이터 과학 문서 웹사이트에 “마크다운 기초”, “고급 마크다운”, “R 마크다운 실무” 를 참조한다.\n\n21.8.3 코드\nR, 파이썬, SQL, 자바스크립트 등 버그 없이 정상 동작하는 프로그램을 작성하여 포함시킨다.\n\n21.8.4 YAML 코드편집\nRStudio, VSCode IDE는 탭-자동완성(tab-completion)을 제공한다. 즉, 첫단어를 타이핑하고 탭을 연결하여 키보드를 치게되면 연관 명령어가 나와 선택하면 된다. 혹은 Ctrl + space 단축키를 치게되면 전체 명령어가 나온다.\n\n\n\n\n\n\n\n\n\n\n\n\n그림 21.1: 문제점\n그림 21.2: Single Sourcing 개념\n그림 21.3: Single Sourcing Multi-Use\nQuarto 문서 구성요소",
+    "crumbs": [
+      "커뮤니케이션",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>쿼토</span>"
+    ]
   },
   {
     "objectID": "statistics.html",
@@ -1048,9 +1088,13 @@
   {
     "objectID": "map.html",
     "href": "map.html",
-    "title": "\n22  프롭빅스 2023년 9월호\n",
+    "title": "\n22  지도 공간정보\n",
     "section": "",
-    "text": "23 지리정보시스템과 프롭테크: 도구의 진화와 미래 방향\n지리학의 역사와 발전을 통해 현대의 지리정보시스템(GIS)이 어떻게 다양한 분야에서 응용되고 있는지를 다룬 이 글은, 특히 기술의 진화와 도구 선택의 중요성에 초점을 둔다. 1980년대 고가 시스템에서 시작하여 OpenEO를 통한 새로운 표준화로 이어지는 GIS 시스템의 진화과정을 설명한다. 이 글은 또한 벡터와 래스터 데이터의 차이, 지리 좌표계와 투영 좌표계의 역할 등을 상세하게 다룬다. 특히, 데이터 과학자가 고려해야 할 도구의 선택에 대한 중요성과 sf 패키지가 지금의 R 공간정보 생태계에서 어떻게 중심 역할을 하고 있는지에 대해서도 깊이 설명한다. 이러한 배경을 바탕으로 공간정보를 통한 가치 창출이 얼마나 용이해졌는지를 강조한다.\n지리학(Geography)은 가장 오래된 과학 중 하나로 꼽히며, 학생때부터 교실 여기저기에서 볼 수 있는 지도는 처음 접한 데이터 시각화 산출물이다. 지리학은 지구의 곡률을 정확히 파악하여 지구의 크기와 모양, 중력에 대한 이해를 높이는 데 중요한 역할을 수행했을 뿐만 아니라 대항해 시대 지도가 매우 큰 기여를 했다.\n현대에 와서 지리학 데이터의 응용 범위는 더욱 확장되어, 민간과 국방 범위를 가리지 않고 입점위치 선정, 우주 탐사, 군사 작전, 인구이동 패턴 분석 등 다방면에서 매우 요긴한 역할을 수행하고 있다. 지리정보시스템(GIS)은 공간 위치를 분석하고 정보를 지도와 3D로 시각화하여 데이터 패턴, 관계, 상황 등을 심도 깊은 이해를 통해 의사결정을 지원한다.\n지도학(Cartography)은 지도를 그리는 실무분야로 대표적으로 벡터 데이터 형식으로 Shapefile로 점, 다각형, 선으로 지리적 정보를 표현했지만, GIS에 오픈소스 소프트웨어 문화가 침투하면서 Geopackage, GeoJSON, KML과 같은 다른 파일형식도 인기를 얻고 있다. GIS 데이터는 지도 뿐만 아니라 다른 형태의 정형 데이터와 결합한 교차분석이 일반화되면서 R 혹은 파이썬 데이터 조작 기능도 더불어 부각되고 있다.\n벡터(Vector)와 래스터(Raster) 데이터는 GIS에서 큰 축을 담당하는 데이터 형식이다. 벡터 데이터가 점, 선, 다각형 등의 기하학적 형태로 구성되어 주로 경계선이나 위치 정보 등을 정확하게 표현할 때 사용되는 반면, 래스터 데이터는 픽셀이나 셀 배열로 정보를 표현한다는 점에서 차이가 난다. 각 픽셀은 고유값을 가지며, 색상, 높이, 밀도 등 다양한 형태 정보를 표현할 수 있다.\nGIS에서 데이터는 계층(레이어, Layer)별로 나눠 표현되고 이를 결합하여 공간정보를 지도형태로 얻을 수 있다. 한 구획의 토지(parcle), 공간 정보를 점, 선, 다각형 같은 벡터 데이터로 표현하고 비공간 정보 소유권, 토지 이용, 구역 분류, 평가 가치 등 다양한 속성(칼럼) 데이터프레임과 결합한 후 후속 분석과 모형개발 작업을 수행하는 것이 일반적이다.\n지도 자체가 불가피하게 왜곡된 현실을 시각적으로 표현하기 때문에 ‘현실의 축소판’(Maps are scale models of reality)이라고 할 수 있다. 예를 들어, 사과 껍질을 벗겨 펼친 것처럼, 평면화시켜 지도를 제작한다. 특히, 지리 좌표계(Geographic Coordinate System)와 투영 좌표계(Projected Coordinate System)는 지도 작성과 공간 분석에서 중요한 개념이다. 간단히 요약하면, 지리 좌표계는 정확한 위치 정보를 제공하는 반면, 투영 좌표계는 거리와 면적 측정에 더 적합하다.\n지리 좌표계는 지구상 위치를 설명하며, 지구가 둥글기 때문에 주로 각도 단위로 측정되고, 기준점에 상관없이 위치가 달라지지 않으므로 절대 좌표계다. 투영 좌표계는 지리 좌표계를 평면화한 것으로, 투영 좌표계를 사용할 경우 직선을 이용해 거리를 측정할 수 있어, 토지 이용 계획, 건물 배치, 거리 측정 등에서 유용하다."
+    "text": "22.1 도구의 진화\nGIS, 좌표계, 파일 형식, 계층(Layer), 교차분석 등 주요개념을 바탕으로 도구 진화과정을 살펴보자. 초기 PC가 보급되면서 1980년대 GIS 시스템은 사일로 형태 고가 시스템이었으며, 1990년대에는 1980년대 개발된 GIS 시스템간 연결이 시작되면서 스파게티 현상이 심해지면서 새로운 애플리케이션과 파일 형식이 도입되는데 필요 이상의 낭비가 심해지는 구조가 되었다.\n2000년대 GDAL(Geospatial Data Abstraction Layer)이 등장하여 개발자가 각 파일 형식별로 서로 다른 드라이버를 작성하는 대신 GDAL 클라이언트 드라이버만 개발하면 되기 때문에 일대 혁신이 일어났다. 2010년대는 인공위성을 통한 대량의 데이터가 넘쳐나며 이를 저장하기 위해서 클라우드 서비스가 우후죽순처럼 생겨났고 각기 다른 파편화된 진화과정이 일어났다. 2020년대 넘어서면서 1990년대와 유사한 상황이 재현되었고, 이를 해결하고 새로운 전환점을 만들기 위해 OpenEO가 제시되며 사용자와 데이터 센터 사이에서 새로운 표준으로 자리잡게 되면서 R, 파이썬 등 데이터 과학 프로그래밍 언어를 통한 공간정보 가치 창출이 용이해졌다. (Pebesma 기타 2016)",
+    "crumbs": [
+      "커뮤니케이션",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>지도 공간정보</span>"
+    ]
   },
   {
     "objectID": "map.html#도구-패키지",
@@ -1081,8 +1125,8 @@
     "objectID": "map.html#도구의-진화",
     "href": "map.html#도구의-진화",
     "title": "\n22  지도 공간정보\n",
-    "section": "\n22.1 도구의 진화",
-    "text": "22.1 도구의 진화\nGIS, 좌표계, 파일 형식, 계층(Layer), 교차분석 등 주요개념을 바탕으로 도구 진화과정을 살펴보자. 초기 PC가 보급되면서 1980년대 GIS 시스템은 사일로 형태 고가 시스템이었으며, 1990년대에는 1980년대 개발된 GIS 시스템간 연결이 시작되면서 스파게티 현상이 심해지면서 새로운 애플리케이션과 파일 형식이 도입되는데 필요 이상의 낭비가 심해지는 구조가 되었다.\n2000년대 GDAL(Geospatial Data Abstraction Layer)이 등장하여 개발자가 각 파일 형식별로 서로 다른 드라이버를 작성하는 대신 GDAL 클라이언트 드라이버만 개발하면 되기 때문에 일대 혁신이 일어났다. 2010년대는 인공위성을 통한 대량의 데이터가 넘쳐나며 이를 저장하기 위해서 클라우드 서비스가 우후죽순처럼 생겨났고 각기 다른 파편화된 진화과정이 일어났다. 2020년대 넘어서면서 1990년대와 유사한 상황이 재현되었고, 이를 해결하고 새로운 전환점을 만들기 위해 OpenEO가 제시되며 사용자와 데이터 센터 사이에서 새로운 표준으로 자리잡게 되면서 R, 파이썬 등 데이터 과학 프로그래밍 언어를 통한 공간정보 가치 창출이 용이해졌다. (Pebesma 기타 2016)\n\n\nGIS 도구 진화과정",
+    "section": "",
+    "text": "GIS 도구 진화과정",
     "crumbs": [
       "커뮤니케이션",
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>지도 공간정보</span>"
@@ -1104,7 +1148,7 @@
     "href": "map.html#마무리",
     "title": "\n22  지도 공간정보\n",
     "section": "\n22.4 마무리",
-    "text": "22.4 마무리\n공간정보 개발자와 사용자가 개발하는 코드는 기계보다 사람 친화적으로 바뀌었으며, 효과적인 디버그와 신속한 개발을 위한 파이프 철학도 도입되어 생산성 향상이 비약적으로 높아졌고 도구의 추상화 수준도 대폭 향상되었다. IoT와 인공위성을 통해 엄청난 공간정보 데이터가 축적되고 있지만, GIS 도구가 꾸준히 발전하면서 이제 누구나 이러한 도구를 활용하여 공간정보 데이터를 통해 의미있는 산출물을 제작하고 도구도 개발할 수 있게 되었고, 다른 한편으로는 도구 없이 도구에 대한 이해없이 프롭테크를 논하는 것조차 의미없는 시대로 접어들고 있다.\n\n\n\n\nPebesma, Edzer, 와/과 Roger Bivand. 2023. Spatial Data Science: With Applications in R. Chapman; Hall/CRC. https://doi.org/10.1201/9780429459016.\n\n\nPebesma, Edzer, Wolfgang Wagner, Jan Verbesselt, Erwin Goor, Christian Briese, 와/과 Markus Neteler. 2016. “OpenEO: a GDAL for Earth Observation Analytics”. 2016년. https://r-spatial.org/2016/11/29/openeo.html.\n\n\n이광춘. 2023. “공간정보의 역사 및 공간정보 처리기법”. 프롭빅스(PROPBIX), 호 13 (9월). http://www.kahps.org/.",
+    "text": "22.4 마무리\n공간정보 개발자와 사용자가 개발하는 코드는 기계보다 사람 친화적으로 바뀌었으며, 효과적인 디버그와 신속한 개발을 위한 파이프 철학도 도입되어 생산성 향상이 비약적으로 높아졌고 도구의 추상화 수준도 대폭 향상되었다. IoT와 인공위성을 통해 엄청난 공간정보 데이터가 축적되고 있지만, GIS 도구가 꾸준히 발전하면서 이제 누구나 이러한 도구를 활용하여 공간정보 데이터를 통해 의미있는 산출물을 제작하고 도구도 개발할 수 있게 되었고, 다른 한편으로는 도구 없이 도구에 대한 이해없이 프롭테크를 논하는 것조차 의미없는 시대로 접어들고 있다.\n\n\n\n그림 22.1: GIS 벡터와 래스터 계층, 출처: http://gis.sbcounty.gov/\nGIS 도구 진화과정\n그림 22.2: sf 패키지와 의존성 - 화살표는 강한 의존성, 점선 화살표는 약한 의존성\nGIS 도구 활용 대한민국 시도별 인구수\n\n\n\nPebesma, Edzer, 와/과 Roger Bivand. 2023. Spatial Data Science: With Applications in R. Chapman; Hall/CRC. https://doi.org/10.1201/9780429459016.\n\n\nPebesma, Edzer, Wolfgang Wagner, Jan Verbesselt, Erwin Goor, Christian Briese, 와/과 Markus Neteler. 2016. “OpenEO: a GDAL for Earth Observation Analytics”. 2016년. https://r-spatial.org/2016/11/29/openeo.html.\n\n\n이광춘. 2023. “공간정보의 역사 및 공간정보 처리기법”. 프롭빅스(PROPBIX), 호 13 (9월). http://www.kahps.org/.",
     "crumbs": [
       "커뮤니케이션",
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>지도 공간정보</span>"
@@ -1114,8 +1158,8 @@
     "objectID": "langchain.html#허깅페이스",
     "href": "langchain.html#허깅페이스",
     "title": "\n24  랭체인\n",
-    "section": "\n24.1 허깅페이스",
-    "text": "24.1 허깅페이스\n파이썬과 R을 사용해 Hugging Face Hub의 대형 언어 모델(Large Language Model, LLM)을 활용한다. 파이썬에서는 필요한 라이브러리를 설치하고, R에서는 reticulate 라이브러리를 통해 파이썬 환경을 사용한다. 파이썬 코드에서 Hugging Face Hub에 접근하기 위한 API 토큰을 로드하고, HuggingFaceHub 클래스를 사용하여 특정 모델(‘tiiuae/falcon-7b-instruct’)에 질문을 하고, 모델의 답변을 출력한다.\n\npip install langchain_community, pip install dotenv, pip install huggingface_hub: 이 세 명령어는 파이썬 환경에서 필요한 패키지들을 설치한다. langchain_community는 언어 체인 커뮤니티 라이브러리, dotenv는 환경 변수를 관리하는 라이브러리, huggingface_hub는 Hugging Face Hub와 연동하는 데 사용되는 라이브러리다.\nR 코드 부분에서 library(reticulate)를 사용해 파이썬과 R 사이의 상호작용을 가능하게 하는 reticulate 라이브러리를 로드한다. use_condaenv(\"langchain\", required = TRUE)는 langchain이라는 이름의 Conda 환경을 사용하도록 지시한다. 이는 파이썬 코드를 R 환경에서 실행하기 위한 준비 단계다.\n파이썬 코드에서는 먼저 langchain_community.llms에서 HuggingFaceHub 클래스를, dotenv에서 load_dotenv 함수를 가져온다. 이후 os 모듈을 임포트한다. load_dotenv()를 호출하여 환경 변수를 로드한다. 이는 .env 파일에 저장된 환경 변수를 사용할 수 있게 한다.\nhuggingfacehub_api_token = os.getenv('HF_TOKEN')는 환경 변수에서 ’HF_TOKEN’을 찾아 해당 토큰을 변수에 저장한다. 이 토큰은 Hugging Face Hub에 접근할 때 인증을 위해 사용된다.\nHuggingFaceHub 클래스의 인스턴스를 생성한다. 이 때 repo_id에는 사용할 Hugging Face 모델의 저장소 ID를, huggingfacehub_api_token에는 위에서 얻은 API 토큰을 넣는다.\n대형 언어 모델에 질문을 하기 위해 question 변수에 질문을 저장하고, llm.invoke(question)을 호출하여 모델에 질문을 전달하고 결과를 받는다.\n마지막으로 print(output)을 통해 얻은 결과를 출력한다. 이 코드는 Hugging Face Hub의 특정 모델을 사용하여 질문에 대한 답변을 얻는 과정을 보여준다.\n\n\n\npip install langchain_community\npip install dotenv\npip install huggingface_hub\n\n\nlibrary(reticulate)\n\nuse_condaenv(\"langchain\", required = TRUE)\n\nfrom langchain_community.llms import HuggingFaceHub\nfrom dotenv import load_dotenv\nimport os\n\nload_dotenv()\n\nhuggingfacehub_api_token = os.getenv('HF_TOKEN')\n\nllm = HuggingFaceHub(repo_id='tiiuae/falcon-7b-instruct', \n                     huggingfacehub_api_token = huggingfacehub_api_token)\n\nquestion = 'what is an Large Language Model in artificial intelligence?'\noutput = llm.invoke(question)\n\nprint(output)",
+    "section": "",
+    "text": "pip install langchain_community, pip install dotenv, pip install huggingface_hub: 이 세 명령어는 파이썬 환경에서 필요한 패키지들을 설치한다. langchain_community는 언어 체인 커뮤니티 라이브러리, dotenv는 환경 변수를 관리하는 라이브러리, huggingface_hub는 Hugging Face Hub와 연동하는 데 사용되는 라이브러리다.\nR 코드 부분에서 library(reticulate)를 사용해 파이썬과 R 사이의 상호작용을 가능하게 하는 reticulate 라이브러리를 로드한다. use_condaenv(\"langchain\", required = TRUE)는 langchain이라는 이름의 Conda 환경을 사용하도록 지시한다. 이는 파이썬 코드를 R 환경에서 실행하기 위한 준비 단계다.\n파이썬 코드에서는 먼저 langchain_community.llms에서 HuggingFaceHub 클래스를, dotenv에서 load_dotenv 함수를 가져온다. 이후 os 모듈을 임포트한다. load_dotenv()를 호출하여 환경 변수를 로드한다. 이는 .env 파일에 저장된 환경 변수를 사용할 수 있게 한다.\nhuggingfacehub_api_token = os.getenv('HF_TOKEN')는 환경 변수에서 ’HF_TOKEN’을 찾아 해당 토큰을 변수에 저장한다. 이 토큰은 Hugging Face Hub에 접근할 때 인증을 위해 사용된다.\nHuggingFaceHub 클래스의 인스턴스를 생성한다. 이 때 repo_id에는 사용할 Hugging Face 모델의 저장소 ID를, huggingfacehub_api_token에는 위에서 얻은 API 토큰을 넣는다.\n대형 언어 모델에 질문을 하기 위해 question 변수에 질문을 저장하고, llm.invoke(question)을 호출하여 모델에 질문을 전달하고 결과를 받는다.\n마지막으로 print(output)을 통해 얻은 결과를 출력한다. 이 코드는 Hugging Face Hub의 특정 모델을 사용하여 질문에 대한 답변을 얻는 과정을 보여준다.\n\n\n\npip install langchain_community\npip install dotenv\npip install huggingface_hub\n\n\nfrom langchain_community.llms import HuggingFaceHub\nfrom dotenv import load_dotenv\nimport os\n\nload_dotenv()\n\nhuggingfacehub_api_token = os.getenv('HF_TOKEN')\n\nllm = HuggingFaceHub(repo_id='tiiuae/falcon-7b-instruct', \n                     huggingfacehub_api_token = huggingfacehub_api_token)\n\nquestion = 'what is an Large Language Model in artificial intelligence?'\noutput = llm.invoke(question)\n\nprint(output)",
     "crumbs": [
       "챗GPT",
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>랭체인</span>"
@@ -1152,6 +1196,28 @@
     "crumbs": [
       "챗GPT",
       "<span class='chapter-number'>26</span>  <span class='chapter-title'>쿼토 파이썬 환경</span>"
+    ]
+  },
+  {
+    "objectID": "langchain.html",
+    "href": "langchain.html",
+    "title": "\n24  랭체인\n",
+    "section": "",
+    "text": "24.1 허깅페이스\n파이썬과 R을 사용해 Hugging Face Hub의 대형 언어 모델(Large Language Model, LLM)을 활용한다. 파이썬에서는 필요한 라이브러리를 설치하고, R에서는 reticulate 라이브러리를 통해 파이썬 환경을 사용한다. 파이썬 코드에서 Hugging Face Hub에 접근하기 위한 API 토큰을 로드하고, HuggingFaceHub 클래스를 사용하여 특정 모델(‘tiiuae/falcon-7b-instruct’)에 질문을 하고, 모델의 답변을 출력한다.\nlibrary(reticulate)\n\nuse_condaenv(\"langchain\", required = TRUE)",
+    "crumbs": [
+      "챗GPT",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>랭체인</span>"
+    ]
+  },
+  {
+    "objectID": "local_llm.html",
+    "href": "local_llm.html",
+    "title": "27  오라마 설치",
+    "section": "",
+    "text": "Ollama 설치\nstatkclee@dl:/mnt/d/tcs/chatGPT4ds/llm$ curl https://ollama.ai/install.sh | sh\n  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0&gt;&gt;&gt; Downloading ollama...\n100  8422    0  8422    0     0  18348      0 --:--:-- --:--:-- --:--:-- 18348\n######################################################################## 100.0%##O=#  #                                 ######################################################################## 100.0%\n&gt;&gt;&gt; Installing ollama to /usr/local/bin...\n&gt;&gt;&gt; Adding ollama user to render group...\n&gt;&gt;&gt; Adding current user to ollama group...\n&gt;&gt;&gt; Creating ollama systemd service...\n&gt;&gt;&gt; NVIDIA GPU installed.\n&gt;&gt;&gt; The Ollama API is now available at 0.0.0.0:11434.\n&gt;&gt;&gt; Install complete. Run \"ollama\" from the command line.",
+    "crumbs": [
+      "챗GPT",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>오라마 설치</span>"
     ]
   }
 ]
