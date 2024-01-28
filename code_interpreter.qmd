@@ -1,0 +1,120 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# 데이터 사이언스
+
+데이터 분석에 필요한 프롬프트를 분야별로 일목요연하게 정리된 문서를 바탕으로 챗GPT 활용하여 데이터 분석 자동화를 살펴보자. [@da_prompt2023] 
+
+## 프롬프트
+
+::: {.panel-tabset}
+### 데이터 전처리
+
+> Prompt: What are the best practices for preprocessing {topic} data using {programming_language_or_framework}?
+
+- Data Cleaning: Identify and address missing values, outliers, and duplicate records. Cleaning your data ensures that you’re working with accurate and reliable information.
+- Data Transformation: Normalize or standardize numerical features, encode categorical variables, and create new features if necessary. Data transformation enhances the quality of your dataset.
+- Feature Engineering: Extract meaningful information from your data to improve the performance of machine learning models. Feature engineering involves creating new features or modifying existing ones to make them more informative.
+- Data Validation: Ensure data consistency and integrity by performing validation checks. Validate that your data adheres to predefined rules and constraints.
+
+### EDA
+
+> Prompt: How can I perform exploratory data analysis on {topic} data using {programming_language_or_framework}?
+
+- Data Visualization: Create informative plots, charts, histograms, and scatterplots to visualize data distributions, relationships, and trends. Visualization helps in gaining initial insights into the data.
+- Statistical Analysis: Compute summary statistics, such as mean, median, and standard deviation, to describe the central tendencies and variability of your data. Statistical tests can reveal relationships and dependencies.
+- Hypothesis Testing: Formulate hypotheses about your data and conduct statistical tests to validate or reject these hypotheses. Hypothesis testing is useful for making data-driven decisions.
+- Interactive Exploration: Leverage libraries and tools available in {programming_language_or_framework} to perform interactive exploration. Interactive visualization and widgets allow for dynamic exploration of the data.
+
+### 통계모형
+
+> Prompt: What are the most common statistical techniques to analyze {topic} data in {programming_language_or_framework}?
+
+- Regression Analysis: Use regression techniques to model relationships between variables and make predictions. Linear regression, logistic regression, and polynomial regression are common types.
+- Clustering: Apply clustering algorithms, such as K-means or hierarchical clustering, to group similar data points together. Clustering helps in segmentation and pattern recognition.
+- Classification: Perform classification tasks to categorize data into predefined classes or labels. Decision trees, support vector machines, and neural networks are frequently used for classification.
+- Time Series Analysis: Analyze data with temporal components using time series analysis. This technique is essential for understanding trends and patterns over time.
+
+### 기계학습
+
+> Prompt: Provide a step-by-step guide for implementing a machine learning model for {specific_task} using {programming_language_or_framework}.
+
+- Data Preparation: Begin by preprocessing and cleaning your data, ensuring that it’s in the right format for modeling.
+- Feature Selection: Identify and select the most relevant features or variables for your model. Feature selection helps improve model performance and reduce complexity.
+- Model Selection: Choose an appropriate machine learning algorithm or model for your task. Consider factors like data size, complexity, and interpretability.
+- Training and Evaluation: Train your chosen model on a portion of your data and evaluate its performance using metrics like accuracy, precision, recall, and F1-score.
+- Deployment: If the model performs satisfactorily, deploy it in your application or workflow for making predictions.
+
+### 성능 최적화
+
+> Prompt: Explain how to optimize {topic} data analysis performance in {programming_language_or_framework} using best coding practices.
+
+- Vectorization: Take advantage of vectorized operations to perform calculations on entire arrays or datasets, which can significantly speed up computations.
+- Memory Management: Efficiently manage memory resources, such as by releasing unnecessary objects or using data structures that minimize memory usage.
+- Parallel Processing: Utilize parallel computing techniques to distribute tasks across multiple cores or processors, thereby accelerating data processing.
+- Profiling and Testing: Regularly profile your code to identify performance bottlenecks and optimize critical sections. Thoroughly test your code to ensure correctness and reliability.
+
+### 시각화
+
+> Prompt: Discuss the pros and cons of different data visualization techniques for {topic} data analysis in {programming_language_or_framework}.
+
+- Bar Charts and Histograms: These are effective for showing data distributions and comparing categories. They are excellent for visualizing frequency and count data.
+- Scatterplots: Ideal for displaying relationships between two continuous variables. Scatterplots help identify correlations and trends in data.
+- Heatmaps: Useful for visualizing large datasets and identifying patterns in multidimensional data. They are especially valuable for displaying correlation matrices.
+- Interactive Dashboards: Create user-friendly interactive dashboards that allow users to explore and interact with data. Dashboards can provide real-time insights and support decision-making.
+
+### 분석도구
+
+> Prompt: Describe the process of building a custom data analysis tool for {topic} using {programming_language_or_framework}, including the necessary features and functionalities.
+
+
+- Data Import: Allow users to import data from various sources, such as CSV files, databases, or APIs.
+- Data Processing: Include preprocessing and transformation capabilities, enabling users to clean, filter, and manipulate data easily.
+- Visualization: Incorporate interactive visualization components that help users explore and understand the data visually.
+- Export and Reporting: Provide options for exporting analysis results, generating reports, and sharing findings with stakeholders.
+
+### 대쉬보드
+
+> Prompt: Explain how to develop a user-friendly dashboard for visualizing and interacting with {topic} data analysis results using {programming_language_or_framework}.
+
+
+- Intuitive Design: Create a visually appealing and intuitive design that makes it easy for users to navigate and understand the dashboard.
+- Interactive Elements: Incorporate interactive elements, such as filters, sliders, and dropdowns, that allow users to customize their data views.
+- Real-Time Updates: Enable real-time updates of data and visualizations to provide users with the latest information.
+- Accessibility: Ensure that the dashboard is accessible to all users, including those with disabilities, by following accessibility guidelines.
+
+### 파이프라인
+
+> Prompt: Provide a step-by-step guide for creating a reusable data analysis pipeline for {topic} using {programming_language_or_framework}, covering data preprocessing, analysis, and visualization.
+
+- Data Ingestion: Develop a module for loading data from various sources, including files, databases, and APIs.
+- Preprocessing: Create a preprocessing module that encompasses data cleaning, transformation, and feature engineering steps.
+- Analysis: Develop analysis modules that encapsulate statistical analyses, machine learning models, and hypothesis tests.
+- Visualization: Implement visualization modules that generate informative charts and graphs for insights.
+
+### 모듈 개발
+
+> Prompt: Discuss the key considerations when designing a scalable and modular data analysis tool for {topic} in {programming_language_or_framework}, including performance optimization and extensibility.
+
+- Performance Optimization: Optimize your code and algorithms for scalability to ensure that the tool can handle large datasets efficiently.
+- Modular Architecture: Design the tool with a modular architecture, making it easier to add new features, update existing ones, and maintain the codebase.
+- Extensibility: Allow for the easy integration of additional data sources, analysis methods, and visualization techniques to accommodate changing needs.
+- User Collaboration: Implement features that enable collaboration among multiple users, such as data sharing, version control, and user permissions.
+
+
+:::
+
+
+## LLM 데이터 분석
+
+대형 언어 모델(LLMs)과 이미지 생성 모델(IGMs)을 기반으로 파이프라인을 사용하여 데이터 시각화 산출물 생성을 제시한 연구[@dibia-2023-lida]
+로 LIDA라는 새로운 도구를 통해 문법에 구애받지 않고 자연어를 통해 시각화 및 인포그래픽을 생성한다. LIDA는 데이터를 자연어 요약으로 변환하는 SUMMARIZER, 데이터를 기반으로 시각화 목표를 나열하는 GOAL EXPLORER, 시각화 코드를 생성하고 정제하며 실행하고 필터링하는 VISGENERATOR, IGM을 사용해 데이터 충실한 스타일화된 그래픽을 생성하는 INFOGRAPHER로 구성된다.
+
+
+![](images/da_llm.jpg)
+
+
+

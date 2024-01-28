@@ -12,6 +12,22 @@ editor_options:
 
 ## 허깅페이스
 
+파이썬과 R을 사용해 Hugging Face Hub의 대형 언어 모델(Large Language Model, LLM)을 활용한다. 파이썬에서는 필요한 라이브러리를 설치하고, R에서는 `reticulate` 라이브러리를 통해 파이썬 환경을 사용한다. 
+파이썬 코드에서 Hugging Face Hub에 접근하기 위한 API 토큰을 로드하고, `HuggingFaceHub` 클래스를 사용하여 특정 모델('tiiuae/falcon-7b-instruct')에 질문을 하고, 모델의 답변을 출력한다. 
+
+1. `pip install langchain_community`, `pip install dotenv`, `pip install huggingface_hub`: 이 세 명령어는 파이썬 환경에서 필요한 패키지들을 설치한다. `langchain_community`는 언어 체인 커뮤니티 라이브러리, `dotenv`는 환경 변수를 관리하는 라이브러리, `huggingface_hub`는 Hugging Face Hub와 연동하는 데 사용되는 라이브러리다.
+
+2. R 코드 부분에서 `library(reticulate)`를 사용해 파이썬과 R 사이의 상호작용을 가능하게 하는 `reticulate` 라이브러리를 로드한다. `use_condaenv("langchain", required = TRUE)`는 `langchain`이라는 이름의 Conda 환경을 사용하도록 지시한다. 이는 파이썬 코드를 R 환경에서 실행하기 위한 준비 단계다.
+
+3. 파이썬 코드에서는 먼저 `langchain_community.llms`에서 `HuggingFaceHub` 클래스를, `dotenv`에서 `load_dotenv` 함수를 가져온다. 이후 `os` 모듈을 임포트한다. `load_dotenv()`를 호출하여 환경 변수를 로드한다. 이는 `.env` 파일에 저장된 환경 변수를 사용할 수 있게 한다.
+
+4. `huggingfacehub_api_token = os.getenv('HF_TOKEN')`는 환경 변수에서 'HF_TOKEN'을 찾아 해당 토큰을 변수에 저장한다. 이 토큰은 Hugging Face Hub에 접근할 때 인증을 위해 사용된다.
+
+5. `HuggingFaceHub` 클래스의 인스턴스를 생성한다. 이 때 `repo_id`에는 사용할 Hugging Face 모델의 저장소 ID를, `huggingfacehub_api_token`에는 위에서 얻은 API 토큰을 넣는다.
+
+6. 대형 언어 모델에 질문을 하기 위해 `question` 변수에 질문을 저장하고, `llm.invoke(question)`을 호출하여 모델에 질문을 전달하고 결과를 받는다.
+
+7. 마지막으로 `print(output)`을 통해 얻은 결과를 출력한다. 이 코드는 Hugging Face Hub의 특정 모델을 사용하여 질문에 대한 답변을 얻는 과정을 보여준다.
 
 
 ![](images/hf_token.jpg)
@@ -25,12 +41,11 @@ editor_options:
 library(reticulate)
 
 use_condaenv("langchain", required = TRUE)
-
 ```
 
 
 
-```{python}
+```{파이썬}
 from langchain_community.llms import HuggingFaceHub
 from dotenv import load_dotenv
 import os
@@ -47,5 +62,4 @@ output = llm.invoke(question)
 
 print(output)
 ```
-
 

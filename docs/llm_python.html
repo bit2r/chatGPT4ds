@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR">
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.523">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘, 신종화">
-<title>챗GPT 데이터 과학 – 24  랭체인</title>
+<title>챗GPT 데이터 과학 - 26&nbsp; 쿼토 파이썬 환경</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -54,7 +53,25 @@ div.sourceCode
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
-<!-- htmldependencies:E3FAD763 --><script id="quarto-search-options" type="application/json">{
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./code_interpreter.html" rel="prev">
+<link href="./images/logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -82,14 +99,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 </head>
-<body>
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <h1 class="quarto-secondary-nav-title no-breadcrumbs"></h1>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prompt.html">챗GPT</a></li><li class="breadcrumb-item"><a href="./llm_python.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -100,9 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="/">
-      챗GPT 데이터 과학
-      </a> 
+      <a href="./">챗GPT 데이터 과학</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/bit2r/chatGPT4ds" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="리더 모드 전환">
@@ -122,8 +137,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>  <span class="chapter-title">챗GPT 데이터 과학</span></span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">챗GPT 데이터 과학</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -137,14 +152,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>  <span class="chapter-title">소개</span></span></a>
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">소개</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/whole_game.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>  <span class="chapter-title">데이터 과학 맛보기</span></span></a>
+  <a href="./whole_game.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">데이터 과학 맛보기</span></span></a>
   </div>
 </li>
       </ul>
@@ -160,8 +175,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/penguins.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>  <span class="chapter-title">펭귄 데이터셋</span></span></a>
+  <a href="./penguins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
   </div>
 </li>
       </ul>
@@ -177,26 +192,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/lang_gpt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>  <span class="chapter-title">챗GPT 자연어</span></span></a>
+  <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/lang_r.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>  <span class="chapter-title">R 언어</span></span></a>
+  <a href="./lang_r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R 언어</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/lang_py.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>  <span class="chapter-title">파이썬</span></span></a>
+  <a href="./lang_py.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/lang_sql.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>  <span class="chapter-title">파이썬</span></span></a>
+  <a href="./lang_sql.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
   </div>
 </li>
       </ul>
@@ -212,32 +227,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/simpson.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>  <span class="chapter-title">심슨의 역설</span></span></a>
+  <a href="./simpson.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/basic_stat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>  <span class="chapter-title">통계</span></span></a>
+  <a href="./basic_stat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">통계</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/sampling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>  <span class="chapter-title">표본 추출</span></span></a>
+  <a href="./sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/hypothesis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>  <span class="chapter-title">코딩 가설검정</span></span></a>
+  <a href="./hypothesis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/NHST.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>  <span class="chapter-title">NHST.html</span></span></a>
+  <a href="./NHST.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">NHST.html</span></span></a>
   </div>
 </li>
       </ul>
@@ -253,26 +268,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>  <span class="chapter-title">모형</span></span></a>
+  <a href="./models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/models_building.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>  <span class="chapter-title">모형 개발</span></span></a>
+  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/models_many.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>  <span class="chapter-title">많은 회귀모형</span></span></a>
+  <a href="./models_many.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/models_case_study.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>  <span class="chapter-title">사례: 시군 인구증가</span></span></a>
+  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
   </div>
 </li>
       </ul>
@@ -288,20 +303,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>  <span class="chapter-title">함수</span></span></a>
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/functions_ds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>  <span class="chapter-title">데이터 과학 함수</span></span></a>
+  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/functions_purrr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>  <span class="chapter-title">함수형 프로그래밍</span></span></a>
+  <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
   </div>
 </li>
       </ul>
@@ -317,14 +332,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>  <span class="chapter-title">쿼토</span></span></a>
+  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>  <span class="chapter-title">지도 공간정보</span></span></a>
+  <a href="./map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
   </div>
 </li>
       </ul>
@@ -340,14 +355,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/prompt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>  <span class="chapter-title">프롬프트 공학</span></span></a>
+  <a href="./prompt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/langchain.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">24</span>  <span class="chapter-title">랭체인</span></span></a>
+  <a href="./langchain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./llm_python.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
   </div>
 </li>
       </ul>
@@ -358,7 +385,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/references.html" class="sidebar-item-text sidebar-link">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">참고문헌</span></a>
   </div>
 </li>
@@ -367,12 +394,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <div id="quarto-toc-target"></div>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li><a href="#%EA%B0%90%EC%84%B1%EB%B6%84%EC%84%9D" id="toc-감성분석" class="nav-link active" data-scroll-target="#%EA%B0%90%EC%84%B1%EB%B6%84%EC%84%9D"><span class="header-section-number">27</span> 감성분석</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/llm_python.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prompt.html">챗GPT</a></li><li class="breadcrumb-item"><a href="./llm_python.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title">
-<span class="chapter-number">24</span>  <span class="chapter-title">랭체인</span>
+<span class="chapter-number">26</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span>
 </h1>
 </div>
 
@@ -387,60 +418,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><nav id="TOC" role="doc-toc"><h2 id="toc-title">목차</h2>
-   
-  <ul>
-<li><a href="#%ED%97%88%EA%B9%85%ED%8E%98%EC%9D%B4%EC%8A%A4" id="toc-허깅페이스"><span class="header-section-number">24.1</span> 허깅페이스</a></li>
-  </ul></nav><p><strong>랭체인(langcahin)</strong>은 대규모 언어 모델(LLM)을 활용한 애플리케이션 개발을 위한 소프트웨어 개발 프레임워크로, LLM을 다양한 애플리케이션과 통합하는 것을 용이하기 쉽기 때문에 인기를 얻고 있다. 랭체인은 LLM과 인터페이스, 다양한 구성 요소 연결, 메모리 관리 등이 수월하기 때문에 특히 개발자 사이에서 인기가 높다.</p>
-<section id="허깅페이스" class="level2" data-number="24.1"><h2 data-number="24.1">
-<span class="header-section-number">24.1</span> 허깅페이스</h2>
-<p><a href="images/hf_token.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/hf_token.jpg" class="img-fluid"></a></p>
-<ul>
-<li><code>pip install langchain_community</code></li>
-<li><code>pip install dotenv</code></li>
-<li><code>pip install huggingface_hub</code></li>
-</ul>
+</header><p>아나콘다를 설치하고 <code>conda</code> 가상환경을 설정한다. 가상환경 이름은 <code>envs</code>로 설정하고 데이터 과학, 인공지능을 위한 기본 파이썬 패키지도 가상환경 안에 설치한다.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> conda create <span class="at">--prefix</span> ./envs python=3.11 numpy seaborn pandas matplotlib scikit-learn transformers</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> conda activate ./envs</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> which python</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>파이썬(<code>python.exe</code>)를 R 환경에 연결시키기 위해 정확한 경로명을 <code><a href="https://rstudio.github.io/reticulate/reference/conda-tools.html">reticulate::conda_list()</a></code> 함수로 확인한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/reticulate/">reticulate</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rstudio.github.io/reticulate/reference/use_python.html">use_condaenv</a></span><span class="op">(</span><span class="st">"langchain"</span>, required <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">reticulate</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/reticulate/reference/conda-tools.html">conda_list</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_community.llms <span class="im">import</span> HuggingFaceHub</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/edit.html">edit_r_profile</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code><a href="https://usethis.r-lib.org/reference/edit.html">usethis::edit_r_profile()</a></code> 명령어를 통해 <code>.Rprofile</code> 파일을 열고 아래 내용을 추가한다.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="at">Sys.setenv(RETICULATE_PYTHON="C:\\chatGPT4ds\\envs\\python.exe")</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/reticulate/">reticulate</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rstudio.github.io/reticulate/reference/py_config.html">py_config</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>True</code></pre>
+<pre><code>python:         D:/tcs/chatGPT4ds/envs/python.exe
+libpython:      D:/tcs/chatGPT4ds/envs/python311.dll
+pythonhome:     D:/tcs/chatGPT4ds/envs
+version:        3.11.7 | packaged by Anaconda, Inc. | (main, Dec 15 2023, 18:05:47) [MSC v.1916 64 bit (AMD64)]
+Architecture:   64bit
+numpy:          D:/tcs/chatGPT4ds/envs/Lib/site-packages/numpy
+numpy_version:  1.26.3
+
+NOTE: Python version was forced by RETICULATE_PYTHON</code></pre>
 </div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>huggingfacehub_api_token <span class="op">=</span> os.getenv(<span class="st">'HF_TOKEN'</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> HuggingFaceHub(repo_id<span class="op">=</span><span class="st">'tiiuae/falcon-7b-instruct'</span>, </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                     huggingfacehub_api_token <span class="op">=</span> huggingfacehub_api_token)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>question <span class="op">=</span> <span class="st">'what is an Large Language Model in artificial intelligence?'</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> llm.invoke(question)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(output)</span></code></pre></div>
+</div>
+<section id="감성분석" class="level1" data-number="27"><h1 data-number="27">
+<span class="header-section-number">27</span> 감성분석</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> pipeline</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="st">"The ambience was good, food was quite good."</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>classifier <span class="op">=</span> pipeline(<span class="st">"text-classification"</span>, </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                      model<span class="op">=</span><span class="st">'nlptown/bert-base-multilingual-uncased-sentiment'</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>prediction <span class="op">=</span> classifier(prompt)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prediction)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-A large language model in artificial intelligence is a machine learning model that uses a large dataset of text to learn from and improve its understanding of language. These models are used in natural language processing tasks such as sentiment analysis, chatbots, and text summarization.</code></pre>
+<pre><code>[{'label': '4 stars', 'score': 0.5752392411231995}]</code></pre>
 </div>
 </div>
-<div id="quarto-navigation-envelope" class="hidden">
-<p><span class="hidden" data-render-id="quarto-int-sidebar-title">챗GPT 데이터 과학</span> <span class="hidden" data-render-id="quarto-int-navbar-title">챗GPT 데이터 과학</span> <span class="hidden" data-render-id="quarto-int-prev"><span class="chapter-number">23</span>  <span class="chapter-title">프롬프트 공학</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/index.html"><span class="chapter-number">1</span>  <span class="chapter-title">챗GPT 데이터 과학</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-1">tidyverse</span> <span class="hidden" data-render-id="quarto-int-sidebar:/intro.html"><span class="chapter-number">2</span>  <span class="chapter-title">소개</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/whole_game.html"><span class="chapter-number">3</span>  <span class="chapter-title">데이터 과학 맛보기</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-2">데이터셋</span> <span class="hidden" data-render-id="quarto-int-sidebar:/penguins.html"><span class="chapter-number">4</span>  <span class="chapter-title">펭귄 데이터셋</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-3">언어</span> <span class="hidden" data-render-id="quarto-int-sidebar:/lang_gpt.html"><span class="chapter-number">5</span>  <span class="chapter-title">챗GPT 자연어</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/lang_r.html"><span class="chapter-number">6</span>  <span class="chapter-title">R 언어</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/lang_py.html"><span class="chapter-number">7</span>  <span class="chapter-title">파이썬</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/lang_sql.html"><span class="chapter-number">8</span>  <span class="chapter-title">파이썬</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-4">데이터 과학</span> <span class="hidden" data-render-id="quarto-int-sidebar:/simpson.html"><span class="chapter-number">9</span>  <span class="chapter-title">심슨의 역설</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/basic_stat.html"><span class="chapter-number">10</span>  <span class="chapter-title">통계</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/sampling.html"><span class="chapter-number">11</span>  <span class="chapter-title">표본 추출</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/hypothesis.html"><span class="chapter-number">12</span>  <span class="chapter-title">코딩 가설검정</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/NHST.html"><span class="chapter-number">13</span>  <span class="chapter-title">NHST.html</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-5">모형</span> <span class="hidden" data-render-id="quarto-int-sidebar:/models.html"><span class="chapter-number">14</span>  <span class="chapter-title">모형</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/models_building.html"><span class="chapter-number">15</span>  <span class="chapter-title">모형 개발</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/models_many.html"><span class="chapter-number">16</span>  <span class="chapter-title">많은 회귀모형</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/models_case_study.html"><span class="chapter-number">17</span>  <span class="chapter-title">사례: 시군 인구증가</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-6">프로그래밍</span> <span class="hidden" data-render-id="quarto-int-sidebar:/functions.html"><span class="chapter-number">18</span>  <span class="chapter-title">함수</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/functions_ds.html"><span class="chapter-number">19</span>  <span class="chapter-title">데이터 과학 함수</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/functions_purrr.html"><span class="chapter-number">20</span>  <span class="chapter-title">함수형 프로그래밍</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-7">커뮤니케이션</span> <span class="hidden" data-render-id="quarto-int-sidebar:/quarto.html"><span class="chapter-number">21</span>  <span class="chapter-title">쿼토</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/map.html"><span class="chapter-number">22</span>  <span class="chapter-title">지도 공간정보</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-8">챗GPT</span> <span class="hidden" data-render-id="quarto-int-sidebar:/prompt.html"><span class="chapter-number">23</span>  <span class="chapter-title">프롬프트 공학</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/langchain.html"><span class="chapter-number">24</span>  <span class="chapter-title">랭체인</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-9">—–</span> <span class="hidden" data-render-id="quarto-int-sidebar:/references.html">참고문헌</span> <span class="hidden" data-render-id="quarto-breadcrumbs-788b3aa7d79c44109cc08555ae5cdc8d">챗GPT</span> <span class="hidden" data-render-id="quarto-breadcrumbs-9bb11fadd30f7f53f67eb262315a8296"><span class="chapter-number">24</span>  <span class="chapter-title">랭체인</span></span></p>
-<div class="hidden" data-render-id="footer-left">
-<p>이광춘, 신종화, 유충현, 홍성학이 ’챗GPT 데이터 사이언스’를 저작했습니다.</p>
-</div>
-<div class="hidden" data-render-id="footer-right">
-<p><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</p>
-</div>
-</div>
-<div id="quarto-meta-markdown" class="hidden">
-<p><span class="hidden" data-render-id="quarto-metatitle">챗GPT 데이터 과학 - <span class="chapter-number">24</span>  <span class="chapter-title">랭체인</span></span> <span class="hidden" data-render-id="quarto-twittercardtitle">챗GPT 데이터 과학 - <span class="chapter-number">24</span>  <span class="chapter-title">랭체인</span></span> <span class="hidden" data-render-id="quarto-ogcardtitle">챗GPT 데이터 과학 - <span class="chapter-number">24</span>  <span class="chapter-title">랭체인</span></span> <span class="hidden" data-render-id="quarto-metasitename">챗GPT 데이터 과학</span> <span class="hidden" data-render-id="quarto-twittercarddesc"></span> <span class="hidden" data-render-id="quarto-ogcardddesc"></span></p>
-</div>
+
+
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -838,8 +861,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="/prompt.html" class="pagination-link  aria-label=">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>  <span class="chapter-title">프롬프트 공학</span></span>
+      <a href="./code_interpreter.html" class="pagination-link  aria-label=">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -848,18 +871,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
-      <div class="footer-contents">이광춘, 신종화, 유충현, 홍성학이 '챗GPT 데이터 사이언스'를 저작했습니다.
-</div>  
-    </div>   
+<p>이광춘, 신종화, 유충현, 홍성학이 ’챗GPT 데이터 사이언스’를 저작했습니다.</p>
+</div>   
     <div class="nav-footer-center">
-       
+      &nbsp;
     </div>
     <div class="nav-footer-right">
-      <div class="footer-contents">
-<a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.
-</div>  
-    </div>
+<p><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</p>
+</div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","loop":false});</script>
-</body>
-</html>
+</footer>
+
+
+</body></html>

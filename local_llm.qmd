@@ -1,0 +1,26 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# 오라마 설치
+
+Ollama 설치
+
+```yaml
+statkclee@dl:/mnt/d/tcs/chatGPT4ds/llm$ curl https://ollama.ai/install.sh | sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0>>> Downloading ollama...
+100  8422    0  8422    0     0  18348      0 --:--:-- --:--:-- --:--:-- 18348
+######################################################################## 100.0%##O=#  #                                 ######################################################################## 100.0%
+>>> Installing ollama to /usr/local/bin...
+>>> Adding ollama user to render group...
+>>> Adding current user to ollama group...
+>>> Creating ollama systemd service...
+>>> NVIDIA GPU installed.
+>>> The Ollama API is now available at 0.0.0.0:11434.
+>>> Install complete. Run "ollama" from the command line.
+```
+
