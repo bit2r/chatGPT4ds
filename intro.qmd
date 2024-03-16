@@ -1,9 +1,28 @@
----
-title: "소개"
----
 
-About this site
+# 들어가며 {#intro}
 
-```{r}
-1 + 1
+
+```{mermaid}
+%%| label: fig-workflow
+%%| fig-cap: 데이터 과학 작업흐름도
+%%| fig-align: center
+
+graph LR
+    subgraph 이해하기
+        변환 --> 시각화
+        시각화 --> 모형
+        모형 --> 변환
+    end
+    가져오기 --> 깔끔화 --> 이해하기
+    이해하기 --> 의사소통
+    
+    classDef modern fill:#fff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:12px;
+    classDef emphasize fill:#8CBDE3,stroke:#333,stroke-width:3px,color:#333,font-family:MaruBuri,font-size:15px,font-weight:bold;
+    classDef subgraphStyle fill:#f0f8ff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:15px;
+    
+    class 깔끔화,변환,모형,시각화,의사소통 modern
+    class 가져오기 emphasize
+    class 이해하기 subgraphStyle
 ```
+
+

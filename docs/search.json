@@ -954,5 +954,156 @@
     "crumbs": [
       "참고문헌"
     ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "챗GPT 데이터 과학",
+    "section": "",
+    "text": "서문",
+    "crumbs": [
+      "서문"
+    ]
+  },
+  {
+    "objectID": "index.html#책의-구성",
+    "href": "index.html#책의-구성",
+    "title": "챗GPT 데이터 과학",
+    "section": "책의 구성",
+    "text": "책의 구성",
+    "crumbs": [
+      "서문"
+    ]
+  },
+  {
+    "objectID": "index.html#감사의-글",
+    "href": "index.html#감사의-글",
+    "title": "챗GPT 데이터 과학",
+    "section": "감사의 글",
+    "text": "감사의 글\n\n이 책이 탄생할 수 있도록 도움을 주신 여러분께 깊은 감사의 마음을 표합니다.\n공익법인 한국 R 사용자회가 없었다면 데이터 과학분야 챗GPT 시리즈가 세상에 나오지 못했을 것입니다. 한국 R 사용자회의 유충현 회장님, 신종화 사무처장님, 홍성학 감사님, 올해부터 새롭게 공익법인 한국 R 사용자를 이끌어주실 형환희 회장님께 감사드립니다.\n또한 이 책은 2014년 처음 몸담게 된 소프트웨어 카펜트리 그렉 윌슨 박사님과 Python for Informatics 저자인 미시건 대학 찰스 세브란스 교수님을 비롯한 전세계 수많은 익명의 기여자들의 노력과 지원이 있었고, 서울 R 미트업에서 발표해주시고 참여해주신 수많은 분들이 격려와 영감을 주셨기에 가능했습니다.\n이 책이 출간되는데 있어 이들 모든 분들의 도움 없이는 어려웠을 것입니다. 그동안의 관심과 지원에 깊은 감사를 드리며, 이 책이 데이터 과학의 발전과 독자들에게 도움이 될 수 있기를 바라는 마음으로 마무리하겠습니다.\n\n2024년 4월 속초 영금정\n이광춘",
+    "crumbs": [
+      "서문"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  들어가며",
+    "section": "",
+    "text": "graph LR\n    subgraph 이해하기\n        변환 --&gt; 시각화\n        시각화 --&gt; 모형\n        모형 --&gt; 변환\n    end\n    가져오기 --&gt; 깔끔화 --&gt; 이해하기\n    이해하기 --&gt; 의사소통\n    \n    classDef modern fill:#fff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:12px;\n    classDef emphasize fill:#8CBDE3,stroke:#333,stroke-width:3px,color:#333,font-family:MaruBuri,font-size:15px,font-weight:bold;\n    classDef subgraphStyle fill:#f0f8ff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:15px;\n    \n    class 깔끔화,변환,모형,시각화,의사소통 modern\n    class 가져오기 emphasize\n    class 이해하기 subgraphStyle\n\n\n\n\n그림 1.1: 데이터 과학 작업흐름도",
+    "crumbs": [
+      "**1부** 들어가며",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>들어가며</span>"
+    ]
+  },
+  {
+    "objectID": "import.html",
+    "href": "import.html",
+    "title": "4  텍스트 파일",
+    "section": "",
+    "text": "4.1 데이터 종류\ngraph TB\n    subgraph 가져오기[\"가져오기(Import)\"]\n        csv[CSV 파일] --&gt; 핸들러\n        스프레드쉬트 --&gt; 핸들러\n        데이터베이스 --&gt; 핸들러\n        웹 --&gt; 핸들러\n\n        핸들러 --&gt; 데이터프레임\n    end\n    \n    classDef modern fill:#fff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:12px;\n    classDef emphasize fill:#8CBDE3,stroke:#333,stroke-width:3px,color:#333,font-family:MaruBuri,font-size:15px,font-weight:bold;\n    classDef subgraphStyle fill:#f0f8ff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:20px;\n    \n    class csv,스프레드쉬트,데이터베이스,웹,핸들러 modern\n    class 데이터프레임 emphasize\n    class 가져오기 subgraphStyle\n\n\n\n\n그림 4.2: 다양한 데이터 종류",
+    "crumbs": [
+      "**2부** 가져오기",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>텍스트 파일</span>"
+    ]
+  },
+  {
+    "objectID": "penguins.html",
+    "href": "penguins.html",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "",
+    "text": "4 펭귄 데이터셋",
+    "crumbs": [
+      "**1부** 들어가며",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>펭귄 데이터셋</span>"
+    ]
+  },
+  {
+    "objectID": "penguins.html#펭귄-데이터-출현",
+    "href": "penguins.html#펭귄-데이터-출현",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "\n4.1 펭귄 데이터 출현",
+    "text": "4.1 펭귄 데이터 출현\n미국에서 “George Floyd”가 경찰에 의해 살해되면서 촉발된 “Black Lives Matter” 운동은 아프리카계 미국인을 향한 폭력과 제도적 인종주의에 반대하는 사회운동이다. 한국에서도 소수 정당인 정의당에서 여당 의원 176명 중 누가?…차별금지법 발의할 ’의인’을 구합니다로 기사로 낼 정도로 적극적으로 나서고 있다.\n데이터 과학에서 최근 R.A. Fisher의 과거 저술한 “The genetical theory of natural selection” (fisher1958genetical?) 우생학(Eugenics) 대한 관점이 논란이 되면서 R 데이터 과학의 첫 데이터셋으로 붓꽃 iris 데이터를 다른 데이터, 즉 펭귄 데이터로 대체하는 움직임이 활발히 전개되고 있다. palmerpenguins (penguin2020?) 데이터셋이 대안으로 많은 호응을 얻고 있다. (Levy2019?)",
+    "crumbs": [
+      "**1부** 들어가며",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>펭귄 데이터셋</span>"
+    ]
+  },
+  {
+    "objectID": "penguins.html#penguins-study",
+    "href": "penguins.html#penguins-study",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "\n4.2 펭귄 공부",
+    "text": "4.2 펭귄 공부\n팔머(Palmer) 펭귄은 3종이 있으며 자세한 내용은 다음 나무위키를 참조한다. 1\n\n\n젠투 펭귄(Gentoo Penguin): 머리에 모자처럼 둘러져 있는 하얀 털 때문에 알아보기가 쉽다. 암컷이 회색이 뒤에, 흰색이 앞에 있다. 펭귄들 중에 가장 빠른 시속 36km의 수영 실력을 자랑하며, 짝짓기 할 준비가 된 펭귄은 75-90cm까지도 자란다.\n\n아델리 펭귄(Adelie Penguin): 프랑스 탐험가인 뒤몽 뒤르빌(Dumont D’Urville) 부인의 이름을 따서 ’아델리’라 불리게 되었다. 각진 머리와 작은 부리 때문에 알아보기 쉽고, 다른 펭귄들과 마찬가지로 암수가 비슷하게 생겼지만 암컷이 조금 더 작다.\n\n턱끈 펭귄(Chinstrap Penguin): 언뜻 보면 아델리 펭귄과 매우 비슷하지만, 몸집이 조금 더 작고, 목에서 머리 쪽으로 이어지는 검은 털이 눈에 띈다. 어린 고삐 펭귄들은 회갈색 빛을 띄는 털을 가지고 있으며, 목 아래 부분은 더 하얗다. 무리를 지어 살아가며 일부일처제를 지키기 때문에 짝짓기 이후에도 부부로써 오랫동안 함께 살아간다.\n\n\n\n팔머 펭귄 3종 세트\n\n다음으로 iris 데이터와 마찬가지로 펭귄 3종을 구분하기 위한 변수로 조류의 부리에 있는 중앙 세로선의 융기를 지칭하는 능선(culmen) 길이(culmen length)와 깊이(culmen depth)를 이해하면 된다.\n\n\n팔머 펭귄 능선 변수",
+    "crumbs": [
+      "**1부** 들어가며",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>펭귄 데이터셋</span>"
+    ]
+  },
+  {
+    "objectID": "penguins.html#penguin-home",
+    "href": "penguins.html#penguin-home",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "\n4.3 펭귄 서식지",
+    "text": "4.3 펭귄 서식지\nleaflet 팩키지로 펭귄 서식지를 남극에서 특정한다. geocoding을 해야 하는데 구글에서 위치 정보를 구글링하면 https://latitude.to/에서 직접 위경도를 반환하여 준다. 이 정보를 근거로 하여 펭귄 서식지를 시각화한다.\n\n\n\n\n\n\n\n\n파머 연구소와 펭귄 서식지\n\n\n\n\n\n펭귄 3종\n\n\n\n\n\n\n\n아델리, 젠투, 턱끈 펭귄이 함께한 사진\n\n\n\n\n\n토르거센 섬에서 새끼를 키우는 아델리 펭귄\n\n\n\n\n\n비스코 지점 젠투 펭귄 서식지\n\n\n\n\n\n펭귄과 함께 현장에서 일하는 크리스틴 고먼 박사\n\n\n\n\n\n파머 펭귄 데이터셋\n\n\n\n\nlibrary(tidyverse)\nlibrary(leaflet)\nlibrary(palmerpenguins)\n# library(tidygeocoder)\n\npenguins %&gt;% \n  count(island)\n\n# A tibble: 3 × 2\n  island        n\n  &lt;fct&gt;     &lt;int&gt;\n1 Biscoe      168\n2 Dream       124\n3 Torgersen    52\n\nisland_df &lt;- tribble(~\"address\", ~\"lat\", ~\"lng\",\n                     \"Torgersen Island antarctica\", -64.772819, -64.074325,\n                     \"Dream Island antarctica\", -64.725558, -64.225562,\n                     \"Biscoe Island antarctica\", -64.811565, -63.777947,\n                     \"Palmer Station\", -64.774312, -64.054213)\n\nisland_df %&gt;% \n  leaflet() %&gt;% \n  addProviderTiles(providers$OpenStreetMap) %&gt;% \n  addMarkers(lng=~lng, lat=~lat, \n                   popup = ~ as.character(paste0(\"&lt;strong&gt;\", paste0(\"명칭:\",`address`), \"&lt;/strong&gt;&lt;br&gt;\",\n                                                 \"-----------------------------------------------------------&lt;br&gt;\",\n                                                 \"&middot; latitude: \", `lat`, \"&lt;br&gt;\",\n                                                 \"&middot; longitude: \", `lng`, \"&lt;br&gt;\"\n                   )))",
+    "crumbs": [
+      "**1부** 들어가며",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>펭귄 데이터셋</span>"
+    ]
+  },
+  {
+    "objectID": "penguins.html#데이터-설치",
+    "href": "penguins.html#데이터-설치",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "\n4.4 데이터 설치",
+    "text": "4.4 데이터 설치\nremotes 팩키지 install_github() 함수로 펭귄 데이터를 설치한다.\n\n# install.packages(\"remotes\")\nremotes::install_github(\"allisonhorst/palmerpenguins\")\n\ntidyverse 팩키지 glimpse() 함수로 펭귄 데이터를 일별한다.\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\nglimpse(penguins)\n\nRows: 344\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…",
+    "crumbs": [
+      "**1부** 들어가며",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>펭귄 데이터셋</span>"
+    ]
+  },
+  {
+    "objectID": "penguins.html#penguin-EDA-skimr",
+    "href": "penguins.html#penguin-EDA-skimr",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "\n4.5 자료구조 일별",
+    "text": "4.5 자료구조 일별\nskimr 팩키지를 사용해서 penguins 데이터프레임 자료구조를 일별한다. 이를 통해서 344개 펭귄 관측값이 있으며, 7개 칼럼으로 구성된 것을 확인할 수 있다. 또한, 범주형 변수가 3개, 숫자형 변수가 4개로 구성되어 있다. 그외 더 자세한 사항은 범주형, 숫자형 변수에 대한 요약 통계량을 참조한다.\n\nskimr::skim(penguins)\n\n\nData summary\n\n\nName\npenguins\n\n\nNumber of rows\n344\n\n\nNumber of columns\n8\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\nfactor\n3\n\n\nnumeric\n5\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: factor\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nordered\nn_unique\ntop_counts\n\n\n\nspecies\n0\n1.00\nFALSE\n3\nAde: 152, Gen: 124, Chi: 68\n\n\nisland\n0\n1.00\nFALSE\n3\nBis: 168, Dre: 124, Tor: 52\n\n\nsex\n11\n0.97\nFALSE\n2\nmal: 168, fem: 165\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\nbill_length_mm\n2\n0.99\n43.92\n5.46\n32.1\n39.23\n44.45\n48.5\n59.6\n▃▇▇▆▁\n\n\nbill_depth_mm\n2\n0.99\n17.15\n1.97\n13.1\n15.60\n17.30\n18.7\n21.5\n▅▅▇▇▂\n\n\nflipper_length_mm\n2\n0.99\n200.92\n14.06\n172.0\n190.00\n197.00\n213.0\n231.0\n▂▇▃▅▂\n\n\nbody_mass_g\n2\n0.99\n4201.75\n801.95\n2700.0\n3550.00\n4050.00\n4750.0\n6300.0\n▃▇▆▃▂\n\n\nyear\n0\n1.00\n2008.03\n0.82\n2007.0\n2007.00\n2008.00\n2009.0\n2009.0\n▇▁▇▁▇\n\n\n\n\n\n데이터가 크지 않아 DT 팩키지를 통해 데이터 전반적인 내용을 살펴볼 수 있다.\n\npenguins %&gt;% \n  reactable::reactable()",
+    "crumbs": [
+      "**1부** 들어가며",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>펭귄 데이터셋</span>"
+    ]
+  },
+  {
+    "objectID": "penguins.html#penguin-EDA",
+    "href": "penguins.html#penguin-EDA",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "\n4.6 탐색적 데이터 분석",
+    "text": "4.6 탐색적 데이터 분석\npalmerpenguins 데이터셋 소개에 포함되어 있는 미국 팔머 연구소 (palmer station) 펭귄 물갈퀴(flipper) 길이와 체질량(body mass) 산점도를 그려보자.\n\nlibrary(tidyverse)\nlibrary(extrafont)\nloadfonts()\n\nmass_flipper &lt;- ggplot(data = penguins, \n                       aes(x = flipper_length_mm,\n                           y = body_mass_g)) +\n  geom_point(aes(color = species, \n                 shape = species),\n             size = 3,\n             alpha = 0.8) +\n  theme_minimal(base_family = \"NanumGothic\") +\n  scale_color_manual(values = c(\"darkorange\",\"purple\",\"cyan4\")) +\n  labs(title = \"펭귄 크기\",\n       subtitle = \"남극 펭귄 3종 물갈퀴 길이와 체질량 관계\",\n       x = \"물갈퀴 길이 (mm)\",\n       y = \"체질량 (g)\",\n       color = \"펭귄 3종\",\n       shape = \"펭귄 3종\") +\n  theme(legend.position = c(0.2, 0.7),\n        legend.background = element_rect(fill = \"white\", color = NA),\n        plot.title.position = \"plot\",\n        plot.caption = element_text(hjust = 0, face= \"italic\"),\n        plot.caption.position = \"plot\")\n\nmass_flipper",
+    "crumbs": [
+      "**1부** 들어가며",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>펭귄 데이터셋</span>"
+    ]
+  },
+  {
+    "objectID": "penguins.html#footnotes",
+    "href": "penguins.html#footnotes",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "",
+    "text": "신발끈 여행사, 관광안내자료↩︎",
+    "crumbs": [
+      "**1부** 들어가며",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>펭귄 데이터셋</span>"
+    ]
+  },
+  {
+    "objectID": "penguins.html#펭귄-데이터-저장",
+    "href": "penguins.html#펭귄-데이터-저장",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "\n4.7 펭귄 데이터 저장",
+    "text": "4.7 펭귄 데이터 저장\n\n4.7.1 .csv 파일\n\nlibrary(palmerpenguins)\n\npenguins |&gt; \n  drop_na() |&gt; \n  write_csv(\"data/penguins.csv\")\n\n\n4.7.2 .xlsx 엑셀 파일\n\nlibrary(writexl)\n\npenguins |&gt; \n  drop_na() |&gt; \n  write_xlsx(\"data/penguins.xlsx\")\n\n\n4.7.3 .sqlite 데이터베이스\n\nlibrary(DBI)\nlibrary(RSQLite)\n\ncon &lt;- dbConnect(RSQLite::SQLite(), dbname = \"data/penguins.sqlite\")\n\n# 데이터프레임을 SQLite 테이블로 저장합니다. 'my_table'이라는 이름으로 저장됩니다.\n# 데이터베이스에 같은 이름의 테이블이 이미 존재한다면, append, overwrite 또는 fail 중 하나를 선택할 수 있습니다.\ndbWriteTable(con, \"penguin\", penguins |&gt; drop_na() , overwrite = TRUE)\n\n# 연결을 닫습니다.\ndbDisconnect(con)\n\n\n4.7.4 pins\n\n\nlibrary(pins)\n\nboard &lt;- board_folder(\"C:/Users/statkclee/OneDrive/pins\") \n\nmetadata &lt;- list(owner       = \"한국 R 사용자회\",\n                 deptartment = \"R&D\",\n                 URL         = \"https://r2bit.com\")\n\nboard  |&gt; pin_write(penguins |&gt; drop_na(), \n                    name        = \"penguins\",\n                    title       = \"펭귄 데이터셋\",\n                    description = \"남극 파머 연구소 서식 펭귄 데이터셋\",\n                    metadata    = metadata)\n\n\n4.7.5 구글시트\n\nlibrary(googlesheets4)\nlibrary(googledrive)\n\ngoogledrive::drive_auth()\n\ngs4_create(\n  name = \"penguins\",\n  sheets = list(\"penguins\" = penguins |&gt; drop_na())\n)\n\n#&gt; ✔ Creating new Sheet: penguins.\n#&gt; Waiting for authentication in browser...\n#&gt; Press Esc/Ctrl + C to abort\n#&gt; Authentication complete.",
+    "crumbs": [
+      "**1부** 들어가며",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>펭귄 데이터셋</span>"
+    ]
   }
 ]

@@ -1,5 +1,7 @@
 ---
 title: "펭귄 데이터셋"
+editor_options: 
+  chunk_output_type: console
 ---
 
 
@@ -184,6 +186,91 @@ mass_flipper <- ggplot(data = penguins,
 mass_flipper
 ```
 
+## 펭귄 데이터 저장
+
+### `.csv` 파일
+
+```{r}
+library(palmerpenguins)
+
+penguins |> 
+  drop_na() |> 
+  write_csv("data/penguins.csv")
+```
 
 
+### `.xlsx` 엑셀 파일
 
+
+```{r}
+library(writexl)
+
+penguins |> 
+  drop_na() |> 
+  write_xlsx("data/penguins.xlsx")
+```
+
+### `.sqlite` 데이터베이스
+
+
+```{r}
+library(DBI)
+library(RSQLite)
+
+con <- dbConnect(RSQLite::SQLite(), dbname = "data/penguins.sqlite")
+
+# 데이터프레임을 SQLite 테이블로 저장합니다. 'my_table'이라는 이름으로 저장됩니다.
+# 데이터베이스에 같은 이름의 테이블이 이미 존재한다면, append, overwrite 또는 fail 중 하나를 선택할 수 있습니다.
+dbWriteTable(con, "penguin", penguins |> drop_na() , overwrite = TRUE)
+
+# 연결을 닫습니다.
+dbDisconnect(con)
+```
+
+### `pins` 
+
+
+```{r}
+#| eval: false
+library(pins)
+
+board <- board_folder("C:/Users/statkclee/OneDrive/pins") 
+
+metadata <- list(owner       = "한국 R 사용자회",
+                 deptartment = "R&D",
+                 URL         = "https://r2bit.com")
+
+board  |> pin_write(penguins |> drop_na(), 
+                    name        = "penguins",
+                    title       = "펭귄 데이터셋",
+                    description = "남극 파머 연구소 서식 펭귄 데이터셋",
+                    metadata    = metadata)
+```
+
+
+### 구글시트
+
+
+```{r}
+#| eval: false
+
+library(googlesheets4)
+library(googledrive)
+
+googledrive::drive_auth()
+
+gs4_create(
+  name = "penguins",
+  sheets = list("penguins" = penguins |> drop_na())
+)
+
+#> ✔ Creating new Sheet: penguins.
+#> Waiting for authentication in browser...
+#> Press Esc/Ctrl + C to abort
+#> Authentication complete.
+```
+
+![](images/googledrive_auth.jpg)
+
+
+![](images/googledrive_penguins.jpg)

@@ -32,6 +32,10 @@ book:
         - whole_game.qmd
         - penguins.qmd
 
+    - part: "**2부** 가져오기"
+      chapters:
+        - import.qmd
+
     - part: "**2부** 언어"
       chapters:
         - lang_gpt.qmd
