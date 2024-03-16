@@ -8,6 +8,8 @@ lang: ko-KR
 
 book:
   title: "챗GPT 데이터 과학"
+  subtitle: "AI와 함께하는 데이터 과학 여정"
+
   reader-mode: true
 
   page-footer:
@@ -24,23 +26,20 @@ book:
   chapters:
     - index.qmd
 
-    - part: "tidyverse"
+    - part: "**1부** 들어가며"
       chapters:
         - intro.qmd
         - whole_game.qmd
-
-    - part: "데이터셋"
-      chapters:
         - penguins.qmd
 
-    - part: "언어"
+    - part: "**2부** 언어"
       chapters:
         - lang_gpt.qmd
         - lang_r.qmd
         - lang_py.qmd
         - lang_sql.qmd
 
-    - part: "데이터 과학"
+    - part: "**3부** 데이터 과학"
       chapters:
         - simpson.qmd
         - basic_stat.qmd
@@ -48,25 +47,25 @@ book:
         - hypothesis.qmd
         - NHST.qmd
 
-    - part: "모형"
+    - part: "**4부** 모형"
       chapters:
         - models.qmd
         - models_building.qmd
         - models_many.qmd
         - models_case_study.qmd
 
-    - part: "프로그래밍"
+    - part: "**5부** 프로그래밍"
       chapters:
         - functions.qmd
         - functions_ds.qmd
         - functions_purrr.qmd
 
-    - part: "커뮤니케이션"
+    - part: "**6부** 커뮤니케이션"
       chapters:
         - quarto.qmd
         - map.qmd
 
-    - part: "챗GPT"
+    - part: "**7부** 챗GPT"
       chapters:
         - prompt.qmd
         - langchain.qmd
@@ -74,7 +73,6 @@ book:
         - llm_python.qmd
         - local_llm.qmd
 
-    - part: "-----"
     - references.qmd
 
 format:

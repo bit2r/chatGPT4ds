@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
-
+<meta name="generator" content="quarto-1.5.9">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="이광춘, 신종화">
-
-<title>챗GPT 데이터 과학 - 12&nbsp; 코딩 가설검정</title>
+<title>챗GPT 데이터 과학 – 11&nbsp; 코딩 가설검정</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -77,7 +74,6 @@ div.csl-indent {
   margin-left: 2em;
 }</style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -99,8 +95,7 @@ div.csl-indent {
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -126,12 +121,7 @@ div.csl-indent {
     "search-submit-button-title": "검색",
     "search-label": "검색"
   }
-}</script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -157,32 +147,24 @@ window.Quarto = {
   typesetMath
 };
 </script>
-
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html">데이터 과학</a></li><li class="breadcrumb-item"><a href="./hypothesis.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html"><strong>3부</strong> 데이터 과학</a></li><li class="breadcrumb-item"><a href="./hypothesis.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">챗GPT 데이터 과학</a> 
         <div class="sidebar-tools-main">
@@ -202,260 +184,245 @@ window.Quarto = {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">챗GPT 데이터 과학</span></span></a>
+ <span class="menu-text">서문</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">tidyverse</span></a>
+ <span class="menu-text"><strong>1부</strong> 들어가며</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">소개</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">소개</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./whole_game.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">데이터 과학 맛보기</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">데이터 과학 맛보기</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./penguins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">데이터셋</span></a>
+ <span class="menu-text"><strong>2부</strong> 언어</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./penguins.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">언어</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lang_r.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R 언어</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R 언어</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lang_py.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lang_sql.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">데이터 과학</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="토글 섹션">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text"><strong>3부</strong> 데이터 과학</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simpson.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./basic_stat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">통계</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">통계</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sampling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./hypothesis.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./NHST.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">NHST.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">NHST.html</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">모형</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="토글 섹션">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text"><strong>4부</strong> 모형</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">모형</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_building.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_many.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text">프로그래밍</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="토글 섹션">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text"><strong>5부</strong> 프로그래밍</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text">커뮤니케이션</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="토글 섹션">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text"><strong>6부</strong> 커뮤니케이션</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text">챗GPT</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="토글 섹션">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text"><strong>7부</strong> 챗GPT</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prompt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./langchain.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./local_llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">-----</span></span>
-  </li>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -463,33 +430,29 @@ window.Quarto = {
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">목차</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#computer-age-statistical-inference" id="toc-computer-age-statistical-inference" class="nav-link active" data-scroll-target="#computer-age-statistical-inference"><span class="header-section-number">12.1</span> 통계적 가설검정</a></li>
-  <li><a href="#computer-age-tidyverse-inference" id="toc-computer-age-tidyverse-inference" class="nav-link" data-scroll-target="#computer-age-tidyverse-inference"><span class="header-section-number">12.2</span> tidyverse 가설검정</a></li>
-  <li><a href="#computer-age-statistical-inference-ho-ci" id="toc-computer-age-statistical-inference-ho-ci" class="nav-link" data-scroll-target="#computer-age-statistical-inference-ho-ci"><span class="header-section-number">12.3</span> 가설검정과 신뢰구간</a></li>
-  <li><a href="#mosquitoes-love-beer-drinkers" id="toc-mosquitoes-love-beer-drinkers" class="nav-link" data-scroll-target="#mosquitoes-love-beer-drinkers"><span class="header-section-number">12.4</span> 사례: 맥주와 모기</a>
+<li><a href="#computer-age-statistical-inference" id="toc-computer-age-statistical-inference" class="nav-link active" data-scroll-target="#computer-age-statistical-inference"><span class="header-section-number">11.1</span> 통계적 가설검정</a></li>
+  <li><a href="#computer-age-tidyverse-inference" id="toc-computer-age-tidyverse-inference" class="nav-link" data-scroll-target="#computer-age-tidyverse-inference"><span class="header-section-number">11.2</span> tidyverse 가설검정</a></li>
+  <li><a href="#computer-age-statistical-inference-ho-ci" id="toc-computer-age-statistical-inference-ho-ci" class="nav-link" data-scroll-target="#computer-age-statistical-inference-ho-ci"><span class="header-section-number">11.3</span> 가설검정과 신뢰구간</a></li>
+  <li>
+<a href="#mosquitoes-love-beer-drinkers" id="toc-mosquitoes-love-beer-drinkers" class="nav-link" data-scroll-target="#mosquitoes-love-beer-drinkers"><span class="header-section-number">11.4</span> 사례: 맥주와 모기</a>
   <ul class="collapse">
-  <li><a href="#mosquitoes-love-beer-drinkers-setup" id="toc-mosquitoes-love-beer-drinkers-setup" class="nav-link" data-scroll-target="#mosquitoes-love-beer-drinkers-setup"><span class="header-section-number">12.4.1</span> 가설검정 환경설정</a></li>
-  <li><a href="#mosquitoes-love-beer-drinkers-eda" id="toc-mosquitoes-love-beer-drinkers-eda" class="nav-link" data-scroll-target="#mosquitoes-love-beer-drinkers-eda"><span class="header-section-number">12.4.2</span> 탐색적 데이터 분석</a></li>
-  <li><a href="#mosquitoes-love-beer-drinkers-infer" id="toc-mosquitoes-love-beer-drinkers-infer" class="nav-link" data-scroll-target="#mosquitoes-love-beer-drinkers-infer"><span class="header-section-number">12.4.3</span> 의사결정</a></li>
-  </ul></li>
+<li><a href="#mosquitoes-love-beer-drinkers-setup" id="toc-mosquitoes-love-beer-drinkers-setup" class="nav-link" data-scroll-target="#mosquitoes-love-beer-drinkers-setup"><span class="header-section-number">11.4.1</span> 가설검정 환경설정</a></li>
+  <li><a href="#mosquitoes-love-beer-drinkers-eda" id="toc-mosquitoes-love-beer-drinkers-eda" class="nav-link" data-scroll-target="#mosquitoes-love-beer-drinkers-eda"><span class="header-section-number">11.4.2</span> 탐색적 데이터 분석</a></li>
+  <li><a href="#mosquitoes-love-beer-drinkers-infer" id="toc-mosquitoes-love-beer-drinkers-infer" class="nav-link" data-scroll-target="#mosquitoes-love-beer-drinkers-infer"><span class="header-section-number">11.4.3</span> 의사결정</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/hypothesis.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
+</li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/hypothesis.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html">데이터 과학</a></li><li class="breadcrumb-item"><a href="./hypothesis.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title"><span id="computer-age-inference" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html"><strong>3부</strong> 데이터 과학</a></li><li class="breadcrumb-item"><a href="./hypothesis.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="computer-age-inference" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></h1>
 </div>
 
 
@@ -503,100 +466,89 @@ window.Quarto = {
   
 
 
-</header>
-
-
-<p>통계적 추론은 주로 모수 추정에 대한 품질 해석과 관련된다. 예를 들어, 전통적인 추정 질문은 다음과 같다. “추정한 평균 <span class="math inline">\(\bar{x}\)</span>가 모집단 평균 <span class="math inline">\(\mu\)</span>에 근처에 있다는 것을 얼마나 확신할 수 있는가?” 질문과 구체적인 사항이 설정에 따라 변할 수 있지만, 추정에 대한 토대는 모든 통계학에서 동일하다.</p>
+</header><p>통계적 추론은 주로 모수 추정에 대한 품질 해석과 관련된다. 예를 들어, 전통적인 추정 질문은 다음과 같다. “추정한 평균 <span class="math inline">\(\bar{x}\)</span>가 모집단 평균 <span class="math inline">\(\mu\)</span>에 근처에 있다는 것을 얼마나 확신할 수 있는가?” 질문과 구체적인 사항이 설정에 따라 변할 수 있지만, 추정에 대한 토대는 모든 통계학에서 동일하다.</p>
 <p>컴퓨터가 활발히 사용되기 전에 통계적 검정에 대한 필요성은 과거에도 존재했다. 하지만, 그 당시에는 컴퓨터가 너무 희귀한 자원이고 컴퓨터를 잘 다둘 수 있는 사람도 극도로 적었기 때문에 수학을 바탕으로한 통계적 추론 방법(Analytic Method)이 발달했지만 여전히 진입장벽은 높기만 했다.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p>하지만, 수많은 연구자들과 개발자의 기여로 코딩을 통해서 직관적으로 다양한 통계가설 검정을 할 수 있는 시대가 열리고 있다. <a href="https://cran.r-project.org/web/packages/infer/"><code>infer</code></a> 팩키지에 최근 기능이 많이 추가되고 있어 이에 대한 기대가 크다.</p>
 <p>기본적으로 모집단에 대해 알고자 하는 경우 표본을 추출하여 이를 기반으로 모집단에 대한 추론을 한다. 뽑혀진 표본에 대해서 컴퓨팅 기술을 활용하여 재표본추출을 반복하여 모집단에 대해 추론을 하는 방법에 대해 주로 살펴보자.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/sampling-inference.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1" title="표본추출과 추론"><img src="images/sampling-inference.png" class="img-fluid figure-img" alt="표본추출과 추론"></a></p>
-<figcaption>표본추출과 추론</figcaption>
-</figure>
+<figure class="figure"><p><a href="images/sampling-inference.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="표본추출과 추론"><img src="images/sampling-inference.png" class="img-fluid figure-img" alt="표본추출과 추론"></a></p>
+<figcaption>표본추출과 추론</figcaption></figure>
 </div>
-<section id="computer-age-statistical-inference" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="computer-age-statistical-inference"><span class="header-section-number">12.1</span> 통계적 가설검정</h2>
+<section id="computer-age-statistical-inference" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="computer-age-statistical-inference">
+<span class="header-section-number">11.1</span> 통계적 가설검정</h2>
 <p>통계적 가설 검정(統計的假說檢定, statistical hypothesis test)은 통계적 추측의 하나로서, 모집단 실제의 값이 얼마가 된다는 주장과 관련해, 표본의 정보를 사용해서 가설의 합당성 여부를 판정하는 과정을 의미하는데 이를 위해서 프로세스(Process)와 함께 검정 통계량을 수식으로 나타낼 수 있어야 하고 이를 해석하는 별도의 훈련도 받아야 했고 이 과정에서 상당량의 수학 및 통계학적 지식이 요구된다. <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <ol type="1">
 <li>유의수준의 결정, 귀무가설과 대립가설 설정</li>
 <li>검정통계량의 설정 (예를 들어, t-검정)
 <ul>
 <li><span class="math inline">\(t_{검정통계량} \quad = \quad {\; \overline{X}_1 - \overline{X}_2 \; \over \sqrt{ \; {s_1^2 \over N_1} \; + \; {s_2^2 \over N_2} \quad }}\)</span></li>
-<li>자유도: <span class="math inline">\(\nu \quad  \approx \quad {{\left( \; {s_1^2 \over N_1} \; + \; {s_2^2 \over N_2} \; \right)^2 } \over { \quad {s_1^4 \over N_1^2 \nu_1} \; + \; {s_2^4 \over N_2^2 \nu_2 } \quad }}\)</span></li>
-</ul></li>
+<li>자유도: <span class="math inline">\(\nu \quad  \approx \quad {{\left( \; {s_1^2 \over N_1} \; + \; {s_2^2 \over N_2} \; \right)^2 } \over { \quad {s_1^4 \over N_1^2 \nu_1} \; + \; {s_2^4 \over N_2^2 \nu_2 } \quad }}\)</span>
+</li>
+</ul>
+</li>
 <li>기각역의 설정</li>
 <li>검정통계량 계산</li>
 <li>통계적인 의사결정</li>
 </ol>
 <p>통계적 가설검정(Statistical Testing)은 기존 통계학 전공자의 전유물이었으나, 컴퓨터의 일반화와 누구나 코딩을 할 수 있는 현재(2024-01-21)는 더 이상 기존 통념이 통용되지는 않게 되었다. 특히 <a href="https://www.python.org/">파이썬</a> 진영에서 이런 움직임이 활발하다. 그렇다고 <a href="https://www.r-project.org/">R</a> 진영에서도 기존의 방식을 고수하는 것은 아니다.</p>
-</section>
-<section id="computer-age-tidyverse-inference" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="computer-age-tidyverse-inference"><span class="header-section-number">12.2</span> tidyverse 가설검정</h2>
+</section><section id="computer-age-tidyverse-inference" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="computer-age-tidyverse-inference">
+<span class="header-section-number">11.2</span> tidyverse 가설검정</h2>
 <p>데이터 과학을 이끌어 나가는 있는 R과 파이썬 진영의 현재 주도적인 흐름을 살펴보자. 우선 다소 차이가 있지만, <code>for</code> 반복루프를 이해하고 이를 코드로 구현할 수만 있다면 컴퓨터를 활용한 가설검정이 가능한 것은 사실이다. 하지만, 2011년 Allen Downey 교수가 주장했던 것처럼 오랜동안 검정된 해석학적 방법(Analytic Method)에 대한 교차검정하는 방식으로 활용하는 것이 추천된다. <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/infer-r-vs-python.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2" title="R과 파이썬 검정 가설검정 프레임워크 비교"><img src="images/infer-r-vs-python.png" class="img-fluid figure-img" alt="R과 파이썬 검정 가설검정 프레임워크 비교"></a></p>
-<figcaption>R과 파이썬 검정 가설검정 프레임워크 비교</figcaption>
-</figure>
+<figure class="figure"><p><a href="images/infer-r-vs-python.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="R과 파이썬 검정 가설검정 프레임워크 비교"><img src="images/infer-r-vs-python.png" class="img-fluid figure-img" alt="R과 파이썬 검정 가설검정 프레임워크 비교"></a></p>
+<figcaption>R과 파이썬 검정 가설검정 프레임워크 비교</figcaption></figure>
 </div>
 <p>코딩기반 가설검정은 우선 데이터로부터 시작된다. 데이터를 컴퓨터의 기능을 활용하여 모의실험 표본을 생성하고 나서 귀무가설(<span class="math inline">\(H_0\)</span>) 모형에서 검정통계량을 추출하여 이를 바탕으로 <span class="math inline">\(p-값\)</span>을 계산하여 의사결정을 추진한다.</p>
 <p>통계검정에도 <code>tidyverse</code>를 반영하고 <code>Allen Downey</code> 교수가 주창한 통계검정 프레임워크를 도입하여 극단적으로 말하며 딥러닝 모형이 거의 모든 통계, 기계학습 모형을 통일해 나가듯이 다양한 통계검정에 대해서도 비숫한 위치를 점할 것으로 예측된다.</p>
-</section>
-<section id="computer-age-statistical-inference-ho-ci" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="computer-age-statistical-inference-ho-ci"><span class="header-section-number">12.3</span> 가설검정과 신뢰구간</h2>
+</section><section id="computer-age-statistical-inference-ho-ci" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="computer-age-statistical-inference-ho-ci">
+<span class="header-section-number">11.3</span> 가설검정과 신뢰구간</h2>
 <p><code>infer</code> 팩키지는 <code>tidyverse</code> 철학(?)에 따라 가설검정과 신뢰구간을 추정하는 목적으로 개발되었다. 크게 통계적 추론은 가설검정과 신뢰구간 추정이 주된 작업이다. 이를 위해서 5가지 동사(verb)를 새로 익혀야 한다.</p>
 <ul>
-<li><code>specify()</code></li>
-<li><code>hypothesize()</code></li>
-<li><code>generate()</code></li>
-<li><code>calculate()</code></li>
-<li><code>visualize()</code></li>
+<li><code><a href="https://infer.tidymodels.org/reference/specify.html">specify()</a></code></li>
+<li><code><a href="https://infer.tidymodels.org/reference/hypothesize.html">hypothesize()</a></code></li>
+<li><code><a href="https://infer.tidymodels.org/reference/generate.html">generate()</a></code></li>
+<li><code><a href="https://infer.tidymodels.org/reference/calculate.html">calculate()</a></code></li>
+<li><code><a href="https://infer.tidymodels.org/reference/visualize.html">visualize()</a></code></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/infer_framework.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3" title="가설검정과 신뢰구간"><img src="images/infer_framework.png" class="img-fluid figure-img" alt="가설검정과 신뢰구간"></a></p>
-<figcaption>가설검정과 신뢰구간</figcaption>
-</figure>
+<figure class="figure"><p><a href="images/infer_framework.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="가설검정과 신뢰구간"><img src="images/infer_framework.png" class="img-fluid figure-img" alt="가설검정과 신뢰구간"></a></p>
+<figcaption>가설검정과 신뢰구간</figcaption></figure>
 </div>
-</section>
-<section id="mosquitoes-love-beer-drinkers" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="mosquitoes-love-beer-drinkers"><span class="header-section-number">12.4</span> 사례: 맥주와 모기</h2>
-<p>맥주를 마시는 사람이 말라리아 모기에게 매력적으로 보여 더 잘 물리는가? 라는 흥미로운 논문이 발표되었다. <span class="citation" data-cites="lefevre2010beer">(<a href="#ref-lefevre2010beer" role="doc-biblioref">Lefèvre 기타 2010</a>)</span> 이 연구는 맥주를 마신 후 사람의 냄새 (호흡 및 피부 방출 냄새)가 아노펠레스 감비아(Anopheles gambiae, 아프리카 주요 말라리아 매개체)에게 어떤 영향을 미치는지 조사하였다. 맥주를 마신 사람들의 몸 냄새는 모기의 활성화 (이륙 및 상향 풍속 비행에 참여하는 모기의 비율)와 방향성 (사람의 냄새를 향해 비행하는 모기의 비율)을 증가시켰다. 물을 마신 경우에는 사람이 모기에게 끌리는 것에 영향을 미치지 않았다.</p>
-<section id="mosquitoes-love-beer-drinkers-setup" class="level3" data-number="12.4.1">
-<h3 data-number="12.4.1" class="anchored" data-anchor-id="mosquitoes-love-beer-drinkers-setup"><span class="header-section-number">12.4.1</span> 가설검정 환경설정</h3>
+</section><section id="mosquitoes-love-beer-drinkers" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="mosquitoes-love-beer-drinkers">
+<span class="header-section-number">11.4</span> 사례: 맥주와 모기</h2>
+<p>맥주를 마시는 사람이 말라리아 모기에게 매력적으로 보여 더 잘 물리는가? 라는 흥미로운 논문이 발표되었다. <span class="citation" data-cites="lefevre2010beer">(<a href="references.html#ref-lefevre2010beer" role="doc-biblioref">Lefèvre 기타 2010</a>)</span> 이 연구는 맥주를 마신 후 사람의 냄새 (호흡 및 피부 방출 냄새)가 아노펠레스 감비아(Anopheles gambiae, 아프리카 주요 말라리아 매개체)에게 어떤 영향을 미치는지 조사하였다. 맥주를 마신 사람들의 몸 냄새는 모기의 활성화 (이륙 및 상향 풍속 비행에 참여하는 모기의 비율)와 방향성 (사람의 냄새를 향해 비행하는 모기의 비율)을 증가시켰다. 물을 마신 경우에는 사람이 모기에게 끌리는 것에 영향을 미치지 않았다.</p>
+<section id="mosquitoes-love-beer-drinkers-setup" class="level3" data-number="11.4.1"><h3 data-number="11.4.1" class="anchored" data-anchor-id="mosquitoes-love-beer-drinkers-setup">
+<span class="header-section-number">11.4.1</span> 가설검정 환경설정</h3>
 <p>데이터 전처리와 시각화, 한글설정을 위한 팩키지를 준비한다. 특히 <code>infer</code> 코딩기반 가설검정을 위해 필수적인 팩키지로 활용하는데 기본적인 사용방법은 <code>mtcars</code>, <code>flights</code> 데이터를 활용한 사례를 살펴본다.</p>
 <ul>
 <li><a href="https://cran.r-project.org/web/packages/infer/vignettes/flights_examples.html"><code>flights</code> 데이터 소품문</a></li>
 <li><a href="https://cran.r-project.org/web/packages/infer/vignettes/mtcars_examples.html"><code>mtcars</code> 데이터 소품문</a></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 0. 환경설정 ----------</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(infer)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(extrafont)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">loadfonts</span>()</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 데이터 가져오기 -----</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># beer_dat &lt;- read_csv("https://raw.githubusercontent.com/aloy/m107/master/data/mosquitos.csv")</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>beer_dat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/mosquitos.csv"</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>beer_df <span class="ot">&lt;-</span> beer_dat <span class="sc">%&gt;%</span> </span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">treatment =</span> <span class="fu">factor</span>(treatment, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"beer"</span>, <span class="st">"water"</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"맥주"</span>, <span class="st">"맹물"</span>))) </span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 0. 환경설정 ----------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidymodels/infer">infer</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/skimr/">skimr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">gridExtra</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://sjmgarnier.github.io/viridis/">viridis</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/wch/extrafont">extrafont</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/extrafont/man/loadfonts.html">loadfonts</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 1. 데이터 가져오기 -----</span></span>
+<span></span>
+<span><span class="co"># beer_dat &lt;- read_csv("https://raw.githubusercontent.com/aloy/m107/master/data/mosquitos.csv")</span></span>
+<span><span class="va">beer_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/mosquitos.csv"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">beer_df</span> <span class="op">&lt;-</span> <span class="va">beer_dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>treatment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">treatment</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"beer"</span>, <span class="st">"water"</span><span class="op">)</span>, labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"맥주"</span>, <span class="st">"맹물"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> </span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="mosquitoes-love-beer-drinkers-eda" class="level3" data-number="12.4.2">
-<h3 data-number="12.4.2" class="anchored" data-anchor-id="mosquitoes-love-beer-drinkers-eda"><span class="header-section-number">12.4.2</span> 탐색적 데이터 분석</h3>
+</section><section id="mosquitoes-love-beer-drinkers-eda" class="level3" data-number="11.4.2"><h3 data-number="11.4.2" class="anchored" data-anchor-id="mosquitoes-love-beer-drinkers-eda">
+<span class="header-section-number">11.4.2</span> 탐색적 데이터 분석</h3>
 <p>탐색적 데이터 분석을 통해서 말라리아 모기가 맥주를 마신 사람과 맹물을 마신 사람 어디에 더 많이 접근을 하는지 개체수 차이를 살펴본다. 평균적으로 4.38 모기개체수 만큼 차이가 나는데 이런 차이가 우연에 의한 것인지 아니면 맥주가 더 모기에게 섹시하게 반응하는 역할을 하기 때문인지 살펴본다.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 탐색적 데이터 분석 -----</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 2.1. 전체 데이터 </span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(beer_df)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 2. 탐색적 데이터 분석 -----</span></span>
+<span><span class="co">## 2.1. 전체 데이터 </span></span>
+<span><span class="fu"><a href="https://docs.ropensci.org/skimr/reference/skim.html">skim</a></span><span class="op">(</span><span class="va">beer_df</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <caption>Data summary</caption>
@@ -649,26 +601,22 @@ window.Quarto = {
 <col style="width: 12%">
 <col style="width: 25%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">skim_variable</th>
 <th style="text-align: right;">n_missing</th>
 <th style="text-align: right;">complete_rate</th>
 <th style="text-align: left;">ordered</th>
 <th style="text-align: right;">n_unique</th>
 <th style="text-align: left;">top_counts</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
+</tr></thead>
+<tbody><tr class="odd">
 <td style="text-align: left;">treatment</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: left;">FALSE</td>
 <td style="text-align: right;">2</td>
 <td style="text-align: left;">맥주: 25, 맹물: 18</td>
-</tr>
-</tbody>
+</tr></tbody>
 </table>
 <p><strong>Variable type: numeric</strong></p>
 <table class="table table-sm table-striped small">
@@ -685,8 +633,7 @@ window.Quarto = {
 <col style="width: 6%">
 <col style="width: 8%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">skim_variable</th>
 <th style="text-align: right;">n_missing</th>
 <th style="text-align: right;">complete_rate</th>
@@ -698,10 +645,8 @@ window.Quarto = {
 <th style="text-align: right;">p75</th>
 <th style="text-align: right;">p100</th>
 <th style="text-align: left;">hist</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
+</tr></thead>
+<tbody><tr class="odd">
 <td style="text-align: left;">count</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1</td>
@@ -713,21 +658,20 @@ window.Quarto = {
 <td style="text-align: right;">24</td>
 <td style="text-align: right;">31</td>
 <td style="text-align: left;">▂▃▇▅▂</td>
-</tr>
-</tbody>
+</tr></tbody>
 </table>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 2.2. 맥주와 맹물 투여 집단 비교</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>beer_df <span class="sc">%&gt;%</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(treatment) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(최소 <span class="ot">=</span> <span class="fu">min</span>(count),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                분위수<span class="at">_25 =</span> <span class="fu">quantile</span>(count, <span class="fl">0.25</span>),</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                평균 <span class="ot">=</span> <span class="fu">mean</span>(count),</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                중위수 <span class="ot">=</span> <span class="fu">median</span>(count),</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                분위수<span class="at">_75 =</span> <span class="fu">quantile</span>(count, <span class="fl">0.75</span>),</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                표준편차 <span class="ot">=</span> <span class="fu">sd</span>(count),</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                중위절대편차 <span class="ot">=</span> <span class="fu">mad</span>(count)) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(맥주맹물차이 <span class="ot">=</span> <span class="fu">max</span>(평균) <span class="sc">-</span> <span class="fu">min</span>(평균))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## 2.2. 맥주와 맹물 투여 집단 비교</span></span>
+<span><span class="va">beer_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>최소 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span>,</span>
+<span>                분위수_25 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">count</span>, <span class="fl">0.25</span><span class="op">)</span>,</span>
+<span>                평균 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span>,</span>
+<span>                중위수 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span>,</span>
+<span>                분위수_75 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">count</span>, <span class="fl">0.75</span><span class="op">)</span>,</span>
+<span>                표준편차 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span>,</span>
+<span>                중위절대편차 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/mad.html">mad</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>맥주맹물차이 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">평균</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">평균</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 9
   treatment  최소 분위수_25  평균 중위수 분위수_75 표준편차 중위절대편차
@@ -736,46 +680,43 @@ window.Quarto = {
 2 맹물         12      16.5  19.2     20        22     3.67         2.97
 # ℹ 1 more variable: 맥주맹물차이 &lt;dbl&gt;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 2.3. 맥주와 맹물 투여 집단 비교 시각화</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>beer_density_g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> beer_df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> count, <span class="at">fill=</span>treatment)) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..count..), <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">40</span>)) <span class="sc">+</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>(<span class="at">base_family=</span><span class="st">"NanumGothic"</span>) <span class="sc">+</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"맥주를 마시면 모기에게 섹시하게 보일까라고 쓰고 잘 물릴까라고 읽는다."</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">x=</span><span class="st">"채집된 모기 개체수"</span>, <span class="at">y=</span><span class="st">"빈도수"</span>, <span class="at">fill=</span><span class="st">"실험처리(treatment): "</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>beer_boxplot_g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> beer_df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> treatment, <span class="at">y =</span> count, <span class="at">fill=</span>treatment)) <span class="sc">+</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>(<span class="at">base_family=</span><span class="st">"NanumGothic"</span>) <span class="sc">+</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span><span class="st">""</span>,</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">y=</span><span class="st">"채집된 모기 개체수"</span>, <span class="at">x=</span><span class="st">"실험처리"</span>, <span class="at">fill=</span><span class="st">"실험처리(treatment): "</span>)</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(beer_density_g, beer_boxplot_g, <span class="at">nrow=</span><span class="dv">2</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## 2.3. 맥주와 맹물 투여 집단 비교 시각화</span></span>
+<span></span>
+<span><span class="va">beer_density_g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">beer_df</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">count</span>, fill<span class="op">=</span><span class="va">treatment</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">..count..</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>limits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">40</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://sjmgarnier.github.io/viridis/reference/scale_viridis.html">scale_fill_viridis</a></span><span class="op">(</span>discrete <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span>base_family<span class="op">=</span><span class="st">"NanumGothic"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"맥주를 마시면 모기에게 섹시하게 보일까라고 쓰고 잘 물릴까라고 읽는다."</span>,</span>
+<span>        x<span class="op">=</span><span class="st">"채집된 모기 개체수"</span>, y<span class="op">=</span><span class="st">"빈도수"</span>, fill<span class="op">=</span><span class="st">"실험처리(treatment): "</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">beer_boxplot_g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">beer_df</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">count</span>, fill<span class="op">=</span><span class="va">treatment</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://sjmgarnier.github.io/viridis/reference/scale_viridis.html">scale_fill_viridis</a></span><span class="op">(</span>discrete <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span>base_family<span class="op">=</span><span class="st">"NanumGothic"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">""</span>,</span>
+<span>         y<span class="op">=</span><span class="st">"채집된 모기 개체수"</span>, x<span class="op">=</span><span class="st">"실험처리"</span>, fill<span class="op">=</span><span class="st">"실험처리(treatment): "</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html">grid.arrange</a></span><span class="op">(</span><span class="va">beer_density_g</span>, <span class="va">beer_boxplot_g</span>, nrow<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><a href="hypothesis_files/figure-html/mosquitoes-love-beer-drinkers-eda-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="hypothesis_files/figure-html/mosquitoes-love-beer-drinkers-eda-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="hypothesis_files/figure-html/mosquitoes-love-beer-drinkers-eda-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="hypothesis_files/figure-html/mosquitoes-love-beer-drinkers-eda-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="mosquitoes-love-beer-drinkers-infer" class="level3" data-number="12.4.3">
-<h3 data-number="12.4.3" class="anchored" data-anchor-id="mosquitoes-love-beer-drinkers-infer"><span class="header-section-number">12.4.3</span> 의사결정</h3>
+</section><section id="mosquitoes-love-beer-drinkers-infer" class="level3" data-number="11.4.3"><h3 data-number="11.4.3" class="anchored" data-anchor-id="mosquitoes-love-beer-drinkers-infer">
+<span class="header-section-number">11.4.3</span> 의사결정</h3>
 <p>맥주를 마신 집단과 맹물을 마신 집단간에 평균적으로 4.38 모기개체수 만큼 차이가 나는데 이런 차이가 유의적인지 전통적인 t-검정과 코딩기반 모의실험을 통해서 살펴보자.</p>
-<section id="mosquitoes-love-beer-drinkers-infer-ttest" class="level4">
-<h4 class="anchored" data-anchor-id="mosquitoes-love-beer-drinkers-infer-ttest">전통 t-검정</h4>
+<section id="mosquitoes-love-beer-drinkers-infer-ttest" class="level4"><h4 class="anchored" data-anchor-id="mosquitoes-love-beer-drinkers-infer-ttest">전통 t-검정</h4>
 <p>t-검정 결과 유의적인 차이가 나타나느 것으로 나타난다. p-값이 무척이나 작게 나온다.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. 통계 검정 -----</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 3.1. 전통적인 해석적인 방법 (t-검정)</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(count <span class="sc">~</span> treatment, beer_df, <span class="at">null =</span> <span class="dv">0</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>, <span class="at">alternative=</span><span class="st">"greater"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 3. 통계 검정 -----</span></span>
+<span><span class="co">## 3.1. 전통적인 해석적인 방법 (t-검정)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">count</span> <span class="op">~</span> <span class="va">treatment</span>, <span class="va">beer_df</span>, null <span class="op">=</span> <span class="fl">0</span>, var.equal <span class="op">=</span> <span class="cn">TRUE</span>, alternative<span class="op">=</span><span class="st">"greater"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Two Sample t-test
@@ -790,9 +731,7 @@ mean in group 맥주 mean in group 맹물
           23.60000           19.22222 </code></pre>
 </div>
 </div>
-</section>
-<section id="mosquitoes-love-beer-drinkers-infer-computer" class="level4">
-<h4 class="anchored" data-anchor-id="mosquitoes-love-beer-drinkers-infer-computer">코딩기반 t-검정</h4>
+</section><section id="mosquitoes-love-beer-drinkers-infer-computer" class="level4"><h4 class="anchored" data-anchor-id="mosquitoes-love-beer-drinkers-infer-computer">코딩기반 t-검정</h4>
 <p>코딩기반 t-검정은 다음 절차를 통해 준비한다.</p>
 <ol type="1">
 <li>코딩기반 t-검정을 수행할 경우 <code>beer_df</code>가 <span class="math inline">\(\delta^*\)</span>에 해당되어 데이터에서 사전에 계산해 놓는다.</li>
@@ -804,84 +743,70 @@ mean in group 맥주 mean in group 맹물
 <p>그리고 나서 <code>p-값</code>, 95% 신뢰구간을 모의실험결과에서 단순히 세어서 정리하면 된다.</p>
 <p>마지막으로 시각적으로 한번 더 확인한다. 즉, 4.38번 더 물리는 것은 극히 드물게 일어나는 사례로 맥주를 마시면 모기에 더 잘 물리게 된다고 볼 수 있다.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 3.2. `infer` 팩키지 -----</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="do">### 3.2.1. 데이터에서 두 집단 간 차이 산출</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>beer_diff <span class="ot">&lt;-</span> beer_df <span class="sc">%&gt;%</span> </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(treatment) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(count)) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="fu">abs</span>(<span class="fu">diff</span>(mean))) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    pull</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="do">### 3.2.2. 귀무가설 모형에서 모의실험을 통해서 통계량 산출</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>null_model <span class="ot">&lt;-</span> beer_df <span class="sc">%&gt;%</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">specify</span>(count <span class="sc">~</span> treatment) <span class="sc">%&gt;%</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"맥주"</span>, <span class="st">"맹물"</span>))</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="do">### 3.2.3. p-갑과 95% 신뢰구간: 백분위수(Percentile) 방법</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>null_model <span class="sc">%&gt;%</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">p_value =</span> <span class="fu">mean</span>(stat <span class="sc">&gt;</span> beer_diff))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## 3.2. `infer` 팩키지 -----</span></span>
+<span></span>
+<span><span class="co">### 3.2.1. 데이터에서 두 집단 간 차이 산출</span></span>
+<span><span class="va">beer_diff</span> <span class="op">&lt;-</span> <span class="va">beer_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="va">mean</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="va">pull</span></span>
+<span></span>
+<span><span class="co">### 3.2.2. 귀무가설 모형에서 모의실험을 통해서 통계량 산출</span></span>
+<span><span class="va">null_model</span> <span class="op">&lt;-</span> <span class="va">beer_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://infer.tidymodels.org/reference/specify.html">specify</a></span><span class="op">(</span><span class="va">count</span> <span class="op">~</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://infer.tidymodels.org/reference/hypothesize.html">hypothesize</a></span><span class="op">(</span>null <span class="op">=</span> <span class="st">"independence"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://infer.tidymodels.org/reference/generate.html">generate</a></span><span class="op">(</span>reps <span class="op">=</span> <span class="fl">1000</span>, type <span class="op">=</span> <span class="st">"permute"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://infer.tidymodels.org/reference/calculate.html">calculate</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"diff in means"</span>, order <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"맥주"</span>, <span class="st">"맹물"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### 3.2.3. p-갑과 95% 신뢰구간: 백분위수(Percentile) 방법</span></span>
+<span><span class="va">null_model</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>p_value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">stat</span> <span class="op">&gt;</span> <span class="va">beer_diff</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   p_value
     &lt;dbl&gt;
 1   0.002</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>null_model <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">l =</span> <span class="fu">quantile</span>(stat, <span class="fl">0.025</span>),</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">u =</span> <span class="fu">quantile</span>(stat, <span class="fl">0.975</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">null_model</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">stat</span>, <span class="fl">0.025</span><span class="op">)</span>,</span>
+<span>              u <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">stat</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
       l     u
   &lt;dbl&gt; &lt;dbl&gt;
 1 -2.60  2.75</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">### 3.2.4. 시각화</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(null_model, <span class="fu">aes</span>(<span class="at">x =</span> stat, <span class="at">fill=</span><span class="st">"gray75"</span>)) <span class="sc">+</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y=</span>..count..), <span class="at">alpha=</span><span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> beer_diff, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size=</span><span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>(<span class="at">base_family=</span><span class="st">"NanumGothic"</span>) <span class="sc">+</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"맥주를 마시고 4.38번 더 모기에 물린다면...  "</span>,</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">x=</span><span class="st">"맥주와 맹물 개체수 차이"</span>, <span class="at">y=</span><span class="st">"빈도수"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### 3.2.4. 시각화</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">null_model</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">stat</span>, fill<span class="op">=</span><span class="st">"gray75"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">..count..</span><span class="op">)</span>, alpha<span class="op">=</span><span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">beer_diff</span>, color <span class="op">=</span> <span class="st">"red"</span>, size<span class="op">=</span><span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>limits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://sjmgarnier.github.io/viridis/reference/scale_viridis.html">scale_fill_viridis</a></span><span class="op">(</span>discrete <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span>base_family<span class="op">=</span><span class="st">"NanumGothic"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"맥주를 마시고 4.38번 더 모기에 물린다면...  "</span>,</span>
+<span>         x<span class="op">=</span><span class="st">"맥주와 맹물 개체수 차이"</span>, y<span class="op">=</span><span class="st">"빈도수"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><a href="hypothesis_files/figure-html/mosquitoes-love-beer-drinkers-infer-computer-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="hypothesis_files/figure-html/mosquitoes-love-beer-drinkers-infer-computer-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="hypothesis_files/figure-html/mosquitoes-love-beer-drinkers-infer-computer-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="hypothesis_files/figure-html/mosquitoes-love-beer-drinkers-infer-computer-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
 </div>
 
 
-<div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">표본추출과 추론</span>
-<span class="glightbox-desc lightbox-desc-2">R과 파이썬 검정 가설검정 프레임워크 비교</span>
-<span class="glightbox-desc lightbox-desc-3">가설검정과 신뢰구간</span>
-</div>
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-lefevre2010beer" class="csl-entry" role="listitem">
 Lefèvre, Thierry, Louis-Clément Gouagna, Kounbobr Roch Dabiré, Eric Elguero, Didier Fontenille, François Renaud, Carlo Costantini, 와/과 Frédéric Thomas. 2010. <span>“Beer consumption increases human attractiveness to malaria mosquitoes”</span>. <em>PloS one</em> 5 (3): e9546.
 </div>
 </div>
-</section>
-</section>
-</section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
+</section></section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
 <li id="fn1"><p><a href="http://allendowney.blogspot.kr/2016/06/there-is-still-only-one-test.html">Allen Downey (2016), There is still only one test</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p><a href="https://ko.wikipedia.org/wiki/%EA%B0%80%EC%84%A4_%EA%B2%80%EC%A0%95">위키 백과 - 가설 검정</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p><a href="https://cran.r-project.org/web/packages/tidyverse/vignettes/manifesto.html">Hadley Wickham(2017-11-13), The tidy tools manifesto</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1267,22 +1192,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./sampling.html" class="pagination-link  aria-label=" &lt;span="" 추출&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">표본 추출</span></span>
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./sampling.html" class="pagination-link" aria-label="표본 추출">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">표본 추출</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./NHST.html" class="pagination-link" aria-label="<span class='chapter-number'>13</span>&nbsp; <span class='chapter-title'>NHST.html</span>">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">NHST.html</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./NHST.html" class="pagination-link" aria-label="NHST.html">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">NHST.html</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>이광춘, 신종화, 유충현, 홍성학이 ’챗GPT 데이터 사이언스’를 저작했습니다.</p>
 </div>   
@@ -1293,8 +1215,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</p>
 </div>
   </div>
-</footer>
-<script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom","selector":".lightbox"});
+</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","loop":false,"openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
@@ -1319,8 +1240,6 @@ window.onload = () => {
 
 };
           </script>
-
-
 
 
 </body></html>

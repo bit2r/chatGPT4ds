@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.5.9">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘, 신종화">
-<title>챗GPT 데이터 과학 - 22&nbsp; 지도 공간정보</title>
+<title>챗GPT 데이터 과학 – 21&nbsp; 지도 공간정보</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -155,7 +155,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./quarto.html">커뮤니케이션</a></li><li class="breadcrumb-item"><a href="./map.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">지도 공간정보</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./quarto.html"><strong>6부</strong> 커뮤니케이션</a></li><li class="breadcrumb-item"><a href="./map.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">지도 공간정보</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -187,13 +187,13 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">챗GPT 데이터 과학</span></span></a>
+ <span class="menu-text">서문</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">tidyverse</span></a>
+ <span class="menu-text"><strong>1부</strong> 들어가며</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -202,13 +202,19 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">소개</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">소개</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./whole_game.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">데이터 과학 맛보기</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">데이터 과학 맛보기</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./penguins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
   </div>
 </li>
       </ul>
@@ -216,7 +222,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">데이터셋</span></a>
+ <span class="menu-text"><strong>2부</strong> 언어</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -224,8 +230,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./penguins.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
+  <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lang_r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R 언어</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lang_py.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lang_sql.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
   </div>
 </li>
       </ul>
@@ -233,7 +257,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">언어</span></a>
+ <span class="menu-text"><strong>3부</strong> 데이터 과학</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -241,26 +265,32 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
+  <a href="./simpson.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lang_r.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R 언어</span></span></a>
+  <a href="./basic_stat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">통계</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lang_py.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
+  <a href="./sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lang_sql.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
+  <a href="./hypothesis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./NHST.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">NHST.html</span></span></a>
   </div>
 </li>
       </ul>
@@ -268,7 +298,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">데이터 과학</span></a>
+ <span class="menu-text"><strong>4부</strong> 모형</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -276,32 +306,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./simpson.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
+  <a href="./models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./basic_stat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">통계</span></span></a>
+  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./sampling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
+  <a href="./models_many.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hypothesis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./NHST.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">NHST.html</span></span></a>
+  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
   </div>
 </li>
       </ul>
@@ -309,7 +333,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">모형</span></a>
+ <span class="menu-text"><strong>5부</strong> 프로그래밍</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -317,26 +341,20 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">모형</span></span></a>
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
+  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models_many.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
+  <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
   </div>
 </li>
       </ul>
@@ -344,7 +362,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text">프로그래밍</span></a>
+ <span class="menu-text"><strong>6부</strong> 커뮤니케이션</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -352,20 +370,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
+  <a href="./map.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
   </div>
 </li>
       </ul>
@@ -373,7 +385,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text">커뮤니케이션</span></a>
+ <span class="menu-text"><strong>7부</strong> 챗GPT</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -381,63 +393,36 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./map.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text">챗GPT</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="토글 섹션">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./prompt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./langchain.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./local_llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
   </div>
 </li>
       </ul>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">-----</span></span>
-  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -452,16 +437,16 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-<li><a href="#%EB%8F%84%EA%B5%AC%EC%9D%98-%EC%A7%84%ED%99%94" id="toc-도구의-진화" class="nav-link active" data-scroll-target="#%EB%8F%84%EA%B5%AC%EC%9D%98-%EC%A7%84%ED%99%94"><span class="header-section-number">22.1</span> 도구의 진화</a></li>
-  <li><a href="#gis-%EC%83%9D%ED%83%9C%EA%B3%84" id="toc-gis-생태계" class="nav-link" data-scroll-target="#gis-%EC%83%9D%ED%83%9C%EA%B3%84"><span class="header-section-number">22.2</span> GIS 생태계</a></li>
-  <li><a href="#%EC%82%AC%EB%A1%80" id="toc-사례" class="nav-link" data-scroll-target="#%EC%82%AC%EB%A1%80"><span class="header-section-number">22.3</span> 사례</a></li>
-  <li><a href="#%EB%A7%88%EB%AC%B4%EB%A6%AC" id="toc-마무리" class="nav-link" data-scroll-target="#%EB%A7%88%EB%AC%B4%EB%A6%AC"><span class="header-section-number">22.4</span> 마무리</a></li>
+<li><a href="#%EB%8F%84%EA%B5%AC%EC%9D%98-%EC%A7%84%ED%99%94" id="toc-도구의-진화" class="nav-link active" data-scroll-target="#%EB%8F%84%EA%B5%AC%EC%9D%98-%EC%A7%84%ED%99%94"><span class="header-section-number">21.1</span> 도구의 진화</a></li>
+  <li><a href="#gis-%EC%83%9D%ED%83%9C%EA%B3%84" id="toc-gis-생태계" class="nav-link" data-scroll-target="#gis-%EC%83%9D%ED%83%9C%EA%B3%84"><span class="header-section-number">21.2</span> GIS 생태계</a></li>
+  <li><a href="#%EC%82%AC%EB%A1%80" id="toc-사례" class="nav-link" data-scroll-target="#%EC%82%AC%EB%A1%80"><span class="header-section-number">21.3</span> 사례</a></li>
+  <li><a href="#%EB%A7%88%EB%AC%B4%EB%A6%AC" id="toc-마무리" class="nav-link" data-scroll-target="#%EB%A7%88%EB%AC%B4%EB%A6%AC"><span class="header-section-number">21.4</span> 마무리</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/map.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./quarto.html">커뮤니케이션</a></li><li class="breadcrumb-item"><a href="./map.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">지도 공간정보</span></a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./quarto.html"><strong>6부</strong> 커뮤니케이션</a></li><li class="breadcrumb-item"><a href="./map.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">지도 공간정보</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title">
-<span class="chapter-number">22</span>&nbsp; <span class="chapter-title">지도 공간정보</span>
+<span class="chapter-number">21</span>&nbsp; <span class="chapter-title">지도 공간정보</span>
 </h1>
 </div>
 
@@ -510,36 +495,36 @@ window.Quarto = {
 <p>먼저 좌표계를 살펴보자. 지도 자체가 불가피하게 왜곡된 현실을 시각적으로 표현하기 때문에 ‘현실의 축소판’(Maps are scale models of reality)이라고 할 수 있다. 예를 들어, 사과 껍질을 벗겨 펼친 것처럼, 평면화시켜 지도를 제작한다. 특히, <strong>지리 좌표계(Geographic Coordinate System)</strong>와 <strong>투영 좌표계(Projected Coordinate System)</strong>는 지도 작성과 공간 분석에서 중요한 개념이다. 간단히 요약하면, 지리 좌표계는 정확한 위치 정보를 제공하는 반면, 투영 좌표계는 거리와 면적 측정에 더 적합하다. 지리 좌표계는 지구상 위치를 설명하며, 지구가 둥글기 때문에 주로 각도 단위로 측정되고, 기준점에 상관없이 위치가 달라지지 않으므로 절대 좌표계다. 투영 좌표계는 지리 좌표계를 평면화한 것으로, 투영 좌표계를 사용할 경우 직선을 이용해 거리를 측정할 수 있어, 토지 이용 계획, 건물 배치, 거리 측정 등에서 유용하다.</p>
 <p>다음으로 지도학의 대표적인 파일 형식을 살펴보자. <strong>지도학(Cartography)</strong>은 지도를 작성하는 중요한 실무분야로 과거 벡터 데이터 형식으로 대표적인 <code>Shapefile</code> 파일을 통해 점, 다각형, 선으로 지리적 정보를 표현했다면, GIS 분야에 오픈소스 소프트웨어 문화가 확산되면서 <code>Geopackage</code>, <code>GeoJSON</code>, <code>KML</code>과 같은 다른 파일형식도 인기를 얻고 있다. GIS 데이터는 지도 뿐만 아니라 R 혹은 파이썬 프로그래밍 언어를 활용하여 다른 형태의 (비)정형 데이터와 결합한 교차분석이 일반화되고 있다.</p>
 <p>전통적인 <strong>벡터(Vector)</strong> <code>Shapefile</code> 파일과 함께 <strong>래스터(Raster)</strong> 데이터는 GIS에서 큰 축을 담당하는 대표적인 데이터 형식이다. 벡터 데이터가 점, 선, 다각형 등의 기하학적 형태로 주로 경계선, 위치 정보 등을 정확하게 표현할 때 사용되는 반면, 래스터 데이터는 픽셀이나 셀 배열로 정보를 표현한다는 점에서 차이가 난다. 각 픽셀은 고유값을 가지며, 색상, 높이, 밀도 등 다양한 형태 정보를 표현하는데 용이하다.</p>
-<p>GIS에서 계층(레이어, Layer)별로 나눠 데이터를 표현하고, 이를 결합하여 공간정보 지도형태 산출물을 얻는다. 한 구획의 토지(parcle), 공간 정보를 점, 선, 다각형 같은 벡터 데이터로 표현하고 비공간 정보는 소유권, 토지 이용, 구역 분류, 평가 가치 등 다양한 속성(칼럼) 데이터프레임과 결합하여 작업한다. <a href="#fig-layers" class="quarto-xref">그림&nbsp;<span>22.1</span></a> 에 실제 세상이 벡터와 래스터 데이터로 표현하는 사례가 제시되어 있다.</p>
+<p>GIS에서 계층(레이어, Layer)별로 나눠 데이터를 표현하고, 이를 결합하여 공간정보 지도형태 산출물을 얻는다. 한 구획의 토지(parcle), 공간 정보를 점, 선, 다각형 같은 벡터 데이터로 표현하고 비공간 정보는 소유권, 토지 이용, 구역 분류, 평가 가치 등 다양한 속성(칼럼) 데이터프레임과 결합하여 작업한다. <a href="#fig-layers" class="quarto-xref">그림&nbsp;<span>21.1</span></a> 에 실제 세상이 벡터와 래스터 데이터로 표현하는 사례가 제시되어 있다.</p>
 <div id="fig-layers" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-layers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/gis_layers.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/gis_layers.jpg" class="img-fluid figure-img"></a>
+<a href="images/gis_layers.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="그림&nbsp;21.1: GIS 벡터와 래스터 계층, 출처: http://gis.sbcounty.gov/"><img src="images/gis_layers.jpg" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-layers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;22.1: GIS 벡터와 래스터 계층, 출처: http://gis.sbcounty.gov/
+그림&nbsp;21.1: GIS 벡터와 래스터 계층, 출처: http://gis.sbcounty.gov/
 </figcaption></figure>
 </div>
-<section id="도구의-진화" class="level2" data-number="22.1"><h2 data-number="22.1" class="anchored" data-anchor-id="도구의-진화">
-<span class="header-section-number">22.1</span> 도구의 진화</h2>
+<section id="도구의-진화" class="level2" data-number="21.1"><h2 data-number="21.1" class="anchored" data-anchor-id="도구의-진화">
+<span class="header-section-number">21.1</span> 도구의 진화</h2>
 <p>GIS, 좌표계, 파일 형식, 계층(Layer), 교차분석 등 주요개념을 바탕으로 도구 진화과정을 살펴보자. 초기 PC가 보급되면서 1980년대 GIS 시스템은 사일로 형태 고가 시스템이었으며, 1990년대에는 1980년대 개발된 GIS 시스템간 연결이 시작되면서 스파게티 현상이 심해지면서 새로운 애플리케이션과 파일 형식이 도입되는데 필요 이상의 낭비가 심해지는 구조가 되었다.</p>
 <p>2000년대 GDAL(Geospatial Data Abstraction Layer)이 등장하여 개발자가 각 파일 형식별로 서로 다른 드라이버를 작성하는 대신 GDAL 클라이언트 드라이버만 개발하면 되기 때문에 일대 혁신이 일어났다. 2010년대는 인공위성을 통한 대량의 데이터가 넘쳐나며 이를 저장하기 위해서 클라우드 서비스가 우후죽순처럼 생겨났고 각기 다른 파편화된 진화과정이 일어났다. 2020년대 넘어서면서 1990년대와 유사한 상황이 재현되었고, 이를 해결하고 새로운 전환점을 만들기 위해 <code>OpenEO</code>가 제시되며 사용자와 데이터 센터 사이에서 새로운 표준으로 자리잡게 되면서 R, 파이썬 등 데이터 과학 프로그래밍 언어를 통한 공간정보 가치 창출이 용이해졌다. <span class="citation" data-cites="Pebesma2016">(<a href="references.html#ref-Pebesma2016" role="doc-biblioref">Pebesma 기타 2016</a>)</span></p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/gis_evolution.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2" title="GIS 도구 진화과정"><img src="images/gis_evolution.jpg" class="img-fluid figure-img" alt="GIS 도구 진화과정"></a></p>
+<figure class="figure"><p><a href="images/gis_evolution.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="GIS 도구 진화과정"><img src="images/gis_evolution.jpg" class="img-fluid figure-img" alt="GIS 도구 진화과정"></a></p>
 <figcaption>GIS 도구 진화과정</figcaption></figure>
 </div>
-</section><section id="gis-생태계" class="level2" data-number="22.2"><h2 data-number="22.2" class="anchored" data-anchor-id="gis-생태계">
-<span class="header-section-number">22.2</span> GIS 생태계</h2>
+</section><section id="gis-생태계" class="level2" data-number="21.2"><h2 data-number="21.2" class="anchored" data-anchor-id="gis-생태계">
+<span class="header-section-number">21.2</span> GIS 생태계</h2>
 <p>인간은 오랜 역사 동안 다양한 도구를 개발하고 사용해 왔으며, GIS에서도 도구는 단순한 계산부터 복잡한 데이터 분석, 시각화를 통한 의사결정지원, 최근 거대언어모형(LLM) 인공지능까지 다양한 형태로 기여하고 있다.</p>
 <p>현재 직면한 문제를 해결하는데 과거 도구를 사용하는 것은 마치 철기시대에 석기시대 도구를 사용하는 것과 다름이 없다. 따라서, 데이터를 통해 가치를 만드는 데이터 과학자 입장에서 도구의 선택은 매우 중요할 수 밖에 없다.</p>
 <div id="fig-evolution" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-evolution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/sf_deps.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="images/sf_deps.png" class="img-fluid figure-img"></a>
+<a href="images/sf_deps.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="그림&nbsp;21.2: sf 패키지와 의존성 - 화살표는 강한 의존성, 점선 화살표는 약한 의존성"><img src="images/sf_deps.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-evolution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;22.2: <code>sf</code> 패키지와 의존성 - 화살표는 강한 의존성, 점선 화살표는 약한 의존성
+그림&nbsp;21.2: <code>sf</code> 패키지와 의존성 - 화살표는 강한 의존성, 점선 화살표는 약한 의존성
 </figcaption></figure>
 </div>
-<p>현재 R 공간정보 생태계는 공간정보 도구 진화과정을 몇차례 경험한 후에 <a href="#fig-evolution" class="quarto-xref">그림&nbsp;<span>22.2</span></a> 처럼 자리를 잡았다. 결론부터 들어가면 <code>sf</code> 패키지가 생태계의 중심으로 자리 잡았으며, 사용자와 개발자는 <code>sf</code> 패키지를 통해 상당수 공간정보 데이터 문제를 해결할 수 있게 되었다. 하지만, <code>sf</code> 패키지는 C/C++ 라이브러리에 크게 의존성하기 때문에 각 라이브러리를 살펴보는 것은 향후 GIS 개발자와 분석가로 현업에서 활약하는데 큰 도움이 될 것으로 보인다.</p>
+<p>현재 R 공간정보 생태계는 공간정보 도구 진화과정을 몇차례 경험한 후에 <a href="#fig-evolution" class="quarto-xref">그림&nbsp;<span>21.2</span></a> 처럼 자리를 잡았다. 결론부터 들어가면 <code>sf</code> 패키지가 생태계의 중심으로 자리 잡았으며, 사용자와 개발자는 <code>sf</code> 패키지를 통해 상당수 공간정보 데이터 문제를 해결할 수 있게 되었다. 하지만, <code>sf</code> 패키지는 C/C++ 라이브러리에 크게 의존성하기 때문에 각 라이브러리를 살펴보는 것은 향후 GIS 개발자와 분석가로 현업에서 활약하는데 큰 도움이 될 것으로 보인다.</p>
 <p><code>GDAL</code>, <code>GEOS</code>, <code>PROJ</code>, <code>liblwgeom</code>, <code>s2geometry</code>, <code>NetCDF</code>, <code>udunits2</code>는 C/C++ 라이브러리를 개발, 유지보수, 지원하는 커뮤니티가 존재하는 반면 R, 파이썬, 줄리아(Julia), 자바스크립트는 대화형 인터페이스를 통해 라이브러리를 활용하는 커뮤니티도 존재한다. <span class="citation" data-cites="sds">(<a href="references.html#ref-sds" role="doc-biblioref">Pebesma 와/과 Bivand 2023</a>)</span></p>
 <ul>
 <li>
@@ -551,20 +536,20 @@ window.Quarto = {
 <li>
 <code>NetCDF</code>는 파일 형식이며 C 라이브러리로, 어떤 차원 배열도 정의할 수 있으며 특히 (기후) 모형개발 커뮤니티에서 널리 사용된다. <code>Udunits2</code>는 측정 단위의 데이터베이스 및 소프트웨어 라이브러리로, 단위의 변환과 파생 단위, 사용자 정의 단위를 처리한다. <code>liblwgeom</code>은 PostGIS 구성 요소로, <code>GDAL</code>, <code>GEOS</code>에서 누락된 몇 가지 루틴을 포함한다. <span class="citation" data-cites="Pebesma2016">(<a href="references.html#ref-Pebesma2016" role="doc-biblioref">Pebesma 기타 2016</a>)</span>
 </li>
-</ul></section><section id="사례" class="level2" data-number="22.3"><h2 data-number="22.3" class="anchored" data-anchor-id="사례">
-<span class="header-section-number">22.3</span> 사례</h2>
+</ul></section><section id="사례" class="level2" data-number="21.3"><h2 data-number="21.3" class="anchored" data-anchor-id="사례">
+<span class="header-section-number">21.3</span> 사례</h2>
 <p><code>sf</code> 패키지가 추상화된 함수를 제공하기 때문에 R 공간정보 생태계에서 <code>GDAL</code> 라이브러리를 GIS 분석가가 직접적으로 다룰 일은 없다. 하지만, GIS 도구를 활용하여 2023년 7월 기준 시도별 인구수를 대한민국 지도위에 도식화하기 위해서는 R 공간정보 생태계를 구성하는 다양한 도구가 꼭 필요하다. 먼저, 지도 데이터를 다루기 위해 <code>sf</code> 패키지를 사용하고 통계청(KOSIS) 데이터를 처리하기 위해 <code>tidyverse</code> 패키지 도구를 활용하고 오픈지도 개발자가 공개한 <code>geojson</code> 파일을 결합하여 인구수를 시도 수준에서 시도별 인구수 색상을 달리하여 지도위에 시각화한다. 작성된 코드는 R로 작성되었지만 파이썬 진영에도 공간정보 생태계도 유사한 도구가 준비되어 있어 각자 사용하기 좋은 도구를 가지고 의미있는 결과물을 만들어내고 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="fu">sf_use_s2</span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/s2.html">sf_use_s2</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## 지도</span></span>
-<span><span class="va">korea_map</span> <span class="op">&lt;-</span> <span class="fu">read_sf</span><span class="op">(</span><span class="st">"data/HangJeongDong_ver20230401.geojson"</span><span class="op">)</span></span>
+<span><span class="va">korea_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf</a></span><span class="op">(</span><span class="st">"data/HangJeongDong_ver20230401.geojson"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">sido_map</span> <span class="op">&lt;-</span> <span class="va">korea_map</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">sidonm</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>geometry <span class="op">=</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu">st_union</span><span class="op">(</span><span class="va">geometry</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>geometry <span class="op">=</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_combine.html">st_union</a></span><span class="op">(</span><span class="va">geometry</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## 23년 7월 인구수(KOSIS) 행정구역별, 성별 인구수</span></span>
 <span><span class="va">pop_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/행정구역_시군구_별__성별_인구수_20230831223248.csv"</span>,</span>
@@ -576,7 +561,7 @@ window.Quarto = {
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">pop_tbl</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>geometry <span class="op">=</span> <span class="va">geometry</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span><span class="va">인구수</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">ggrepel</span><span class="fu">::</span><span class="fu"><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html">geom_label_repel</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">sidonm</span>, geometry <span class="op">=</span> <span class="va">geometry</span><span class="op">)</span>, </span>
+<span>    <span class="fu">ggrepel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_label_repel</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">sidonm</span>, geometry <span class="op">=</span> <span class="va">geometry</span><span class="op">)</span>, </span>
 <span>                              size <span class="op">=</span> <span class="fl">3</span>, stat <span class="op">=</span> <span class="st">"sf_coordinates"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"OrRd"</span><span class="op">)</span></span>
@@ -587,20 +572,14 @@ window.Quarto = {
 <span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/GIS_tools.jpeg" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4" title="GIS 도구 활용 대한민국 시도별 인구수"><img src="images/GIS_tools.jpeg" class="img-fluid figure-img" alt="GIS 도구 활용 대한민국 시도별 인구수"></a></p>
+<figure class="figure"><p><a href="images/GIS_tools.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="GIS 도구 활용 대한민국 시도별 인구수"><img src="images/GIS_tools.jpeg" class="img-fluid figure-img" alt="GIS 도구 활용 대한민국 시도별 인구수"></a></p>
 <figcaption>GIS 도구 활용 대한민국 시도별 인구수</figcaption></figure>
 </div>
-</section><section id="마무리" class="level2" data-number="22.4"><h2 data-number="22.4" class="anchored" data-anchor-id="마무리">
-<span class="header-section-number">22.4</span> 마무리</h2>
+</section><section id="마무리" class="level2" data-number="21.4"><h2 data-number="21.4" class="anchored" data-anchor-id="마무리">
+<span class="header-section-number">21.4</span> 마무리</h2>
 <p>공간정보 개발자와 사용자가 개발하는 코드는 기계보다 사람 친화적으로 바뀌었으며, 효과적인 디버그와 신속한 개발을 위한 파이프 철학도 도입되어 생산성 향상이 비약적으로 높아졌고 도구의 추상화 수준도 대폭 향상되었다. IoT와 인공위성을 통해 엄청난 공간정보 데이터가 축적되고 있지만, GIS 도구가 꾸준히 발전하면서 이제 누구나 이러한 도구를 활용하여 공간정보 데이터를 통해 의미있는 산출물을 제작하고 도구도 개발할 수 있게 되었고, 다른 한편으로는 도구 없이 도구에 대한 이해없이 프롭테크를 논하는 것조차 의미없는 시대로 접어들고 있다.</p>
 
 
-<div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">그림&nbsp;22.1: GIS 벡터와 래스터 계층, 출처: http://gis.sbcounty.gov/</span>
-<span class="glightbox-desc lightbox-desc-2">GIS 도구 진화과정</span>
-<span class="glightbox-desc lightbox-desc-3">그림&nbsp;22.2: <code>sf</code> 패키지와 의존성 - 화살표는 강한 의존성, 점선 화살표는 약한 의존성</span>
-<span class="glightbox-desc lightbox-desc-4">GIS 도구 활용 대한민국 시도별 인구수</span>
-</div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-sds" class="csl-entry" role="listitem">
 Pebesma, Edzer, 와/과 Roger Bivand. 2023. <em><span>Spatial Data Science: With Applications in R</span></em>. Chapman; Hall/CRC. <a href="https://doi.org/10.1201/9780429459016">https://doi.org/10.1201/9780429459016</a>.
@@ -999,13 +978,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./quarto.html" class="pagination-link  aria-label=">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">쿼토</span></span>
+      <a href="./quarto.html" class="pagination-link" aria-label="쿼토">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">쿼토</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./prompt.html" class="pagination-link" aria-label="<span class='chapter-number'>23</span>&nbsp; <span class='chapter-title'>프롬프트 공학</span>">
-        <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./prompt.html" class="pagination-link" aria-label="프롬프트 공학">
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1021,7 +1000,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

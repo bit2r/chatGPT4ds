@@ -22,7 +22,7 @@ Sys.setenv(OPENAI_API_KEY = Sys.getenv("OPENAI_API_KEY"))
 
 # x <- create_image("a amazing newspaper as the sun is rising behind many news full of fake and misinformation")
 # x <- create_image("multicolor sparkly glitter bursting from the tip of an tomato as it touches the paper, bright, realism")
-x <- create_image("draw Korean ink painting style landscape image with data, sephia tone, minimalism")
+x <- create_image("draw Korean ink painting style landscape image with data, green tone, minimalism")
 # from https://jehyunlee.github.io/2023/12/25/General-33-ChatGPT_DataAnalysis/
 
 
@@ -34,7 +34,7 @@ download.file(url = x$data$url, destfile = "images/logo-data-science.png",
 
 # 2. 뉴스토마토 로고 ------------------------------------------------------------
 ## 2.1. 소스 이미지
-book_bg <- magick::image_read("images/logo-data-science.png")
+book_bg <- magick::image_read("images/logo_gpt_ds.jpg")
 
 # book_bg <- book_bg %>%
 #   image_resize(geometry = c(300, 300))
@@ -57,15 +57,18 @@ font_add('fa-brands', 'data-raw/fonts/Font Awesome 6 Brands-Regular-400.otf')
 showtext_auto()
 ft <- "dokdo"
 ft_github <- "inconsolata"
-txt <- "black"
+txt <- "#996515"
 
 pkg_name <- "챗GPT 데이터 과학"
 
 img_cropped <- hex_crop(
   images = book_bg,
-  border_colour = "#403b39",
+  border_colour = "#FFED00",
   border_size = 5
 )
+"#996515"
+"#B8860B"
+"#CD7F32"
 
 book_gg <- ggplot() +
   geom_from_path(aes(0.5, 0.5, path = img_cropped)) +
@@ -75,8 +78,8 @@ book_gg <- ggplot() +
   # add github
   annotate("richtext", x=0.50, y = 0.03, family = ft_github,
            size = 12, angle = 30,
-           colour = "gray10", hjust = 0,
-           label = glue("<span style='font-family:fa-brands; color:{txt}'>&#xf09b;&nbsp;</span> bit2r/chatGPT4ds"),
+           colour = txt, hjust = 0,
+           label = glue("<span style='font-family:fa-brands; color:{txt}'>&#xf09b;&nbsp;</span> bit2r/gpt-ds"),
            label.color = NA, fill = NA, fontface = "bold")   +
   xlim(0, 1) +
   ylim(0, 1) +

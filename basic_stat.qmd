@@ -87,7 +87,7 @@ glimpse(penguins)
 ### 파이썬
 
 ```{python}
-
+#| eval: false
 from palmerpenguins import load_penguins
 import pandas as pd
 
@@ -125,6 +125,7 @@ penguins |>
 ### 파이썬 {.unnumbered}
 
 ```{python}
+#| eval: false
 import statistics
 
 mean_body_mass_g = penguins['body_mass_g'].mean(skipna=True)
@@ -161,6 +162,7 @@ penguins |>
 ### 파이썬
 
 ```{python}
+#| eval: false
 import pandas as pd
 import numpy as np
 
@@ -190,6 +192,7 @@ penguins |>
 ### 파이썬
 
 ```{python}
+#| eval: false
 frequencies = penguins['species'].value_counts().reset_index()
 frequencies.columns = ['species', '빈도수']
 
