@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.9">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="이광춘, 신종화">
-
-<title>챗GPT 데이터 과학 – 6&nbsp; 데이터프레임</title>
+<title>챗GPT 데이터 과학 – 5&nbsp; 데이터프레임 탐색</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,8 +18,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
-
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -31,7 +61,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./simpson.html" rel="next">
+<link href="./import.html" rel="next">
 <link href="./data_structure.html" rel="prev">
 <link href="./images/logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -42,8 +72,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -69,9 +98,7 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "검색",
     "search-label": "검색"
   }
-}</script>
-
-<script type="text/javascript">
+}</script><script type="text/javascript">
 
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -83,34 +110,901 @@ ga('send', {
   hitType: 'pageview',
   'anonymizeIp': true,
 });
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/editor/editor.main.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<style type="text/css">
+.monaco-editor pre {
+  background-color: unset !important;
+}
+
+.qwebr-editor-toolbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.qwebr-editor-toolbar-left-buttons, .qwebr-editor-toolbar-right-buttons {
+  display: flex;
+}
+
+.qwebr-non-interactive-loading-container.qwebr-cell-needs-evaluation, .qwebr-non-interactive-loading-container.qwebr-cell-evaluated {
+  justify-content: center;
+  display: flex;
+  background-color: rgba(250, 250, 250, 0.65);
+  border: 1px solid rgba(233, 236, 239, 0.65);
+  border-radius: 0.5rem;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.qwebr-r-project-logo {
+  color: #2767B0; /* R Project's blue color */
+}
+
+.qwebr-icon-status-spinner {
+  color: #7894c4;
+}
+
+.qwebr-icon-run-code {
+  color: #0d9c29
+}
+
+.qwebr-output-code-stdout {
+  color: #111;
+}
+
+.qwebr-output-code-stderr {
+  color: #db4133;
+}
+
+.qwebr-editor {
+  border: 1px solid #EEEEEE;
+}
+
+.qwebr-editor-toolbar {
+  background-color: #EEEEEE;
+  padding: 0.2rem 0.5rem;
+}
+
+.qwebr-button {
+  background-color: #EEEEEE;
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1;
+  text-decoration: none;
+  text-align: center;
+  color: #000;
+  border-color: #dee2e6;
+  border: 1px solid rgba(0,0,0,0);
+  padding: 0.375rem 0.75rem;
+  font-size: .9rem;
+  border-radius: 0.25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.qwebr-button:hover {
+  color: #000;
+  background-color: #d9dce0;
+  border-color: #c8ccd0;
+}
+
+.qwebr-button:disabled,.qwebr-button.disabled,fieldset:disabled .qwebr-button {
+  pointer-events: none;
+  opacity: .65
+}
+
+.qwebr-button-reset {
+  color: #696969; /*#4682b4;*/
+}
+
+.qwebr-button-copy {
+  color: #696969;
+}
+
+
+/* Custom styling for RevealJS Presentations*/
+
+/* Reset the style of the interactive area */
+.reveal div.qwebr-interactive-area {
+  display: block;
+  box-shadow: none;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 0;
+} 
+
+/* Provide space to entries */
+.reveal div.qwebr-output-code-area pre div {
+  margin: 1px 2px 1px 10px;
+}
+
+/* Collapse the inside code tags to avoid extra space between line outputs */
+.reveal pre div code.qwebr-output-code-stdout, .reveal pre div code.qwebr-output-code-stderr {
+  padding: 0;
+  display: contents;
+}
+
+.reveal pre div code.qwebr-output-code-stdout {
+  color: #111;
+}
+
+.reveal pre div code.qwebr-output-code-stderr {
+  color: #db4133;
+}
+
+
+/* Create a border around console and output (does not effect graphs) */
+.reveal div.qwebr-console-area {
+  border: 1px solid #EEEEEE;
+  box-shadow: 2px 2px 10px #EEEEEE;
+}
+
+/* Cap output height and allow text to scroll */
+/* TODO: Is there a better way to fit contents/max it parallel to the monaco editor size? */
+.reveal div.qwebr-output-code-area pre {
+  max-height: 400px;
+  overflow: scroll;
+}
+
+</style>
+<script type="module">
+// Document level settings ----
+
+// Determine if we need to install R packages
+globalThis.qwebrInstallRPackagesList = ['stringr', 'palmerpenguins'];
+
+// Specify possible locations to search for the repository
+globalThis.qwebrPackageRepoURLS = ['https://repo.r-wasm.org/'];
+
+// Check to see if we have an empty array, if we do set to skip the installation.
+globalThis.qwebrSetupRPackages = !(qwebrInstallRPackagesList.indexOf("") !== -1);
+globalThis.qwebrAutoloadRPackages = true;
+
+// Display a startup message?
+globalThis.qwebrShowStartupMessage = true;
+globalThis.qwebrShowHeaderMessage = false;
+
+// Describe the webR settings that should be used
+globalThis.qwebrCustomizedWebROptions = {
+  "baseURL": "https://webr.r-wasm.org/v0.2.2/",
+  "serviceWorkerUrl": "",
+  "homedir": "/home/web_user", 
+  "channelType": "ChannelType.Automatic"
+};
+
+// Store cell data
+globalThis.qwebrCellDetails = [{"code":"# cats <- read.csv(\"data/feline-data.csv\") # 로컬 파일 방식\ncats <- read.csv(\"feline-data.csv\")      # webr 방식\n\nage <- c(2, 3, 5)\ncats\n#>     coat weight likes_string\n#> 1 calico    2.1            1\n#> 2  black    5.0            0\n#> 3  tabby    3.2            1","options":{"read-only":"false","label":"dataframe","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":1},{"code":"cbind(cats, age)\n#>     coat weight likes_string age\n#> 1 calico    2.1            1   2\n#> 2  black    5.0            0   3\n#> 3  tabby    3.2            1   5","options":{"read-only":"false","label":"dataframe-cbind","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":2},{"code":"age <- c(2, 3, 5, 12)\ncbind(cats, age)\n#> data.frame(..., check.names = FALSE)에서 다음과 같은 에러가 발생했습니다:\n#>   arguments imply differing number of rows: 3, 4\n\nage <- c(2, 3)\ncbind(cats, age)\n#> data.frame(..., check.names = FALSE)에서 다음과 같은 에러가 발생했습니다:\n#>   arguments imply differing number of rows: 3, 2","options":{"read-only":"false","label":"dataframe-cbind-error","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":3},{"code":"nrow(cats)\n#> [1] 3\nlength(age)\n#> [1] 2","options":{"read-only":"false","label":"dataframe-cbind-error-fix","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":4},{"code":"age <- c(2, 3, 5)\ncats <- cbind(cats, age)","options":{"read-only":"false","label":"dataframe-cbind-fix","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":5},{"code":"newRow <- list(\"tortoiseshell\", 3.3, TRUE, 9)\ncats <- rbind(cats, newRow)","options":{"read-only":"false","label":"dataframe-rbind","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":6},{"code":"levels(cats$coat)\nlevels(cats$coat) <- c(levels(cats$coat), \"tortoiseshell\")\ncats <- rbind(cats, list(\"tortoiseshell\", 3.3, TRUE, 9))","options":{"read-only":"false","label":"dataframe-factor","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":7},{"code":"str(cats)\ncats$coat <- as.character(cats$coat)\nstr(cats)","options":{"read-only":"false","label":"dataframe-factor-str","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":8},{"code":"cats\n\ncats[-4, ]","options":{"read-only":"false","label":"dataframe-remove-row","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":9},{"code":"na.omit(cats)\n\ncats <- na.omit(cats)","options":{"read-only":"false","label":"dataframe-remove-row-na","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":10},{"code":"cats[,-4]","options":{"read-only":"false","label":"dataframe-remove-column","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":11},{"code":"drop <- names(cats) %in% c(\"age\")\ncats[,!drop]","options":{"read-only":"false","label":"dataframe-remove-column-name","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":12},{"code":"cats <- rbind(cats, cats)\ncats","options":{"read-only":"false","label":"dataframe-append","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":13},{"code":"rownames(cats) <- NULL\ncats","options":{"read-only":"false","label":"dataframe-remove-rowname","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":14},{"code":"df <- data.frame(id = c(\"a\", \"b\", \"c\"),\n                 x = 1:3,\n                 y = c(TRUE, TRUE, FALSE),\n                 stringsAsFactors = FALSE)","options":{"read-only":"false","label":"dataframe-create-challenge-1","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":15},{"code":"df <- data.frame(first = c(\"Grace\"),\n                 last = c(\"Hopper\"),\n                 lucky_number = c(0),\n                 stringsAsFactors = FALSE)\ndf <- rbind(df, list(\"Marie\", \"Curie\", 238) )\ndf <- cbind(df, coffeetime = c(TRUE,TRUE))","options":{"read-only":"false","label":"dataframe-create-challenge-answer","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":16},{"code":"download.file(\"https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/main/episodes/data/gapminder_data.csv\", destfile = \"gapminder_data.csv\")\ngapminder <- read.csv(\"gapminder_data.csv\")","options":{"read-only":"false","label":"dataframe-download-file-gapminder","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":17},{"code":"str(gapminder)\n#> 'data.frame':    1704 obs. of  6 variables:\n#>  $ country  : chr  \"Afghanistan\" \"Afghanistan\" \"Afghanistan\" \"Afghanistan\" ...\n#>  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...\n#>  $ pop      : num  8425333 9240934 10267083 11537966 13079460 ...\n#>  $ continent: chr  \"Asia\" \"Asia\" \"Asia\" \"Asia\" ...\n#>  $ lifeExp  : num  28.8 30.3 32 34 36.1 ...\n#>  $ gdpPercap: num  779 821 853 836 740 ...","options":{"read-only":"false","label":"dataframe-str-gapminder","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":18},{"code":"typeof(gapminder$year)\n#> [1] \"integer\"\ntypeof(gapminder$country)\n#> [1] \"character\"\nstr(gapminder$country)\n#>  chr [1:1704] \"Afghanistan\" \"Afghanistan\" \"Afghanistan\" \"Afghanistan\" ...","options":{"read-only":"false","label":"dataframe-typeof-gapminder","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":19},{"code":"length(gapminder)\n#> [1] 6","options":{"read-only":"false","label":"dataframe-dim-gapminder","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":20},{"code":"typeof(gapminder)\n#> [1] \"list\"","options":{"read-only":"false","label":"dataframe-typeof-gapminder-list","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":21},{"code":"nrow(gapminder)\n#> [1] 1704\nncol(gapminder)\n#> [1] 6","options":{"read-only":"false","label":"dataframe-nrow-ncol-gapminder","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":22},{"code":"dim(gapminder)\n#> [1] 1704    6","options":{"read-only":"false","label":"dataframe-dim-gapminder","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":23},{"code":"colnames(gapminder)\n#> [1] \"country\"   \"year\"      \"pop\"       \"continent\" \"lifeExp\"   \"gdpPercap\"","options":{"read-only":"false","label":"dataframe-colnames-gapminder","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":24},{"code":"head(gapminder)\n#>       country year      pop continent lifeExp gdpPercap\n#> 1 Afghanistan 1952  8425333      Asia  28.801  779.4453\n#> 2 Afghanistan 1957  9240934      Asia  30.332  820.8530\n#> 3 Afghanistan 1962 10267083      Asia  31.997  853.1007\n#> 4 Afghanistan 1967 11537966      Asia  34.020  836.1971\n#> 5 Afghanistan 1972 13079460      Asia  36.088  739.9811\n#> 6 Afghanistan 1977 14880372      Asia  38.438  786.1134","options":{"read-only":"false","label":"dataframe-head-gapminder","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":25},{"code":"tail(gapminder)\ntail(gapminder, n = 15)","options":{"read-only":"false","label":"dataframe-tail-gapminder-answer","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":26},{"code":"gapminder[sample(nrow(gapminder), 5), ]","options":{"read-only":"false","label":"dataframe-tail-gapminder-answer2","out-height":"","context":"interactive","out-width":"700px","fig-width":7,"comment":"","output":"true","autorun":"false","fig-cap":"","warning":"true","fig-height":5,"classes":"","message":"true","results":"markup","dpi":72},"id":27}];
+
+</script><script type="module">
+// Declare startupMessageQWebR globally
+globalThis.qwebrStartupMessage = document.createElement("p");
+
+
+// Function to set the button text
+globalThis.qwebrSetInteractiveButtonState = function(buttonText, enableCodeButton = true) {
+  document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
+    btn.innerHTML = buttonText;
+    btn.disabled = !enableCodeButton;
+  });
+}
+
+// Function to update the status message in non-interactive cells
+globalThis.qwebrUpdateStatusMessage = function(message) {
+  document.querySelectorAll(".qwebr-status-text.qwebr-cell-needs-evaluation").forEach((elem) => {
+    elem.innerText = message;
+  });
+}
+
+// Function to update the status message
+globalThis.qwebrUpdateStatusHeader = function(message) {
+  qwebrStartupMessage.innerHTML = `
+    <i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i>
+    <span>${message}</span>`;
+}
+
+// Function that attaches the document status message and diagnostics
+function displayStartupMessage(showStartupMessage, showHeaderMessage) {
+  if (!showStartupMessage) {
+    return;
+  }
+
+  // Get references to header elements
+  const headerHTML = document.getElementById("title-block-header");
+  const headerRevealJS = document.getElementById("title-slide");
+
+  // Create the outermost div element for metadata
+  const quartoTitleMeta = document.createElement("div");
+  quartoTitleMeta.classList.add("quarto-title-meta");
+
+  // Create the first inner div element
+  const firstInnerDiv = document.createElement("div");
+  firstInnerDiv.setAttribute("id", "qwebr-status-message-area");
+
+  // Create the second inner div element for "WebR Status" heading and contents
+  const secondInnerDiv = document.createElement("div");
+  secondInnerDiv.setAttribute("id", "qwebr-status-message-title");
+  secondInnerDiv.classList.add("quarto-title-meta-heading");
+  secondInnerDiv.innerText = "WebR Status";
+
+  // Create another inner div for contents
+  const secondInnerDivContents = document.createElement("div");
+  secondInnerDivContents.setAttribute("id", "qwebr-status-message-body");
+  secondInnerDivContents.classList.add("quarto-title-meta-contents");
+
+  // Describe the WebR state
+  qwebrStartupMessage.innerText = "🟡 Loading...";
+  qwebrStartupMessage.setAttribute("id", "qwebr-status-message-text");
+  // Add `aria-live` to auto-announce the startup status to screen readers
+  qwebrStartupMessage.setAttribute("aria-live", "assertive");
+
+  // Append the startup message to the contents
+  secondInnerDivContents.appendChild(qwebrStartupMessage);
+
+  // Add a status indicator for COOP and COEP Headers if needed
+  if (showHeaderMessage) {
+    const crossOriginMessage = document.createElement("p");
+    crossOriginMessage.innerText = `${crossOriginIsolated ? '🟢' : '🟡'} COOP & COEP Headers`;
+    crossOriginMessage.setAttribute("id", "qwebr-coop-coep-header");
+    secondInnerDivContents.appendChild(crossOriginMessage);
+  }
+
+  // Combine the inner divs and contents
+  firstInnerDiv.appendChild(secondInnerDiv);
+  firstInnerDiv.appendChild(secondInnerDivContents);
+  quartoTitleMeta.appendChild(firstInnerDiv);
+
+  // Determine where to insert the quartoTitleMeta element
+  if (headerHTML || headerRevealJS) {
+    // Append to the existing "title-block-header" element or "title-slide" div
+    (headerHTML || headerRevealJS).appendChild(quartoTitleMeta);
+  } else {
+    // If neither headerHTML nor headerRevealJS is found, insert after "webr-monaco-editor-init" script
+    const monacoScript = document.getElementById("qwebr-monaco-editor-init");
+    const header = document.createElement("header");
+    header.setAttribute("id", "title-block-header");
+    header.appendChild(quartoTitleMeta);
+    monacoScript.after(header);
+  }
+}
+
+displayStartupMessage(qwebrShowStartupMessage, qwebrShowHeaderMessage);
+</script><script type="module">
+// Supported Evaluation Types for Context
+globalThis.EvalTypes = Object.freeze({
+  Interactive: 'interactive',
+  Setup: 'setup',
+  Output: 'output',
+});
+
+// Function that dispatches the creation request
+globalThis.qwebrCreateHTMLElement = function (
+  cellData
+) {
+
+  // Extract key components
+  const evalType = cellData.options.context;
+  const qwebrCounter = cellData.id;
+
+  // We make an assumption that insertion points are defined by the Lua filter as:
+  // qwebr-insertion-location-{qwebrCounter} 
+  const elementLocator = document.getElementById(`qwebr-insertion-location-${qwebrCounter}`);
+
+  // Figure out the routine to use to insert the element.
+  let qwebrElement;
+  switch ( evalType ) {
+    case EvalTypes.Interactive:
+      qwebrElement = qwebrCreateInteractiveElement(qwebrCounter, cellData.options);
+      break;
+    case EvalTypes.Output: 
+      qwebrElement = qwebrCreateNonInteractiveOutputElement(qwebrCounter, cellData.options);
+      break;
+    case EvalTypes.Setup: 
+      qwebrElement = qwebrCreateNonInteractiveSetupElement(qwebrCounter, cellData.options);
+      break;
+    default: 
+      qwebrElement = document.createElement('div');
+      qwebrElement.textContent = 'Error creating `quarto-webr` element';
+  }
+
+  // Insert the dynamically generated object at the document location.
+  elementLocator.appendChild(qwebrElement);
+};
+
+// Function that setups the interactive element creation
+globalThis.qwebrCreateInteractiveElement = function (qwebrCounter, qwebrOptions) {
+
+  // Create main div element
+  var mainDiv = document.createElement('div');
+  mainDiv.id = 'qwebr-interactive-area-' + qwebrCounter;
+  mainDiv.className = `qwebr-interactive-area`;
+  if (qwebrOptions.classes) {
+    mainDiv.className += " " + qwebrOptions.classes
+  }
+
+  // Add a unique cell identifier that users can customize
+  if (qwebrOptions.label) {
+    mainDiv.setAttribute('data-id', qwebrOptions.label);
+  }
+
+  // Create toolbar div
+  var toolbarDiv = document.createElement('div');
+  toolbarDiv.className = 'qwebr-editor-toolbar';
+  toolbarDiv.id = 'qwebr-editor-toolbar-' + qwebrCounter;
+
+  // Create a div to hold the left buttons
+  var leftButtonsDiv = document.createElement('div');
+  leftButtonsDiv.className = 'qwebr-editor-toolbar-left-buttons';
+
+  // Create a div to hold the right buttons
+  var rightButtonsDiv = document.createElement('div');
+  rightButtonsDiv.className = 'qwebr-editor-toolbar-right-buttons';
+
+  // Create Run Code button
+  var runCodeButton = document.createElement('button');
+  runCodeButton.className = 'btn btn-default qwebr-button qwebr-button-run';
+  runCodeButton.disabled = true;
+  runCodeButton.type = 'button';
+  runCodeButton.id = 'qwebr-button-run-' + qwebrCounter;
+  runCodeButton.textContent = '🟡 Loading webR...';
+  runCodeButton.title = `Run code (Shift + Enter)`;
+
+  // Append buttons to the leftButtonsDiv
+  leftButtonsDiv.appendChild(runCodeButton);
+
+  // Create Reset button
+  var resetButton = document.createElement('button');
+  resetButton.className = 'btn btn-light btn-xs qwebr-button qwebr-button-reset';
+  resetButton.type = 'button';
+  resetButton.id = 'qwebr-button-reset-' + qwebrCounter;
+  resetButton.title = 'Start over';
+  resetButton.innerHTML = '<i class="fa-solid fa-arrows-rotate"></i>';
+
+  // Create Copy button
+  var copyButton = document.createElement('button');
+  copyButton.className = 'btn btn-light btn-xs qwebr-button qwebr-button-copy';
+  copyButton.type = 'button';
+  copyButton.id = 'qwebr-button-copy-' + qwebrCounter;
+  copyButton.title = 'Copy code';
+  copyButton.innerHTML = '<i class="fa-regular fa-copy"></i>';
+
+  // Append buttons to the rightButtonsDiv
+  rightButtonsDiv.appendChild(resetButton);
+  rightButtonsDiv.appendChild(copyButton);
+
+  // Create console area div
+  var consoleAreaDiv = document.createElement('div');
+  consoleAreaDiv.id = 'qwebr-console-area-' + qwebrCounter;
+  consoleAreaDiv.className = 'qwebr-console-area';
+
+  // Create editor div
+  var editorDiv = document.createElement('div');
+  editorDiv.id = 'qwebr-editor-' + qwebrCounter;
+  editorDiv.className = 'qwebr-editor';
+
+  // Create output code area div
+  var outputCodeAreaDiv = document.createElement('div');
+  outputCodeAreaDiv.id = 'qwebr-output-code-area-' + qwebrCounter;
+  outputCodeAreaDiv.className = 'qwebr-output-code-area';
+  outputCodeAreaDiv.setAttribute('aria-live', 'assertive');
+
+  // Create pre element inside output code area
+  var preElement = document.createElement('pre');
+  preElement.style.visibility = 'hidden';
+  outputCodeAreaDiv.appendChild(preElement);
+
+  // Create output graph area div
+  var outputGraphAreaDiv = document.createElement('div');
+  outputGraphAreaDiv.id = 'qwebr-output-graph-area-' + qwebrCounter;
+  outputGraphAreaDiv.className = 'qwebr-output-graph-area';
+
+  // Append buttons to the toolbar
+  toolbarDiv.appendChild(leftButtonsDiv);
+  toolbarDiv.appendChild(rightButtonsDiv);
+
+  // Append all elements to the main div
+  mainDiv.appendChild(toolbarDiv);
+  consoleAreaDiv.appendChild(editorDiv);
+  consoleAreaDiv.appendChild(outputCodeAreaDiv);
+  mainDiv.appendChild(consoleAreaDiv);
+  mainDiv.appendChild(outputGraphAreaDiv);
+
+  return mainDiv;
+}
+
+// Function that adds output structure for non-interactive output
+globalThis.qwebrCreateNonInteractiveOutputElement = function(qwebrCounter, qwebrOptions) {
+  // Create main div element
+  var mainDiv = document.createElement('div');
+  mainDiv.id = 'qwebr-noninteractive-area-' + qwebrCounter;
+  mainDiv.className = `qwebr-noninteractive-area`;
+  if (qwebrOptions.classes) {
+    mainDiv.className += " " + qwebrOptions.classes
+  }
+  
+  // Add a unique cell identifier that users can customize
+  if (qwebrOptions.label) {
+    mainDiv.setAttribute('data-id', qwebrOptions.label);
+  }
+  
+  // Create a status container div
+  var statusContainer = createLoadingContainer(qwebrCounter);
+
+  // Create output code area div
+  var outputCodeAreaDiv = document.createElement('div');
+  outputCodeAreaDiv.id = 'qwebr-output-code-area-' + qwebrCounter;
+  outputCodeAreaDiv.className = 'qwebr-output-code-area';
+  outputCodeAreaDiv.setAttribute('aria-live', 'assertive');
+
+  // Create pre element inside output code area
+  var preElement = document.createElement('pre');
+  preElement.style.visibility = 'hidden';
+  outputCodeAreaDiv.appendChild(preElement);
+
+  // Create output graph area div
+  var outputGraphAreaDiv = document.createElement('div');
+  outputGraphAreaDiv.id = 'qwebr-output-graph-area-' + qwebrCounter;
+  outputGraphAreaDiv.className = 'qwebr-output-graph-area';
+
+  // Append all elements to the main div
+  mainDiv.appendChild(statusContainer);
+  mainDiv.appendChild(outputCodeAreaDiv);
+  mainDiv.appendChild(outputGraphAreaDiv);
+
+  return mainDiv;
+};
+
+// Function that adds a stub in the page to indicate a setup cell was used.
+globalThis.qwebrCreateNonInteractiveSetupElement = function(qwebrCounter, qwebrOptions) {
+  // Create main div element
+  var mainDiv = document.createElement('div');
+  mainDiv.id = `qwebr-noninteractive-setup-area-${qwebrCounter}`;
+  mainDiv.className = `qwebr-noninteractive-setup-area`;
+  if (qwebrOptions.classes) {
+    mainDiv.className += " " + qwebrOptions.classes
+  }
+
+
+  // Add a unique cell identifier that users can customize
+  if (qwebrOptions.label) {
+    mainDiv.setAttribute('data-id', qwebrOptions.label);
+  }
+
+  // Create a status container div
+  var statusContainer = createLoadingContainer(qwebrCounter);
+
+  // Append status onto the main div
+  mainDiv.appendChild(statusContainer);
+
+  return mainDiv;
+}
+
+
+// Function to create loading container with specified ID
+globalThis.createLoadingContainer = function(qwebrCounter) {
+
+  // Create a status container
+  const container = document.createElement('div');
+  container.id = `qwebr-non-interactive-loading-container-${qwebrCounter}`;
+  container.className = 'qwebr-non-interactive-loading-container qwebr-cell-needs-evaluation';
+
+  // Create an R project logo to indicate its a code space
+  const rProjectIcon = document.createElement('i');
+  rProjectIcon.className = 'fa-brands fa-r-project fa-3x qwebr-r-project-logo';
+
+  // Setup a loading icon from font awesome
+  const spinnerIcon = document.createElement('i');
+  spinnerIcon.className = 'fa-solid fa-spinner fa-spin fa-1x qwebr-icon-status-spinner';
+
+  // Add a section for status text
+  const statusText = document.createElement('p');
+  statusText.id = `qwebr-status-text-${qwebrCounter}`;
+  statusText.className = `qwebr-status-text qwebr-cell-needs-evaluation`;
+  statusText.innerText = 'Loading webR...';
+
+  // Incorporate an inner container
+  const innerContainer = document.createElement('div');
+
+  // Append elements to the inner container
+  innerContainer.appendChild(spinnerIcon);
+  innerContainer.appendChild(statusText);
+
+  // Append elements to the main container
+  container.appendChild(rProjectIcon);
+  container.appendChild(innerContainer);
+
+  return container;
+}
+</script><script type="module">
+// Function to install a single package
+async function qwebrInstallRPackage(packageName) {
+  await mainWebR.evalRVoid(`webr::install('${packageName}');`);
+}
+
+// Function to load a single package
+async function qwebrLoadRPackage(packageName) {
+  await mainWebR.evalRVoid(`require('${packageName}', quietly = TRUE)`);
+}
+
+// Generic function to process R packages
+async function qwebrProcessRPackagesWithStatus(packages, processType, displayStatusMessageUpdate = true) {
+  // Switch between contexts
+  const messagePrefix = processType === 'install' ? 'Installing' : 'Loading';
+
+  // Modify button state
+  qwebrSetInteractiveButtonState(`🟡 ${messagePrefix} package ...`, false);
+
+  // Iterate over packages
+  for (let i = 0; i < packages.length; i++) {
+    const activePackage = packages[i];
+    const formattedMessage = `${messagePrefix} package ${i + 1} out of ${packages.length}: ${activePackage}`;
+
+    // Display the update in header
+    if (displayStatusMessageUpdate) {
+      qwebrUpdateStatusHeader(formattedMessage);
+    }
+
+    // Display the update in non-active areas
+    qwebrUpdateStatusMessage(formattedMessage);
+
+    // Run package installation
+    if (processType === 'install') {
+      await qwebrInstallRPackage(activePackage);
+    } else {
+      await qwebrLoadRPackage(activePackage);
+    }
+  }
+
+  // Clean slate
+  if (processType === 'load') {
+    await mainWebR.flush();
+  }
+}
+
+// Start a timer
+const initializeWebRTimerStart = performance.now();
+
+// Encase with a dynamic import statement
+globalThis.qwebrInstance = import(qwebrCustomizedWebROptions.baseURL + "webr.mjs").then(
+  async ({ WebR, ChannelType }) => {
+    // Populate WebR options with defaults or new values based on `webr` meta
+    globalThis.mainWebR = new WebR(qwebrCustomizedWebROptions);
+
+    // Initialization WebR
+    await mainWebR.init();
+
+    // Setup a shelter
+    globalThis.mainWebRCodeShelter = await new mainWebR.Shelter();
+
+    // Setup a pager to allow processing help documentation 
+    await mainWebR.evalRVoid('webr::pager_install()'); 
+
+    // Override the existing install.packages() to use webr::install()
+    await mainWebR.evalRVoid('webr::shim_install()'); 
+
+    // Specify the repositories to pull from
+    // Note: webR does not use the `repos` option, but instead uses `webr_pkg_repos`
+    // inside of `install()`. However, other R functions still pull from `repos`.
+    await mainWebR.evalRVoid(`
+      options(
+        webr_pkg_repos = c(${qwebrPackageRepoURLS.map(repoURL => `'${repoURL}'`).join(',')}),
+        repos = c(${qwebrPackageRepoURLS.map(repoURL => `'${repoURL}'`).join(',')})
+      )
+    `);
+
+    // Check to see if any packages need to be installed
+    if (qwebrSetupRPackages) {
+      // Obtain only a unique list of packages
+      const uniqueRPackageList = Array.from(new Set(qwebrInstallRPackagesList));
+
+      // Install R packages one at a time (either silently or with a status update)
+      await qwebrProcessRPackagesWithStatus(uniqueRPackageList, 'install', qwebrShowStartupMessage);
+
+      if (qwebrAutoloadRPackages) {
+        // Load R packages one at a time (either silently or with a status update)
+        await qwebrProcessRPackagesWithStatus(uniqueRPackageList, 'load', qwebrShowStartupMessage);
+      }
+    }
+  }
+);
+
+// Stop timer
+const initializeWebRTimerEnd = performance.now();
+
+</script><script type="module">
+// Function to verify a given JavaScript Object is empty
+globalThis.qwebrIsObjectEmpty = function (arr) {
+    return Object.keys(arr).length === 0;
+}
+
+// Global version of the Escape HTML function that converts HTML 
+// characters to their HTML entities.
+globalThis.qwebrEscapeHTMLCharacters = function(unsafe) {
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  };
+
+// Passthrough results
+globalThis.qwebrIdentity = function(x) {
+    return x;
+};
+
+// Append a comment
+globalThis.qwebrPrefixComment = function(x, comment) {
+    return `${comment}${x}`;
+};
+
+// Function to parse the pager results
+globalThis.qwebrParseTypePager = async function (msg) { 
+
+    // Split out the event data
+    const { path, title, deleteFile } = msg.data; 
+
+    // Process the pager data by reading the information from disk
+    const paged_data = await mainWebR.FS.readFile(path).then((data) => {
+        // Obtain the file content
+        let content = new TextDecoder().decode(data);
+
+        // Remove excessive backspace characters until none remain
+        while(content.match(/.[\b]/)){
+        content = content.replace(/.[\b]/g, '');
+        }
+
+        // Returned cleaned data
+        return content;
+    });
+
+    // Unlink file if needed
+    if (deleteFile) { 
+        await mainWebR.FS.unlink(path); 
+    } 
+
+    // Return extracted data with spaces
+    return paged_data;
+} 
+
+// Function to run the code using webR and parse the output
+globalThis.qwebrComputeEngine = async function(
+    codeToRun, 
+    elements, 
+    options) {
+
+    // Call into the R compute engine that persists within the document scope.
+    // To be prepared for all scenarios, the following happens: 
+    // 1. We setup a canvas device to write to by making a namespace call into the {webr} package
+    // 2. We use values inside of the options array to set the figure size.
+    // 3. We capture the output stream information (STDOUT and STERR)
+    // 4. While parsing the results, we disable image creation.
+
+    // Create a canvas variable for graphics
+    let canvas = undefined;
+
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Handle how output is processed
+    let showMarkup = options.results === "markup" && options.output !== "asis";
+    let processOutput;
+
+    if (showMarkup) {
+        processOutput = qwebrEscapeHTMLCharacters;
+    } else {
+        processOutput = qwebrIdentity;
+    }
+
+    // ---- 
+    // Convert from Inches to Pixels by using DPI (dots per inch)
+    // for bitmap devices (dpi * inches = pixels)
+    let fig_width = options["fig-width"] * options["dpi"]
+    let fig_height = options["fig-height"] * options["dpi"]
+
+    // Initialize webR
+    await mainWebR.init();
+
+    // Setup a webR canvas by making a namespace call into the {webr} package
+    await mainWebR.evalRVoid(`webr::canvas(width=${fig_width}, height=${fig_height})`);
+
+    const result = await mainWebRCodeShelter.captureR(codeToRun, {
+        withAutoprint: true,
+        captureStreams: true,
+        captureConditions: false//,
+        // env: webR.objs.emptyEnv, // maintain a global environment for webR v0.2.0
+    });
+
+    // -----
+
+    // Start attempting to parse the result data
+    processResultOutput:try {
+
+        // Stop creating images
+        await mainWebR.evalRVoid("dev.off()");
+        
+        // Avoid running through output processing
+        if (options.results === "hide" || options.output === "false") { 
+            break processResultOutput; 
+        }
+
+        // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
+        // Require both `warning` and `message` to be true to display `STDErr`. 
+        const out = result.output
+        .filter(
+            evt => evt.type === "stdout" || 
+            ( evt.type === "stderr" && (options.warning === "true" && options.message === "true")) 
+        )
+        .map((evt, index) => {
+            const className = `qwebr-output-code-${evt.type}`;
+            const outputResult = qwebrPrefixComment(processOutput(evt.data), options.comment);
+            return `<code id="${className}-editor-${elements.id}-result-${index + 1}" class="${className}">${outputResult}</code>`;
+        })
+        .join("\n");
+
+
+        // Clean the state
+        // We're now able to process both graphics and pager events.
+        // As a result, we cannot maintain a true 1-to-1 output order 
+        // without individually feeding each line
+        const msgs = await mainWebR.flush();
+
+        // Output each image event stored
+        msgs.forEach((msg) => {
+        // Determine if old canvas can be used or a new canvas is required.
+        if (msg.type === 'canvas'){
+            // Add image to the current canvas
+            if (msg.data.event === 'canvasImage') {
+                canvas.getContext('2d').drawImage(msg.data.image, 0, 0);
+            } else if (msg.data.event === 'canvasNewPage') {
+
+                // Generate a new canvas element
+                canvas = document.createElement("canvas");
+                canvas.setAttribute("width", 2 * fig_width);
+                canvas.setAttribute("height", 2 * fig_height);
+                canvas.style.width = options["out-width"] ? options["out-width"] : `${fig_width}px`;
+                if (options["out-height"]) {
+                    canvas.style.height = options["out-height"];
+                }
+                canvas.style.display = "block";
+                canvas.style.margin = "auto";
+            }
+        } 
+        });
+
+        // Use `map` to process the filtered "pager" events asynchronously
+        const pager = await Promise.all(
+            msgs.filter(msg => msg.type === 'pager').map(
+                async (msg) => {
+                    return await qwebrParseTypePager(msg);
+                }
+            )
+        );
+
+        // Nullify the output area of content
+        elements.outputCodeDiv.innerHTML = "";
+        elements.outputGraphDiv.innerHTML = "";
+
+        // Design an output object for messages
+        const pre = document.createElement("pre");
+        if (/\S/.test(out)) {
+            // Display results as HTML elements to retain output styling
+            const div = document.createElement("div");
+            div.innerHTML = out;
+            pre.appendChild(div);
+        } else {
+            // If nothing is present, hide the element.
+            pre.style.visibility = "hidden";
+        }
+
+        elements.outputCodeDiv.appendChild(pre);
+
+        // Place the graphics on the canvas
+        if (canvas) {
+            // Create figure element
+            const figureElement = document.createElement('figure');
+
+            // Append canvas to figure
+            figureElement.appendChild(canvas);
+
+            if (options['fig-cap']) {
+                // Create figcaption element
+                const figcaptionElement = document.createElement('figcaption');
+                figcaptionElement.innerText = options['fig-cap'];
+                // Append figcaption to figure
+                figureElement.appendChild(figcaptionElement);    
+            }
+
+            elements.outputGraphDiv.appendChild(figureElement);
+        }
+
+        // Display the pager data
+        if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+            let pre_pager = document.createElement("pre");
+            pre_pager.innerText = paged_data;
+            pre_pager.classList.add("qwebr-output-code-pager");
+            pre_pager.setAttribute("id", `qwebr-output-code-pager-editor-${elements.id}-result-${index + 1}`);
+            elements.outputCodeDiv.appendChild(pre_pager);
+        });
+        }
+    } finally {
+        // Clean up the remaining code
+        mainWebRCodeShelter.purge();
+    }
+}
+
+// Function to execute the code (accepts code as an argument)
+globalThis.qwebrExecuteCode = async function (
+    codeToRun,
+    id,
+    options = {}) {
+
+    // If options are not passed, we fall back on the bare minimum to handle the computation
+    if (qwebrIsObjectEmpty(options)) {
+        options = { 
+            "context": "interactive", 
+            "fig-width": 7, "fig-height": 5, 
+            "out-width": "700px", "out-height": "", 
+            "dpi": 72,
+            "results": "markup", 
+            "warning": "true", "message": "true",
+        };
+    }
+
+    // Next, we access the compute areas values
+    const elements = {
+        runButton: document.getElementById(`qwebr-button-run-${id}`),
+        outputCodeDiv: document.getElementById(`qwebr-output-code-area-${id}`),
+        outputGraphDiv: document.getElementById(`qwebr-output-graph-area-${id}`),
+        id: id,
+    }
+
+    // Disallowing execution of other code cells
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
+        btn.disabled = true;
+    });
+
+    if (options.context == EvalTypes.Interactive) {
+        // Emphasize the active code cell
+        elements.runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
+    }
+
+    // Evaluate the code and parse the output into the document
+    await qwebrComputeEngine(codeToRun, elements, options);
+
+    // Switch to allowing execution of code
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
+        btn.disabled = false;
+    });
+
+    if (options.context == EvalTypes.Interactive) {
+        // Revert to the initial code cell state
+        elements.runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
+    }
+}
+
 </script>
-
-
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_structure.html"><strong>2부</strong> 데이터 다루기</a></li><li class="breadcrumb-item"><a href="./dataframe.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_structure.html"><strong>2부</strong> 데이터 다루기</a></li><li class="breadcrumb-item"><a href="./dataframe.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">챗GPT 데이터 과학</a> 
         <div class="sidebar-tools-main">
@@ -130,7 +1024,7 @@ ga('send', {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">서문</span></a>
@@ -144,8 +1038,8 @@ ga('send', {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">들어가며</span></span></a>
@@ -164,47 +1058,47 @@ ga('send', {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text"><strong>2부</strong> 가져오기</span></a>
+ <span class="menu-text"><strong>2부</strong> 데이터 다루기</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text"><strong>2부</strong> 데이터 다루기</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dataframe.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text"><strong>3부</strong> 가져오기</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
@@ -213,8 +1107,8 @@ ga('send', {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simpson.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
@@ -245,7 +1139,7 @@ ga('send', {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
@@ -254,8 +1148,8 @@ ga('send', {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형</span></span></a>
@@ -280,7 +1174,7 @@ ga('send', {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
@@ -289,8 +1183,8 @@ ga('send', {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">함수</span></span></a>
@@ -309,7 +1203,7 @@ ga('send', {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
@@ -318,8 +1212,8 @@ ga('send', {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
@@ -332,7 +1226,7 @@ ga('send', {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
@@ -341,8 +1235,8 @@ ga('send', {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prompt.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
@@ -379,7 +1273,7 @@ ga('send', {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -387,19 +1281,200 @@ ga('send', {
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li>
+<a href="#%ED%96%89%EA%B3%BC-%EC%97%B4-%EC%B6%94%EA%B0%80" id="toc-행과-열-추가" class="nav-link active" data-scroll-target="#%ED%96%89%EA%B3%BC-%EC%97%B4-%EC%B6%94%EA%B0%80"><span class="header-section-number">5.1</span> 행과 열 추가</a>
+  <ul class="collapse">
+<li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r">R</a></li>
+  </ul>
+</li>
+  <li><a href="#%EC%9A%94%EC%9D%B8" id="toc-요인" class="nav-link" data-scroll-target="#%EC%9A%94%EC%9D%B8"><span class="header-section-number">5.2</span> 요인</a></li>
+  <li><a href="#%ED%96%89-%EC%A0%9C%EA%B1%B0" id="toc-행-제거" class="nav-link" data-scroll-target="#%ED%96%89-%EC%A0%9C%EA%B1%B0"><span class="header-section-number">5.3</span> 행 제거</a></li>
+  <li><a href="#%EC%B9%BC%EB%9F%BC-%EC%A0%9C%EA%B1%B0" id="toc-칼럼-제거" class="nav-link" data-scroll-target="#%EC%B9%BC%EB%9F%BC-%EC%A0%9C%EA%B1%B0"><span class="header-section-number">5.4</span> 칼럼 제거</a></li>
+  <li><a href="#%EB%8D%A7%EB%B6%99%EC%9D%B4%EA%B8%B0" id="toc-덧붙이기" class="nav-link" data-scroll-target="#%EB%8D%A7%EB%B6%99%EC%9D%B4%EA%B8%B0"><span class="header-section-number">5.5</span> 덧붙이기</a></li>
+  <li><a href="#%ED%98%84%EC%8B%A4%EC%A0%81%EC%9D%B8-%EC%98%88%EC%A0%9C" id="toc-현실적인-예제" class="nav-link" data-scroll-target="#%ED%98%84%EC%8B%A4%EC%A0%81%EC%9D%B8-%EC%98%88%EC%A0%9C"><span class="header-section-number">5.6</span> 현실적인 예제</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/dataframe.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/loader.js"></script><script type="module" id="qwebr-monaco-editor-init">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_structure.html"><strong>2부</strong> 데이터 다루기</a></li><li class="breadcrumb-item"><a href="./dataframe.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임</span></a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임</span></h1>
+  // Configure the Monaco Editor's loader
+  require.config({
+    paths: {
+      'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs'
+    }
+  });
+</script><script type="module">
+// Global dictionary to store Monaco Editor instances
+globalThis.qwebrEditorInstances = {};
+
+// Function that builds and registers a Monaco Editor instance    
+globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
+
+  const initialCode = cellData.code;
+  const qwebrCounter = cellData.id;
+  const qwebrOptions = cellData.options;
+
+  // Retrieve the previously created document elements
+  let runButton = document.getElementById(`qwebr-button-run-${qwebrCounter}`);
+  let resetButton = document.getElementById(`qwebr-button-reset-${qwebrCounter}`);
+  let copyButton = document.getElementById(`qwebr-button-copy-${qwebrCounter}`);
+  let editorDiv = document.getElementById(`qwebr-editor-${qwebrCounter}`);
+  
+  // Load the Monaco Editor and create an instance
+  let editor;
+  require(['vs/editor/editor.main'], function () {
+    editor = monaco.editor.create(editorDiv, {
+      value: initialCode,
+      language: 'r',
+      theme: 'vs-light',
+      automaticLayout: true,           // Works wonderfully with RevealJS
+      scrollBeyondLastLine: false,
+      minimap: {
+        enabled: false
+      },
+      fontSize: '17.5pt',              // Bootstrap is 1 rem
+      renderLineHighlight: "none",     // Disable current line highlighting
+      hideCursorInOverviewRuler: true,  // Remove cursor indictor in right hand side scroll bar
+      readOnly: qwebrOptions['read-only'] ?? false
+    });
+
+    // Store the official counter ID to be used in keyboard shortcuts
+    editor.__qwebrCounter = qwebrCounter;
+
+    // Store the official div container ID
+    editor.__qwebrEditorId = `qwebr-editor-${qwebrCounter}`;
+
+    // Store the initial code value and options
+    editor.__qwebrinitialCode = initialCode;
+    editor.__qwebrOptions = qwebrOptions;
+
+    // Set at the model level the preferred end of line (EOL) character to LF.
+    // This prevent `\r\n` from being given to the webR engine if the user is on Windows.
+    // See details in: https://github.com/coatless/quarto-webr/issues/94
+    // Associated error text: 
+    // Error: <text>:1:7 unexpected input
+
+    // Retrieve the underlying model
+    const model = editor.getModel();
+    // Set EOL for the model
+    model.setEOL(monaco.editor.EndOfLineSequence.LF);
+
+    // Dynamically modify the height of the editor window if new lines are added.
+    let ignoreEvent = false;
+    const updateHeight = () => {
+      const contentHeight = editor.getContentHeight();
+      // We're avoiding a width change
+      //editorDiv.style.width = `${width}px`;
+      editorDiv.style.height = `${contentHeight}px`;
+      try {
+        ignoreEvent = true;
+
+        // The key to resizing is this call
+        editor.layout();
+      } finally {
+        ignoreEvent = false;
+      }
+    };
+
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        qwebrExecuteCode(editor.getValue(), editor.__qwebrCounter, editor.__qwebrOptions);
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          qwebrExecuteCode(currentLine, editor.__qwebrCounter, editor.__qwebrOptions);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          qwebrExecuteCode(selectedText, editor.__qwebrCounter, editor.__qwebrOptions);
+        }
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
+
+    // Register an on change event for when new code is added to the editor window
+    editor.onDidContentSizeChange(updateHeight);
+
+    // Manually re-update height to account for the content we inserted into the call
+    updateHeight();
+
+    // Store the editor instance in the global dictionary
+    qwebrEditorInstances[editor.__qwebrCounter] = editor;
+
+  });
+
+  // Add a click event listener to the run button
+  runButton.onclick = function () {
+    qwebrExecuteCode(editor.getValue(), editor.__qwebrCounter, editor.__qwebrOptions);
+  };
+
+  // Add a click event listener to the reset button
+  copyButton.onclick = function () {
+    // Retrieve current code data
+    const data = editor.getValue();
+    
+    // Write code data onto the clipboard.
+    navigator.clipboard.writeText(data || "");
+  };
+  
+  // Add a click event listener to the copy button
+  resetButton.onclick = function () {
+    editor.setValue(editor.__qwebrinitialCode);
+  };
+  
+}
+</script><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_structure.html"><strong>2부</strong> 데이터 다루기</a></li><li class="breadcrumb-item"><a href="./dataframe.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="dataframe" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></h1>
 </div>
 
 
@@ -413,14 +1488,311 @@ ga('send', {
   
 
 
-</header>
+</header><p><span class="citation" data-cites="data-structure">(<strong>data-structure?</strong>)</span> 장에서 R의 모든 기본 자료형과 자료구조에 대한 여행을 마쳤다. 데이터 과학에서 수행하는 모든 작업은 <span class="citation" data-cites="data-structure">(<strong>data-structure?</strong>)</span> 장에서 소개한 도구를 조작하는 것이 된다. 하지만, 거의 대부분 데이터 과학 프로젝트에서 진정한 스타는 <strong>데이터프레임(dataframe)</strong>이다. CSV 파일에 정보를 불러와서 생성시킨 테이블을 지칭한다. 이번 장에서 데이터프레임으로 작업하는 방법에 대해 좀 더 상세히 살펴볼 것이다.</p>
+<section id="행과-열-추가" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="행과-열-추가">
+<span class="header-section-number">5.1</span> 행과 열 추가</h2>
+<p>데이터프레임의 칼럼은 벡터라는 것을 배웠다. 따라서, 데이터는 칼럼에서 자료형의 일관성을 유지해야 한다. 이를테면, 칼럼을 새로 추가하려면 벡터를 새로 만들어서 시작한다.</p>
+<section id="r" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="r">R</h3>
+<div id="qwebr-insertion-location-1"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><code>age</code>를 칼럼으로 다음과 같이 추가한다.</p>
+<div id="qwebr-insertion-location-2"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>데이터프레임의 행의 개수와 다른 개수를 갖는 <code>age</code> 벡터를 추가하게 되면 추가되지 않고 오류가 발생된다는 점에 주의한다.</p>
+<div id="qwebr-insertion-location-3"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>정상 동작이 되지 않는 이유가 무엇일까? R은 테이블의 모든 행마다 신규 칼럼에서도 원소 하나가 있길 원한다.</p>
+<div id="qwebr-insertion-location-4"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>그래서, 정상 동작하려면 <code>nrow(cats)</code> = <code>length(age)</code>이 되어야 한다. <code>cats</code> 내용을 새로운 데이터프레임으로 덮어써보자.</p>
+<div id="qwebr-insertion-location-5"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>이제 행을 추가하면 어떻게 될까? 이미 데이터프레임의 행이 리스트라는 사실을 알고 있다.</p>
+<div id="qwebr-insertion-location-6"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section></section><section id="요인" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="요인">
+<span class="header-section-number">5.2</span> 요인</h2>
+<p>살펴볼 것이 하나 더 있다. 범주형 자료 처리를 위한 <code>요인(factor)</code>에서 각기 다른 값을 범주 <code>수준(level)</code>이라고 한다. 요인형 “coat” 변수는 수준이 3으로 구성된다. “black”, “calico”, “tabby”. R은 세 가지 수준 중 하나와 매칭되는 값만 받아들인다. 완전 새로운 값을 추가하게 되면, 추가되는 신규 값은 <code>NA</code>가 된다.</p>
+<p>경고 메시지를 통해서 <em>coat</em> 요인변수에 “tortoiseshell” 값을 추가하는데 성공하지 못했다고 알려준다. 하지만, 3.3 (숫자형), TRUE (논리형), 9 (숫자형)은 모두 <em>weight</em>, <em>likes_string</em>, <em>age</em> 변수에 성공적으로 추가된다. 왜냐하면 이 변수들이 요인형이 아니기 때문이다. “tortoiseshell”을 <em>coat</em> 요인변수에 성공적으로 추가하려면 요인의 수준(level)로 “tortoiseshell”을 추가하면 된다.</p>
+<div id="qwebr-insertion-location-7"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>대안으로, 요인형 벡터를 문자형 벡터로 변환시키면 된다. 요인변수의 범주를 잃게 되지만, 요인 수준을 조심스럽게 다룰 필요 없이 칼럼에 추가하고자 하는 임의의 단어를 추가할 수 있다.</p>
+<div id="qwebr-insertion-location-8"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+도전과제
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>
+<code>cats$age</code> 벡터에 7을 곱해서 <code>human_age</code> 벡터를 생성하자.</li>
+<li>
+<code>human_age</code>를 요인형으로 변환시키자.</li>
+<li>
+<code><a href="https://rdrr.io/r/base/numeric.html">as.numeric()</a></code> 함수를 사용해서 <code>human_age</code> 벡터를 다시 숫자형 벡터로 변환시킨다. 이제 7로 나눠서 원래 고양이 나이로 되돌리자. 무슨 일이 생겼는지 설명하자.</li>
+</ol>
+<div class="callout callout-style-simple callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+해답
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><code>human_age &lt;- cats$age * 7</code></li>
+<li>
+<code>human_age &lt;- factor(human_age)</code>. <code>as.factor(human_age)</code> 도 잘 동작한다.</li>
+<li>
+<code>as.numeric(human_age)</code>을 실행하면 <code>1 2 3 4 4</code>이 된다.</li>
+</ol>
+<p>왜냐하면 요인형 변수는 정수형(여기서 1:4)으로 자료를 저장하기 때문이다. 정수 라벨과 연관된 값은 여기서 28, 35, 56, 63이다. 요인형 변수를 숫자형 벡터로 변환시키면 라벨이 아니라 그 밑단의 정수를 반환시킨다. 원래 숫자를 원하는 경우, <code>human_age</code>를 문자형 벡터로 변환시키고 나서 숫자형 벡터로 변환시키면 된다. (왜 이 방식은 정상 동작할까?) 실수로 숫자만 담긴 칼럼 어딘가에 문자가 포함된 csv 파일로 작업할 때 이런 일이 실제로 종종 일어난다. 데이터를 불러 읽어올 때 <code>stringsAsFactors=FALSE</code> 설정을 잊지 말자.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="행-제거" class="level2" data-number="5.3"><h2 data-number="5.3" class="anchored" data-anchor-id="행-제거">
+<span class="header-section-number">5.3</span> 행 제거</h2>
+<p>이제 데이터프레임에 행과 열을 추가하는 방법을 알게 되었다. 하지만, 데이터프레임에 “tortoiseshell” 고양이를 처음으로 추가하면서 우연히 쓰레기 행을 추가시켰다. 데이터프레임에 문제가 되는 행을 마이너스 연산자를 사용해서 빼자.</p>
+<div id="qwebr-insertion-location-9"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><code>-4,</code> 다음에 아무것도 지정하지 않아서 4번째 행 전체를 제거함에 주목한다. 주목: 벡터 내부에 행 다수를 넣어 한번에 행을 제거할 수도 있다: <code>cats[c(-4,-5), ]</code> 대안으로, <code>NA</code> 값을 갖는 모든 행을 제거시킨다. 출력결과를 <code>cats</code>에 다시 대입하여 변경사항이 데이터프레임에 영구히 남도록 조치한다.</p>
+<div id="qwebr-insertion-location-10"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section><section id="칼럼-제거" class="level2" data-number="5.4"><h2 data-number="5.4" class="anchored" data-anchor-id="칼럼-제거">
+<span class="header-section-number">5.4</span> 칼럼 제거</h2>
+<p>데이터프레임의 칼럼도 제거할 수 있다. “age” 칼럼을 제거하고자 한다면 어떻게 해야 할까? 변수명과 변수 인덱스, 두가지 방식으로 칼럼을 제거할 수 있다.</p>
+<div id="qwebr-insertion-location-11"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><code>,-4</code> 앞에 아무것도 없는 것에 주목한다. 이는 모든 행을 간직한다는 의미를 갖는다. 대안으로, 색인명을 사용해서 컬럼을 제거할 수도 있다.</p>
+<div id="qwebr-insertion-location-12"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section><section id="덧붙이기" class="level2" data-number="5.5"><h2 data-number="5.5" class="anchored" data-anchor-id="덧붙이기">
+<span class="header-section-number">5.5</span> 덧붙이기</h2>
+<p>데이터프레임에 데이터를 추가할 때 기억할 것은 <strong>칼럼은 벡터, 행은 리스트</strong>라는 사실이다. <code><a href="https://rdrr.io/r/base/cbind.html">rbind()</a></code> 함수를 사용해서 데이터프레임 두 개를 본드로 붙이듯이 결합시킬 수 있다.</p>
+<div id="qwebr-insertion-location-13"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>하지만 이제 행 이름이 불필요하게 복잡해졌다. 행 이름을 제거하면 R이 자동으로 순차적인 이름을 다시 붙여준다.</p>
+<div id="qwebr-insertion-location-14"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+도전과제
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>다음 구문을 사용해서 R 내부에서 직접 데이터프레임을 새로 만들 수 있다.</p>
+<div id="qwebr-insertion-location-15"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>다음 정보를 갖는 데이터프레임을 직접 제작해 보자.</p>
+<ul>
+<li>이름(first name)</li>
+<li>성(last name)</li>
+<li>좋아하는 숫자</li>
+</ul>
+<p><code>rbind</code>를 사용해서 옆사람을 항목에 추가한다. 마지막으로 <code><a href="https://rdrr.io/r/base/cbind.html">cbind()</a></code> 함수를 사용해서 “지금이 커피 시간인가요?”라는 질문의 답을 칼럼으로 추가한다.</p>
+<div class="callout callout-style-simple callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+해답
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="qwebr-insertion-location-16"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="현실적인-예제" class="level2" data-number="5.6"><h2 data-number="5.6" class="anchored" data-anchor-id="현실적인-예제">
+<span class="header-section-number">5.6</span> 현실적인 예제</h2>
+<p>지금까지 고양이 데이터를 가지고 데이터프레임 조작에 대한 기본적인 사항을 살펴봤다. 이제 학습한 기술을 사용해서 좀 더 현실적인 데이터셋을 다뤄보자. 앞에서 다운로드 받은 <code>gapminder</code> 데이터셋을 불러오자.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"data/gapminder_data.csv"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+데이터셋 설명
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>흔히 맞닥드리는 또다른 유형의 파일이 탭구분자를 갖는 파일(.tsv)이다. 탭을 구분자로 명세하는데, <code>"\\t"</code>을 사용하고, <code><a href="https://rdrr.io/r/utils/read.table.html">read.delim()</a></code> 함수로 불러 읽어온다.</p></li>
+<li><p>파일을 <code><a href="https://rdrr.io/r/utils/download.file.html">download.file()</a></code> 함수를 사용해서 인터넷으로부터 직접 본인 컴퓨터 폴더로 다운로드할 수 있다. <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> 함수를 실행해서 다운로드 받은 파일을 읽어온다. 예를 들어,</p></li>
+</ul>
+<div id="qwebr-insertion-location-17"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ul>
+<li>대안으로, <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> 함수 내부에 파일 경로를 웹 주소로 치환해서 인터넷에서 직접 파일을 불러올 수도 있다. 이런 경우 로컬 컴퓨터에 CSV 파일이 전혀 저장되지 않았다는 점을 주의한다. 예를 들어,</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/main/episodes/data/gapminder_data.csv"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>
+<a href="https://cran.r-project.org/web/packages/readxl/index.html">readxl</a> 패키지를 사용해서, 엑셀 스프레드시트를 평범한 텍스트로 변환하지 않고 직접 불러올 수도 있다.</li>
+</ul>
+</div>
+</div>
+<p><code>gapminder</code> 데이터셋을 좀 더 살펴보자. 항상 가장 먼저 해야 되는 작업은 <code>str</code> 명령어로 데이터가 어떻게 생겼는지 확인하는 것이다.</p>
+<div id="qwebr-insertion-location-18"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><code><a href="https://rdrr.io/r/base/typeof.html">typeof()</a></code> 함수로 데이터프레임 칼럼 각각을 면밀히 조사할 수도 있다.</p>
+<div id="qwebr-insertion-location-19"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>데이터프레임 차원에 대한 정보를 얻어낼 수도 있다. <code>str(gapminder)</code> 실행결과 <code>gapminder</code> 데이터프레임에 관측점 1704개, 변수 6개가 있음을 상기한다. 다음 코드 실행결과는 무엇일까? 그리고 왜 그렇게 되는가?</p>
+<div id="qwebr-insertion-location-20"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>공정한 추측은 아마도 데이터프레임 길이가 행의 길이(1704)라고 보는 것이다. 하지만, 이번에는 다르다. 데이터프레임은 <strong>벡터와 요인으로 구성된 리스트</strong>라는 사실을 기억하라.</p>
+<div id="qwebr-insertion-location-21"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><code><a href="https://rdrr.io/r/base/length.html">length()</a></code> 함수가 6을 제시하는 이유는 <code>gapminder</code>가 6개 칼럼을 갖는 리스트로 만들어졌기 때문이다. 데이터셋에서 행과 열 숫자를 얻는 데 다음 함수를 던져보자.</p>
+<div id="qwebr-insertion-location-22"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>혹은 한번에 보려면 다음과 같이 한다.</p>
+<div id="qwebr-insertion-location-23"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>또한, 모든 칼럼의 칼럼명이 무엇인지 파악하고자 하면 다음과 같이 질문을 던진다.</p>
+<div id="qwebr-insertion-location-24"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>현 단계에서, R이 제시하는 구조가 우리의 직관이나 예상과 부합되는지 묻어보는 것이 중요하다. 각 칼럼에 대한 기본 자료형은 이해가 되는가? 만약 납득이 가지 않는다면, 후속 작업에서 나쁜 놀라운 사실로 전환되기 전에 문제를 해결해야 한다. 문제를 해결하는 데, R이 데이터를 이해하는 방법과 데이터를 기록할 때 <strong>엄격한 일관성(strict consistency)</strong>의 중요성에 관해 학습한 것을 동원한다.</p>
+<p>자료형과 자료구조가 타당해 보이게 되면, 데이터를 제대로 파고들 시간이 되었다. <code>gapminder</code> 데이터의 처음 몇 줄을 살펴보자.</p>
+<div id="qwebr-insertion-location-25"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+도전과제
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>데이터 마지막 몇 줄, 중간 몇 줄을 점검하는 것도 좋은 습관이다. 그런데 어떻게 점검할 수 있을까?</p>
+<p>중간 몇 줄을 찾아보는 것이 너무 어렵지는 않지만, 임의로 몇 줄을 추출할 수도 있다. 어떻게 할 수 있을까?</p>
+<div class="callout callout-style-simple callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+해답
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>마지막 몇 줄을 점검하려면, R에 내장된 함수가 있어서 상대적으로 간단하다.</p>
+<div id="qwebr-insertion-location-26"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>데이터가 온전한지(혹은 관점에 따라 데이터가 온전하지 않은지)를 점검하는 데 몇 줄을 추출할 수 있을까?</p>
+<blockquote class="blockquote">
+<p>팁: 몇 가지 방법이 존재한다.</p>
+</blockquote>
+<p>중첩 함수(또 다른 함수에 인자로 전달되는 함수)를 사용한 해법도 있다. 새로운 개념처럼 들리지만, 사실 이미 사용하고 있다. my_dataframe[rows, cols] 명령어는 데이터프레임을 화면에 뿌려준다. 데이터프레임에 행이 얼마나 많은지 알지 못하는데 어떻게 마지막 행을 뽑아낼 수 있을까? R에 내장된 함수가 있다. (의사) 난수를 얻어보는 것은 어떨까? R은 난수추출 함수도 갖추고 있다.</p>
+<div id="qwebr-insertion-location-27"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>분석 결과를 재현 가능하게 확실히 만들려면, 코드를 스크립트 파일에 저장해서 나중에 다시 볼 수 있어야 한다.</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+도전과제
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>file -&gt; new file -&gt; R script</code>로 가서, <code>gapminder</code> 데이터셋을 불러오는 R 스크립트를 작성한다. <code>scripts/</code> 디렉토리에 저장하고 버전 제어 시스템에도 추가한다. 인자로 파일 경로명을 사용해서 <code><a href="https://rdrr.io/r/base/source.html">source()</a></code> 함수를 사용해서 스크립트를 실행하라. (혹은 RStudio “source” 버튼을 누른다)</p>
+<div class="callout callout-style-simple callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+해답
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>scripts/load-gapminder.R</code> 파일에 담긴 내용물은 다음과 같다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/main/episodes/data/gapminder_data.csv"</span>, destfile <span class="op">=</span> <span class="st">"data/gapminder_data.csv"</span><span class="op">)</span></span>
+<span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"data/gapminder_data.csv"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>스크립트를 실행시키면 데이터를 <code>gapminder</code> 변수에 적재시킨다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"scripts/load-gapminder.R"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+도전과제
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>str(gapminder)</code> 출력결과를 다시 불러오자. 이번에는 <code>gapminder</code> 데이터에 대해 <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> 함수가 출력하는 모든 것이 의미하는 바를 설명한다. 지금까지 학습한 요인, 리스트와 벡터 뿐만 아니라, <code><a href="https://rdrr.io/r/base/colnames.html">colnames()</a></code>, <code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code> 같은 함수도 동원한다. 이해하지 못한 부분이 있다면, 주변 동료와 상의한다!</p>
+<div class="callout callout-style-simple callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+해답
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>gapminder</code> 객체는 다음 칼럼을 갖는 데이터프레임이다. - <code>country</code>와 <code>continent</code> 변수는 요인형 벡터 - <code>year</code> 변수는 정수형 벡터 - <code>pop</code>, <code>lifeExp</code>, <code>gdpPercap</code> 변수는 숫자형 벡터</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
-
-
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -845,35 +2217,141 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./data_structure.html" class="pagination-link" aria-label="자료구조">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">자료구조</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">자료구조</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./simpson.html" class="pagination-link" aria-label="심슨의 역설">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./import.html" class="pagination-link" aria-label="텍스트 파일">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>챗GPT 데이터 과학 책은 소프트웨어 카펜트리 “R for Reproducible Scientific Analysis”를 번역한 것이 포함되어 있습니다.</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/dataframe.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/dataframe.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer>
+</footer><script type="module">
+// Handle cell initialization initialization
+qwebrCellDetails.map(
+  (entry) => {
+    // Handle the creation of the element
+    qwebrCreateHTMLElement(entry);
+    // In the event of interactive, initialize the monaco editor
+    if (entry.options.context == EvalTypes.Interactive) {
+      qwebrCreateMonacoEditorInstance(entry);
+    }
+  }
+);
+
+// Identify non-interactive cells (in order)
+const filteredEntries = qwebrCellDetails.filter(entry => {
+  const contextOption = entry.options && entry.options.context;
+  return ['output', 'setup'].includes(contextOption) || (contextOption == "interactive" && entry.options && entry.options.autorun === 'true');
+});
+
+// Condition non-interactive cells to only be run after webR finishes its initialization.
+qwebrInstance.then(
+  async () => {
+    const nHiddenCells = filteredEntries.length;
+    var currentHiddenCell = 0;
 
 
+    // Modify button state
+    qwebrSetInteractiveButtonState(`🟡 Running hidden code cells ...`, false);
+
+    // Begin processing non-interactive sections
+    // Due to the iteration policy, we must use a for() loop.
+    // Otherwise, we would need to switch to using reduce with an empty
+    // starting promise
+    for (const entry of filteredEntries) {
+
+      // Determine cell being examined
+      currentHiddenCell = currentHiddenCell + 1;
+      const formattedMessage = `Evaluating hidden cell ${currentHiddenCell} out of ${nHiddenCells}`;
+
+      // Update the document status header
+      if (qwebrShowStartupMessage) {
+        qwebrUpdateStatusHeader(formattedMessage);
+      }
+
+      // Display the update in non-active areas
+      qwebrUpdateStatusMessage(formattedMessage);
+
+      // Extract details on the active cell
+      const evalType = entry.options.context;
+      const cellCode = entry.code;
+      const qwebrCounter = entry.id;
+
+      if (['output', 'setup'].includes(evalType)) {
+        // Disable further global status updates
+        const activeContainer = document.getElementById(`qwebr-non-interactive-loading-container-${qwebrCounter}`);
+        activeContainer.classList.remove('qwebr-cell-needs-evaluation');
+        activeContainer.classList.add('qwebr-cell-evaluated');
+
+        // Update status on the code cell
+        const activeStatus = document.getElementById(`qwebr-status-text-${qwebrCounter}`);
+        activeStatus.innerText = " Evaluating hidden code cell...";
+        activeStatus.classList.remove('qwebr-cell-needs-evaluation');
+        activeStatus.classList.add('qwebr-cell-evaluated');
+      }
+
+      switch (evalType) {
+        case 'interactive':
+          // TODO: Make this more standardized.
+          // At the moment, we're overriding the interactive status update by pretending its
+          // output-like. 
+          const tempOptions = entry.options;
+          tempOptions["context"] = "output"
+          // Run the code in a non-interactive state that is geared to displaying output
+          await qwebrExecuteCode(`${cellCode}`, qwebrCounter, tempOptions);
+          break;
+        case 'output':
+          // Run the code in a non-interactive state that is geared to displaying output
+          await qwebrExecuteCode(`${cellCode}`, qwebrCounter, entry.options);
+          break;
+        case 'setup':
+          const activeDiv = document.getElementById(`qwebr-noninteractive-setup-area-${qwebrCounter}`);
+          // Run the code in a non-interactive state with all output thrown away
+          await mainWebR.evalRVoid(`${cellCode}`);
+          break;
+        default: 
+          break; 
+      }
+
+      if (['output', 'setup'].includes(evalType)) {
+        // Disable further global status updates
+        const activeContainer = document.getElementById(`qwebr-non-interactive-loading-container-${qwebrCounter}`);
+        // Disable visibility
+        activeContainer.style.visibility = 'hidden';
+        activeContainer.style.display = 'none';
+      }
+    }
+  }
+).then(
+  () => {
+    // Release document status as ready
+
+    if (qwebrShowStartupMessage) {
+      qwebrStartupMessage.innerText = "🟢 Ready!"
+    }
+  
+    qwebrSetInteractiveButtonState(
+      `<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>`, 
+      true
+    );  
+  }
+);
+</script>
 
 
 </body></html>

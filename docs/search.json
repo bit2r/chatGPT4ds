@@ -1109,12 +1109,12 @@
   {
     "objectID": "data_structure.html",
     "href": "data_structure.html",
-    "title": "\n5  자료구조\n",
+    "title": "4  자료구조",
     "section": "",
-    "text": "5.1 자료형\n2.1 더하기 \"black\"이 말이 되지 않기 때문에 마지막 문장이 오류를 뱉어낼 것이라고 추측한다면, 제대로 이해하고 있는 것이다. 이미 자료형(data type)으로 불리는 프로그래밍의 중요한 개념에 대한 직관을 갖추고 있는 것이다. 데이터 자료형이 무엇인지 다음을 통해 물어보게 된다:\n다섯 가지 주요 자료형이 있다. 실수형(double), 정수형(integer), 복소수형(complex), 논리형(logical), 문자형(character).\n분석이 얼마나 복잡해지냐에 관계없이, R에서 모든 데이터는 이러한 기본 자료형 중 하나로 해석된다. 이러한 엄격함이 정말로 중요한 결과를 잉태하게 된다.\n사용자가 또다른 고양이에 대한 상세내용을 추가했고, 추가 정보는 data/feline-data_v2.csv 파일에 저장되어 있다.\n# file.show(\"data/feline-data-v2.csv\")\nfile.show(\"feline-data-v2.csv\")\n앞서와 마찬가지로 새로운 고양이 데이터를 불러와서 weight 칼럼에 데이터 자료형이 무엇인지 확인한다.\n이러면 안되는데, 고양이 몸무게가 더이상 실수형 자료형이 아니다! 앞서 수행했던 동일한 수학연산을 취하게 되면 문제에 봉착한다.\n무슨 일이 일어난 걸까? R이 csv 파일을 불러올 때, 칼럼에 모든 것이 동일한 자료형이 되는 것을 요구한다; 칼럼에 모든 원소가 실수형으로 인식되지 않으면, 칼럼에 어떤 원소도 실수형이 될 수 없다. 고양이 데이터를 불러온 테이블을 데이터프레임(data.frame)이라고 부르고, 자료구조(data structure)로 불리는 첫번째 사례가 된다. 즉, 자료구조는 기본 자료형에서 R이 생성할 줄 아는 구조가 된다.\nclass 함수를 호출해서 데이터프레임인지를 알 수 있다.\nR에서 데이터를 성공적으로 사용하려면 기본 자료구조가 무엇이고 어떻게 동작하는지 이해할 필요가 있다. 지금으로서는 추가된 마지막 줄을 제거하고 좀더 살펴보도록 하자:\nfeline-data.csv:\nRStudio로 다시 돌아와서,",
+    "text": "4.1 자료형\n2.1 더하기 \"black\"이 말이 되지 않기 때문에 마지막 문장이 오류를 뱉어낼 것이라고 추측한다면, 제대로 이해하고 있는 것이다. 이미 자료형(data type)으로 불리는 프로그래밍의 중요한 개념에 대한 직관을 갖추고 있는 것이다. 데이터 자료형이 무엇인지 다음을 통해 물어보게 된다:\n다섯 가지 주요 자료형이 있다. 실수형(double), 정수형(integer), 복소수형(complex), 논리형(logical), 문자형(character).\n분석이 얼마나 복잡해지냐에 관계없이, R에서 모든 데이터는 이러한 기본 자료형 중 하나로 해석된다. 이러한 엄격함이 정말로 중요한 결과를 잉태하게 된다.\n사용자가 또다른 고양이에 대한 상세내용을 추가했고, 추가 정보는 data/feline-data_v2.csv 파일에 저장되어 있다.\n# file.show(\"data/feline-data-v2.csv\")\nfile.show(\"feline-data-v2.csv\")\n앞서와 마찬가지로 새로운 고양이 데이터를 불러와서 weight 칼럼에 데이터 자료형이 무엇인지 확인한다.\n이러면 안되는데, 고양이 몸무게가 더이상 실수형 자료형이 아니다! 앞서 수행했던 동일한 수학연산을 취하게 되면 문제에 봉착한다.\n무슨 일이 일어난 걸까? R이 csv 파일을 불러올 때, 칼럼에 모든 것이 동일한 자료형이 되는 것을 요구한다; 칼럼에 모든 원소가 실수형으로 인식되지 않으면, 칼럼에 어떤 원소도 실수형이 될 수 없다. 고양이 데이터를 불러온 테이블을 데이터프레임(data.frame)이라고 부르고, 자료구조(data structure)로 불리는 첫번째 사례가 된다. 즉, 자료구조는 기본 자료형에서 R이 생성할 줄 아는 구조가 된다.\nclass 함수를 호출해서 데이터프레임인지를 알 수 있다.\nR에서 데이터를 성공적으로 사용하려면 기본 자료구조가 무엇이고 어떻게 동작하는지 이해할 필요가 있다. 지금으로서는 추가된 마지막 줄을 제거하고 좀더 살펴보도록 하자:\nfeline-data.csv:\nRStudio로 다시 돌아와서,",
     "crumbs": [
       "**2부** 데이터 다루기",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>자료구조</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>자료구조</span>"
     ]
   },
   {
@@ -1153,12 +1153,12 @@
   {
     "objectID": "data_structure.html#요인",
     "href": "data_structure.html#요인",
-    "title": "\n5  자료구조\n",
-    "section": "\n5.4 요인",
-    "text": "5.4 요인\n또 다른 중요한 자료구조가 요인(factor)이다. 요인은 보통 문자 데이터처럼 생겼다. 하지만, 일반적으로 범주형 정보를 나타내는데 사용된다. 예를 들어, 연구중인 모든 고양이에 대한 색상을 문자열 벡터로 만들어보자:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n문자열 벡터를 요인형으로 바꾸면 다음과 같다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n이제 R은 데이터에 3가지 가능한 범주가 있음을 파악하게 되었다. 하지만, 놀라운 것도 함께 수행했다; 문자열을 출력하는 대신에, 숫자가 대량으로 출도 되었다. R은 내부적으로 사람이 읽을 수 있는 범주를 숫자 인덱스로 치환시킨다. 이런 기능은 대다수 통계 계산에서 범주형 데이터를 숫자형으로 표현되는 기능을 활용하기 때문에 꼭 필요하다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n도전과제\n\n\n\ncats 데이터프레임에 요인형 칼럼이 있나요? 요인형 칼럼의 이름은 무엇인가요? ?read.csv 명령어를 사용해서 텍스트 칼럼을 요인형 대신에 문자형으로 그대로 유지시키는 방법을 찾아내세요; 그리고 나서 cat 데이터프레임의 요인이 실제로 문자벡터임을 확인하는 명령문을 작성하시오.\n\n\n\n\n\n\n해답\n\n\n\n\n\n해법으로 stringAsFactors 인자를 사용하면 된다.:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n또다른 해법은 colClasses 인자를 사용해서 칼럼을 좀더 면밀히 제어하는 것이다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n주의: 도움말 파일이 이해하기 어렵다는 학생이 다수 있다; 도움말 파일을 이해하기 어렵다는 것이 일반적이라서, 확신하지는 못하더라도, 문맥에 기초하여 최대한 추측하도록 용기를 주도록 한다.\n\n\n\n\n\n모형 함수에서 기준 수준(baseline level)이 무엇인지 파악하는 것이 중요하다. 요인의 첫번째 범주로 가정하지만, 기본디폴트는 알파벳순으로 정해지게 되어 있다. 수준을 다음과 같이 지정해서 변경할 수 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n상기 경우 “control”를 1로, “case”를 2로 명시적으로 지정하도록 했다. 이러한 지정이 통계 모형 결과를 해석하는데 있어 매우 중요하다.",
+    "title": "4  자료구조",
+    "section": "\n4.4 요인",
+    "text": "4.4 요인\n또 다른 중요한 자료구조가 요인(factor)이다. 요인은 보통 문자 데이터처럼 생겼다. 하지만, 일반적으로 범주형 정보를 나타내는데 사용된다. 예를 들어, 연구중인 모든 고양이에 대한 색상을 문자열 벡터로 만들어보자:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n문자열 벡터를 요인형으로 바꾸면 다음과 같다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n이제 R은 데이터에 3가지 가능한 범주가 있음을 파악하게 되었다. 하지만, 놀라운 것도 함께 수행했다; 문자열을 출력하는 대신에, 숫자가 대량으로 출도 되었다. R은 내부적으로 사람이 읽을 수 있는 범주를 숫자 인덱스로 치환시킨다. 이런 기능은 대다수 통계 계산에서 범주형 데이터를 숫자형으로 표현되는 기능을 활용하기 때문에 꼭 필요하다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n도전과제\n\n\n\ncats 데이터프레임에 요인형 칼럼이 있나요? 요인형 칼럼의 이름은 무엇인가요? ?read.csv 명령어를 사용해서 텍스트 칼럼을 요인형 대신에 문자형으로 그대로 유지시키는 방법을 찾아내세요; 그리고 나서 cat 데이터프레임의 요인이 실제로 문자벡터임을 확인하는 명령문을 작성하시오.\n\n\n\n\n\n\n해답\n\n\n\n\n\n해법으로 stringAsFactors 인자를 사용하면 된다.:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n또다른 해법은 colClasses 인자를 사용해서 칼럼을 좀더 면밀히 제어하는 것이다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n주의: 도움말 파일이 이해하기 어렵다는 학생이 다수 있다; 도움말 파일을 이해하기 어렵다는 것이 일반적이라서, 확신하지는 못하더라도, 문맥에 기초하여 최대한 추측하도록 용기를 주도록 한다.\n\n\n\n\n\n모형 함수에서 기준 수준(baseline level)이 무엇인지 파악하는 것이 중요하다. 요인의 첫번째 범주로 가정하지만, 기본디폴트는 알파벳순으로 정해지게 되어 있다. 수준을 다음과 같이 지정해서 변경할 수 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n상기 경우 “control”를 1로, “case”를 2로 명시적으로 지정하도록 했다. 이러한 지정이 통계 모형 결과를 해석하는데 있어 매우 중요하다.",
     "crumbs": [
       "**2부** 데이터 다루기",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>자료구조</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>자료구조</span>"
     ]
   },
   {
@@ -1186,56 +1186,155 @@
   {
     "objectID": "data_structure.html#자료형",
     "href": "data_structure.html#자료형",
-    "title": "\n5  자료구조\n",
+    "title": "4  자료구조",
     "section": "",
     "text": "Please enable JavaScript to experience the dynamic code cell content on this page.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\ncoat,weight,likes_string\ncalico,2.1,1\nblack,5.0,0\ntabby,3.2,1\ntabby,2.3 or 2.4,1\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\ncoat,weight,likes_string\ncalico,2.1,1\nblack,5.0,0\ntabby,3.2,1\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "**2부** 데이터 다루기",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>자료구조</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>자료구조</span>"
     ]
   },
   {
     "objectID": "data_structure.html#벡터와-자료형-강제변환",
     "href": "data_structure.html#벡터와-자료형-강제변환",
-    "title": "\n5  자료구조\n",
-    "section": "\n5.2 벡터와 자료형 강제변환",
-    "text": "5.2 벡터와 자료형 강제변환\n강제변환을 보다 잘 이해하기 위해서, 또 다른 자료구조(벡터(vector))를 만나보자.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nR에서 벡터는 본질적으로 무언가 순서를 갖는 리스트로, 특별한 성질을 갖는데 벡터에 모든 것은 동일한 자료형을 갖는다는 점이다. 자료형을 지정하지 않게 되면, 기본디폴트 설정은 논리형(logical)이 되거나; 자료형에 관계없이 공벡터를 선언할 수 있다. 자료가 벡터인지 다음과 같이 확인한다:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n상기 명령어로부터 다소 암호스러운 출력결과가 나오는데 해당 벡터에서 발견된 기본 자료형은 이 경우 chr 문자; 벡터에 나와있는 숫자는 벡터의 인덱스로 이 경우 [1:3]; 그리고 벡터에 실제로 들어있는 몇가지 예로, 이 경우 빈 문자열이 된다. 유사하게 다음을 실행하게 되면,\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\ncats$weight도 벡터임을 알 수 있다. R 데이터프레임으로 불러온 데이터 칼럼은 모두 벡터다. 이러한 연유로 칼럼에 있는 모든 원소는 동일한 자료형을 갖게 강제하는 이유가 된다.\n\n\n\n\n\n\n토론 주제\n\n\n\n왜 R에서는 데이터 칼럼에 무엇을 넣는지에 대해서 고집스럽게 주장을 할까? 이러한 점은 어떻게 우리에게 도움이 될까?\n\n\n\n\n\n\n토론 정리\n\n\n\n\n\n칼럼에 모든 것을 동일하게 둠으로써, 데이터에 관해서 단순한 가정을 할 수 있게 한다; 만약 칼럼의 첫번째 입력값이 숫자라면, 모든 입력값을 숫자로 해석할 수 있게 되고, 그렇게 함으로써 모든 것을 확인할 필요가 없게 된다. 깨끗한 데이터(clean data)라고 사람들이 회자할 때, 사람들이 의미하는 것이 이러한 일관성이다. 장기적으로 엄격한 일관성이 R에서 우리 삶을 풍요롭고 수월하게 만들 것이다.\n\n\n\n\n\n결합 함수(c())를 사용해서 벡터를 생성할 수 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n지금까지 학습한 것을 바탕으로, 다음 문장은 어떤 결과를 출력하게 될까?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n이것을 자료형 강제변환(type coercion)라고 부른다. 이것이 많은 놀라움의 원천이고, 왜 기본 자료형에 대해서 인지하고 있어야 되는 이유가 되고, R이 해석하는 방식도 알아야 된다. R에서 혼합된 자료형(상기 예제는 숫자와 문자)의 경우 단하나의 벡터로 변환시킬 때, 모든 자료를 동일한 자료형으로 강제 변환시킨다. 다음을 생각해 보자.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n강제 변환규칙은 다음과 같이 적용된다: 논리형 -&gt; 정수형 -&gt; 숫자형 -&gt; 복소수형 -&gt; 문자형. 여기서 -&gt; 표현은 다음으로 변환된다로 읽힌다. 이런 자동 변환규칙에 거슬러 자료형을 강제로 변환시키려면 as. 함수를 사용한다:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nR이 기본 자료형을 다른 자료형으로 강제 변환할 때, 놀라운 일이 생겨난다! 자료형 강제변환에 대한 핵심사항은 차치하고 중요한 점은 다음과 같다. 만약 내 데이터가 생각했던 것과 다르게 보인다면, 자료형 강제변환이 원인일 가능성이 높다. 벡터와 데이터프레임의 칼럼 자료형이 동일하도록 확실히 하라. 그렇지 않으면 끔찍한 놀라운 경험을 하게 될 것이다!\n하지만, 경우에 따라서는 자료형 강제변환이 매우 유용할 수도 있다! 예를 들어, cats 데이터프레임 likes_string 칼럼은 숫자형이지만, 1과, 0이 실제로 TRUE와 FALSE를 표현한다는 것을 알고 있다. 이 경우 두 상태(TRUE 혹은 FALSE)를 갖는 논리형 자료형을 사용해야 한다. as.logical 함수를 사용해서 칼럼을 논리형(logical)으로 ‘강제변환(coerce)’ 시킨다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n결합 함수(c())는 기존 벡터에 무언가 추가하는 역할을 수행한다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n숫자 순열도 생성할 수 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n벡터에 관해 궁금한 점도 물어볼 수 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n마지막으로, 벡터의 각 원소에 명칭을 부여하는 것도 가능하다:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n도전과제\n\n\n\n1 부터 26까지 숫자를 갖는 벡터를 생성하면서 시작해 보자. 생성한 벡터에 2를 곱해서 다시 자신에게 할당한다. 벡터에 A 부터 Z까지 이름을 부여한다. (힌트: LETTERS라는 내장벡터가 있다.)\n\n\n\n\n\n\n해답\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "title": "4  자료구조",
+    "section": "\n4.2 벡터와 자료형 강제변환",
+    "text": "4.2 벡터와 자료형 강제변환\n강제변환을 보다 잘 이해하기 위해서, 또 다른 자료구조(벡터(vector))를 만나보자.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nR에서 벡터는 본질적으로 무언가 순서를 갖는 리스트로, 특별한 성질을 갖는데 벡터에 모든 것은 동일한 자료형을 갖는다는 점이다. 자료형을 지정하지 않게 되면, 기본디폴트 설정은 논리형(logical)이 되거나; 자료형에 관계없이 공벡터를 선언할 수 있다. 자료가 벡터인지 다음과 같이 확인한다:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n상기 명령어로부터 다소 암호스러운 출력결과가 나오는데 해당 벡터에서 발견된 기본 자료형은 이 경우 chr 문자; 벡터에 나와있는 숫자는 벡터의 인덱스로 이 경우 [1:3]; 그리고 벡터에 실제로 들어있는 몇가지 예로, 이 경우 빈 문자열이 된다. 유사하게 다음을 실행하게 되면,\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\ncats$weight도 벡터임을 알 수 있다. R 데이터프레임으로 불러온 데이터 칼럼은 모두 벡터다. 이러한 연유로 칼럼에 있는 모든 원소는 동일한 자료형을 갖게 강제하는 이유가 된다.\n\n\n\n\n\n\n토론 주제\n\n\n\n왜 R에서는 데이터 칼럼에 무엇을 넣는지에 대해서 고집스럽게 주장을 할까? 이러한 점은 어떻게 우리에게 도움이 될까?\n\n\n\n\n\n\n토론 정리\n\n\n\n\n\n칼럼에 모든 것을 동일하게 둠으로써, 데이터에 관해서 단순한 가정을 할 수 있게 한다; 만약 칼럼의 첫번째 입력값이 숫자라면, 모든 입력값을 숫자로 해석할 수 있게 되고, 그렇게 함으로써 모든 것을 확인할 필요가 없게 된다. 깨끗한 데이터(clean data)라고 사람들이 회자할 때, 사람들이 의미하는 것이 이러한 일관성이다. 장기적으로 엄격한 일관성이 R에서 우리 삶을 풍요롭고 수월하게 만들 것이다.\n\n\n\n\n\n결합 함수(c())를 사용해서 벡터를 생성할 수 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n지금까지 학습한 것을 바탕으로, 다음 문장은 어떤 결과를 출력하게 될까?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n이것을 자료형 강제변환(type coercion)라고 부른다. 이것이 많은 놀라움의 원천이고, 왜 기본 자료형에 대해서 인지하고 있어야 되는 이유가 되고, R이 해석하는 방식도 알아야 된다. R에서 혼합된 자료형(상기 예제는 숫자와 문자)의 경우 단하나의 벡터로 변환시킬 때, 모든 자료를 동일한 자료형으로 강제 변환시킨다. 다음을 생각해 보자.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n강제 변환규칙은 다음과 같이 적용된다: 논리형 -&gt; 정수형 -&gt; 숫자형 -&gt; 복소수형 -&gt; 문자형. 여기서 -&gt; 표현은 다음으로 변환된다로 읽힌다. 이런 자동 변환규칙에 거슬러 자료형을 강제로 변환시키려면 as. 함수를 사용한다:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nR이 기본 자료형을 다른 자료형으로 강제 변환할 때, 놀라운 일이 생겨난다! 자료형 강제변환에 대한 핵심사항은 차치하고 중요한 점은 다음과 같다. 만약 내 데이터가 생각했던 것과 다르게 보인다면, 자료형 강제변환이 원인일 가능성이 높다. 벡터와 데이터프레임의 칼럼 자료형이 동일하도록 확실히 하라. 그렇지 않으면 끔찍한 놀라운 경험을 하게 될 것이다!\n하지만, 경우에 따라서는 자료형 강제변환이 매우 유용할 수도 있다! 예를 들어, cats 데이터프레임 likes_string 칼럼은 숫자형이지만, 1과, 0이 실제로 TRUE와 FALSE를 표현한다는 것을 알고 있다. 이 경우 두 상태(TRUE 혹은 FALSE)를 갖는 논리형 자료형을 사용해야 한다. as.logical 함수를 사용해서 칼럼을 논리형(logical)으로 ‘강제변환(coerce)’ 시킨다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n결합 함수(c())는 기존 벡터에 무언가 추가하는 역할을 수행한다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n숫자 순열도 생성할 수 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n벡터에 관해 궁금한 점도 물어볼 수 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n마지막으로, 벡터의 각 원소에 명칭을 부여하는 것도 가능하다:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n도전과제\n\n\n\n1 부터 26까지 숫자를 갖는 벡터를 생성하면서 시작해 보자. 생성한 벡터에 2를 곱해서 다시 자신에게 할당한다. 벡터에 A 부터 Z까지 이름을 부여한다. (힌트: LETTERS라는 내장벡터가 있다.)\n\n\n\n\n\n\n해답\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "**2부** 데이터 다루기",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>자료구조</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>자료구조</span>"
     ]
   },
   {
     "objectID": "data_structure.html#데이터프레임",
     "href": "data_structure.html#데이터프레임",
-    "title": "\n5  자료구조\n",
-    "section": "\n5.3 데이터프레임",
-    "text": "5.3 데이터프레임\n데이터프레임의 칼럼이 벡터라고 앞에서 언급했다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n말이 된다. 다음은 어떤가?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "title": "4  자료구조",
+    "section": "\n4.3 데이터프레임",
+    "text": "4.3 데이터프레임\n데이터프레임의 칼럼이 벡터라고 앞에서 언급했다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n말이 된다. 다음은 어떤가?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "**2부** 데이터 다루기",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>자료구조</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>자료구조</span>"
     ]
   },
   {
     "objectID": "data_structure.html#리스트",
     "href": "data_structure.html#리스트",
-    "title": "\n5  자료구조\n",
-    "section": "\n5.5 리스트",
-    "text": "5.5 리스트\n데이터 과학자로서 알고 있어야 되는 또다른 자료구조가 리스트(list)다. 리스트는 다른 자료형과 비교하여 몇 가지 점에서 더 단순하다. 왜냐하면 원하는 무엇이든 넣을 수 있기 때문이다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n데이터프레임에서 다소 놀라운 것을 이제 이해할 수 있다. 다음을 실행하게 되면 무슨 일이 발생될까?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n데이터프레임은 ‘내부적으로(under the hood)’ 리스트라는 것을 알 수 있다 - 이유는 데이터프레임이 실제로 벡터와 요인으로 구성된 리스트이기 때문이다. 벡터와 요인으로 뒤섞인 칼럼을 붙잡아 두려면, 데이터프레임은 모든 칼럼을 유사한 표에 담을 수 있는 벡터보다 더 유연할 필요가 있다. 다른 말로, data.frame은 모든 벡터가 동일한 길이를 갖는 특별한 리스트로 정의할 수 있다.\ncats 사례에서는 정수형, 숫자형, 논리형 변수로 구성된다. 이미 살펴봤듯이, 데이터프레임 각 칼럼은 벡터다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n각 행은 다른 변수의 관측점(observation)으로 그 자체로 데이터프레임이다. 따라서, 서로 다른 자료형을 갖는 원소로 구성된다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n도전과제\n\n\n\n데이터프레임에서 변수와 관측점과 원소를 호출하는 미모하지만 다른 방식이 존재한다: - cats[1] - cats[[1]] - cats$coat - cats[\"coat\"] - cats[1, 1] - cats[, 1] - cats[1, ]\n상기 예제를 시도해보고, 각각이 반환하는 것을 설명해 본다. 힌트: typeof() 함수를 사용해서 각각의 경우에 반환되는 것을 꼼꼼히 살펴본다.\n\n\n\n\n\n\n해답\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n데이터프레임을 벡터로 구성된 리스트로 간주할 수 있다. 단일 꺾쇠 [1]은 리스트의 첫번째 원소를 리스트로 반환한다. 이번 경우, 데이터프레임의 첫번째 칼럼이 된다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n이중 꺾쇠 [[1]]은 리스트의 원소 내용물을 반환한다. 이번 경우, 리스트가 아닌 요인형 벡터로 첫번째 칼럼 내용물을 반환한다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n명칭으로 항목을 끄집어내는데 $ 기호를 사용한다. _coat_가 데이터프레임의 첫번째 칼럼으로 요인형 벡터가 반환된다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n[\"coat\"] 방식은 칼럼 인덱스를 명칭으로 바꾸고 동시에 꺾쇠를 사용한 경우다. 예제 1과 마찬가지로 반환되는 객체는 리스트가 된다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n단일 꺾쇠를 사용했는데 이번에는 행과 열의 좌표도 넣어 전달했다. 반환되는 객체는 첫번째 행, 첫번째 열에 교차하는 값이 된다. 반환되는 객체는 정수형이지만,요인형 벡터의 일부분이라 정수값과 연관된 라벨 “calico”도 함께 출력한다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n앞선 예제와 마찬가지로 꺾쇠를 하나만 사용했고, 행과 열 좌표도 전달했다. 행좌표를 지정하지 않은 경우, R에서 결측값은 해당 칼럼 벡터의 모든 원소로 해석된다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n다시 한번, 꺽쇠를 하나만 사용했고, 행과 열 좌표도 전달했다. 칼럼 좌표가 지정되어 있지 않기 때문에, 첫번째 행의 모든 값을 포함하는 리스트가 반환된다.",
+    "title": "4  자료구조",
+    "section": "\n4.5 리스트",
+    "text": "4.5 리스트\n데이터 과학자로서 알고 있어야 되는 또다른 자료구조가 리스트(list)다. 리스트는 다른 자료형과 비교하여 몇 가지 점에서 더 단순하다. 왜냐하면 원하는 무엇이든 넣을 수 있기 때문이다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n데이터프레임에서 다소 놀라운 것을 이제 이해할 수 있다. 다음을 실행하게 되면 무슨 일이 발생될까?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n데이터프레임은 ‘내부적으로(under the hood)’ 리스트라는 것을 알 수 있다 - 이유는 데이터프레임이 실제로 벡터와 요인으로 구성된 리스트이기 때문이다. 벡터와 요인으로 뒤섞인 칼럼을 붙잡아 두려면, 데이터프레임은 모든 칼럼을 유사한 표에 담을 수 있는 벡터보다 더 유연할 필요가 있다. 다른 말로, data.frame은 모든 벡터가 동일한 길이를 갖는 특별한 리스트로 정의할 수 있다.\ncats 사례에서는 정수형, 숫자형, 논리형 변수로 구성된다. 이미 살펴봤듯이, 데이터프레임 각 칼럼은 벡터다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n각 행은 다른 변수의 관측점(observation)으로 그 자체로 데이터프레임이다. 따라서, 서로 다른 자료형을 갖는 원소로 구성된다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n도전과제\n\n\n\n데이터프레임에서 변수와 관측점과 원소를 호출하는 미모하지만 다른 방식이 존재한다: - cats[1] - cats[[1]] - cats$coat - cats[\"coat\"] - cats[1, 1] - cats[, 1] - cats[1, ]\n상기 예제를 시도해보고, 각각이 반환하는 것을 설명해 본다. 힌트: typeof() 함수를 사용해서 각각의 경우에 반환되는 것을 꼼꼼히 살펴본다.\n\n\n\n\n\n\n해답\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n데이터프레임을 벡터로 구성된 리스트로 간주할 수 있다. 단일 꺾쇠 [1]은 리스트의 첫번째 원소를 리스트로 반환한다. 이번 경우, 데이터프레임의 첫번째 칼럼이 된다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n이중 꺾쇠 [[1]]은 리스트의 원소 내용물을 반환한다. 이번 경우, 리스트가 아닌 요인형 벡터로 첫번째 칼럼 내용물을 반환한다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n명칭으로 항목을 끄집어내는데 $ 기호를 사용한다. _coat_가 데이터프레임의 첫번째 칼럼으로 요인형 벡터가 반환된다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n[\"coat\"] 방식은 칼럼 인덱스를 명칭으로 바꾸고 동시에 꺾쇠를 사용한 경우다. 예제 1과 마찬가지로 반환되는 객체는 리스트가 된다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n단일 꺾쇠를 사용했는데 이번에는 행과 열의 좌표도 넣어 전달했다. 반환되는 객체는 첫번째 행, 첫번째 열에 교차하는 값이 된다. 반환되는 객체는 정수형이지만,요인형 벡터의 일부분이라 정수값과 연관된 라벨 “calico”도 함께 출력한다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n앞선 예제와 마찬가지로 꺾쇠를 하나만 사용했고, 행과 열 좌표도 전달했다. 행좌표를 지정하지 않은 경우, R에서 결측값은 해당 칼럼 벡터의 모든 원소로 해석된다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n다시 한번, 꺽쇠를 하나만 사용했고, 행과 열 좌표도 전달했다. 칼럼 좌표가 지정되어 있지 않기 때문에, 첫번째 행의 모든 값을 포함하는 리스트가 반환된다.",
     "crumbs": [
       "**2부** 데이터 다루기",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>자료구조</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>자료구조</span>"
     ]
   },
   {
     "objectID": "data_structure.html#행렬",
     "href": "data_structure.html#행렬",
-    "title": "\n5  자료구조\n",
-    "section": "\n5.6 행렬",
-    "text": "5.6 행렬\n마지막으로 중요한 자료형이 행렬이다. 0으로 가득찬 행렬을 다음과 같이 선언한다:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n다른 자료구조와 마찬가지로, 행렬에 질문을 다음과 같이 던질 수 있다:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n도전과제\n\n\n\nlength(matrix_example) 실행결과는 어떻게 나올까? 시도해보자. 생각한 것과 일치하는가? 왜 그런가/ 왜 그렇지 않는가?\n\n\n\n\n\n\n해답\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n행렬은 차원 속성이 추가된 벡터라서, length() 함수는 행렬의 전체 원소 갯수를 반환시킨다.\n\n\n\n\n\n\n\n\n\n\n\n도전과제\n\n\n\n또다른 행렬을 만들어 보자. 이번에는 1:50 숫자를 담고 있는 칼럼이 5, 행이 10일 행렬이다. matrix() 함수로 칼럼기준으로 혹은 행기준으로 채울 수 있나요? 행과 열을 바꿔 변경할 수 있는 방법을 찾아보자. (힌트: matrix 도움말 문서를 참조한다!)\n\n\n\n\n\n\n해답\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n\n\n\n\n\n도전과제\n\n\n\n이번 워크샵에서 다룬 각 섹션별 문자벡터를 포함하는 길이 2를 갖는 리스트를 생성하시오.\n\n자료형\n자료구조\n\n지금까지 살펴본 자료형과 자료구조를 명칭으로 갖는 문자 벡터를 채워넣는다.\n\n\n\n\n\n\n해답\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n주목: 칠판이나 벽에 자료형과 자료구조를 모두 적어두는 것이 도움이 될 수 있다 - 워크샵 동안 참여자들에게 기본 자료형과 구조의 중요성을 상기할 수 있기 때문이다.\n\n\n\n\n\n\n\n\n\n\n\n도전과제\n\n\n\n아래 행렬의 출력 결과를 생각해보자:\n     [,1] [,2]\n[1,]    4    1\n[2,]    9    5\n[3,]   10    7\n이 행렬을 작성하는 올바른 명령어는 다음 중 무엇일까? 직접 타이핑하기 전에 각 명령어를 살펴보고, 정답을 생각해보자. 다른 명령어는 어떤 행렬을 만들어낼지도 생각해본다.\n\nmatrix(c(4, 1, 9, 5, 10, 7), nrow = 3)\nmatrix(c(4, 9, 10, 1, 5, 7), ncol = 2, byrow = TRUE)\nmatrix(c(4, 9, 10, 1, 5, 7), nrow = 2)\nmatrix(c(4, 1, 9, 5, 10, 7), ncol = 2, byrow = TRUE)\n\n\n\n\n\n\n\n해답\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "title": "4  자료구조",
+    "section": "\n4.6 행렬",
+    "text": "4.6 행렬\n마지막으로 중요한 자료형이 행렬이다. 0으로 가득찬 행렬을 다음과 같이 선언한다:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n다른 자료구조와 마찬가지로, 행렬에 질문을 다음과 같이 던질 수 있다:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n도전과제\n\n\n\nlength(matrix_example) 실행결과는 어떻게 나올까? 시도해보자. 생각한 것과 일치하는가? 왜 그런가/ 왜 그렇지 않는가?\n\n\n\n\n\n\n해답\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n행렬은 차원 속성이 추가된 벡터라서, length() 함수는 행렬의 전체 원소 갯수를 반환시킨다.\n\n\n\n\n\n\n\n\n\n\n\n도전과제\n\n\n\n또다른 행렬을 만들어 보자. 이번에는 1:50 숫자를 담고 있는 칼럼이 5, 행이 10일 행렬이다. matrix() 함수로 칼럼기준으로 혹은 행기준으로 채울 수 있나요? 행과 열을 바꿔 변경할 수 있는 방법을 찾아보자. (힌트: matrix 도움말 문서를 참조한다!)\n\n\n\n\n\n\n해답\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n\n\n\n\n\n도전과제\n\n\n\n이번 워크샵에서 다룬 각 섹션별 문자벡터를 포함하는 길이 2를 갖는 리스트를 생성하시오.\n\n자료형\n자료구조\n\n지금까지 살펴본 자료형과 자료구조를 명칭으로 갖는 문자 벡터를 채워넣는다.\n\n\n\n\n\n\n해답\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n주목: 칠판이나 벽에 자료형과 자료구조를 모두 적어두는 것이 도움이 될 수 있다 - 워크샵 동안 참여자들에게 기본 자료형과 구조의 중요성을 상기할 수 있기 때문이다.\n\n\n\n\n\n\n\n\n\n\n\n도전과제\n\n\n\n아래 행렬의 출력 결과를 생각해보자:\n     [,1] [,2]\n[1,]    4    1\n[2,]    9    5\n[3,]   10    7\n이 행렬을 작성하는 올바른 명령어는 다음 중 무엇일까? 직접 타이핑하기 전에 각 명령어를 살펴보고, 정답을 생각해보자. 다른 명령어는 어떤 행렬을 만들어낼지도 생각해본다.\n\nmatrix(c(4, 1, 9, 5, 10, 7), nrow = 3)\nmatrix(c(4, 9, 10, 1, 5, 7), ncol = 2, byrow = TRUE)\nmatrix(c(4, 9, 10, 1, 5, 7), nrow = 2)\nmatrix(c(4, 1, 9, 5, 10, 7), ncol = 2, byrow = TRUE)\n\n\n\n\n\n\n\n해답\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "**2부** 데이터 다루기",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>자료구조</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>자료구조</span>"
+    ]
+  },
+  {
+    "objectID": "dataframe.html",
+    "href": "dataframe.html",
+    "title": "5  데이터프레임 탐색",
+    "section": "",
+    "text": "5.1 행과 열 추가\n데이터프레임의 칼럼은 벡터라는 것을 배웠다. 따라서, 데이터는 칼럼에서 자료형의 일관성을 유지해야 한다. 이를테면, 칼럼을 새로 추가하려면 벡터를 새로 만들어서 시작한다.",
+    "crumbs": [
+      "**2부** 데이터 다루기",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>데이터프레임 탐색</span>"
+    ]
+  },
+  {
+    "objectID": "dataframe.html#데이터프레임에-행과-열-추가",
+    "href": "dataframe.html#데이터프레임에-행과-열-추가",
+    "title": "5  데이터프레임 탐색",
+    "section": "",
+    "text": "R\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nage를 칼럼으로 다음과 같이 추가한다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n데이터프레임의 행의 개수와 다른 개수를 갖는 age 벡터를 추가하게 되면 추가되지 않고 오류가 발생된다는 점에 주의한다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n정상 동작이 되지 않는 이유가 무엇일까? R은 테이블의 모든 행마다 신규 칼럼에서도 원소 하나가 있길 원한다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n그래서, 정상 동작하려면 nrow(cats) = length(age)이 되어야 한다. cats 내용을 새로운 데이터프레임으로 덮어써보자.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n이제 행을 추가하면 어떻게 될까? 이미 데이터프레임의 행이 리스트라는 사실을 알고 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "**2부** 데이터 다루기",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>데이터프레임 탐색</span>"
+    ]
+  },
+  {
+    "objectID": "dataframe.html#요인",
+    "href": "dataframe.html#요인",
+    "title": "5  데이터프레임 탐색",
+    "section": "\n5.2 요인",
+    "text": "5.2 요인\n살펴볼 것이 하나 더 있다. 범주형 자료 처리를 위한 요인(factor)에서 각기 다른 값을 범주 수준(level)이라고 한다. 요인형 “coat” 변수는 수준이 3으로 구성된다. “black”, “calico”, “tabby”. R은 세 가지 수준 중 하나와 매칭되는 값만 받아들인다. 완전 새로운 값을 추가하게 되면, 추가되는 신규 값은 NA가 된다.\n경고 메시지를 통해서 coat 요인변수에 “tortoiseshell” 값을 추가하는데 성공하지 못했다고 알려준다. 하지만, 3.3 (숫자형), TRUE (논리형), 9 (숫자형)은 모두 weight, likes_string, age 변수에 성공적으로 추가된다. 왜냐하면 이 변수들이 요인형이 아니기 때문이다. “tortoiseshell”을 coat 요인변수에 성공적으로 추가하려면 요인의 수준(level)로 “tortoiseshell”을 추가하면 된다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n대안으로, 요인형 벡터를 문자형 벡터로 변환시키면 된다. 요인변수의 범주를 잃게 되지만, 요인 수준을 조심스럽게 다룰 필요 없이 칼럼에 추가하고자 하는 임의의 단어를 추가할 수 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n도전과제\n\n\n\n\n\ncats$age 벡터에 7을 곱해서 human_age 벡터를 생성하자.\n\nhuman_age를 요인형으로 변환시키자.\n\nas.numeric() 함수를 사용해서 human_age 벡터를 다시 숫자형 벡터로 변환시킨다. 이제 7로 나눠서 원래 고양이 나이로 되돌리자. 무슨 일이 생겼는지 설명하자.\n\n\n\n\n\n\n\n해답\n\n\n\n\n\n\nhuman_age &lt;- cats$age * 7\n\nhuman_age &lt;- factor(human_age). as.factor(human_age) 도 잘 동작한다.\n\nas.numeric(human_age)을 실행하면 1 2 3 4 4이 된다.\n\n왜냐하면 요인형 변수는 정수형(여기서 1:4)으로 자료를 저장하기 때문이다. 정수 라벨과 연관된 값은 여기서 28, 35, 56, 63이다. 요인형 변수를 숫자형 벡터로 변환시키면 라벨이 아니라 그 밑단의 정수를 반환시킨다. 원래 숫자를 원하는 경우, human_age를 문자형 벡터로 변환시키고 나서 숫자형 벡터로 변환시키면 된다. (왜 이 방식은 정상 동작할까?) 실수로 숫자만 담긴 칼럼 어딘가에 문자가 포함된 csv 파일로 작업할 때 이런 일이 실제로 종종 일어난다. 데이터를 불러 읽어올 때 stringsAsFactors=FALSE 설정을 잊지 말자.",
+    "crumbs": [
+      "**2부** 데이터 다루기",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>데이터프레임 탐색</span>"
+    ]
+  },
+  {
+    "objectID": "dataframe.html#행-제거",
+    "href": "dataframe.html#행-제거",
+    "title": "5  데이터프레임 탐색",
+    "section": "\n5.3 행 제거",
+    "text": "5.3 행 제거\n이제 데이터프레임에 행과 열을 추가하는 방법을 알게 되었다. 하지만, 데이터프레임에 “tortoiseshell” 고양이를 처음으로 추가하면서 우연히 쓰레기 행을 추가시켰다. 데이터프레임에 문제가 되는 행을 마이너스 연산자를 사용해서 빼자.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n-4, 다음에 아무것도 지정하지 않아서 4번째 행 전체를 제거함에 주목한다. 주목: 벡터 내부에 행 다수를 넣어 한번에 행을 제거할 수도 있다: cats[c(-4,-5), ] 대안으로, NA 값을 갖는 모든 행을 제거시킨다. 출력결과를 cats에 다시 대입하여 변경사항이 데이터프레임에 영구히 남도록 조치한다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "**2부** 데이터 다루기",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>데이터프레임 탐색</span>"
+    ]
+  },
+  {
+    "objectID": "dataframe.html#칼럼-제거",
+    "href": "dataframe.html#칼럼-제거",
+    "title": "5  데이터프레임 탐색",
+    "section": "\n5.4 칼럼 제거",
+    "text": "5.4 칼럼 제거\n데이터프레임의 칼럼도 제거할 수 있다. “age” 칼럼을 제거하고자 한다면 어떻게 해야 할까? 변수명과 변수 인덱스, 두가지 방식으로 칼럼을 제거할 수 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n,-4 앞에 아무것도 없는 것에 주목한다. 이는 모든 행을 간직한다는 의미를 갖는다. 대안으로, 색인명을 사용해서 컬럼을 제거할 수도 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "**2부** 데이터 다루기",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>데이터프레임 탐색</span>"
+    ]
+  },
+  {
+    "objectID": "dataframe.html#데이터프레임에-덧붙이기",
+    "href": "dataframe.html#데이터프레임에-덧붙이기",
+    "title": "5  데이터프레임 탐색",
+    "section": "\n5.5 데이터프레임에 덧붙이기",
+    "text": "5.5 데이터프레임에 덧붙이기\n데이터프레임에 데이터를 추가할 때 기억할 것은 칼럼은 벡터, 행은 리스트라는 사실이다. rbind() 함수를 사용해서 데이터프레임 두 개를 본드로 붙이듯이 결합시킬 수 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n하지만 이제 행 이름이 불필요하게 복잡해졌다. 행 이름을 제거하면 R이 자동으로 순차적인 이름을 다시 붙여준다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n도전과제\n\n\n\n다음 구문을 사용해서 R 내부에서 직접 데이터프레임을 새로 만들 수 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n다음 정보를 갖는 데이터프레임을 직접 제작해 보자.\n\n이름(first name)\n성(last name)\n좋아하는 숫자\n\nrbind를 사용해서 옆사람을 항목에 추가한다. 마지막으로 cbind() 함수를 사용해서 “지금이 커피 시간인가요?”라는 질문의 답을 칼럼으로 추가한다.\n\n\n\n\n\n\n해답\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "**2부** 데이터 다루기",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>데이터프레임 탐색</span>"
+    ]
+  },
+  {
+    "objectID": "dataframe.html#현실적인-예제",
+    "href": "dataframe.html#현실적인-예제",
+    "title": "5  데이터프레임 탐색",
+    "section": "\n5.6 현실적인 예제",
+    "text": "5.6 현실적인 예제\n지금까지 고양이 데이터를 가지고 데이터프레임 조작에 대한 기본적인 사항을 살펴봤다. 이제 학습한 기술을 사용해서 좀 더 현실적인 데이터셋을 다뤄보자. 앞에서 다운로드 받은 gapminder 데이터셋을 불러오자.\n\ngapminder &lt;- read.csv(\"data/gapminder_data.csv\")\n\n\n\n\n\n\n\n데이터셋 설명\n\n\n\n\n흔히 맞닥드리는 또다른 유형의 파일이 탭구분자를 갖는 파일(.tsv)이다. 탭을 구분자로 명세하는데, \"\\\\t\"을 사용하고, read.delim() 함수로 불러 읽어온다.\n파일을 download.file() 함수를 사용해서 인터넷으로부터 직접 본인 컴퓨터 폴더로 다운로드할 수 있다. read.csv() 함수를 실행해서 다운로드 받은 파일을 읽어온다. 예를 들어,\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n대안으로, read.csv() 함수 내부에 파일 경로를 웹 주소로 치환해서 인터넷에서 직접 파일을 불러올 수도 있다. 이런 경우 로컬 컴퓨터에 CSV 파일이 전혀 저장되지 않았다는 점을 주의한다. 예를 들어,\n\n\ngapminder &lt;- read.csv(\"https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/main/episodes/data/gapminder_data.csv\")\n\n\n\nreadxl 패키지를 사용해서, 엑셀 스프레드시트를 평범한 텍스트로 변환하지 않고 직접 불러올 수도 있다.\n\n\n\ngapminder 데이터셋을 좀 더 살펴보자. 항상 가장 먼저 해야 되는 작업은 str 명령어로 데이터가 어떻게 생겼는지 확인하는 것이다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\ntypeof() 함수로 데이터프레임 칼럼 각각을 면밀히 조사할 수도 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n데이터프레임 차원에 대한 정보를 얻어낼 수도 있다. str(gapminder) 실행결과 gapminder 데이터프레임에 관측점 1704개, 변수 6개가 있음을 상기한다. 다음 코드 실행결과는 무엇일까? 그리고 왜 그렇게 되는가?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n공정한 추측은 아마도 데이터프레임 길이가 행의 길이(1704)라고 보는 것이다. 하지만, 이번에는 다르다. 데이터프레임은 벡터와 요인으로 구성된 리스트라는 사실을 기억하라.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nlength() 함수가 6을 제시하는 이유는 gapminder가 6개 칼럼을 갖는 리스트로 만들어졌기 때문이다. 데이터셋에서 행과 열 숫자를 얻는 데 다음 함수를 던져보자.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n혹은 한번에 보려면 다음과 같이 한다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n또한, 모든 칼럼의 칼럼명이 무엇인지 파악하고자 하면 다음과 같이 질문을 던진다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n현 단계에서, R이 제시하는 구조가 우리의 직관이나 예상과 부합되는지 묻어보는 것이 중요하다. 각 칼럼에 대한 기본 자료형은 이해가 되는가? 만약 납득이 가지 않는다면, 후속 작업에서 나쁜 놀라운 사실로 전환되기 전에 문제를 해결해야 한다. 문제를 해결하는 데, R이 데이터를 이해하는 방법과 데이터를 기록할 때 엄격한 일관성(strict consistency)의 중요성에 관해 학습한 것을 동원한다.\n자료형과 자료구조가 타당해 보이게 되면, 데이터를 제대로 파고들 시간이 되었다. gapminder 데이터의 처음 몇 줄을 살펴보자.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n도전과제\n\n\n\n데이터 마지막 몇 줄, 중간 몇 줄을 점검하는 것도 좋은 습관이다. 그런데 어떻게 점검할 수 있을까?\n중간 몇 줄을 찾아보는 것이 너무 어렵지는 않지만, 임의로 몇 줄을 추출할 수도 있다. 어떻게 할 수 있을까?\n\n\n\n\n\n\n해답\n\n\n\n\n\n마지막 몇 줄을 점검하려면, R에 내장된 함수가 있어서 상대적으로 간단하다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n데이터가 온전한지(혹은 관점에 따라 데이터가 온전하지 않은지)를 점검하는 데 몇 줄을 추출할 수 있을까?\n\n팁: 몇 가지 방법이 존재한다.\n\n중첩 함수(또 다른 함수에 인자로 전달되는 함수)를 사용한 해법도 있다. 새로운 개념처럼 들리지만, 사실 이미 사용하고 있다. my_dataframe[rows, cols] 명령어는 데이터프레임을 화면에 뿌려준다. 데이터프레임에 행이 얼마나 많은지 알지 못하는데 어떻게 마지막 행을 뽑아낼 수 있을까? R에 내장된 함수가 있다. (의사) 난수를 얻어보는 것은 어떨까? R은 난수추출 함수도 갖추고 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n분석 결과를 재현 가능하게 확실히 만들려면, 코드를 스크립트 파일에 저장해서 나중에 다시 볼 수 있어야 한다.\n\n\n\n\n\n\n도전과제\n\n\n\nfile -&gt; new file -&gt; R script로 가서, gapminder 데이터셋을 불러오는 R 스크립트를 작성한다. scripts/ 디렉토리에 저장하고 버전 제어 시스템에도 추가한다. 인자로 파일 경로명을 사용해서 source() 함수를 사용해서 스크립트를 실행하라. (혹은 RStudio “source” 버튼을 누른다)\n\n\n\n\n\n\n해답\n\n\n\n\n\nscripts/load-gapminder.R 파일에 담긴 내용물은 다음과 같다.\n\ndownload.file(\"https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/main/episodes/data/gapminder_data.csv\", destfile = \"data/gapminder_data.csv\")\ngapminder &lt;- read.csv(file = \"data/gapminder_data.csv\")\n\n스크립트를 실행시키면 데이터를 gapminder 변수에 적재시킨다.\n\nsource(file = \"scripts/load-gapminder.R\")\n\n\n\n\n\n\n\n\n\n\n\n\n도전과제\n\n\n\nstr(gapminder) 출력결과를 다시 불러오자. 이번에는 gapminder 데이터에 대해 str() 함수가 출력하는 모든 것이 의미하는 바를 설명한다. 지금까지 학습한 요인, 리스트와 벡터 뿐만 아니라, colnames(), dim() 같은 함수도 동원한다. 이해하지 못한 부분이 있다면, 주변 동료와 상의한다!\n\n\n\n\n\n\n해답\n\n\n\n\n\ngapminder 객체는 다음 칼럼을 갖는 데이터프레임이다. - country와 continent 변수는 요인형 벡터 - year 변수는 정수형 벡터 - pop, lifeExp, gdpPercap 변수는 숫자형 벡터",
+    "crumbs": [
+      "**2부** 데이터 다루기",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>데이터프레임 탐색</span>"
+    ]
+  },
+  {
+    "objectID": "dataframe.html#행과-열-추가",
+    "href": "dataframe.html#행과-열-추가",
+    "title": "5  데이터프레임 탐색",
+    "section": "",
+    "text": "R\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nage를 칼럼으로 다음과 같이 추가한다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n데이터프레임의 행의 개수와 다른 개수를 갖는 age 벡터를 추가하게 되면 추가되지 않고 오류가 발생된다는 점에 주의한다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n정상 동작이 되지 않는 이유가 무엇일까? R은 테이블의 모든 행마다 신규 칼럼에서도 원소 하나가 있길 원한다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n그래서, 정상 동작하려면 nrow(cats) = length(age)이 되어야 한다. cats 내용을 새로운 데이터프레임으로 덮어써보자.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n이제 행을 추가하면 어떻게 될까? 이미 데이터프레임의 행이 리스트라는 사실을 알고 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "**2부** 데이터 다루기",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>데이터프레임 탐색</span>"
+    ]
+  },
+  {
+    "objectID": "dataframe.html#덧붙이기",
+    "href": "dataframe.html#덧붙이기",
+    "title": "5  데이터프레임 탐색",
+    "section": "\n5.5 덧붙이기",
+    "text": "5.5 덧붙이기\n데이터프레임에 데이터를 추가할 때 기억할 것은 칼럼은 벡터, 행은 리스트라는 사실이다. rbind() 함수를 사용해서 데이터프레임 두 개를 본드로 붙이듯이 결합시킬 수 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n하지만 이제 행 이름이 불필요하게 복잡해졌다. 행 이름을 제거하면 R이 자동으로 순차적인 이름을 다시 붙여준다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n도전과제\n\n\n\n다음 구문을 사용해서 R 내부에서 직접 데이터프레임을 새로 만들 수 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n다음 정보를 갖는 데이터프레임을 직접 제작해 보자.\n\n이름(first name)\n성(last name)\n좋아하는 숫자\n\nrbind를 사용해서 옆사람을 항목에 추가한다. 마지막으로 cbind() 함수를 사용해서 “지금이 커피 시간인가요?”라는 질문의 답을 칼럼으로 추가한다.\n\n\n\n\n\n\n해답\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "**2부** 데이터 다루기",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>데이터프레임 탐색</span>"
     ]
   }
 ]
