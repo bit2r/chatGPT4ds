@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.5.9">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘, 신종화">
-<title>챗GPT 데이터 과학 – 9&nbsp; 통계</title>
+<title>챗GPT 데이터 과학 – 8&nbsp; 통계</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -101,7 +101,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "검색",
     "search-label": "검색"
   }
-}</script><script src="site_libs/quarto-diagram/mermaid.min.js"></script><script src="site_libs/quarto-diagram/mermaid-init.js"></script><link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+}</script><script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-229551680-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script><meta name="mermaid-theme" content="neutral">
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script><script src="site_libs/quarto-diagram/mermaid-init.js"></script><link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -136,7 +149,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html"><strong>3부</strong> 데이터 과학</a></li><li class="breadcrumb-item"><a href="./basic_stat.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">통계</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html"><strong>3부</strong> 데이터 과학</a></li><li class="breadcrumb-item"><a href="./basic_stat.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">통계</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -149,7 +162,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">챗GPT 데이터 과학</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/bit2r/chatGPT4ds" title="소스 코드" class="quarto-navigation-tool px-1" aria-label="소스 코드"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/bit2r/gpt-ds" title="소스 코드" class="quarto-navigation-tool px-1" aria-label="소스 코드"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="리더 모드 전환">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -183,7 +196,7 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">소개</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">들어가며</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -203,7 +216,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text"><strong>2부</strong> 언어</span></a>
+ <span class="menu-text"><strong>2부</strong> 데이터 다루기</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -211,26 +224,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
+  <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lang_r.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R 언어</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./lang_py.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./lang_sql.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
+  <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
   </div>
 </li>
       </ul>
@@ -238,7 +239,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text"><strong>3부</strong> 데이터 과학</span></a>
+ <span class="menu-text"><strong>3부</strong> 가져오기</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -246,32 +247,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./simpson.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./basic_stat.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">통계</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./sampling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./hypothesis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./NHST.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">NHST.html</span></span></a>
+  <a href="./import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span></a>
   </div>
 </li>
       </ul>
@@ -279,7 +256,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text"><strong>4부</strong> 모형</span></a>
+ <span class="menu-text"><strong>3부</strong> 데이터 과학</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -287,26 +264,32 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">모형</span></span></a>
+  <a href="./simpson.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
+  <a href="./basic_stat.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">통계</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models_many.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+  <a href="./sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
+  <a href="./hypothesis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./NHST.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">NHST.html</span></span></a>
   </div>
 </li>
       </ul>
@@ -314,7 +297,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text"><strong>5부</strong> 프로그래밍</span></a>
+ <span class="menu-text"><strong>4부</strong> 모형</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -322,20 +305,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+  <a href="./models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
+  <a href="./models_many.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
   </div>
 </li>
       </ul>
@@ -343,7 +332,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text"><strong>6부</strong> 커뮤니케이션</span></a>
+ <span class="menu-text"><strong>5부</strong> 프로그래밍</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -351,14 +340,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
+  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
   </div>
 </li>
       </ul>
@@ -366,7 +355,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text"><strong>7부</strong> 챗GPT</span></a>
+ <span class="menu-text"><strong>6부</strong> 커뮤니케이션</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -374,32 +363,61 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text"><strong>7부</strong> 챗GPT</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./prompt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./langchain.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./local_llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
   </div>
 </li>
       </ul>
@@ -418,29 +436,29 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-<li><a href="#%ED%86%B5%EA%B3%84-%EB%B6%84%EC%95%BC" id="toc-통계-분야" class="nav-link active" data-scroll-target="#%ED%86%B5%EA%B3%84-%EB%B6%84%EC%95%BC"><span class="header-section-number">9.1</span> 통계 분야</a></li>
+<li><a href="#%ED%86%B5%EA%B3%84-%EB%B6%84%EC%95%BC" id="toc-통계-분야" class="nav-link active" data-scroll-target="#%ED%86%B5%EA%B3%84-%EB%B6%84%EC%95%BC"><span class="header-section-number">8.1</span> 통계 분야</a></li>
   <li>
-<a href="#%EA%B8%B0%EC%88%A0%ED%86%B5%EA%B3%84" id="toc-기술통계" class="nav-link" data-scroll-target="#%EA%B8%B0%EC%88%A0%ED%86%B5%EA%B3%84"><span class="header-section-number">9.2</span> 기술통계</a>
+<a href="#%EA%B8%B0%EC%88%A0%ED%86%B5%EA%B3%84" id="toc-기술통계" class="nav-link" data-scroll-target="#%EA%B8%B0%EC%88%A0%ED%86%B5%EA%B3%84"><span class="header-section-number">8.2</span> 기술통계</a>
   <ul class="collapse">
-<li><a href="#%EC%A4%91%EC%8B%AC-%EC%B8%A1%EB%8F%84" id="toc-중심-측도" class="nav-link" data-scroll-target="#%EC%A4%91%EC%8B%AC-%EC%B8%A1%EB%8F%84"><span class="header-section-number">9.2.1</span> 중심 측도</a></li>
-  <li><a href="#%ED%8D%BC%EC%A7%90-%EC%B8%A1%EB%8F%84" id="toc-퍼짐-측도" class="nav-link" data-scroll-target="#%ED%8D%BC%EC%A7%90-%EC%B8%A1%EB%8F%84"><span class="header-section-number">9.2.2</span> 퍼짐 측도</a></li>
+<li><a href="#%EC%A4%91%EC%8B%AC-%EC%B8%A1%EB%8F%84" id="toc-중심-측도" class="nav-link" data-scroll-target="#%EC%A4%91%EC%8B%AC-%EC%B8%A1%EB%8F%84"><span class="header-section-number">8.2.1</span> 중심 측도</a></li>
+  <li><a href="#%ED%8D%BC%EC%A7%90-%EC%B8%A1%EB%8F%84" id="toc-퍼짐-측도" class="nav-link" data-scroll-target="#%ED%8D%BC%EC%A7%90-%EC%B8%A1%EB%8F%84"><span class="header-section-number">8.2.2</span> 퍼짐 측도</a></li>
   </ul>
 </li>
   <li>
-<a href="#%EA%B0%80%EB%8A%A5%EC%84%B1" id="toc-가능성" class="nav-link" data-scroll-target="#%EA%B0%80%EB%8A%A5%EC%84%B1"><span class="header-section-number">9.3</span> 가능성</a>
+<a href="#%EA%B0%80%EB%8A%A5%EC%84%B1" id="toc-가능성" class="nav-link" data-scroll-target="#%EA%B0%80%EB%8A%A5%EC%84%B1"><span class="header-section-number">8.3</span> 가능성</a>
   <ul class="collapse">
-<li><a href="#%ED%99%95%EB%A5%A0" id="toc-확률" class="nav-link" data-scroll-target="#%ED%99%95%EB%A5%A0"><span class="header-section-number">9.3.1</span> 확률</a></li>
-  <li><a href="#%ED%99%95%EB%A5%A0%EC%9D%98-%EB%8D%A7%EC%85%88%EB%B2%95%EC%B9%99" id="toc-확률의-덧셈법칙" class="nav-link" data-scroll-target="#%ED%99%95%EB%A5%A0%EC%9D%98-%EB%8D%A7%EC%85%88%EB%B2%95%EC%B9%99"><span class="header-section-number">9.3.2</span> 확률의 덧셈법칙</a></li>
-  <li><a href="#%ED%99%95%EB%A5%A0%EB%B3%80%EC%88%98-%ED%95%A9" id="toc-확률변수-합" class="nav-link" data-scroll-target="#%ED%99%95%EB%A5%A0%EB%B3%80%EC%88%98-%ED%95%A9"><span class="header-section-number">9.3.3</span> 확률변수 합</a></li>
+<li><a href="#%ED%99%95%EB%A5%A0" id="toc-확률" class="nav-link" data-scroll-target="#%ED%99%95%EB%A5%A0"><span class="header-section-number">8.3.1</span> 확률</a></li>
+  <li><a href="#%ED%99%95%EB%A5%A0%EC%9D%98-%EB%8D%A7%EC%85%88%EB%B2%95%EC%B9%99" id="toc-확률의-덧셈법칙" class="nav-link" data-scroll-target="#%ED%99%95%EB%A5%A0%EC%9D%98-%EB%8D%A7%EC%85%88%EB%B2%95%EC%B9%99"><span class="header-section-number">8.3.2</span> 확률의 덧셈법칙</a></li>
+  <li><a href="#%ED%99%95%EB%A5%A0%EB%B3%80%EC%88%98-%ED%95%A9" id="toc-확률변수-합" class="nav-link" data-scroll-target="#%ED%99%95%EB%A5%A0%EB%B3%80%EC%88%98-%ED%95%A9"><span class="header-section-number">8.3.3</span> 확률변수 합</a></li>
   </ul>
 </li>
-  <li><a href="#%EB%B6%84%ED%8F%AC" id="toc-분포" class="nav-link" data-scroll-target="#%EB%B6%84%ED%8F%AC"><span class="header-section-number">9.4</span> 분포</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/basic_stat.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
+  <li><a href="#%EB%B6%84%ED%8F%AC" id="toc-분포" class="nav-link" data-scroll-target="#%EB%B6%84%ED%8F%AC"><span class="header-section-number">8.4</span> 분포</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/basic_stat.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html"><strong>3부</strong> 데이터 과학</a></li><li class="breadcrumb-item"><a href="./basic_stat.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">통계</span></a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html"><strong>3부</strong> 데이터 과학</a></li><li class="breadcrumb-item"><a href="./basic_stat.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">통계</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title">
-<span class="chapter-number">9</span>&nbsp; <span class="chapter-title">통계</span>
+<span class="chapter-number">8</span>&nbsp; <span class="chapter-title">통계</span>
 </h1>
 </div>
 
@@ -478,11 +496,11 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<section id="통계-분야" class="level2" data-number="9.1"><h2 data-number="9.1" class="anchored" data-anchor-id="통계-분야">
-<span class="header-section-number">9.1</span> 통계 분야</h2>
+<section id="통계-분야" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="통계-분야">
+<span class="header-section-number">8.1</span> 통계 분야</h2>
 <p>데이터가 주어지면 데이터를 기술하는 통계와 추론하는 두가지 영역으로 나눠진다. 데이터를 기술하는 통계를 <strong>기술통계(Descriptive Statistics)</strong>, 데이터에서 추론하는 통계를 <strong>추론통계(Inferential Statistics)</strong>로 지칭한다.</p>
-</section><section id="기술통계" class="level2" data-number="9.2"><h2 data-number="9.2" class="anchored" data-anchor-id="기술통계">
-<span class="header-section-number">9.2</span> 기술통계</h2>
+</section><section id="기술통계" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="기술통계">
+<span class="header-section-number">8.2</span> 기술통계</h2>
 <p>데이터가 수집되어 준비되면 먼저 수집된 데이터의 자료형에 맞춰 요약을 해야한다. 크게 보면 자료형은 범주형과 숫자형으로 나눠지고 숫자형과 범주형에 관계 없이 중심과 퍼짐을 요약하는 측도가 필요하다.</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -540,35 +558,33 @@ window.Quarto = {
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 344
-Columns: 8
-$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
-$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…
-$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …
-$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …
-$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…
-$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …
-$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…
-$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</code></pre>
-</div>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 344</span></span>
+<span><span class="co">#&gt; Columns: 8</span></span>
+<span><span class="co">#&gt; $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…</span></span>
+<span><span class="co">#&gt; $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…</span></span>
+<span><span class="co">#&gt; $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …</span></span>
+<span><span class="co">#&gt; $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …</span></span>
+<span><span class="co">#&gt; $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…</span></span>
+<span><span class="co">#&gt; $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …</span></span>
+<span><span class="co">#&gt; $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…</span></span>
+<span><span class="co">#&gt; $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> load_penguins()</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>penguins.info()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> load_penguins()</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>penguins.info()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
-<section id="중심-측도" class="level3" data-number="9.2.1"><h3 data-number="9.2.1" class="anchored" data-anchor-id="중심-측도">
-<span class="header-section-number">9.2.1</span> 중심 측도</h3>
+<section id="중심-측도" class="level3" data-number="8.2.1"><h3 data-number="8.2.1" class="anchored" data-anchor-id="중심-측도">
+<span class="header-section-number">8.2.1</span> 중심 측도</h3>
 <p><code>&lt;fct&gt;</code> 변수는 범주형 자료형이고, <code>&lt;dbl&gt;</code>, <code>&lt;int&gt;</code> 변수는 숫자형 자료형을 나타내고 있다. 각 자료형에 맞춰 데이터를 요약해보자. 먼저 숫자형과 범주형 중심을 각각 나타내는 대표측도로 숫자형은 평균(<code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> 함수), 범주형은 최빈수(<code><a href="https://rdrr.io/r/base/mode.html">mode()</a></code> 함수)로 펭귄 체중의 평균과 펭귄 중 최빈종을 각각 계산해보자. R에 최빈값에 대한 내장함수가 없어 사용자 정의함수를 작성해서 별도 계산한다.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
@@ -578,37 +594,35 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mode</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mode</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">ux</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span>  <span class="va">ux</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tabulate.html">tabulate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/match.html">match</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">ux</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>평균_체중 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">body_mass_g</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
-<span>            최빈종    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mode.html">mode</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 2
-  평균_체중 최빈종
-      &lt;dbl&gt; &lt;fct&gt; 
-1     4202. Adelie</code></pre>
-</div>
+<span>            최빈종    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mode.html">mode</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 2</span></span>
+<span><span class="co">#&gt;   평균_체중 최빈종</span></span>
+<span><span class="co">#&gt;       &lt;dbl&gt; &lt;fct&gt; </span></span>
+<span><span class="co">#&gt; 1     4202. Adelie</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statistics</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>mean_body_mass_g <span class="op">=</span> penguins[<span class="st">'body_mass_g'</span>].mean(skipna<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>mode_species <span class="op">=</span> penguins[<span class="st">'species'</span>].mode()[<span class="dv">0</span>]</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'펭귄 체중: </span><span class="sc">{</span>mean_body_mass_g<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'펭귄 최빈종: </span><span class="sc">{</span>mode_species<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statistics</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>mean_body_mass_g <span class="op">=</span> penguins[<span class="st">'body_mass_g'</span>].mean(skipna<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>mode_species <span class="op">=</span> penguins[<span class="st">'species'</span>].mode()[<span class="dv">0</span>]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'펭귄 체중: </span><span class="sc">{</span>mean_body_mass_g<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'펭귄 최빈종: </span><span class="sc">{</span>mode_species<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
-</section><section id="퍼짐-측도" class="level3" data-number="9.2.2"><h3 data-number="9.2.2" class="anchored" data-anchor-id="퍼짐-측도">
-<span class="header-section-number">9.2.2</span> 퍼짐 측도</h3>
+</section><section id="퍼짐-측도" class="level3" data-number="8.2.2"><h3 data-number="8.2.2" class="anchored" data-anchor-id="퍼짐-측도">
+<span class="header-section-number">8.2.2</span> 퍼짐 측도</h3>
 <p>숫자형 변수의 경우 다양한 퍼짐을 측정하는 통계량이 존재한다. 변수의 퍼짐을 측정할 때 최대값에서 최소값을 뺀 통계량도 퍼짐을 측정하는 의미있는 지표가 된다. 그외에도 분위수를 기준으로 4분위수를 사용하여 IQR를 계산하거나 상자그림(Box-Plot)에서 분위수에 1.5배수를 곱해 분포의 상하한을 지정한 후 그 범위를 벗어나는 관측점을 이상점으로 정의하는 방법도 있다. 가장 퍼짐을 측정하는 일반적인 방법은 분산과 표준편차를 혹은 MAD가 있다.</p>
 <p><a href="images/1920px-Boxplot_vs_PDF.svg.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/1920px-Boxplot_vs_PDF.svg.png" class="img-fluid"></a></p>
 <p>남극에 서식하는 펭귄 체중에 대한 분산과 표준편차를 <code><a href="https://rdrr.io/r/stats/cor.html">var()</a></code>, <code><a href="https://rdrr.io/r/stats/sd.html">sd()</a></code> 함수를 사용해서 계산할 수 있다.</p>
@@ -620,27 +634,25 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>분산_체중     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">body_mass_g</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
-<span>            표준편차_체중 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">body_mass_g</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 2
-  분산_체중 표준편차_체중
-      &lt;dbl&gt;         &lt;dbl&gt;
-1   643131.          802.</code></pre>
-</div>
+<span>            표준편차_체중 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">body_mass_g</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 2</span></span>
+<span><span class="co">#&gt;   분산_체중 표준편차_체중</span></span>
+<span><span class="co">#&gt;       &lt;dbl&gt;         &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1   643131.          802.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>분산_체중 <span class="op">=</span> penguins[<span class="st">'body_mass_g'</span>].var(skipna<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>표준편차_체중 <span class="op">=</span> penguins[<span class="st">'body_mass_g'</span>].std(skipna<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'펭귄 체중 분산: </span><span class="sc">{분산</span>_<span class="sc">체중}</span><span class="ss">'</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'펭귄 체중 표준편차: </span><span class="sc">{표준편차</span>_<span class="sc">체중}</span><span class="ss">'</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>분산_체중 <span class="op">=</span> penguins[<span class="st">'body_mass_g'</span>].var(skipna<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>표준편차_체중 <span class="op">=</span> penguins[<span class="st">'body_mass_g'</span>].std(skipna<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'펭귄 체중 분산: </span><span class="sc">{분산</span>_<span class="sc">체중}</span><span class="ss">'</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'펭귄 체중 표준편차: </span><span class="sc">{표준편차</span>_<span class="sc">체중}</span><span class="ss">'</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -654,33 +666,31 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">species</span>, sort <span class="op">=</span> <span class="cn">TRUE</span>, name <span class="op">=</span> <span class="st">"빈도수"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
-  species   빈도수
-  &lt;fct&gt;      &lt;int&gt;
-1 Adelie       152
-2 Gentoo       124
-3 Chinstrap     68</code></pre>
-</div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">species</span>, sort <span class="op">=</span> <span class="cn">TRUE</span>, name <span class="op">=</span> <span class="st">"빈도수"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 2</span></span>
+<span><span class="co">#&gt;   species   빈도수</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;      &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 Adelie       152</span></span>
+<span><span class="co">#&gt; 2 Gentoo       124</span></span>
+<span><span class="co">#&gt; 3 Chinstrap     68</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>frequencies <span class="op">=</span> penguins[<span class="st">'species'</span>].value_counts().reset_index()</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>frequencies.columns <span class="op">=</span> [<span class="st">'species'</span>, <span class="st">'빈도수'</span>]</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>frequencies</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>frequencies <span class="op">=</span> penguins[<span class="st">'species'</span>].value_counts().reset_index()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>frequencies.columns <span class="op">=</span> [<span class="st">'species'</span>, <span class="st">'빈도수'</span>]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>frequencies</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
-</section></section><section id="가능성" class="level2" data-number="9.3"><h2 data-number="9.3" class="anchored" data-anchor-id="가능성">
-<span class="header-section-number">9.3</span> 가능성</h2>
+</section></section><section id="가능성" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="가능성">
+<span class="header-section-number">8.3</span> 가능성</h2>
 <p>가능성, 승산, 예상, 전망, 형세 등 다양한 방식으로 미래를 알고자 하는 인간의 호기심이 집대성된 수학의 한분야가 확률이다.</p>
-<section id="확률" class="level3" data-number="9.3.1"><h3 data-number="9.3.1" class="anchored" data-anchor-id="확률">
-<span class="header-section-number">9.3.1</span> 확률</h3>
+<section id="확률" class="level3" data-number="8.3.1"><h3 data-number="8.3.1" class="anchored" data-anchor-id="확률">
+<span class="header-section-number">8.3.1</span> 확률</h3>
 <p>대한민국 시도수는 특별시, 광역시, 자치도 등 포함하여 총 17개가 존재한다. 17개 시도 중 시도 하나를 무작위로 뽑게 되면 확률이 얼마나 될까? 먼저, 17개 시도에서 “서울”을 고를 경우 <span class="math inline">\(\frac{1}{17} = 0.05882353\)</span> 으로 계산된다.</p>
 <p>자연어로 작성된 텍스트를 수학적으로 좀더 엄밀하게 표현하면 다음과 같다.</p>
 <p>시도의 수 <span class="math inline">\(n\)</span>과 선택할 시도의 수 <span class="math inline">\(r\)</span>을 조합의 수식으로 표현하면,</p>
@@ -706,92 +716,82 @@ P(\text{'서울'}) = \frac{1}{C(17, 1)} = \frac{1}{17} \approx 0.05882353
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sidoNM</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"서울"</span>, <span class="st">"부산"</span>, <span class="st">"대구"</span>, <span class="st">"인천"</span>, <span class="st">"광주"</span>, <span class="st">"대전"</span>, <span class="st">"울산"</span>, <span class="st">"세종"</span>, <span class="st">"경기"</span>, <span class="st">"강원"</span>, <span class="st">"충북"</span>, <span class="st">"충남"</span>, <span class="st">"전북"</span>, <span class="st">"전남"</span>, <span class="st">"경북"</span>, <span class="st">"경남"</span>, <span class="st">"제주"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sidoNM</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"서울"</span>, <span class="st">"부산"</span>, <span class="st">"대구"</span>, <span class="st">"인천"</span>, <span class="st">"광주"</span>, <span class="st">"대전"</span>, <span class="st">"울산"</span>, <span class="st">"세종"</span>, <span class="st">"경기"</span>, <span class="st">"강원"</span>, <span class="st">"충북"</span>, <span class="st">"충남"</span>, <span class="st">"전북"</span>, <span class="st">"전남"</span>, <span class="st">"경북"</span>, <span class="st">"경남"</span>, <span class="st">"제주"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># 17개 시도에서 무작위로 시도 하나 추출</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">sidoNM</span>, <span class="fl">1</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "세종"</code></pre>
-</div>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 상기 과정을 17회 반복</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">17</span>, <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">sidoNM</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] "강원" "전남" "대전" "전남" "광주" "경북" "광주" "경기" "강원" "세종"
-[11] "경북" "부산" "경북" "부산" "전남" "서울" "광주"</code></pre>
-</div>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 17회 시도명을 추출한 결과 "서울"이 나올 경우를 평균 냄</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">17</span>, <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">sidoNM</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">==</span> <span class="st">"서울"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.05882353</code></pre>
-</div>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 반복횟수와 시도명을 달리한 모의시험 함수 제작</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">sidoNM</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "부산"</span></span>
+<span></span>
+<span><span class="co"># 상기 과정을 17회 반복</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">17</span>, <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">sidoNM</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] "울산" "충북" "강원" "강원" "제주" "광주" "전남" "전남" "울산" "충북"</span></span>
+<span><span class="co">#&gt; [11] "서울" "충북" "인천" "인천" "경기" "충남" "울산"</span></span>
+<span></span>
+<span><span class="co"># 17회 시도명을 추출한 결과 "서울"이 나올 경우를 평균 냄</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">17</span>, <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">sidoNM</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">==</span> <span class="st">"서울"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.1176471</span></span>
+<span></span>
+<span><span class="co"># 반복횟수와 시도명을 달리한 모의시험 함수 제작</span></span>
 <span><span class="va">calculate_prob</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">trials</span> <span class="op">=</span> <span class="fl">1000</span>, <span class="va">sido_name</span> <span class="op">=</span> <span class="st">"서울"</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">prob</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="va">trials</span>, <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">sidoNM</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">==</span> <span class="va">sido_name</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">prob</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="co"># 17개 시도 중 "제주"가 나올 확률을 1만번 반복함</span></span>
-<span><span class="fu">calculate_prob</span><span class="op">(</span><span class="fl">10000</span>, <span class="st">"제주"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.0598</code></pre>
-</div>
+<span><span class="fu">calculate_prob</span><span class="op">(</span><span class="fl">10000</span>, <span class="st">"제주"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.0564</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>sidoNM <span class="op">=</span> [<span class="st">"서울"</span>, <span class="st">"부산"</span>, <span class="st">"대구"</span>, <span class="st">"인천"</span>, <span class="st">"광주"</span>, <span class="st">"대전"</span>, <span class="st">"울산"</span>, <span class="st">"세종"</span>, <span class="st">"경기"</span>, <span class="st">"강원"</span>, <span class="st">"충북"</span>, <span class="st">"충남"</span>, <span class="st">"전북"</span>, <span class="st">"전남"</span>, <span class="st">"경북"</span>, <span class="st">"경남"</span>, <span class="st">"제주"</span>]</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 17개 시도에서 무작위로 시도 하나 추출</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(random.choice(sidoNM))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>대전</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 상기 과정을 17회 반복</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">17</span>):</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(random.choice(sidoNM))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>인천
-부산
-세종
-서울
-세종
-울산
-충북
-대구
-충남
-서울
-충북
-울산
-울산
-강원
-경기
-울산
-경남</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 17회 시도명을 추출한 결과 "서울"이 나올 경우를 평균 냄</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.mean([random.choice(sidoNM) <span class="op">==</span> <span class="st">"서울"</span> <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">17</span>)]))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>0.0</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 반복횟수와 시도명을 달리한 모의시험 함수 제작</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_prob(trials <span class="op">=</span> <span class="dv">1000</span>, sido_name <span class="op">=</span> <span class="st">"서울"</span>):</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    prob <span class="op">=</span> np.mean([random.choice(sidoNM) <span class="op">==</span> sido_name <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(trials)])</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> prob</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 17개 시도 중 "제주"가 나올 확률을 1만번 반복함</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(calculate_prob(<span class="dv">10000</span>, <span class="st">"제주"</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>0.0601</code></pre>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>sidoNM <span class="op">=</span> [<span class="st">"서울"</span>, <span class="st">"부산"</span>, <span class="st">"대구"</span>, <span class="st">"인천"</span>, <span class="st">"광주"</span>, <span class="st">"대전"</span>, <span class="st">"울산"</span>, <span class="st">"세종"</span>, <span class="st">"경기"</span>, <span class="st">"강원"</span>, <span class="st">"충북"</span>, <span class="st">"충남"</span>, <span class="st">"전북"</span>, <span class="st">"전남"</span>, <span class="st">"경북"</span>, <span class="st">"경남"</span>, <span class="st">"제주"</span>]</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 17개 시도에서 무작위로 시도 하나 추출</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(random.choice(sidoNM))</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 대전</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 상기 과정을 17회 반복</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">17</span>):</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(random.choice(sidoNM))</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 경기</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 제주</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 대전</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 경남</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 서울</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 울산</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 충북</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 대구</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 강원</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 울산</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 강원</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 경기</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 전북</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 서울</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 서울</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 제주</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 충북</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 17회 시도명을 추출한 결과 "서울"이 나올 경우를 평균 냄</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.mean([random.choice(sidoNM) <span class="op">==</span> <span class="st">"서울"</span> <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">17</span>)]))</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.058823529411764705</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 반복횟수와 시도명을 달리한 모의시험 함수 제작</span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_prob(trials <span class="op">=</span> <span class="dv">1000</span>, sido_name <span class="op">=</span> <span class="st">"서울"</span>):</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    prob <span class="op">=</span> np.mean([random.choice(sidoNM) <span class="op">==</span> sido_name <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(trials)])</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> prob</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="co"># 17개 시도 중 "제주"가 나올 확률을 1만번 반복함</span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(calculate_prob(<span class="dv">10000</span>, <span class="st">"제주"</span>))</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.0604</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
-</div>
-</section><section id="확률의-덧셈법칙" class="level3" data-number="9.3.2"><h3 data-number="9.3.2" class="anchored" data-anchor-id="확률의-덧셈법칙">
-<span class="header-section-number">9.3.2</span> 확률의 덧셈법칙</h3>
+</section><section id="확률의-덧셈법칙" class="level3" data-number="8.3.2"><h3 data-number="8.3.2" class="anchored" data-anchor-id="확률의-덧셈법칙">
+<span class="header-section-number">8.3.2</span> 확률의 덧셈법칙</h3>
 <p>두 사건 중 적어도 하나만 발생할 확률을 “또는(or)” 연산으로 표현할 수 있는데, 두 사건이 독립을 가정(<span class="math inline">\(Pr(\text{A and B}) = Pr(A) \times Pr(B)\)</span>)하면 다음과 같이 표현할 수 있다. 이를 <strong>확률의 덧셈법칙(addition law of probability)</strong>이라고 부른다.</p>
 <p><span class="math inline">\(\begin{aligned}
 Pr(\text{A or B}) &amp;= Pr(A) + Pr(B) - Pr(\text{A and B})\\
@@ -800,48 +800,40 @@ Pr(\text{A or B}) &amp;= Pr(A) + Pr(B) - Pr(\text{A and B})\\
 <section id="넥슨-두-타자" class="level4"><h4 class="anchored" data-anchor-id="넥슨-두-타자">넥슨 두 타자</h4>
 <p>타자의 정규타석은 소속팀의 경기수 <span class="math inline">\(\times\)</span> 3.1로 정의된다. 보통 한 경기에서 타자가 4 혹은 5번 타석에 들어서고 슬럼프 등으로 2군에 내려가는 것을 감안하여 붙박이 주전급 선수를 가늠하는 기준이다. 이제 넥슨의 수위 타자 두명을 놓고 두 선수가 매번 타석에서 안타를 치거나 두 선수 중 한 선수가 안타를 치는 확률을 확률의 덧셈법칙을 통해 확인해 보자. 규정타석을 446 타석으로 놓고 안타를 <code>1</code>, 범타를 <code>0</code>으로 정해놓고 2017년 7월 21일 기준 타율 데이터를 참조한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 1. 넥센 두 타자 ------------</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 1. 넥센 두 타자 ------------</span></span>
 <span><span class="va">서건창</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">446</span>, <span class="fl">1</span>, <span class="fl">0.344</span><span class="op">)</span></span>
 <span><span class="va">이정후</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">446</span>, <span class="fl">1</span>, <span class="fl">0.333</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># 두선수가 모두 안타를 칠 확률</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">서건창</span> <span class="op">&amp;</span> <span class="va">이정후</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1121076</code></pre>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">서건창</span> <span class="op">&amp;</span> <span class="va">이정후</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.1367713</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">서건창</span> <span class="op">|</span> <span class="va">이정후</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.5852018</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">서건창</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">이정후</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">서건창</span><span class="op">&amp;</span><span class="va">이정후</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.5852018</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">서건창</span> <span class="op">|</span> <span class="va">이정후</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5470852</code></pre>
-</div>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">서건창</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">이정후</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">서건창</span><span class="op">&amp;</span><span class="va">이정후</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5470852</code></pre>
-</div>
-</div>
-<p>두 선수가 동시에 안타를 칠 확률은 0.11이 되고, 두 선수 중 적어도 한 선구가 안타를 칠 확률은 0.55이 된다.</p>
+<p>두 선수가 동시에 안타를 칠 확률은 0.14이 되고, 두 선수 중 적어도 한 선구가 안타를 칠 확률은 0.59이 된다.</p>
 </section><section id="안타를-향해서" class="level4"><h4 class="anchored" data-anchor-id="안타를-향해서">200 안타를 향해서</h4>
 <p>충분한 타석(540)이 주어졌다고 가정하고 200안타 이상을 때릴 확률은 얼마나 될까? <span class="math inline">\(\frac{200}{540}\)</span> = 0.3703704 단순 계산해도 3할 7푼이 넘는 고타율이다.</p>
 <p>서건창, 이정후 선수를 100,000번 KBO 시즌을 돌리는데 540번 타석에 세워 타율은 현재 타율이라고 가정한다. 이런 가정을 두고 두 선수 중 적어도 한 선수가 200 안타를 칠 확률은 얼마나 될까? 이를 풀기 위해서 한번은 난수를 발생하여 모의실험으로 계산하고, 다른 한번은 누적이항분포 확률을 사용해서 계산한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 2. 200 안타  ------------</span></span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 2. 200 안타  ------------</span></span>
 <span><span class="va">서건창</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">100000</span>, <span class="fl">540</span>, <span class="fl">0.344</span><span class="op">)</span></span>
 <span><span class="va">이정후</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">100000</span>, <span class="fl">540</span>, <span class="fl">0.333</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># 두선수 중 적어도 한 선수가 200 안타를 칠 확률</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">서건창</span> <span class="op">&gt;</span> <span class="fl">200</span> <span class="op">|</span> <span class="va">이정후</span> <span class="op">&gt;</span> <span class="fl">200</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.11882</code></pre>
-</div>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">서건창_확률</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">540</span>, <span class="fl">0.344</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">서건창</span> <span class="op">&gt;</span> <span class="fl">200</span> <span class="op">|</span> <span class="va">이정후</span> <span class="op">&gt;</span> <span class="fl">200</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.11626</span></span>
+<span></span>
+<span><span class="va">서건창_확률</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">540</span>, <span class="fl">0.344</span><span class="op">)</span></span>
 <span><span class="va">이정후_확률</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">540</span>, <span class="fl">0.333</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">서건창_확률</span> <span class="op">+</span> <span class="va">이정후_확률</span> <span class="op">-</span> <span class="va">서건창_확률</span><span class="op">*</span><span class="va">이정후_확률</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1189903</code></pre>
+<span><span class="va">서건창_확률</span> <span class="op">+</span> <span class="va">이정후_확률</span> <span class="op">-</span> <span class="va">서건창_확률</span><span class="op">*</span><span class="va">이정후_확률</span></span>
+<span><span class="co">#&gt; [1] 0.1189903</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</section></section><section id="확률변수-합" class="level3" data-number="9.3.3"><h3 data-number="9.3.3" class="anchored" data-anchor-id="확률변수-합">
-<span class="header-section-number">9.3.3</span> 확률변수 합</h3>
+</section></section><section id="확률변수-합" class="level3" data-number="8.3.3"><h3 data-number="8.3.3" class="anchored" data-anchor-id="확률변수-합">
+<span class="header-section-number">8.3.3</span> 확률변수 합</h3>
 <p>두 확률변수를 곱하거나 더하는 경우를 생각할 수 있다. 이항분포에서 나온 두 변수를 더하여 만들어진 새로운 변수는 어떤 특성을 갖게 되는지 살펴보자</p>
 <p><span class="math display">\[Z \sim X + Y\]</span> 여기서, <span class="math inline">\(X \sim \text{이항분포}(n, p)\)</span>를 따르고, <span class="math inline">\(Y \sim \text{이항분포}(m, p)\)</span>를 따를 때 두 확률변수를 합한 <span class="math inline">\(Z\)</span>를 살펴보자. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p><span class="math display">\[X + Y \sim \text{이항분포}(n+m, p)\]</span></p>
@@ -853,7 +845,7 @@ Pr(\text{A or B}) &amp;= Pr(A) + Pr(B) - Pr(\text{A and B})\\
 </ul></section><section id="r-코드을-통한-시각화-및-수치-검정" class="level4"><h4 class="anchored" data-anchor-id="r-코드을-통한-시각화-및-수치-검정">R 코드을 통한 시각화 및 수치 검정</h4>
 <p><span class="math inline">\(X \sim \text{이항분포}(n, p) = \text{이항분포}(10, 0.5)\)</span>로 두고, <span class="math inline">\(Y \sim \text{이항분포}(m, p) = \text{이항분포}(20, 0.5)\)</span>을 놓게 되면, 이론적으로 <span class="math inline">\(X+Y \sim \text{이항분포}(n+m, p) = \text{이항분포}(10+20, 0.5)\)</span>이 되고, <code>rbinom</code>함수를 통해 난수를 만들고, 두 변수를 합하여 시각화한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">binom_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fl">10</span>, <span class="fl">0.5</span><span class="op">)</span>,</span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">binom_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fl">10</span>, <span class="fl">0.5</span><span class="op">)</span>,</span>
 <span>                       y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fl">20</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">binom_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -874,25 +866,20 @@ Pr(\text{A or B}) &amp;= Pr(A) + Pr(B) - Pr(\text{A and B})\\
 </div>
 <p>이론값과 난수를 생성하여 두 변수를 합한 결과를 비교한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">binom_df</span><span class="op">$</span><span class="va">x</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4.9931</code></pre>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">binom_df</span><span class="op">$</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 5.0053</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">binom_df</span><span class="op">$</span><span class="va">y</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 9.9718</span></span>
+<span></span>
+<span><span class="va">binom_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>z <span class="op">=</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 1</span></span>
+<span><span class="co">#&gt;   mean_z</span></span>
+<span><span class="co">#&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1   15.0</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">binom_df</span><span class="op">$</span><span class="va">y</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 10.0144</code></pre>
-</div>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">binom_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>z <span class="op">=</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  mean_z
-   &lt;dbl&gt;
-1   15.0</code></pre>
-</div>
-</div>
-</section></section></section><section id="분포" class="level2" data-number="9.4"><h2 data-number="9.4" class="anchored" data-anchor-id="분포">
-<span class="header-section-number">9.4</span> 분포</h2>
+</section></section></section><section id="분포" class="level2" data-number="8.4"><h2 data-number="8.4" class="anchored" data-anchor-id="분포">
+<span class="header-section-number">8.4</span> 분포</h2>
 
 
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
@@ -1226,25 +1213,64 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       };
     }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
           }
-        });
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
       }
   const findCites = (el) => {
     const parentEl = el.parentElement;
@@ -1286,28 +1312,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./simpson.html" class="pagination-link" aria-label="심슨의 역설">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./sampling.html" class="pagination-link" aria-label="표본 추출">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">표본 추출</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">표본 추출</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
-<p>이광춘, 신종화, 유충현, 홍성학이 ’챗GPT 데이터 사이언스’를 저작했습니다.</p>
+<p>챗GPT 데이터 과학 책은 소프트웨어 카펜트리 “R for Reproducible Scientific Analysis”를 번역한 것이 포함되어 있습니다.</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/basic_stat.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/basic_stat.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</p>
+<p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom"});
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","openEffect":"zoom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

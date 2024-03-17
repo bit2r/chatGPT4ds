@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.5.9">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘, 신종화">
-<title>챗GPT 데이터 과학 – 8&nbsp; 심슨의 역설</title>
+<title>챗GPT 데이터 과학 – 7&nbsp; 심슨의 역설</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -62,7 +62,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./basic_stat.html" rel="next">
-<link href="./lang_sql.html" rel="prev">
+<link href="./import.html" rel="prev">
 <link href="./images/logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -101,11 +101,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "검색",
     "search-label": "검색"
   }
-}</script><script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="site_libs/datatables-binding-0.31/datatables.js"></script><script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script><link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
-<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script><script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-229551680-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script><script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="site_libs/datatables-binding-0.28/datatables.js"></script><script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><link href="site_libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="site_libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="site_libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script><link href="site_libs/crosstalk-1.2.0.9000/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.0.9000/js/crosstalk.min.js"></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -139,7 +151,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html"><strong>3부</strong> 데이터 과학</a></li><li class="breadcrumb-item"><a href="./simpson.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">심슨의 역설</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html"><strong>3부</strong> 데이터 과학</a></li><li class="breadcrumb-item"><a href="./simpson.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">심슨의 역설</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -152,7 +164,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">챗GPT 데이터 과학</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/bit2r/chatGPT4ds" title="소스 코드" class="quarto-navigation-tool px-1" aria-label="소스 코드"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/bit2r/gpt-ds" title="소스 코드" class="quarto-navigation-tool px-1" aria-label="소스 코드"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="리더 모드 전환">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -186,7 +198,7 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">소개</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">들어가며</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -206,7 +218,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text"><strong>2부</strong> 언어</span></a>
+ <span class="menu-text"><strong>2부</strong> 데이터 다루기</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -214,26 +226,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
+  <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lang_r.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R 언어</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./lang_py.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./lang_sql.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
+  <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
   </div>
 </li>
       </ul>
@@ -241,7 +241,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text"><strong>3부</strong> 데이터 과학</span></a>
+ <span class="menu-text"><strong>3부</strong> 가져오기</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -249,32 +249,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./simpson.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./basic_stat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">통계</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./sampling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./hypothesis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./NHST.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">NHST.html</span></span></a>
+  <a href="./import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span></a>
   </div>
 </li>
       </ul>
@@ -282,7 +258,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text"><strong>4부</strong> 모형</span></a>
+ <span class="menu-text"><strong>3부</strong> 데이터 과학</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -290,26 +266,32 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">모형</span></span></a>
+  <a href="./simpson.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
+  <a href="./basic_stat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">통계</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models_many.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+  <a href="./sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
+  <a href="./hypothesis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./NHST.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">NHST.html</span></span></a>
   </div>
 </li>
       </ul>
@@ -317,7 +299,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text"><strong>5부</strong> 프로그래밍</span></a>
+ <span class="menu-text"><strong>4부</strong> 모형</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -325,20 +307,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+  <a href="./models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
+  <a href="./models_many.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
   </div>
 </li>
       </ul>
@@ -346,7 +334,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text"><strong>6부</strong> 커뮤니케이션</span></a>
+ <span class="menu-text"><strong>5부</strong> 프로그래밍</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -354,14 +342,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
+  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
   </div>
 </li>
       </ul>
@@ -369,7 +357,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text"><strong>7부</strong> 챗GPT</span></a>
+ <span class="menu-text"><strong>6부</strong> 커뮤니케이션</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -377,32 +365,61 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text"><strong>7부</strong> 챗GPT</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./prompt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./langchain.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./local_llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
   </div>
 </li>
       </ul>
@@ -422,30 +439,30 @@ window.Quarto = {
    
   <ul>
 <li>
-<a href="#simpson-paradox-case-study" id="toc-simpson-paradox-case-study" class="nav-link active" data-scroll-target="#simpson-paradox-case-study"><span class="header-section-number">9</span> 심슨의 역설 사례</a>
+<a href="#simpson-paradox-case-study" id="toc-simpson-paradox-case-study" class="nav-link active" data-scroll-target="#simpson-paradox-case-study"><span class="header-section-number">8</span> 심슨의 역설 사례</a>
   <ul class="collapse">
-<li><a href="#simpson-paradox-case-study-EDA" id="toc-simpson-paradox-case-study-EDA" class="nav-link" data-scroll-target="#simpson-paradox-case-study-EDA"><span class="header-section-number">9.1</span> 데이터 시각화</a></li>
-  <li><a href="#simpson-paradox-case-study-EDA-cor" id="toc-simpson-paradox-case-study-EDA-cor" class="nav-link" data-scroll-target="#simpson-paradox-case-study-EDA-cor"><span class="header-section-number">9.2</span> 기술통계량</a></li>
-  <li><a href="#simpson-paradox-case-study-EDA-cor-viz" id="toc-simpson-paradox-case-study-EDA-cor-viz" class="nav-link" data-scroll-target="#simpson-paradox-case-study-EDA-cor-viz"><span class="header-section-number">9.3</span> 상관관계 시각화</a></li>
+<li><a href="#simpson-paradox-case-study-EDA" id="toc-simpson-paradox-case-study-EDA" class="nav-link" data-scroll-target="#simpson-paradox-case-study-EDA"><span class="header-section-number">8.1</span> 데이터 시각화</a></li>
+  <li><a href="#simpson-paradox-case-study-EDA-cor" id="toc-simpson-paradox-case-study-EDA-cor" class="nav-link" data-scroll-target="#simpson-paradox-case-study-EDA-cor"><span class="header-section-number">8.2</span> 기술통계량</a></li>
+  <li><a href="#simpson-paradox-case-study-EDA-cor-viz" id="toc-simpson-paradox-case-study-EDA-cor-viz" class="nav-link" data-scroll-target="#simpson-paradox-case-study-EDA-cor-viz"><span class="header-section-number">8.3</span> 상관관계 시각화</a></li>
   </ul>
 </li>
   <li>
-<a href="#simpson-paradox-news-article" id="toc-simpson-paradox-news-article" class="nav-link" data-scroll-target="#simpson-paradox-news-article"><span class="header-section-number">10</span> 심슨의 역설 기사</a>
+<a href="#simpson-paradox-news-article" id="toc-simpson-paradox-news-article" class="nav-link" data-scroll-target="#simpson-paradox-news-article"><span class="header-section-number">9</span> 심슨의 역설 기사</a>
   <ul class="collapse">
-<li><a href="#simpson-paradox-berkeley" id="toc-simpson-paradox-berkeley" class="nav-link" data-scroll-target="#simpson-paradox-berkeley"><span class="header-section-number">10.1</span> UC 버클리 입학 </a></li>
+<li><a href="#simpson-paradox-berkeley" id="toc-simpson-paradox-berkeley" class="nav-link" data-scroll-target="#simpson-paradox-berkeley"><span class="header-section-number">9.1</span> UC 버클리 입학 </a></li>
   </ul>
 </li>
   <li>
-<a href="#simpson-paradox-news-article-case" id="toc-simpson-paradox-news-article-case" class="nav-link" data-scroll-target="#simpson-paradox-news-article-case"><span class="header-section-number">11</span> 실제 사례</a>
+<a href="#simpson-paradox-news-article-case" id="toc-simpson-paradox-news-article-case" class="nav-link" data-scroll-target="#simpson-paradox-news-article-case"><span class="header-section-number">10</span> 실제 사례</a>
   <ul class="collapse">
-<li><a href="#simpson-paradox-news-article-game-case" id="toc-simpson-paradox-news-article-game-case" class="nav-link" data-scroll-target="#simpson-paradox-news-article-game-case"><span class="header-section-number">11.1</span> 게임 업데이터 사례 </a></li>
+<li><a href="#simpson-paradox-news-article-game-case" id="toc-simpson-paradox-news-article-game-case" class="nav-link" data-scroll-target="#simpson-paradox-news-article-game-case"><span class="header-section-number">10.1</span> 게임 업데이터 사례 </a></li>
   </ul>
 </li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/simpson.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/simpson.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html"><strong>3부</strong> 데이터 과학</a></li><li class="breadcrumb-item"><a href="./simpson.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">심슨의 역설</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="simpson-paradox" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html"><strong>3부</strong> 데이터 과학</a></li><li class="breadcrumb-item"><a href="./simpson.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">심슨의 역설</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="simpson-paradox" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></h1>
 </div>
 
 
@@ -473,11 +490,11 @@ window.Quarto = {
 </iframe>
 </div>
 </div>
-<section id="simpson-paradox-case-study" class="level1" data-number="9"><h1 data-number="9">
-<span class="header-section-number">9</span> 심슨의 역설 사례</h1>
+<section id="simpson-paradox-case-study" class="level1" data-number="8"><h1 data-number="8">
+<span class="header-section-number">8</span> 심슨의 역설 사례</h1>
 <p>심슨의 역설 사례를 책페이지수와 책가격의 관계를 살펴보자. 데이터는 책 유형(하드커버, 페이퍼백)은 두가지가 있고, 페이지수와 책가격이 달러로 구성된 데이터프레임이다.</p>
-<section id="simpson-paradox-case-study-EDA" class="level2" data-number="9.1"><h2 data-number="9.1" class="anchored" data-anchor-id="simpson-paradox-case-study-EDA">
-<span class="header-section-number">9.1</span> 데이터 시각화</h2>
+<section id="simpson-paradox-case-study-EDA" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="simpson-paradox-case-study-EDA">
+<span class="header-section-number">8.1</span> 데이터 시각화</h2>
 <p>이를 시각적으로 표현하면 관계가 음의 상관관계를 갖는 것을 알 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
@@ -507,35 +524,31 @@ window.Quarto = {
 </div>
 </div>
 </div>
-</section><section id="simpson-paradox-case-study-EDA-cor" class="level2" data-number="9.2"><h2 data-number="9.2" class="anchored" data-anchor-id="simpson-paradox-case-study-EDA-cor">
-<span class="header-section-number">9.2</span> 기술통계량</h2>
+</section><section id="simpson-paradox-case-study-EDA-cor" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="simpson-paradox-case-study-EDA-cor">
+<span class="header-section-number">8.2</span> 기술통계량</h2>
 <p><code>num_pages</code>, <code>book_price</code> 두변수를 추출하여 상관계수를 도출한다. 그리고 나서, 책 유형에 따른 상관관계도 도출해 낸다. 먼저 책 유형에 관계없이 <code>num_pages</code>, <code>book_price</code> 상관관계는 <code>-0.5949366</code>으로 나름 강한 음의 상관계수가 관측된다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">simp_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>book_cor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">num_pages</span>, <span class="va">book_price</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.5949366</code></pre>
-</div>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] -0.5949366</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>이번에는 책 유형에 따른 상관계수는 어떤지 계산해 보자. 이 경우, 하드커버는 <code>0.848</code>, 페이퍼백은 <code>0.956</code>로 강한 양의 상관관계가 존재함이 확인된다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">simp_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">simp_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">book_type</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>book_cor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">num_pages</span>, <span class="va">book_price</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 2
-  book_type book_cor
-  &lt;chr&gt;        &lt;dbl&gt;
-1 hardcover    0.848
-2 paperback    0.956</code></pre>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>book_cor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">num_pages</span>, <span class="va">book_price</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 2 × 2</span></span>
+<span><span class="co">#&gt;   book_type book_cor</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;        &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 hardcover    0.848</span></span>
+<span><span class="co">#&gt; 2 paperback    0.956</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</section><section id="simpson-paradox-case-study-EDA-cor-viz" class="level2" data-number="9.3"><h2 data-number="9.3" class="anchored" data-anchor-id="simpson-paradox-case-study-EDA-cor-viz">
-<span class="header-section-number">9.3</span> 상관관계 시각화</h2>
+</section><section id="simpson-paradox-case-study-EDA-cor-viz" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="simpson-paradox-case-study-EDA-cor-viz">
+<span class="header-section-number">8.3</span> 상관관계 시각화</h2>
 <p>앞서 확인한 결과를 책 유형별로 나눠 상관계수를 시각화한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">simp_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">simp_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">num_pages</span>, y<span class="op">=</span><span class="va">book_price</span>, color<span class="op">=</span><span class="va">book_type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
 <span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, se<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
@@ -549,22 +562,22 @@ window.Quarto = {
 </div>
 </div>
 </div>
-</section></section><section id="simpson-paradox-news-article" class="level1" data-number="10"><h1 data-number="10">
-<span class="header-section-number">10</span> 심슨의 역설 기사</h1>
+</section></section><section id="simpson-paradox-news-article" class="level1" data-number="9"><h1 data-number="9">
+<span class="header-section-number">9</span> 심슨의 역설 기사</h1>
 <p>심슨의 역설에 대해서 <a href="http://dl.dongascience.com/search?keyword=%EC%8B%AC%EC%8A%A8%EC%9D%98+%EC%97%AD%EC%84%A4">동아사이언스</a>에서 2008년, 2013년 3회 심슨의 역설에 대한 기사를 실었는데 “명문대 남녀 합격생의 반전”, “오류를 잡아라! 확률 법정” 의 기사가 눈에 띈다.</p>
 <ul>
 <li><a href="http://dl.dongascience.com/magazine/view/S201307N052">박경미 교수의 수학캠핑 - 확률 패러독스, “명문대 남녀 합격생의 반전”</a></li>
 <li><a href="http://dl.dongascience.com/magazine/view/M201302N008">최영준(2013), “오류를 잡아라! 확률 법정”, 수학동아</a></li>
 </ul>
-<section id="simpson-paradox-berkeley" class="level2" data-number="10.1"><h2 data-number="10.1" class="anchored" data-anchor-id="simpson-paradox-berkeley">
-<span class="header-section-number">10.1</span> UC 버클리 입학 <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>
+<section id="simpson-paradox-berkeley" class="level2" data-number="9.1"><h2 data-number="9.1" class="anchored" data-anchor-id="simpson-paradox-berkeley">
+<span class="header-section-number">9.1</span> UC 버클리 입학 <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>
 </h2>
 <p>심슨의 역설관련 가장 유명한 사례는 1973년 UC 버클리 대학 입학데이터로 입학에 성차별이 존재하는지에 관한 데이터다.</p>
 <div class="row">
 <div class="col-md-6">
 <p><strong>성별에 따른 입학률 비교</strong></p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">datasets</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">datasets</span><span class="op">)</span></span>
 <span><span class="va">admin_df</span> <span class="op">&lt;-</span> <span class="va">UCBAdmissions</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="va">tbl_df</span></span>
 <span></span>
 <span><span class="va">admin_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -576,15 +589,15 @@ window.Quarto = {
 <span>    <span class="fu">DT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DT/man/datatable.html">datatable</a></span><span class="op">(</span>options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>scrollX <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu">DT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DT/man/formatCurrency.html">formatPercentage</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Admitted_Pcnt"</span>,<span class="st">"Rejected_Pcnt"</span><span class="op">)</span>, digits<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-b0056650ec3d947584a4" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-b0056650ec3d947584a4">{"x":{"filter":"none","vertical":false,"data":[["1","2"],["Female","Male"],[557,1198],[1278,1493],[0.3035422343324251,0.4451876625789669],[0.6964577656675749,0.5548123374210331]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Gender<\/th>\n      <th>Admitted<\/th>\n      <th>Rejected<\/th>\n      <th>Admitted_Pcnt<\/th>\n      <th>Rejected_Pcnt<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 1, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 1, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[2,3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Gender","targets":1},{"name":"Admitted","targets":2},{"name":"Rejected","targets":3},{"name":"Admitted_Pcnt","targets":4},{"name":"Rejected_Pcnt","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-209721bb08946b4991c2" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-209721bb08946b4991c2">{"x":{"filter":"none","vertical":false,"data":[["1","2"],["Female","Male"],[557,1198],[1278,1493],[0.3035422343324251,0.4451876625789669],[0.6964577656675749,0.5548123374210331]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Gender<\/th>\n      <th>Admitted<\/th>\n      <th>Rejected<\/th>\n      <th>Admitted_Pcnt<\/th>\n      <th>Rejected_Pcnt<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 1, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 1, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[2,3,4,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
 <div class="col-md-6">
 <p><strong>복사하여 붙여넣기</strong></p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">admin_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">admin_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Gender</span>, <span class="va">Admit</span>, <span class="va">Dept</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/spread.html">spread</a></span><span class="op">(</span><span class="va">Admit</span>, <span class="va">total</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -593,15 +606,15 @@ window.Quarto = {
 <span>    <span class="fu">DT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DT/man/datatable.html">datatable</a></span><span class="op">(</span>options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>scrollX <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu">DT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DT/man/formatCurrency.html">formatPercentage</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Admitted_Pcnt"</span>,<span class="st">"Rejected_Pcnt"</span><span class="op">)</span>, digits<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-42a7c463e83d785dd16e" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-42a7c463e83d785dd16e">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12"],["Female","Female","Female","Female","Female","Female","Male","Male","Male","Male","Male","Male"],["A","B","C","D","E","F","A","B","C","D","E","F"],[89,17,202,131,94,24,512,353,120,138,53,22],[19,8,391,244,299,317,313,207,205,279,138,351],[0.8240740740740741,0.68,0.3406408094435076,0.3493333333333333,0.2391857506361323,0.07038123167155426,0.6206060606060606,0.6303571428571428,0.3692307692307693,0.3309352517985611,0.2774869109947644,0.05898123324396783],[0.1759259259259259,0.32,0.6593591905564924,0.6506666666666666,0.7608142493638677,0.9296187683284457,0.3793939393939394,0.3696428571428572,0.6307692307692307,0.6690647482014388,0.7225130890052356,0.9410187667560321]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Gender<\/th>\n      <th>Dept<\/th>\n      <th>Admitted<\/th>\n      <th>Rejected<\/th>\n      <th>Admitted_Pcnt<\/th>\n      <th>Rejected_Pcnt<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 1, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 1, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Gender","targets":1},{"name":"Dept","targets":2},{"name":"Admitted","targets":3},{"name":"Rejected","targets":4},{"name":"Admitted_Pcnt","targets":5},{"name":"Rejected_Pcnt","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-8c8e520c656c7991a1e1" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-8c8e520c656c7991a1e1">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12"],["Female","Female","Female","Female","Female","Female","Male","Male","Male","Male","Male","Male"],["A","B","C","D","E","F","A","B","C","D","E","F"],[89,17,202,131,94,24,512,353,120,138,53,22],[19,8,391,244,299,317,313,207,205,279,138,351],[0.8240740740740741,0.68,0.3406408094435076,0.3493333333333333,0.2391857506361323,0.07038123167155426,0.6206060606060606,0.6303571428571428,0.3692307692307693,0.3309352517985611,0.2774869109947644,0.05898123324396783],[0.1759259259259259,0.32,0.6593591905564924,0.6506666666666666,0.7608142493638677,0.9296187683284457,0.3793939393939394,0.3696428571428572,0.6307692307692307,0.6690647482014388,0.7225130890052356,0.9410187667560321]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Gender<\/th>\n      <th>Dept<\/th>\n      <th>Admitted<\/th>\n      <th>Rejected<\/th>\n      <th>Admitted_Pcnt<\/th>\n      <th>Rejected_Pcnt<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 1, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 1, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[3,4,5,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
 </div>
 <p>기술통계량을 통해 살펴본 사항을 그래프로 시각화한다. 막대 그래프를 통해 남성 합격률이 여성보다 높은 것으로 나타나 성차별이 존재하는 것으로 파악되지만, 학과별로 놓고 보면 여성 합격률이 더 높거나 남성과 유사한 것으로 시각적으로 나타난다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># A barplot for overall admission percentage for each gender.</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># A barplot for overall admission percentage for each gender.</span></span>
 <span></span>
 <span><span class="va">admit_g</span> <span class="op">&lt;-</span> <span class="va">admin_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Gender</span>, <span class="va">Admit</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -639,10 +652,10 @@ window.Quarto = {
 </div>
 </div>
 </div>
-</section></section><section id="simpson-paradox-news-article-case" class="level1" data-number="11"><h1 data-number="11">
-<span class="header-section-number">11</span> 실제 사례</h1>
-<section id="simpson-paradox-news-article-game-case" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="simpson-paradox-news-article-game-case">
-<span class="header-section-number">11.1</span> 게임 업데이터 사례 <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>
+</section></section><section id="simpson-paradox-news-article-case" class="level1" data-number="10"><h1 data-number="10">
+<span class="header-section-number">10</span> 실제 사례</h1>
+<section id="simpson-paradox-news-article-game-case" class="level2" data-number="10.1"><h2 data-number="10.1" class="anchored" data-anchor-id="simpson-paradox-news-article-game-case">
+<span class="header-section-number">10.1</span> 게임 업데이터 사례 <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>
 </h2>
 <p>예전에 모 게임에서 큰 규모의 업데이트를 한 후 게임 고객 동향을 분석한 적이 있습니다. 이 게임은 전체 게임 고객을 약 십 여가지 유형으로 분류하고 있는데, 크게 보면 게임 활동이 왕성하고 충성도가 높은 ‘진성’ 유형, 게임 활동이 그리 활발하지 않은 ‘라이트’ 유형, 자동 사냥 유저로 의심되는 ‘봇’ 유형 등이 있죠.</p>
 <p>이 게임의 업데이트 전/후 일별접속자수(DAU)와 유저당 결제금액(ARPU) 지표를 확인해 보니 아래와 같이 나왔습니다.</p>
@@ -983,25 +996,64 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       };
     }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
           }
-        });
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
       }
   const findCites = (el) => {
     const parentEl = el.parentElement;
@@ -1042,29 +1094,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./lang_sql.html" class="pagination-link" aria-label="파이썬">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">파이썬</span></span>
+      <a href="./import.html" class="pagination-link" aria-label="텍스트 파일">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./basic_stat.html" class="pagination-link" aria-label="통계">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">통계</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">통계</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
-<p>이광춘, 신종화, 유충현, 홍성학이 ’챗GPT 데이터 사이언스’를 저작했습니다.</p>
+<p>챗GPT 데이터 과학 책은 소프트웨어 카펜트리 “R for Reproducible Scientific Analysis”를 번역한 것이 포함되어 있습니다.</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/simpson.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/simpson.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</p>
+<p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":false,"descPosition":"bottom","openEffect":"zoom"});
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"selector":".lightbox","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

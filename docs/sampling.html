@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.5.9">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘, 신종화">
-<title>챗GPT 데이터 과학 – 10&nbsp; 표본 추출</title>
+<title>챗GPT 데이터 과학 – 9&nbsp; 표본 추출</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -101,7 +101,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "검색",
     "search-label": "검색"
   }
-}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script><script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-229551680-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -135,7 +147,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html"><strong>3부</strong> 데이터 과학</a></li><li class="breadcrumb-item"><a href="./sampling.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">표본 추출</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html"><strong>3부</strong> 데이터 과학</a></li><li class="breadcrumb-item"><a href="./sampling.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">표본 추출</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -148,7 +160,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">챗GPT 데이터 과학</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/bit2r/chatGPT4ds" title="소스 코드" class="quarto-navigation-tool px-1" aria-label="소스 코드"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/bit2r/gpt-ds" title="소스 코드" class="quarto-navigation-tool px-1" aria-label="소스 코드"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="리더 모드 전환">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -182,7 +194,7 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">소개</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">들어가며</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -202,7 +214,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text"><strong>2부</strong> 언어</span></a>
+ <span class="menu-text"><strong>2부</strong> 데이터 다루기</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -210,26 +222,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
+  <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lang_r.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R 언어</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./lang_py.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./lang_sql.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">파이썬</span></span></a>
+  <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
   </div>
 </li>
       </ul>
@@ -237,7 +237,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text"><strong>3부</strong> 데이터 과학</span></a>
+ <span class="menu-text"><strong>3부</strong> 가져오기</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -245,32 +245,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./simpson.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./basic_stat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">통계</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./sampling.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./hypothesis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./NHST.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">NHST.html</span></span></a>
+  <a href="./import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span></a>
   </div>
 </li>
       </ul>
@@ -278,7 +254,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text"><strong>4부</strong> 모형</span></a>
+ <span class="menu-text"><strong>3부</strong> 데이터 과학</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -286,26 +262,32 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">모형</span></span></a>
+  <a href="./simpson.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
+  <a href="./basic_stat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">통계</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models_many.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+  <a href="./sampling.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
+  <a href="./hypothesis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./NHST.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">NHST.html</span></span></a>
   </div>
 </li>
       </ul>
@@ -313,7 +295,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text"><strong>5부</strong> 프로그래밍</span></a>
+ <span class="menu-text"><strong>4부</strong> 모형</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -321,20 +303,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+  <a href="./models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
+  <a href="./models_many.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
   </div>
 </li>
       </ul>
@@ -342,7 +330,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text"><strong>6부</strong> 커뮤니케이션</span></a>
+ <span class="menu-text"><strong>5부</strong> 프로그래밍</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -350,14 +338,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
+  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
   </div>
 </li>
       </ul>
@@ -365,7 +353,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text"><strong>7부</strong> 챗GPT</span></a>
+ <span class="menu-text"><strong>6부</strong> 커뮤니케이션</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -373,32 +361,61 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text"><strong>7부</strong> 챗GPT</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./prompt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./langchain.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./local_llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
   </div>
 </li>
       </ul>
@@ -417,47 +434,47 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-<li><a href="#%EB%B0%80%EB%A6%B0_%EB%B3%91%EC%9B%90%EB%B9%84_%EC%B6%94%EC%A0%95" id="toc-밀린_병원비_추정" class="nav-link active" data-scroll-target="#%EB%B0%80%EB%A6%B0_%EB%B3%91%EC%9B%90%EB%B9%84_%EC%B6%94%EC%A0%95"><span class="header-section-number">10.1</span> 병원비 추정</a></li>
+<li><a href="#%EB%B0%80%EB%A6%B0_%EB%B3%91%EC%9B%90%EB%B9%84_%EC%B6%94%EC%A0%95" id="toc-밀린_병원비_추정" class="nav-link active" data-scroll-target="#%EB%B0%80%EB%A6%B0_%EB%B3%91%EC%9B%90%EB%B9%84_%EC%B6%94%EC%A0%95"><span class="header-section-number">9.1</span> 병원비 추정</a></li>
   <li>
-<a href="#basic-concept" id="toc-basic-concept" class="nav-link" data-scroll-target="#basic-concept"><span class="header-section-number">10.2</span> 표본추출</a>
+<a href="#basic-concept" id="toc-basic-concept" class="nav-link" data-scroll-target="#basic-concept"><span class="header-section-number">9.2</span> 표본추출</a>
   <ul class="collapse">
-<li><a href="#coffee-dataset" id="toc-coffee-dataset" class="nav-link" data-scroll-target="#coffee-dataset"><span class="header-section-number">10.2.1</span> 커피 데이터</a></li>
-  <li><a href="#simple-random-sampling" id="toc-simple-random-sampling" class="nav-link" data-scroll-target="#simple-random-sampling"><span class="header-section-number">10.2.2</span> 단순 임의추출</a></li>
-  <li><a href="#systematic-sampling" id="toc-systematic-sampling" class="nav-link" data-scroll-target="#systematic-sampling"><span class="header-section-number">10.2.3</span> 계통추출법</a></li>
-  <li><a href="#stratified-sampling" id="toc-stratified-sampling" class="nav-link" data-scroll-target="#stratified-sampling"><span class="header-section-number">10.2.4</span> 층화추출법</a></li>
-  <li><a href="#cluster-sampling" id="toc-cluster-sampling" class="nav-link" data-scroll-target="#cluster-sampling"><span class="header-section-number">10.2.5</span> 집락추출법</a></li>
+<li><a href="#coffee-dataset" id="toc-coffee-dataset" class="nav-link" data-scroll-target="#coffee-dataset"><span class="header-section-number">9.2.1</span> 커피 데이터</a></li>
+  <li><a href="#simple-random-sampling" id="toc-simple-random-sampling" class="nav-link" data-scroll-target="#simple-random-sampling"><span class="header-section-number">9.2.2</span> 단순 임의추출</a></li>
+  <li><a href="#systematic-sampling" id="toc-systematic-sampling" class="nav-link" data-scroll-target="#systematic-sampling"><span class="header-section-number">9.2.3</span> 계통추출법</a></li>
+  <li><a href="#stratified-sampling" id="toc-stratified-sampling" class="nav-link" data-scroll-target="#stratified-sampling"><span class="header-section-number">9.2.4</span> 층화추출법</a></li>
+  <li><a href="#cluster-sampling" id="toc-cluster-sampling" class="nav-link" data-scroll-target="#cluster-sampling"><span class="header-section-number">9.2.5</span> 집락추출법</a></li>
   </ul>
 </li>
   <li>
-<a href="#basic-concept-comparison" id="toc-basic-concept-comparison" class="nav-link" data-scroll-target="#basic-concept-comparison"><span class="header-section-number">10.3</span> 표본추출 비교</a>
+<a href="#basic-concept-comparison" id="toc-basic-concept-comparison" class="nav-link" data-scroll-target="#basic-concept-comparison"><span class="header-section-number">9.3</span> 표본추출 비교</a>
   <ul class="collapse">
-<li><a href="#basic-concept-comparison-population" id="toc-basic-concept-comparison-population" class="nav-link" data-scroll-target="#basic-concept-comparison-population"><span class="header-section-number">10.3.1</span> 모집단</a></li>
-  <li><a href="#basic-concept-comparison-srs" id="toc-basic-concept-comparison-srs" class="nav-link" data-scroll-target="#basic-concept-comparison-srs"><span class="header-section-number">10.3.2</span> 임의추출법</a></li>
-  <li><a href="#basic-concept-comparison-stratified" id="toc-basic-concept-comparison-stratified" class="nav-link" data-scroll-target="#basic-concept-comparison-stratified"><span class="header-section-number">10.3.3</span> 계통추출법</a></li>
-  <li><a href="#basic-concept-comparison-cluster" id="toc-basic-concept-comparison-cluster" class="nav-link" data-scroll-target="#basic-concept-comparison-cluster"><span class="header-section-number">10.3.4</span> 집락추출법</a></li>
+<li><a href="#basic-concept-comparison-population" id="toc-basic-concept-comparison-population" class="nav-link" data-scroll-target="#basic-concept-comparison-population"><span class="header-section-number">9.3.1</span> 모집단</a></li>
+  <li><a href="#basic-concept-comparison-srs" id="toc-basic-concept-comparison-srs" class="nav-link" data-scroll-target="#basic-concept-comparison-srs"><span class="header-section-number">9.3.2</span> 임의추출법</a></li>
+  <li><a href="#basic-concept-comparison-stratified" id="toc-basic-concept-comparison-stratified" class="nav-link" data-scroll-target="#basic-concept-comparison-stratified"><span class="header-section-number">9.3.3</span> 계통추출법</a></li>
+  <li><a href="#basic-concept-comparison-cluster" id="toc-basic-concept-comparison-cluster" class="nav-link" data-scroll-target="#basic-concept-comparison-cluster"><span class="header-section-number">9.3.4</span> 집락추출법</a></li>
   </ul>
 </li>
   <li>
-<a href="#calculate-errors" id="toc-calculate-errors" class="nav-link" data-scroll-target="#calculate-errors"><span class="header-section-number">10.4</span> 오차 측정</a>
+<a href="#calculate-errors" id="toc-calculate-errors" class="nav-link" data-scroll-target="#calculate-errors"><span class="header-section-number">9.4</span> 오차 측정</a>
   <ul class="collapse">
-<li><a href="#calculate-errors-many-times" id="toc-calculate-errors-many-times" class="nav-link" data-scroll-target="#calculate-errors-many-times"><span class="header-section-number">10.4.1</span> 반복 표본추출</a></li>
-  <li><a href="#calculate-errors-sample-size" id="toc-calculate-errors-sample-size" class="nav-link" data-scroll-target="#calculate-errors-sample-size"><span class="header-section-number">10.4.2</span> 표본수 증가</a></li>
-  <li><a href="#calculate-confidence-interval-sd" id="toc-calculate-confidence-interval-sd" class="nav-link" data-scroll-target="#calculate-confidence-interval-sd"><span class="header-section-number">10.4.3</span> 표준편차</a></li>
+<li><a href="#calculate-errors-many-times" id="toc-calculate-errors-many-times" class="nav-link" data-scroll-target="#calculate-errors-many-times"><span class="header-section-number">9.4.1</span> 반복 표본추출</a></li>
+  <li><a href="#calculate-errors-sample-size" id="toc-calculate-errors-sample-size" class="nav-link" data-scroll-target="#calculate-errors-sample-size"><span class="header-section-number">9.4.2</span> 표본수 증가</a></li>
+  <li><a href="#calculate-confidence-interval-sd" id="toc-calculate-confidence-interval-sd" class="nav-link" data-scroll-target="#calculate-confidence-interval-sd"><span class="header-section-number">9.4.3</span> 표준편차</a></li>
   </ul>
 </li>
   <li>
-<a href="#calculate-bootstrap" id="toc-calculate-bootstrap" class="nav-link" data-scroll-target="#calculate-bootstrap"><span class="header-section-number">10.5</span> 신뢰구간</a>
+<a href="#calculate-bootstrap" id="toc-calculate-bootstrap" class="nav-link" data-scroll-target="#calculate-bootstrap"><span class="header-section-number">9.5</span> 신뢰구간</a>
   <ul class="collapse">
-<li><a href="#calculate-standard-error" id="toc-calculate-standard-error" class="nav-link" data-scroll-target="#calculate-standard-error"><span class="header-section-number">10.5.1</span> 표준오차</a></li>
-  <li><a href="#calculate-standard-error-bootstrap" id="toc-calculate-standard-error-bootstrap" class="nav-link" data-scroll-target="#calculate-standard-error-bootstrap"><span class="header-section-number">10.5.2</span> 부츠트랩 신뢰구간</a></li>
+<li><a href="#calculate-standard-error" id="toc-calculate-standard-error" class="nav-link" data-scroll-target="#calculate-standard-error"><span class="header-section-number">9.5.1</span> 표준오차</a></li>
+  <li><a href="#calculate-standard-error-bootstrap" id="toc-calculate-standard-error-bootstrap" class="nav-link" data-scroll-target="#calculate-standard-error-bootstrap"><span class="header-section-number">9.5.2</span> 부츠트랩 신뢰구간</a></li>
   </ul>
 </li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/sampling.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/sampling.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html"><strong>3부</strong> 데이터 과학</a></li><li class="breadcrumb-item"><a href="./sampling.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">표본 추출</span></a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html"><strong>3부</strong> 데이터 과학</a></li><li class="breadcrumb-item"><a href="./sampling.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">표본 추출</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title">
-<span class="chapter-number">10</span>&nbsp; <span class="chapter-title">표본 추출</span>
+<span class="chapter-number">9</span>&nbsp; <span class="chapter-title">표본 추출</span>
 </h1>
 </div>
 
@@ -472,8 +489,8 @@ window.Quarto = {
   
 
 
-</header><section id="밀린_병원비_추정" class="level2" data-number="10.1"><h2 data-number="10.1" class="anchored" data-anchor-id="밀린_병원비_추정">
-<span class="header-section-number">10.1</span> 병원비 추정</h2>
+</header><section id="밀린_병원비_추정" class="level2" data-number="9.1"><h2 data-number="9.1" class="anchored" data-anchor-id="밀린_병원비_추정">
+<span class="header-section-number">9.1</span> 병원비 추정</h2>
 <p>모집단이 1,000명(<span class="math inline">\(N=1,000\)</span>) 환자 중에서 임의표본추출로 200명(<span class="math inline">\(n=200\)</span>)을 뽑았다. 병원에 484계정(<span class="math inline">\(N=484\)</span>) 중에서 9계정(<span class="math inline">\(n=9\)</span>)을 임의표본추출 방식으로 뽑아서, 평균적으로 얼마의 병원비가 밀렸는지 추정하고자 한다. 이를 위해서 표본 9명을 뽑아서 밀린 평균 병원비를 조사해 보니 다음과 같다. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
@@ -491,13 +508,11 @@ window.Quarto = {
 <span></span>
 <span><span class="va">hosp_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>amount_est <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">amount</span><span class="op">)</span>,</span>
-<span>              amount_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">amount</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 2
-  amount_est amount_var
-       &lt;dbl&gt;      &lt;dbl&gt;
-1       40.9       35.7</code></pre>
-</div>
+<span>              amount_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">amount</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 2</span></span>
+<span><span class="co">#&gt;   amount_est amount_var</span></span>
+<span><span class="co">#&gt;        &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1       40.9       35.7</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>이를 바탕으로 밀린 평균병원비를 추정해 보자. 계정 9개로부터 나온 평균 병원비는 다음 공식으로 통해서 계산이 가능하다.</p>
 <p><span class="math display">\[\bar{y} = \frac{\sum_{i=1}^{9}y_i}{9} = \frac{368}{9} = 40.89 \]</span></p>
@@ -524,70 +539,65 @@ window.Quarto = {
 </div>
 </div>
 </div>
-</section><section id="basic-concept" class="level2" data-number="10.2"><h2 data-number="10.2" class="anchored" data-anchor-id="basic-concept">
-<span class="header-section-number">10.2</span> 표본추출</h2>
-<section id="coffee-dataset" class="level3" data-number="10.2.1"><h3 data-number="10.2.1" class="anchored" data-anchor-id="coffee-dataset">
-<span class="header-section-number">10.2.1</span> 커피 데이터</h3>
+</section><section id="basic-concept" class="level2" data-number="9.2"><h2 data-number="9.2" class="anchored" data-anchor-id="basic-concept">
+<span class="header-section-number">9.2</span> 표본추출</h2>
+<section id="coffee-dataset" class="level3" data-number="9.2.1"><h3 data-number="9.2.1" class="anchored" data-anchor-id="coffee-dataset">
+<span class="header-section-number">9.2.1</span> 커피 데이터</h3>
 <p><a href="https://github.com/rkabacoff/qacData/"><code>qacData</code></a> 팩키지에 커피 리뷰 데이터가 포함되어 있다. <code>coffee</code> 데이터는 Coffee Quality Institute Database 에서 1312 아라비카 커피콩을 스크래핑하여 구축되었으며 수많은 리뷰어가 커피맛을 보고 평가를 내린 평점도 포함되어 있다. Tidy Tuesday에도 <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-07-07/readme.md">커피맛 평가</a> 데이터가 동일하게 이용가능하다.</p>
 <p>커피콩은 커피나무의 씨앗이며 음용 커피의 재료로 사용되는데 경제적으로 가장 중요한 커피나무의 두 종으로는 아라비카와 로부스타가 있으며 전 세계에서 생산되는 커피 중 75~80%가 아라비카이고, 20%가 로부스타라는 통계가 있다. <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/thebioengineer/tidytuesdayR">tidytuesdayR</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">tuesdata</span> <span class="op">&lt;-</span> <span class="fu">tidytuesdayR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tidytuesdayR/man/tt_load.html">tt_load</a></span><span class="op">(</span><span class="fl">2020</span>, week <span class="op">=</span> <span class="fl">28</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Downloading file 1 of 1: `coffee_ratings.csv`</code></pre>
-</div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coffee</span> <span class="op">&lt;-</span> <span class="va">tuesdata</span><span class="op">$</span><span class="va">coffee_ratings</span></span>
+<span><span class="va">tuesdata</span> <span class="op">&lt;-</span> <span class="fu">tidytuesdayR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tidytuesdayR/man/tt_load.html">tt_load</a></span><span class="op">(</span><span class="fl">2020</span>, week <span class="op">=</span> <span class="fl">28</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  Downloading file 1 of 1: `coffee_ratings.csv`</span></span>
+<span></span>
+<span><span class="va">coffee</span> <span class="op">&lt;-</span> <span class="va">tuesdata</span><span class="op">$</span><span class="va">coffee_ratings</span></span>
 <span></span>
 <span><span class="va">coffee_df</span> <span class="op">&lt;-</span> <span class="va">coffee</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">total_cup_points</span>, <span class="va">species</span>, coo <span class="op">=</span> <span class="va">country_of_origin</span>, <span class="va">farm_name</span>, <span class="va">aroma</span>, <span class="va">body</span>, <span class="va">balance</span>, <span class="va">sweetness</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">total_cup_points</span> <span class="op">&gt;</span> <span class="fl">50</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">coffee_df</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 1,338
-Columns: 8
-$ total_cup_points &lt;dbl&gt; 90.58, 89.92, 89.75, 89.00, 88.83, 88.83, 88.75, 88.6…
-$ species          &lt;chr&gt; "Arabica", "Arabica", "Arabica", "Arabica", "Arabica"…
-$ coo              &lt;chr&gt; "Ethiopia", "Ethiopia", "Guatemala", "Ethiopia", "Eth…
-$ farm_name        &lt;chr&gt; "metad plc", "metad plc", "san marcos barrancas \"san…
-$ aroma            &lt;dbl&gt; 8.67, 8.75, 8.42, 8.17, 8.25, 8.58, 8.42, 8.25, 8.67,…
-$ body             &lt;dbl&gt; 8.50, 8.42, 8.33, 8.50, 8.42, 8.25, 8.25, 8.33, 8.33,…
-$ balance          &lt;dbl&gt; 8.42, 8.42, 8.42, 8.25, 8.33, 8.33, 8.25, 8.50, 8.42,…
-$ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 9.33…</code></pre>
-</div>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">coffee_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 1,338</span></span>
+<span><span class="co">#&gt; Columns: 8</span></span>
+<span><span class="co">#&gt; $ total_cup_points &lt;dbl&gt; 90.58, 89.92, 89.75, 89.00, 88.83, 88.83, 88.75, 88.6…</span></span>
+<span><span class="co">#&gt; $ species          &lt;chr&gt; "Arabica", "Arabica", "Arabica", "Arabica", "Arabica"…</span></span>
+<span><span class="co">#&gt; $ coo              &lt;chr&gt; "Ethiopia", "Ethiopia", "Guatemala", "Ethiopia", "Eth…</span></span>
+<span><span class="co">#&gt; $ farm_name        &lt;chr&gt; "metad plc", "metad plc", "san marcos barrancas \"san…</span></span>
+<span><span class="co">#&gt; $ aroma            &lt;dbl&gt; 8.67, 8.75, 8.42, 8.17, 8.25, 8.58, 8.42, 8.25, 8.67,…</span></span>
+<span><span class="co">#&gt; $ body             &lt;dbl&gt; 8.50, 8.42, 8.33, 8.50, 8.42, 8.25, 8.25, 8.33, 8.33,…</span></span>
+<span><span class="co">#&gt; $ balance          &lt;dbl&gt; 8.42, 8.42, 8.42, 8.25, 8.33, 8.33, 8.25, 8.50, 8.42,…</span></span>
+<span><span class="co">#&gt; $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 9.33…</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><a href="images/coffee-sampling.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/coffee-sampling.png" class="img-fluid"></a></p>
-</section><section id="simple-random-sampling" class="level3" data-number="10.2.2"><h3 data-number="10.2.2" class="anchored" data-anchor-id="simple-random-sampling">
-<span class="header-section-number">10.2.2</span> 단순 임의추출</h3>
+</section><section id="simple-random-sampling" class="level3" data-number="9.2.2"><h3 data-number="9.2.2" class="anchored" data-anchor-id="simple-random-sampling">
+<span class="header-section-number">9.2.2</span> 단순 임의추출</h3>
 <p>단순 임의추출(Simple Random Sampling)은 모집단(Population) 혹은 표본 틀(Sampling Frame)에서 임의 방식으로 표본을 추출하는 것이다. <code>dplyr</code> 팩키지의 <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample()</a></code> 함수를 사용하면 표본추출관련 대부분의 기능을 이를 통해서 구현할 수 있다. 먼저 앞서 전세계 커피 품종에 대한 평가를 담을 데이터를 모집단으로 가정하고 임의로 10개를 커피콩을 추출해보자.</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coffee_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 8
-   total_cup_points species coo         farm_name  aroma  body balance sweetness
-              &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
- 1             81.2 Arabica Philippines irisan, b…  7.25  7.58    7.5         10
- 2             80.7 Arabica Colombia    &lt;NA&gt;        7.17  7.08    7.42        10
- 3             83.4 Arabica El Salvador la joya     7.58  7.75    7.67        10
- 4             80.3 Arabica Guatemala   la castel…  7.33  7       7.17        10
- 5             82.8 Arabica Guatemala   providenc…  7.5   7.58    7.5         10
- 6             80.7 Arabica Guatemala   chiquimul…  7     7       7.33        10
- 7             83.9 Arabica Mexico      finca san…  7.5   7.75    7.75        10
- 8             82.1 Arabica Brazil      rio verde   7.25  7.25    7.92        10
- 9             83.4 Arabica Thailand    matsuzawa…  7.5   7.75    7.67        10
-10             81.8 Arabica Brazil      rio verde   7.33  7.83    7.33        10</code></pre>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coffee_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 10 × 8</span></span>
+<span><span class="co">#&gt;    total_cup_points species coo          farm_name aroma  body balance sweetness</span></span>
+<span><span class="co">#&gt;               &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;        &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1             83.6 Arabica Colombia     &lt;NA&gt;       7.67  7.67    7.67        10</span></span>
+<span><span class="co">#&gt;  2             82.4 Arabica China        menglian…  7.67  7.42    7.42        10</span></span>
+<span><span class="co">#&gt;  3             82.8 Arabica Guatemala    linda vi…  7.58  7.5     7.42        10</span></span>
+<span><span class="co">#&gt;  4             85   Arabica Uganda       mount el…  8.17  7.67    7.75        10</span></span>
+<span><span class="co">#&gt;  5             83   Arabica Colombia     &lt;NA&gt;       7.5   7.58    7.58        10</span></span>
+<span><span class="co">#&gt;  6             84.5 Arabica Guatemala    nueva gr…  7.67  7.5     7.83        10</span></span>
+<span><span class="co">#&gt;  7             81   Arabica Guatemala    chapulte…  7.42  7.25    7.17        10</span></span>
+<span><span class="co">#&gt;  8             81.3 Arabica Brazil       sertao f…  7.17  7.42    7.33        10</span></span>
+<span><span class="co">#&gt;  9             81.7 Arabica Tanzania, U… multiple   7.42  7.5     7.42        10</span></span>
+<span><span class="co">#&gt; 10             80.1 Arabica Mexico       &lt;NA&gt;       7.25  7.33    7.17        10</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</section><section id="systematic-sampling" class="level3" data-number="10.2.3"><h3 data-number="10.2.3" class="anchored" data-anchor-id="systematic-sampling">
-<span class="header-section-number">10.2.3</span> 계통추출법</h3>
+</section><section id="systematic-sampling" class="level3" data-number="9.2.3"><h3 data-number="9.2.3" class="anchored" data-anchor-id="systematic-sampling">
+<span class="header-section-number">9.2.3</span> 계통추출법</h3>
 <p>계통추출법(systematic sampling)은 첫 번째 요소는 무작위로 선정한 후, 목록의 매번 k번째 요소를 표본으로 선정하는 표집방법이다. 모집단의 크기를 원하는 표본의 크기로 나누어 k를 계산한다. 이를 R을 통해 구현해보자.</p>
 <p>표본크기(<code>sample_size</code>) 10개를 추출한다. 이를 위해서 먼저 전체 표본 크기를 구한 후에 모집단을 표본크기로 나누는데 정수를 구해 간격(interval) <code>k</code>로 정하고 이를 행번호로 특정한 후에 <code>slice</code> 함수로 표본 추출한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sample_size</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sample_size</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
 <span><span class="va">population_size</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">coffee_df</span><span class="op">)</span></span>
 <span><span class="va">interval_k</span> <span class="op">&lt;-</span> <span class="va">population_size</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%/%</a></span> <span class="va">sample_size</span></span>
 <span></span>
@@ -595,26 +605,25 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <span></span>
 <span><span class="va">coffee_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rowid_to_column</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">row_index</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 9
-   rowid total_cup_points species coo    farm_name aroma  body balance sweetness
-   &lt;int&gt;            &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
- 1   133             84.7 Arabica Costa… finca sa…  7.67  7.67    8.58     10   
- 2   266             83.9 Arabica Taiwan very fam…  7.75  7.75    7.67     10   
- 3   399             83.3 Arabica Colom… &lt;NA&gt;       7.83  7.5     7.58     10   
- 4   532             83   Arabica Nicar… santa ro…  7.58  7.92    8.08      9.33
- 5   665             82.5 Arabica Colom… &lt;NA&gt;       7.5   7.58    7.58     10   
- 6   798             82   Arabica Tanza… family f…  7.67  7.42    7.42     10   
- 7   931             81.5 Arabica Brazil sertao     7.5   7.5     7.33     10   
- 8  1064             80.6 Arabica Brazil rio verde  7.42  7.08    7.25     10   
- 9  1197             79.1 Arabica Mexico el desmo…  7.17  7.25    7.08     10   
-10  1330             80.5 Robusta Uganda mannya c…  7.75  7.67    7.58      7.67</code></pre>
-</div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">row_index</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 10 × 9</span></span>
+<span><span class="co">#&gt;    rowid total_cup_points species coo    farm_name aroma  body balance sweetness</span></span>
+<span><span class="co">#&gt;    &lt;int&gt;            &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1   133             84.7 Arabica Costa… finca sa…  7.67  7.67    8.58     10   </span></span>
+<span><span class="co">#&gt;  2   266             83.9 Arabica Taiwan very fam…  7.75  7.75    7.67     10   </span></span>
+<span><span class="co">#&gt;  3   399             83.3 Arabica Colom… &lt;NA&gt;       7.83  7.5     7.58     10   </span></span>
+<span><span class="co">#&gt;  4   532             83   Arabica Nicar… santa ro…  7.58  7.92    8.08      9.33</span></span>
+<span><span class="co">#&gt;  5   665             82.5 Arabica Colom… &lt;NA&gt;       7.5   7.58    7.58     10   </span></span>
+<span><span class="co">#&gt;  6   798             82   Arabica Tanza… family f…  7.67  7.42    7.42     10   </span></span>
+<span><span class="co">#&gt;  7   931             81.5 Arabica Brazil sertao     7.5   7.5     7.33     10   </span></span>
+<span><span class="co">#&gt;  8  1064             80.6 Arabica Brazil rio verde  7.42  7.08    7.25     10   </span></span>
+<span><span class="co">#&gt;  9  1197             79.1 Arabica Mexico el desmo…  7.17  7.25    7.08     10   </span></span>
+<span><span class="co">#&gt; 10  1330             80.5 Robusta Uganda mannya c…  7.75  7.67    7.58      7.67</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>상기 결과를 바탕으로 계통표본추출법으로 표본을 추출하는 함수를 제작해서 원하는 만큼 표본을 추출한다. 하지만, 이런 경우 원데이터가 특정한 규칙을 내포한 경우 편의가 생길 수 있어 이를 보정하는 로직도 함께 넣어 둔다. <code>slice_sample(prop = 1)</code> 명령어는 데이터프레임을 마구 뒤섞어 혹시 생길 수 있는 편의를 제거하는 역할을 한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">systematic_sampling</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">sample_size</span> <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">{</span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<span><span class="va">systematic_sampling</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">sample_size</span> <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  </span>
 <span>  <span class="va">sample_size</span> <span class="op">&lt;-</span> <span class="va">sample_size</span></span>
 <span>  <span class="va">population_size</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">coffee_df</span><span class="op">)</span></span>
@@ -630,48 +639,44 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">systematic_sample</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="fu">systematic_sampling</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 9
-  rowid total_cup_points species coo     farm_name aroma  body balance sweetness
-  &lt;int&gt;            &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
-1   446             83.8 Arabica Ethiop… phone nu…  7.58  7.83    7.5      10   
-2   892             81.5 Arabica Taiwan  good moo…  7.42  7.42    7.5       9.33
-3  1338             78   Arabica Colomb… &lt;NA&gt;       7.42  7.67    7.17      9.33</code></pre>
+<span><span class="fu">systematic_sampling</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 9</span></span>
+<span><span class="co">#&gt;   rowid total_cup_points species coo     farm_name aroma  body balance sweetness</span></span>
+<span><span class="co">#&gt;   &lt;int&gt;            &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1   446             82.5 Arabica Colomb… &lt;NA&gt;       7.67  7.25    7.67        10</span></span>
+<span><span class="co">#&gt; 2   892             83.7 Arabica Colomb… various    7.83  7.58    7.67        10</span></span>
+<span><span class="co">#&gt; 3  1338             85.9 Arabica Guatem… la esper…  7.92  8.08    7.83        10</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</section><section id="stratified-sampling" class="level3" data-number="10.2.4"><h3 data-number="10.2.4" class="anchored" data-anchor-id="stratified-sampling">
-<span class="header-section-number">10.2.4</span> 층화추출법</h3>
+</section><section id="stratified-sampling" class="level3" data-number="9.2.4"><h3 data-number="9.2.4" class="anchored" data-anchor-id="stratified-sampling">
+<span class="header-section-number">9.2.4</span> 층화추출법</h3>
 <p>층화추출법(Stratified sampling)은 모집단을 먼저 중복되지 않도록 층으로 나눈 다음 각 층에서 표본을 추출하는 방법으로, 필요에 따라 각 층을 다시 하위층으로 나누어 추출하는 다단계 층화 추출을 하기도 한다. <code>dplyr</code> 팩키지를 사용할 경우 <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample()</a></code> 함수를 하위 모집단 그룹, 즉 층(strata)으로 나눠 <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>로 묶은 후에 임의 복원 혹은 비복원 임의추출방법을 수행한다. 예를 들어, 원산지 국가를 기준으로 각 국가별로 3개 커피콩 품종을 추출하는 코드는 다음과 같다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coffee_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coffee_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">coo</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span>, replace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">coo</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 96 × 8
-# Groups:   coo [37]
-   total_cup_points species coo      farm_name     aroma  body balance sweetness
-              &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
- 1             83.2 Arabica Brazil   campo das fl…  7.75  7.58    7.58     10   
- 2             84.9 Arabica Brazil   fazenda grot…  8     8       7.75     10   
- 3             83.8 Arabica Brazil   rio verde      7.67  7.83    8.17      9.33
- 4             83.3 Arabica Burundi  sogestal kay…  7.75  7.5     7.75     10   
- 5             80.3 Arabica Burundi  &lt;NA&gt;           7.08  7.08    7.08     10   
- 6             87.2 Arabica China    echo coffee    8.42  7.92    8        10   
- 7             82.4 Arabica China    menglian gao…  7.67  7.42    7.42     10   
- 8             78.7 Arabica China    alicia's farm  7     7.17    7.17      9.33
- 9             84.2 Arabica Colombia &lt;NA&gt;           7.75  7.83    7.75     10   
-10             82.9 Arabica Colombia &lt;NA&gt;           7.58  7.67    7.58     10   
-# ℹ 86 more rows</code></pre>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">coo</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 96 × 8</span></span>
+<span><span class="co">#&gt; # Groups:   coo [37]</span></span>
+<span><span class="co">#&gt;    total_cup_points species coo      farm_name     aroma  body balance sweetness</span></span>
+<span><span class="co">#&gt;               &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1             81   Arabica Brazil   cachoeira da…  7.33  7.33    7.17        10</span></span>
+<span><span class="co">#&gt;  2             82.3 Arabica Brazil   rio verde      8.25  8.17    8.08        10</span></span>
+<span><span class="co">#&gt;  3             82.8 Arabica Brazil   capoeirinha    7.67  7.5     7.42        10</span></span>
+<span><span class="co">#&gt;  4             80.3 Arabica Burundi  &lt;NA&gt;           7.08  7.08    7.08        10</span></span>
+<span><span class="co">#&gt;  5             83.3 Arabica Burundi  sogestal kay…  7.75  7.5     7.75        10</span></span>
+<span><span class="co">#&gt;  6             85.3 Arabica China    pu'er city l…  8     7.83    7.75        10</span></span>
+<span><span class="co">#&gt;  7             82.4 Arabica China    menglian gao…  7.67  7.42    7.42        10</span></span>
+<span><span class="co">#&gt;  8             82.3 Arabica China    yun lan coff…  7.5   7.42    7.42        10</span></span>
+<span><span class="co">#&gt;  9             83   Arabica Colombia &lt;NA&gt;           7.75  7.58    7.17        10</span></span>
+<span><span class="co">#&gt; 10             82.8 Arabica Colombia &lt;NA&gt;           7.67  7.5     7.42        10</span></span>
+<span><span class="co">#&gt; # ℹ 86 more rows</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</section><section id="cluster-sampling" class="level3" data-number="10.2.5"><h3 data-number="10.2.5" class="anchored" data-anchor-id="cluster-sampling">
-<span class="header-section-number">10.2.5</span> 집락추출법</h3>
+</section><section id="cluster-sampling" class="level3" data-number="9.2.5"><h3 data-number="9.2.5" class="anchored" data-anchor-id="cluster-sampling">
+<span class="header-section-number">9.2.5</span> 집락추출법</h3>
 <p>집락추출법(Cluster Sampling)은 모집단에서 집단을 일차적으로 표집한 다음, 선정된 각 집단에서 구성원을 표본으로 추출하는 2단계 표본추출방법으로 다단계 표집방법의 특수한 경우다. 집락 내부는 이질적(heterogeneous)이고 집락 간에는 동질적(homogeneous) 특성을 가지도록 하는 것이 특징으로 이런 특성이 만족되어야 보다 큰 대표성을 갖게 된다.</p>
 <p>집락추출법을 통해 커피콩을 추출하는 방식은 먼저 전세계 국가에서 먼저 임의 국가로 표본크기를 3으로 정해 뽑은 후에 다시 이렇게 특정된 국가를 대상으로 2단계 커피콩 임의 추출작업을 수행한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## 1 단계 임의추출</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## 1 단계 임의추출</span></span>
 <span><span class="va">country</span> <span class="op">&lt;-</span> <span class="va">coffee_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">coo</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">coo</span><span class="op">)</span></span>
@@ -682,69 +687,61 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <span><span class="va">coffee_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">coo</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">country_sample</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">coo</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 8
-  total_cup_points species coo      farm_name      aroma  body balance sweetness
-             &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
-1             81.6 Arabica Malawi   kavuzi          7.42  7.33    7.33        10
-2             81.2 Arabica Thailand &lt;NA&gt;            6.83  7.5     7.42        10
-3             84.8 Arabica Thailand matsuzawa cof…  7.75  8       7.75        10
-4             83.8 Arabica Thailand doi chaang co…  7.75  7.67    7.58        10
-5             82.9 Arabica Thailand doi tung deve…  7.42  7.5     8           10</code></pre>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">coo</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 5 × 8</span></span>
+<span><span class="co">#&gt;   total_cup_points species coo           farm_name aroma  body balance sweetness</span></span>
+<span><span class="co">#&gt;              &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;         &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1             79.7 Arabica El Salvador   la monta…  7.25  7.33    7.17        10</span></span>
+<span><span class="co">#&gt; 2             82.8 Arabica El Salvador   several …  7.75  7.25    7.5         10</span></span>
+<span><span class="co">#&gt; 3             83.1 Arabica United State… &lt;NA&gt;       7.33  7.83    7.67        10</span></span>
+<span><span class="co">#&gt; 4             79.9 Arabica United State… &lt;NA&gt;       7.5   7.33    7.17        10</span></span>
+<span><span class="co">#&gt; 5             83.1 Arabica United State… &lt;NA&gt;       7.33  7.67    7.58        10</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</section></section><section id="basic-concept-comparison" class="level2" data-number="10.3"><h2 data-number="10.3" class="anchored" data-anchor-id="basic-concept-comparison">
-<span class="header-section-number">10.3</span> 표본추출 비교</h2>
+</section></section><section id="basic-concept-comparison" class="level2" data-number="9.3"><h2 data-number="9.3" class="anchored" data-anchor-id="basic-concept-comparison">
+<span class="header-section-number">9.3</span> 표본추출 비교</h2>
 <p>결국 커피콩 데이터에서 추구하는 바는 <code>total_cup_points</code>를 가능하면 적은 비용과 노력으로 정확히 측정할 수 있도록 표본을 선정하는 것이다.</p>
-<section id="basic-concept-comparison-population" class="level3" data-number="10.3.1"><h3 data-number="10.3.1" class="anchored" data-anchor-id="basic-concept-comparison-population">
-<span class="header-section-number">10.3.1</span> 모집단</h3>
+<section id="basic-concept-comparison-population" class="level3" data-number="9.3.1"><h3 data-number="9.3.1" class="anchored" data-anchor-id="basic-concept-comparison-population">
+<span class="header-section-number">9.3.1</span> 모집단</h3>
 <p>먼저 모집단의 <code>total_cup_points</code> 평균을 구해서 이를 절대값으로 삼아 이야기를 풀어가도록 한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mean_population</span> <span class="op">&lt;-</span> <span class="va">coffee_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mean_population</span> <span class="op">&lt;-</span> <span class="va">coffee_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_cup_points <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">total_cup_points</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">mean_cup_points</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">mean_population</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 82.1512</code></pre>
+<span><span class="va">mean_population</span></span>
+<span><span class="co">#&gt; [1] 82.1512</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</section><section id="basic-concept-comparison-srs" class="level3" data-number="10.3.2"><h3 data-number="10.3.2" class="anchored" data-anchor-id="basic-concept-comparison-srs">
-<span class="header-section-number">10.3.2</span> 임의추출법</h3>
+</section><section id="basic-concept-comparison-srs" class="level3" data-number="9.3.2"><h3 data-number="9.3.2" class="anchored" data-anchor-id="basic-concept-comparison-srs">
+<span class="header-section-number">9.3.2</span> 임의추출법</h3>
 <p><code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample()</a></code> 함수를 통해 전체 모집단에서 10%를 임의로 추출하여 동일한 방식으로 <code>total_cup_points</code> 평균을 구해보자.</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mean_srs</span> <span class="op">&lt;-</span> <span class="va">coffee_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mean_srs</span> <span class="op">&lt;-</span> <span class="va">coffee_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>prop <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_cup_points <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">total_cup_points</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">mean_cup_points</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">mean_srs</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 82.34053</code></pre>
+<span><span class="va">mean_srs</span></span>
+<span><span class="co">#&gt; [1] 81.87774</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</section><section id="basic-concept-comparison-stratified" class="level3" data-number="10.3.3"><h3 data-number="10.3.3" class="anchored" data-anchor-id="basic-concept-comparison-stratified">
-<span class="header-section-number">10.3.3</span> 계통추출법</h3>
+</section><section id="basic-concept-comparison-stratified" class="level3" data-number="9.3.3"><h3 data-number="9.3.3" class="anchored" data-anchor-id="basic-concept-comparison-stratified">
+<span class="header-section-number">9.3.3</span> 계통추출법</h3>
 <p>국가를 층(strata)으로 삼아 각 국가별로 10% 커피콩을 뽑아 <code>total_cup_points</code> 평균을 구해보자.</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mean_stratified</span> <span class="op">&lt;-</span> <span class="va">coffee_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mean_stratified</span> <span class="op">&lt;-</span> <span class="va">coffee_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">coo</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>prop <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_cup_points <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">total_cup_points</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">mean_cup_points</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">mean_stratified</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 82.25276</code></pre>
+<span><span class="va">mean_stratified</span></span>
+<span><span class="co">#&gt; [1] 82.12846</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</section><section id="basic-concept-comparison-cluster" class="level3" data-number="10.3.4"><h3 data-number="10.3.4" class="anchored" data-anchor-id="basic-concept-comparison-cluster">
-<span class="header-section-number">10.3.4</span> 집락추출법</h3>
+</section><section id="basic-concept-comparison-cluster" class="level3" data-number="9.3.4"><h3 data-number="9.3.4" class="anchored" data-anchor-id="basic-concept-comparison-cluster">
+<span class="header-section-number">9.3.4</span> 집락추출법</h3>
 <p>다음은 전체 국가의 20%를 뽑고 각 국가별로 10%를 임의추출하는 2단계 표본추출법, 즉 집락추출법을 사용해서 <code>total_cup_points</code> 평균을 구해보자.</p>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## 1 단계 임의추출</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## 1 단계 임의추출</span></span>
 <span><span class="va">country_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">country</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">country</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%/%</a></span> <span class="fl">5</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## 2 단계 임의추출</span></span>
@@ -754,63 +751,55 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_cup_points <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">total_cup_points</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">mean_cup_points</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">mean_cluster</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 80.12235</code></pre>
+<span><span class="va">mean_cluster</span></span>
+<span><span class="co">#&gt; [1] 80.94727</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</section></section><section id="calculate-errors" class="level2" data-number="10.4"><h2 data-number="10.4" class="anchored" data-anchor-id="calculate-errors">
-<span class="header-section-number">10.4</span> 오차 측정</h2>
+</section></section><section id="calculate-errors" class="level2" data-number="9.4"><h2 data-number="9.4" class="anchored" data-anchor-id="calculate-errors">
+<span class="header-section-number">9.4</span> 오차 측정</h2>
 <p>모집단 <code>total_cup_points</code> 평균과 비교하여 다양한 표본추출방법에 따라 차이가 나는데 이를 통해 상대 오차를 측정할 필요가 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">estimation_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">estimation_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
 <span>  <span class="st">"population"</span> <span class="op">=</span> <span class="va">mean_population</span>,</span>
 <span>  <span class="st">"srs"</span>        <span class="op">=</span> <span class="va">mean_srs</span>,</span>
 <span>  <span class="st">"stratifed"</span>  <span class="op">=</span> <span class="va">mean_stratified</span>,</span>
 <span>  <span class="st">"cluster"</span>    <span class="op">=</span> <span class="va">mean_cluster</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">estimation_df</span> </span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 4
-  population   srs stratifed cluster
-       &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-1       82.2  82.3      82.3    80.1</code></pre>
-</div>
+<span><span class="va">estimation_df</span> </span>
+<span><span class="co">#&gt; # A tibble: 1 × 4</span></span>
+<span><span class="co">#&gt;   population   srs stratifed cluster</span></span>
+<span><span class="co">#&gt;        &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1       82.2  81.9      82.1    80.9</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>모집단에서 추정값을 뺀 후 100을 곱해 상대오차(Relative Error)를 구해 추정값의 정확성을 상대적으로 비교할 수 있다.</p>
 <p><span class="math display">\[\text{상대오차} = \frac{ | \text{모집단 측정값} - \text{표본추출 추정값} | }{\text{모집단 측정값}} \times 100\]</span></p>
 <div class="cell">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">estimation_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">estimation_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>col <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>, names_to <span class="op">=</span> <span class="st">"method"</span>, values_to <span class="op">=</span> <span class="st">"estimation"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>relative_error <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">mean_population</span> <span class="op">-</span> <span class="va">estimation</span><span class="op">)</span> <span class="op">/</span> <span class="va">mean_population</span> <span class="op">*</span> <span class="fl">100</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 3
-  method     estimation relative_error
-  &lt;chr&gt;           &lt;dbl&gt;          &lt;dbl&gt;
-1 population       82.2          0    
-2 srs              82.3          0.230
-3 stratifed        82.3          0.124
-4 cluster          80.1          2.47 </code></pre>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>relative_error <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">mean_population</span> <span class="op">-</span> <span class="va">estimation</span><span class="op">)</span> <span class="op">/</span> <span class="va">mean_population</span> <span class="op">*</span> <span class="fl">100</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 4 × 3</span></span>
+<span><span class="co">#&gt;   method     estimation relative_error</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;           &lt;dbl&gt;          &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 population       82.2         0     </span></span>
+<span><span class="co">#&gt; 2 srs              81.9         0.333 </span></span>
+<span><span class="co">#&gt; 3 stratifed        82.1         0.0277</span></span>
+<span><span class="co">#&gt; 4 cluster          80.9         1.47</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<section id="calculate-errors-many-times" class="level3" data-number="10.4.1"><h3 data-number="10.4.1" class="anchored" data-anchor-id="calculate-errors-many-times">
-<span class="header-section-number">10.4.1</span> 반복 표본추출</h3>
+<section id="calculate-errors-many-times" class="level3" data-number="9.4.1"><h3 data-number="9.4.1" class="anchored" data-anchor-id="calculate-errors-many-times">
+<span class="header-section-number">9.4.1</span> 반복 표본추출</h3>
 <p>임의추출방법을 통해 표본을 한번만 추출하는 대신 원하는 만큼 충분히 반복하고자 하면 어떨까? 먼저 앞서 단순 임의추출방법을 다시 확인해보자. 10%의 표본을 추출하여 <code>total_cup_points</code> 평균을 계산한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mean_srs</span> <span class="op">&lt;-</span> <span class="va">coffee_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mean_srs</span> <span class="op">&lt;-</span> <span class="va">coffee_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>prop <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_cup_points <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">total_cup_points</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">mean_cup_points</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">mean_srs</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 82.19165</code></pre>
-</div>
+<span><span class="va">mean_srs</span></span>
+<span><span class="co">#&gt; [1] 82.32256</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code><a href="https://rdrr.io/r/base/lapply.html">replicate()</a></code> 함수를 사용해서 앞서 정의한 단순 임의추출방법을 원하는 만큼 예를 들어 100회 수행하게 된다. 이를 통해서 10% 표본을 뽑아 <code>total_cup_points</code> 평균을 계산하는 작업을 100회 수행시킬 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">srs_100</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">srs_100</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span></span>
 <span>  n <span class="op">=</span> <span class="fl">100</span>,</span>
 <span>  expr <span class="op">=</span> <span class="va">coffee_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>prop <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -818,26 +807,25 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">mean_cup_points</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">srs_100</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  [1] 82.28910 82.22511 82.44865 81.79030 82.18895 82.28602 81.93398 82.16669
-  [9] 82.44263 81.88150 82.04083 82.01519 82.44579 81.79023 81.98820 82.10662
- [17] 82.16571 81.77722 82.48150 82.33707 82.15068 82.47970 82.04263 82.42812
- [25] 81.99278 82.14045 82.07940 82.34436 82.35406 82.34722 81.97707 82.33519
- [33] 82.27902 82.16744 81.99699 82.34782 82.19429 82.22534 82.04842 81.58609
- [41] 81.69188 82.48827 82.52692 82.34752 82.16955 82.23511 82.48233 81.56188
- [49] 82.31188 81.85571 82.53579 82.66857 82.39353 82.36902 82.46338 82.05015
- [57] 82.28128 82.27105 81.80571 82.27526 82.07414 82.00256 82.08662 82.06444
- [65] 82.04556 81.98812 82.09451 82.15556 82.35158 82.25797 82.42759 81.90053
- [73] 82.12128 82.02128 82.13835 81.87474 81.95338 82.36053 81.77835 82.37669
- [81] 82.42992 82.31857 82.34203 82.46188 82.13120 82.39511 81.81436 82.35496
- [89] 82.31466 82.10842 82.30466 81.74632 82.00835 82.34165 81.77489 82.13857
- [97] 81.93271 81.83812 81.57677 82.13038</code></pre>
-</div>
+<span><span class="va">srs_100</span></span>
+<span><span class="co">#&gt;   [1] 82.03361 82.14602 82.11233 81.83947 82.07414 81.94902 81.80143 81.90098</span></span>
+<span><span class="co">#&gt;   [9] 81.99541 82.24323 82.43143 82.41759 81.69571 82.00797 82.00526 81.90113</span></span>
+<span><span class="co">#&gt;  [17] 82.24707 81.68549 82.28677 82.23579 81.96248 82.52338 81.90534 82.49910</span></span>
+<span><span class="co">#&gt;  [25] 81.82579 82.08203 81.97203 82.25195 82.22038 81.97699 82.15985 81.78368</span></span>
+<span><span class="co">#&gt;  [33] 82.15789 82.17278 82.16962 82.47256 82.11534 81.97414 82.28586 82.21617</span></span>
+<span><span class="co">#&gt;  [41] 82.10850 82.54887 82.42053 82.18692 82.09436 82.38504 82.11684 82.18120</span></span>
+<span><span class="co">#&gt;  [49] 82.57195 82.44391 82.59729 82.10820 82.23030 82.40271 81.97857 82.14241</span></span>
+<span><span class="co">#&gt;  [57] 82.21609 82.25406 82.30812 82.00030 82.22602 82.15564 82.29271 82.34549</span></span>
+<span><span class="co">#&gt;  [65] 82.01308 82.48278 82.38406 82.48519 82.39865 82.18729 81.91211 81.73023</span></span>
+<span><span class="co">#&gt;  [73] 82.14977 82.28135 82.00143 82.23504 82.35925 82.44692 82.30684 82.56346</span></span>
+<span><span class="co">#&gt;  [81] 82.20579 82.49729 81.72429 82.12211 82.05647 81.91316 82.26256 81.98496</span></span>
+<span><span class="co">#&gt;  [89] 81.92970 82.53451 82.07677 81.90647 81.94060 82.39353 82.15090 82.39474</span></span>
+<span><span class="co">#&gt;  [97] 82.32789 82.35714 82.54474 81.95391</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>코드가 다소 난잡하기 때문에 임의표본추출하는 로직을 따로 떼어 함수로 제작하고 이를 마찬가지 방식으로 <code><a href="https://rdrr.io/r/base/lapply.html">replicate()</a></code> 함수를 사용해서 동일한 작업을 수행한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">run_srs</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">proportion</span> <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">{</span></span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<span><span class="va">run_srs</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">proportion</span> <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">coffee_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>prop <span class="op">=</span> <span class="va">proportion</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_cup_points <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">total_cup_points</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -850,28 +838,26 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <span>  simplify <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">srs_fun_100</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  [1] 82.06579 82.19805 82.32586 82.15820 82.28083 82.35143 82.61331 82.14970
-  [9] 82.44113 81.96286 82.02504 82.14496 82.19564 81.71955 81.85541 82.20955
- [17] 82.18376 82.29902 82.40647 82.21880 81.59015 82.26188 82.04376 82.17797
- [25] 82.33496 82.26932 81.87872 82.67353 81.98301 82.23000 81.93737 81.96759
- [33] 82.03353 82.21113 82.30541 81.65947 81.90489 82.17496 82.00045 82.22962
- [41] 82.40068 82.56759 82.11451 82.35436 82.23511 82.68812 82.34850 82.12203
- [49] 81.97707 82.57504 81.66842 82.39684 82.17293 81.96383 82.35406 81.98233
- [57] 81.97677 82.18902 82.66955 82.17519 82.14714 82.31692 81.85481 81.84662
- [65] 81.97128 81.94789 82.03789 82.24105 81.95564 82.43541 82.16962 82.12925
- [73] 82.12466 82.08286 82.21782 81.79083 82.03759 81.80647 82.46346 81.93241
- [81] 81.92248 81.95797 82.48714 82.10150 82.21376 82.13865 81.95692 81.90293
- [89] 82.13316 82.24008 82.28308 82.02030 82.15165 82.15955 82.21654 82.23308
- [97] 82.11496 82.44331 82.41383 82.38361</code></pre>
+<span><span class="va">srs_fun_100</span></span>
+<span><span class="co">#&gt;   [1] 82.09045 82.01361 82.38414 82.51338 82.12481 82.58940 82.32534 81.82218</span></span>
+<span><span class="co">#&gt;   [9] 82.11263 82.01098 82.16654 81.96639 82.23925 81.58594 82.19120 82.12256</span></span>
+<span><span class="co">#&gt;  [17] 82.44511 81.85504 82.34820 81.66624 82.16902 82.07692 82.38391 81.99406</span></span>
+<span><span class="co">#&gt;  [25] 82.27669 82.28865 82.06308 81.81887 82.06180 82.06143 82.20338 82.45632</span></span>
+<span><span class="co">#&gt;  [33] 81.93301 82.08624 82.31977 81.89647 81.93992 82.35820 82.04323 82.22669</span></span>
+<span><span class="co">#&gt;  [41] 82.37391 82.07248 82.36248 81.63023 81.90624 82.07173 82.56195 82.52293</span></span>
+<span><span class="co">#&gt;  [49] 82.27774 81.94481 82.22218 81.81556 82.13609 82.24947 81.99714 81.98444</span></span>
+<span><span class="co">#&gt;  [57] 82.18331 81.60278 82.27361 82.09353 82.16436 82.28323 81.50504 81.91308</span></span>
+<span><span class="co">#&gt;  [65] 82.43887 82.11609 82.31233 81.85932 82.47692 82.07489 82.26737 82.20188</span></span>
+<span><span class="co">#&gt;  [73] 81.76316 82.08150 81.70398 82.05451 82.03985 82.42947 82.31060 82.08729</span></span>
+<span><span class="co">#&gt;  [81] 82.11188 82.21323 82.00180 82.37714 82.51361 81.81910 82.41511 81.99812</span></span>
+<span><span class="co">#&gt;  [89] 82.02872 82.00669 82.30880 82.47556 81.36549 82.21316 82.47241 81.86195</span></span>
+<span><span class="co">#&gt;  [97] 81.71647 82.22053 82.17120 82.22489</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</section><section id="calculate-errors-sample-size" class="level3" data-number="10.4.2"><h3 data-number="10.4.2" class="anchored" data-anchor-id="calculate-errors-sample-size">
-<span class="header-section-number">10.4.2</span> 표본수 증가</h3>
+</section><section id="calculate-errors-sample-size" class="level3" data-number="9.4.2"><h3 data-number="9.4.2" class="anchored" data-anchor-id="calculate-errors-sample-size">
+<span class="header-section-number">9.4.2</span> 표본수 증가</h3>
 <p>표본크기가 증가할수록 모집단 대표 평균값에 가까이 추정하는 것을 확인할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">extrafont</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/extrafont/man/loadfonts.html">loadfonts</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">extrafont</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/extrafont/man/loadfonts.html">loadfonts</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">srs_samp_size</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">samp_size</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">srs_fun_100</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span></span>
@@ -909,30 +895,28 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 </div>
 </div>
 </div>
-</section><section id="calculate-confidence-interval-sd" class="level3" data-number="10.4.3"><h3 data-number="10.4.3" class="anchored" data-anchor-id="calculate-confidence-interval-sd">
-<span class="header-section-number">10.4.3</span> 표준편차</h3>
+</section><section id="calculate-confidence-interval-sd" class="level3" data-number="9.4.3"><h3 data-number="9.4.3" class="anchored" data-anchor-id="calculate-confidence-interval-sd">
+<span class="header-section-number">9.4.3</span> 표준편차</h3>
 <p>추정값에 대한 표준편차도 표본크기 변화에 따라 계산해보자.</p>
 <div class="cell">
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">samp_size_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">samp_size_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">samp_size</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_cup_points <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">estimation</span><span class="op">)</span>,</span>
 <span>            sd_cup_points   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">estimation</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>samp_prop <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number</a></span><span class="op">(</span><span class="va">samp_size</span><span class="op">)</span>,</span>
 <span>         samp_prop <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue</a></span><span class="op">(</span><span class="st">"{samp_prop} %"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">samp_prop</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"cup"</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 3
-  samp_prop mean_cup_points sd_cup_points
-  &lt;glue&gt;              &lt;dbl&gt;         &lt;dbl&gt;
-1 10 %                 82.2        0.218 
-2 33 %                 82.2        0.0990
-3 50 %                 82.2        0.0711
-4 75 %                 82.1        0.0422
-5 90 %                 82.1        0.0258</code></pre>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">samp_prop</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"cup"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 5 × 3</span></span>
+<span><span class="co">#&gt;   samp_prop mean_cup_points sd_cup_points</span></span>
+<span><span class="co">#&gt;   &lt;glue&gt;              &lt;dbl&gt;         &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 10 %                 82.1        0.239 </span></span>
+<span><span class="co">#&gt; 2 33 %                 82.2        0.0997</span></span>
+<span><span class="co">#&gt; 3 50 %                 82.2        0.0677</span></span>
+<span><span class="co">#&gt; 4 75 %                 82.2        0.0473</span></span>
+<span><span class="co">#&gt; 5 90 %                 82.2        0.0263</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</section></section><section id="calculate-bootstrap" class="level2" data-number="10.5"><h2 data-number="10.5" class="anchored" data-anchor-id="calculate-bootstrap">
-<span class="header-section-number">10.5</span> 신뢰구간</h2>
+</section></section><section id="calculate-bootstrap" class="level2" data-number="9.5"><h2 data-number="9.5" class="anchored" data-anchor-id="calculate-bootstrap">
+<span class="header-section-number">9.5</span> 신뢰구간</h2>
 <p>부츠트랩(Bootstrap) 방법론은 모집단에서 나온 표본을 다시 모집단으로 가정하고 표본을 복원추출방법을 통해서 추정하는 방식이다. 부츠트랩 방법론을 통해 추정값은 물론 표준오차도 계산이 가능하다. 부츠트랩은 크게 두단계로 나누는데 먼저 재표집하는 단계와 통계량을 계산하는 단계로 나눠진다.</p>
 <p>부츠트랩을 1,000번 실행해서 얻은 결과를 모집단 평균과 시각적으로 비교한다. 부츠트랩을 통해 계산된 평균은 다음과 같은 특징이 있다.</p>
 <ul>
@@ -941,7 +925,7 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <li>즉, 부츠트랩 방법론을 통해 모집단과 모집단에서 추출한 표본집단 사이 발생된 편이(bias)를 보정할 수는 없다.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">77777</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">77777</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">coffee_srs_df</span> <span class="op">&lt;-</span> <span class="va">coffee_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>prop <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span>
@@ -975,8 +959,8 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 </div>
 </div>
 </div>
-<section id="calculate-standard-error" class="level3" data-number="10.5.1"><h3 data-number="10.5.1" class="anchored" data-anchor-id="calculate-standard-error">
-<span class="header-section-number">10.5.1</span> 표준오차</h3>
+<section id="calculate-standard-error" class="level3" data-number="9.5.1"><h3 data-number="9.5.1" class="anchored" data-anchor-id="calculate-standard-error">
+<span class="header-section-number">9.5.1</span> 표준오차</h3>
 <p>표준편차와 표준오차를 다음 수식을 통해 직관적으로 이해할 수 있다. 즉, 표준편차는 변량에 대한 산포를 측정하는 반면 표준오차는 추정량에 대한 산포를 측정하게 된다.</p>
 <ul>
 <li>표준편차(Standard Deviation): <span class="math inline">\(\sqrt{\operatorname E\left[(X - \mu)^2\right]}\)</span>
@@ -987,45 +971,38 @@ $ sweetness        &lt;dbl&gt; 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 
 <p>이를 통해서 표준오차에 표본크기 제곱근을 곱하게 되면 모집단 표준편차를 구할 수 있게 된다.</p>
 <p><span class="math display">\[\sigma_{\overline{x}} = \frac{\sigma}{\sqrt{n}}\]</span></p>
 <div class="cell">
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 1. 모집단 total_cup_points 표준편차</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">coffee_df</span><span class="op">$</span><span class="va">total_cup_points</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.686862</code></pre>
-</div>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 2. 표본 total_cup_points 표준편차</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">coffee_srs_df</span><span class="op">$</span><span class="va">total_cup_points</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.599749</code></pre>
-</div>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 3. 표본분포(sampling distribution) total_cup_points 표준편차</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">srs_fun_100</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">coffee_df</span><span class="op">)</span> <span class="op">*</span> <span class="fl">0.1</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.591998</code></pre>
-</div>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 4. 부츠트랩 total_cup_points 표준편차</span></span>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 1. 모집단 total_cup_points 표준편차</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">coffee_df</span><span class="op">$</span><span class="va">total_cup_points</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 2.686862</span></span>
+<span></span>
+<span><span class="co"># 2. 표본 total_cup_points 표준편차</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">coffee_srs_df</span><span class="op">$</span><span class="va">total_cup_points</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 2.599749</span></span>
+<span></span>
+<span><span class="co"># 3. 표본분포(sampling distribution) total_cup_points 표준편차</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">srs_fun_100</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">coffee_df</span><span class="op">)</span> <span class="op">*</span> <span class="fl">0.1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 2.864368</span></span>
+<span></span>
+<span><span class="co"># 4. 부츠트랩 total_cup_points 표준편차</span></span>
 <span><span class="va">standard_error</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">mean_cup_points</span><span class="op">)</span></span>
 <span>  </span>
 <span><span class="va">sd_population</span> <span class="op">&lt;-</span> <span class="va">standard_error</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">coffee_df</span><span class="op">)</span> <span class="op">*</span> <span class="fl">0.1</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">sd_population</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.488636</code></pre>
+<span><span class="va">sd_population</span></span>
+<span><span class="co">#&gt; [1] 2.488636</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</section><section id="calculate-standard-error-bootstrap" class="level3" data-number="10.5.2"><h3 data-number="10.5.2" class="anchored" data-anchor-id="calculate-standard-error-bootstrap">
-<span class="header-section-number">10.5.2</span> 부츠트랩 신뢰구간</h3>
+</section><section id="calculate-standard-error-bootstrap" class="level3" data-number="9.5.2"><h3 data-number="9.5.2" class="anchored" data-anchor-id="calculate-standard-error-bootstrap">
+<span class="header-section-number">9.5.2</span> 부츠트랩 신뢰구간</h3>
 <p>정규분포를 가정해서 신뢰구간을 구할 수도 있으나 단순히 분위수 함수인 <code><a href="https://rdrr.io/r/stats/quantile.html">quantile()</a></code>을 사용해서 95% 신뢰구간 상하한을 간단히 구할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>mean_cup_points <span class="op">=</span> <span class="va">mean_cup_points</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>mean_cup_points <span class="op">=</span> <span class="va">mean_cup_points</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>lower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">mean_cup_points</span>, <span class="fl">0.025</span><span class="op">)</span>,</span>
 <span>            mean  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">mean_cup_points</span><span class="op">)</span>,</span>
-<span>            upper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">mean_cup_points</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 3
-  lower  mean upper
-  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1  82.0  82.4  82.8</code></pre>
-</div>
+<span>            upper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">mean_cup_points</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 3</span></span>
+<span><span class="co">#&gt;   lower  mean upper</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1  82.0  82.4  82.8</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -1361,25 +1338,64 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       };
     }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
           }
-        });
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
       }
   const findCites = (el) => {
     const parentEl = el.parentElement;
@@ -1421,28 +1437,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./basic_stat.html" class="pagination-link" aria-label="통계">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">통계</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">통계</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./hypothesis.html" class="pagination-link" aria-label="코딩 가설검정">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
-<p>이광춘, 신종화, 유충현, 홍성학이 ’챗GPT 데이터 사이언스’를 저작했습니다.</p>
+<p>챗GPT 데이터 과학 책은 소프트웨어 카펜트리 “R for Reproducible Scientific Analysis”를 번역한 것이 포함되어 있습니다.</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/bit2r/chatGPT4ds/edit/main/sampling.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/chatGPT4ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/sampling.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p><a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.</p>
+<p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","loop":false,"closeEffect":"zoom","openEffect":"zoom"});
+</footer><script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
