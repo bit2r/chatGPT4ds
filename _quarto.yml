@@ -1,28 +1,45 @@
 project:
   type: book
   output-dir: docs
+  # output-dir: pdfs
+  preview:
+    port: 7771
+    browser: false
+  resources:
+    - "data/*.mp3"
   render:
-    - "!map_pdf.qmd"
+    - "*.qmd"
+    - "!*.Rmd"
+    - "!to_do.qmd"
 
 lang: ko-KR
 
+# ---------------------------------- #
 book:
   title: "챗GPT 데이터 과학"
-  subtitle: "AI와 함께하는 데이터 과학 여정"
-
   reader-mode: true
+  subtitle: "AI와 함께하는 데이터 과학 여정"
 
   page-footer:
     left: |
-      이광춘, 신종화, 유충현, 홍성학이 '챗GPT 데이터 사이언스'를 저작했습니다.
+      챗GPT 데이터 과학 책은 소프트웨어 카펜트리 "R for Reproducible Scientific Analysis"를 번역한 것이 포함되어 있습니다.
     right: |
-      <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작.
+      순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.
+
   cover-image: images/logo.png
   favicon: images/logo.png
-  site-url: https://r2bit.com/chatGPT4ds/
-  repo-url: https://github.com/bit2r/chatGPT4ds
+  site-url: https://r2bit.com/gpt-ds/
+  repo-url: https://github.com/bit2r/gpt-ds
   repo-branch: main
   repo-actions: [edit, issue]
+
+  google-analytics: "UA-229551680-1"
+  author:
+    - name: "이광춘"
+      affiliations: "공익법인 한국 R 사용자회"
+  date: last-modified
+  date-format: "YYYY년 MM월 DD일"
+
   chapters:
     - index.qmd
 
@@ -36,12 +53,10 @@ book:
       chapters:
         - import.qmd
 
-    - part: "**2부** 언어"
+    - part: "**2부** 데이터 다루기"
       chapters:
-        - lang_gpt.qmd
-        - lang_r.qmd
-        - lang_py.qmd
-        - lang_sql.qmd
+        - data_structure.qmd
+        - dataframe.qmd
 
     - part: "**3부** 데이터 과학"
       chapters:
@@ -76,14 +91,24 @@ book:
         - code_interpreter.qmd
         - llm_python.qmd
         - local_llm.qmd
+        - lang_gpt.qmd
 
     - references.qmd
+
+    # - part: "**2부** 언어"
+    #   chapters:
+    #     - lang_r.qmd
+    #     - lang_py.qmd
+    #     - lang_sql.qmd
+
+# ---------------------------------- #
 
 format:
   html:
     theme:
-      - cosmo
-      - chatGPT4ds.scss
+      light: [cosmo, r2bit.scss]
+    mermaid:
+      theme: neutral # https://quarto.org/docs/authoring/diagrams.html#mermaid-theming
     number-depth: 3
     number-sections: true
     colorlinks: true
@@ -94,24 +119,55 @@ format:
     author-meta: "이광춘, 신종화"
     callout-appearance: simple
 
-editor: source
+    # 마크다운 표 캡션 위치
+    tbl-cap-location: bottom
 
+# ---------------------------------- #
 filters:
-   - lightbox
+  - lightbox
+  - fontawesome
+  - include-code-files
+  - fancy-text
+  - webr
+  # - pyodide
 lightbox: auto
-link-citations: true
+
+webr:
+  packages:
+  - "stringr"
+  # - "readr"
+  # - "purrr"
+  # - "httr"
+  # - "curl"
+  # - "rvest"
+  # - "fs"
+  # - "ggplot2"
+  - "palmerpenguins"
+
+code-annotations: hover
 
 bibliography: references.bib
+link-citations: false
+
+# ---------------------------------- #
+engine: knitr
 
 knitr:
   opts_chunk:
     message: false
     warning: false
-    collapse: false
+    collapse: true
+    code-overflow: code-overflow
+    fig-crop: false
+    comment: "#>"
+    R.options:
+      knitr.graphics.auto_pdf: true
 editor_options:
   chunk_output_type: console
 
+editor:
+  source: true
+  markdown:
+    wrap: 72
 
-execute:
-  freeze: auto
 

@@ -1,1 +1,1 @@
-Sitemap: https://r2bit.com/chatGPT4ds/sitemap.xml
+Sitemap: https://r2bit.com/gpt-ds/sitemap.xml

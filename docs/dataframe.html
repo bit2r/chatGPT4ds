@@ -8,7 +8,7 @@
 
 <meta name="author" content="이광춘, 신종화">
 
-<title>챗GPT 데이터 과학 – 4&nbsp; 텍스트 파일</title>
+<title>챗GPT 데이터 과학 – 6&nbsp; 데이터프레임</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,8 +31,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./data_structure.html" rel="next">
-<link href="./penguins.html" rel="prev">
+<link href="./simpson.html" rel="next">
+<link href="./data_structure.html" rel="prev">
 <link href="./images/logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -84,10 +84,6 @@ ga('send', {
   'anonymizeIp': true,
 });
 </script>
-<meta name="mermaid-theme" content="neutral">
-<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -101,7 +97,7 @@ ga('send', {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./import.html"><strong>2부</strong> 가져오기</a></li><li class="breadcrumb-item"><a href="./import.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">텍스트 파일</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_structure.html"><strong>2부</strong> 데이터 다루기</a></li><li class="breadcrumb-item"><a href="./dataframe.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -180,7 +176,7 @@ ga('send', {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./import.html" class="sidebar-item-text sidebar-link active">
+  <a href="./import.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span></a>
   </div>
 </li>
@@ -203,8 +199,8 @@ ga('send', {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
+  <a href="./dataframe.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임</span></span></a>
   </div>
 </li>
       </ul>
@@ -395,21 +391,15 @@ ga('send', {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">목차</h2>
-   
-  <ul>
-  <li><a href="#데이터-종류" id="toc-데이터-종류" class="nav-link active" data-scroll-target="#데이터-종류"><span class="header-section-number">4.1</span> 데이터 종류</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/import.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./import.html"><strong>2부</strong> 가져오기</a></li><li class="breadcrumb-item"><a href="./import.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">텍스트 파일</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_structure.html"><strong>2부</strong> 데이터 다루기</a></li><li class="breadcrumb-item"><a href="./dataframe.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="intro" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임</span></h1>
 </div>
 
 
@@ -426,76 +416,8 @@ ga('send', {
 </header>
 
 
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-workflow" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div>
-<pre class="mermaid mermaid-js" data-label="fig-workflow">graph LR
-    subgraph 이해하기
-        변환 --&gt; 시각화
-        시각화 --&gt; 모형
-        모형 --&gt; 변환
-    end
-    가져오기 --&gt; 깔끔화 --&gt; 이해하기
-    이해하기 --&gt; 의사소통
-    
-    classDef modern fill:#fff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:12px;
-    classDef emphasize fill:#8CBDE3,stroke:#333,stroke-width:3px,color:#333,font-family:MaruBuri,font-size:15px,font-weight:bold;
-    classDef subgraphStyle fill:#f0f8ff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:15px;
-    
-    class 깔끔화,변환,모형,시각화,의사소통 modern
-    class 가져오기 emphasize
-    class 이해하기 subgraphStyle
-</pre>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;4.1: 데이터 과학 작업흐름도
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<section id="데이터-종류" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="데이터-종류"><span class="header-section-number">4.1</span> 데이터 종류</h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-import-data" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-import-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div>
-<pre class="mermaid mermaid-js" data-label="fig-import-data">graph TB
-    subgraph 가져오기["가져오기(Import)"]
-        csv[CSV 파일] --&gt; 핸들러
-        스프레드쉬트 --&gt; 핸들러
-        데이터베이스 --&gt; 핸들러
-        웹 --&gt; 핸들러
-
-        핸들러 --&gt; 데이터프레임
-    end
-    
-    classDef modern fill:#fff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:12px;
-    classDef emphasize fill:#8CBDE3,stroke:#333,stroke-width:3px,color:#333,font-family:MaruBuri,font-size:15px,font-weight:bold;
-    classDef subgraphStyle fill:#f0f8ff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:20px;
-    
-    class csv,스프레드쉬트,데이터베이스,웹,핸들러 modern
-    class 데이터프레임 emphasize
-    class 가져오기 subgraphStyle
-</pre>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-import-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;4.2: 다양한 데이터 종류
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -926,13 +848,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./penguins.html" class="pagination-link" aria-label="펭귄 데이터셋">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span>
+      <a href="./data_structure.html" class="pagination-link" aria-label="자료구조">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">자료구조</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./data_structure.html" class="pagination-link" aria-label="자료구조">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">자료구조</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./simpson.html" class="pagination-link" aria-label="심슨의 역설">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -944,7 +866,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/import.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/dataframe.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>

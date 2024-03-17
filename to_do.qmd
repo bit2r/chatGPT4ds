@@ -1,0 +1,141 @@
+
+# 해답 --------------------------------------
+
+::: {.callout-caution collapse="true"}
+### 해답
+
+:::
+
+### 토론 주제
+### 토론 정리
+
+# source --------------------------------------
+
+
+```{r}
+#| include: false
+
+source("_common.R")
+```
+
+# --------------------------------------
+
+\index{latex@\LaTeX}
+\index{}
+
+# 칼럼 2개 --------------------------------------
+
+::::: {.columns}
+
+::: {.column width="47.5%"}
+### R {.unnumbered}
+```{r}
+#| eval: false
+
+```
+
+:::
+
+::: {.column width="5%"}
+
+:::
+
+::: {.column width="47.5%"}
+### 파이썬 {.unnumbered}
+```{python}
+#| eval: false
+
+```
+
+:::
+:::::
+
+# WEBR --------------------------------------
+
+:::{.panel-tabset}
+### R {.unnumbered}
+
+```{webr-r}
+#| label: 
+
+```
+
+### 파이썬 {.unnumbered}
+
+```{pyodide-python}
+#| label: 
+
+```
+
+:::
+
+# --------------------------------------
+
+## 연습문제 {.unnumbered}
+
+### 객관식 {.unnumbered}
+
+::: {.content-visible when-format="revealjs"}
+
+:::
+
+### 서술형 {.unnumbered}
+
+::: {.content-visible when-format="revealjs"}
+
+:::
+
+# --------------------------------------
+
+```{.python include="dashboards/corona_dashboards_v1_book.qmd" code-line-numbers="true" start-line=8 end-line=41}
+```
+
+
+# --------------------------------------
+Pyiodide로 requests 패키지를 사용하여 파일을 다운로드하고, 단어 빈도수를 계산하는 파이썬 코드입니다.
+
+```{python}
+import pyodide_js
+await pyodide_js.loadPackage('requests')
+
+import requests
+
+url = "https://www.dr-chuck.com/py4inf/code/romeo.txt"
+destination_file = "romeo.txt"
+
+response = requests.get(url)
+response.raise_for_status()  # This will raise an error for unsuccessful requests
+
+with open(destination_file, 'wb') as file:
+    file.write(response.content)
+
+fhand = open("romeo.txt")
+
+counts = dict()
+for line in fhand:
+    words = line.split()
+    for word in words:
+        if word not in counts:
+            counts[word] = 1
+        else:
+            counts[word] += 1
+
+print(counts)
+```
+
+# 파일병 변경 ----------
+
+for file in *.qmd; do
+  mv "$file" "${file%qmd}Rmd";
+done
+
+# 프롬프트 --------------
+
+너는 "챗GPT 데이터 과학" 책 집필을 도와주는 교정전문가다. 너에게는 책의 초고가 담긴 파일이 전달된다. 이 파일은 R/Quarto Markdown으로 작성되었으며, 책의 내용은 데이터 과학에 대한 기본적인 내용을 다루고 있다. 너는 이 파일을 교정하여 다음과 같은 사항을 확인해야 한다.
+
+- 문장은 "한다", "하다", "했다"와 같이 평서문으로 끝나도록 작성한다.
+- 마크다운 코드 블록에 들어가는 코드는 그대로 둔 채 그냥 넘어간다.
+
+첨부된 파일 전체에 대해서 처음부터 끝까지 맞춤범 검사와 함께 문장이 매끄럽게 작성되도록 윤문한다.
+
+
