@@ -52,5 +52,409 @@
       "**1부** 들어가며",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>들어가며</span>"
     ]
+  },
+  {
+    "objectID": "penguins.html",
+    "href": "penguins.html",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "",
+    "text": "4 펭귄 데이터셋",
+    "crumbs": [
+      "**1부** 들어가며",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>펭귄 데이터셋</span>"
+    ]
+  },
+  {
+    "objectID": "penguins.html#펭귄-데이터-출현",
+    "href": "penguins.html#펭귄-데이터-출현",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "\n4.1 펭귄 데이터 출현",
+    "text": "4.1 펭귄 데이터 출현\n미국에서 “George Floyd”가 경찰에 의해 살해되면서 촉발된 “Black Lives Matter” 운동은 아프리카계 미국인을 향한 폭력과 제도적 인종주의에 반대하는 사회운동이다. 한국에서도 소수 정당인 정의당에서 여당 의원 176명 중 누가?…차별금지법 발의할 ’의인’을 구합니다로 기사로 낼 정도로 적극적으로 나서고 있다.\n데이터 과학에서 최근 R.A. Fisher의 과거 저술한 “The genetical theory of natural selection” (fisher1958genetical?) 우생학(Eugenics) 대한 관점이 논란이 되면서 R 데이터 과학의 첫 데이터셋으로 붓꽃 iris 데이터를 다른 데이터, 즉 펭귄 데이터로 대체하는 움직임이 활발히 전개되고 있다. palmerpenguins (penguin2020?) 데이터셋이 대안으로 많은 호응을 얻고 있다. (Levy2019?)",
+    "crumbs": [
+      "**1부** 들어가며",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>펭귄 데이터셋</span>"
+    ]
+  },
+  {
+    "objectID": "penguins.html#penguins-study",
+    "href": "penguins.html#penguins-study",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "\n4.2 펭귄 공부",
+    "text": "4.2 펭귄 공부\n팔머(Palmer) 펭귄은 3종이 있으며 자세한 내용은 다음 나무위키를 참조한다. 1\n\n\n젠투 펭귄(Gentoo Penguin): 머리에 모자처럼 둘러져 있는 하얀 털 때문에 알아보기가 쉽다. 암컷이 회색이 뒤에, 흰색이 앞에 있다. 펭귄들 중에 가장 빠른 시속 36km의 수영 실력을 자랑하며, 짝짓기 할 준비가 된 펭귄은 75-90cm까지도 자란다.\n\n아델리 펭귄(Adelie Penguin): 프랑스 탐험가인 뒤몽 뒤르빌(Dumont D’Urville) 부인의 이름을 따서 ’아델리’라 불리게 되었다. 각진 머리와 작은 부리 때문에 알아보기 쉽고, 다른 펭귄들과 마찬가지로 암수가 비슷하게 생겼지만 암컷이 조금 더 작다.\n\n턱끈 펭귄(Chinstrap Penguin): 언뜻 보면 아델리 펭귄과 매우 비슷하지만, 몸집이 조금 더 작고, 목에서 머리 쪽으로 이어지는 검은 털이 눈에 띈다. 어린 고삐 펭귄들은 회갈색 빛을 띄는 털을 가지고 있으며, 목 아래 부분은 더 하얗다. 무리를 지어 살아가며 일부일처제를 지키기 때문에 짝짓기 이후에도 부부로써 오랫동안 함께 살아간다.\n\n\n\n팔머 펭귄 3종 세트\n\n다음으로 iris 데이터와 마찬가지로 펭귄 3종을 구분하기 위한 변수로 조류의 부리에 있는 중앙 세로선의 융기를 지칭하는 능선(culmen) 길이(culmen length)와 깊이(culmen depth)를 이해하면 된다.\n\n\n팔머 펭귄 능선 변수",
+    "crumbs": [
+      "**1부** 들어가며",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>펭귄 데이터셋</span>"
+    ]
+  },
+  {
+    "objectID": "penguins.html#penguin-home",
+    "href": "penguins.html#penguin-home",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "\n4.3 펭귄 서식지",
+    "text": "4.3 펭귄 서식지\nleaflet 팩키지로 펭귄 서식지를 남극에서 특정한다. geocoding을 해야 하는데 구글에서 위치 정보를 구글링하면 https://latitude.to/에서 직접 위경도를 반환하여 준다. 이 정보를 근거로 하여 펭귄 서식지를 시각화한다.\n\n\n\n\n\n\n\n\n파머 연구소와 펭귄 서식지\n\n\n\n\n\n펭귄 3종\n\n\n\n\n\n\n\n아델리, 젠투, 턱끈 펭귄이 함께한 사진\n\n\n\n\n\n토르거센 섬에서 새끼를 키우는 아델리 펭귄\n\n\n\n\n\n비스코 지점 젠투 펭귄 서식지\n\n\n\n\n\n펭귄과 함께 현장에서 일하는 크리스틴 고먼 박사\n\n\n\n\n\n파머 펭귄 데이터셋\n\n\n\n\nlibrary(tidyverse)\nlibrary(leaflet)\nlibrary(palmerpenguins)\n# library(tidygeocoder)\n\npenguins %&gt;% \n  count(island)\n#&gt; # A tibble: 3 × 2\n#&gt;   island        n\n#&gt;   &lt;fct&gt;     &lt;int&gt;\n#&gt; 1 Biscoe      168\n#&gt; 2 Dream       124\n#&gt; 3 Torgersen    52\n\nisland_df &lt;- tribble(~\"address\", ~\"lat\", ~\"lng\",\n                     \"Torgersen Island antarctica\", -64.772819, -64.074325,\n                     \"Dream Island antarctica\", -64.725558, -64.225562,\n                     \"Biscoe Island antarctica\", -64.811565, -63.777947,\n                     \"Palmer Station\", -64.774312, -64.054213)\n\nisland_df %&gt;% \n  leaflet() %&gt;% \n  addProviderTiles(providers$OpenStreetMap) %&gt;% \n  addMarkers(lng=~lng, lat=~lat, \n                   popup = ~ as.character(paste0(\"&lt;strong&gt;\", paste0(\"명칭:\",`address`), \"&lt;/strong&gt;&lt;br&gt;\",\n                                                 \"-----------------------------------------------------------&lt;br&gt;\",\n                                                 \"&middot; latitude: \", `lat`, \"&lt;br&gt;\",\n                                                 \"&middot; longitude: \", `lng`, \"&lt;br&gt;\"\n                   )))",
+    "crumbs": [
+      "**1부** 들어가며",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>펭귄 데이터셋</span>"
+    ]
+  },
+  {
+    "objectID": "penguins.html#데이터-설치",
+    "href": "penguins.html#데이터-설치",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "\n4.4 데이터 설치",
+    "text": "4.4 데이터 설치\nremotes 팩키지 install_github() 함수로 펭귄 데이터를 설치한다.\n\n# install.packages(\"remotes\")\nremotes::install_github(\"allisonhorst/palmerpenguins\")\n\ntidyverse 팩키지 glimpse() 함수로 펭귄 데이터를 일별한다.\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\nglimpse(penguins)\n#&gt; Rows: 344\n#&gt; Columns: 8\n#&gt; $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n#&gt; $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n#&gt; $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n#&gt; $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n#&gt; $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n#&gt; $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n#&gt; $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n#&gt; $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…",
+    "crumbs": [
+      "**1부** 들어가며",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>펭귄 데이터셋</span>"
+    ]
+  },
+  {
+    "objectID": "penguins.html#penguin-EDA-skimr",
+    "href": "penguins.html#penguin-EDA-skimr",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "\n4.5 자료구조 일별",
+    "text": "4.5 자료구조 일별\nskimr 팩키지를 사용해서 penguins 데이터프레임 자료구조를 일별한다. 이를 통해서 344개 펭귄 관측값이 있으며, 7개 칼럼으로 구성된 것을 확인할 수 있다. 또한, 범주형 변수가 3개, 숫자형 변수가 4개로 구성되어 있다. 그외 더 자세한 사항은 범주형, 숫자형 변수에 대한 요약 통계량을 참조한다.\n\nskimr::skim(penguins)\n\n\nData summary\n\n\nName\npenguins\n\n\nNumber of rows\n344\n\n\nNumber of columns\n8\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\nfactor\n3\n\n\nnumeric\n5\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: factor\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nordered\nn_unique\ntop_counts\n\n\n\nspecies\n0\n1.00\nFALSE\n3\nAde: 152, Gen: 124, Chi: 68\n\n\nisland\n0\n1.00\nFALSE\n3\nBis: 168, Dre: 124, Tor: 52\n\n\nsex\n11\n0.97\nFALSE\n2\nmal: 168, fem: 165\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\nbill_length_mm\n2\n0.99\n43.92\n5.46\n32.1\n39.23\n44.45\n48.5\n59.6\n▃▇▇▆▁\n\n\nbill_depth_mm\n2\n0.99\n17.15\n1.97\n13.1\n15.60\n17.30\n18.7\n21.5\n▅▅▇▇▂\n\n\nflipper_length_mm\n2\n0.99\n200.92\n14.06\n172.0\n190.00\n197.00\n213.0\n231.0\n▂▇▃▅▂\n\n\nbody_mass_g\n2\n0.99\n4201.75\n801.95\n2700.0\n3550.00\n4050.00\n4750.0\n6300.0\n▃▇▆▃▂\n\n\nyear\n0\n1.00\n2008.03\n0.82\n2007.0\n2007.00\n2008.00\n2009.0\n2009.0\n▇▁▇▁▇\n\n\n\n\n\n데이터가 크지 않아 DT 팩키지를 통해 데이터 전반적인 내용을 살펴볼 수 있다.\n\npenguins %&gt;% \n  reactable::reactable()",
+    "crumbs": [
+      "**1부** 들어가며",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>펭귄 데이터셋</span>"
+    ]
+  },
+  {
+    "objectID": "penguins.html#penguin-EDA",
+    "href": "penguins.html#penguin-EDA",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "\n4.6 탐색적 데이터 분석",
+    "text": "4.6 탐색적 데이터 분석\npalmerpenguins 데이터셋 소개에 포함되어 있는 미국 팔머 연구소 (palmer station) 펭귄 물갈퀴(flipper) 길이와 체질량(body mass) 산점도를 그려보자.\n\nlibrary(tidyverse)\nlibrary(extrafont)\nloadfonts()\n\nmass_flipper &lt;- ggplot(data = penguins, \n                       aes(x = flipper_length_mm,\n                           y = body_mass_g)) +\n  geom_point(aes(color = species, \n                 shape = species),\n             size = 3,\n             alpha = 0.8) +\n  theme_minimal(base_family = \"NanumGothic\") +\n  scale_color_manual(values = c(\"darkorange\",\"purple\",\"cyan4\")) +\n  labs(title = \"펭귄 크기\",\n       subtitle = \"남극 펭귄 3종 물갈퀴 길이와 체질량 관계\",\n       x = \"물갈퀴 길이 (mm)\",\n       y = \"체질량 (g)\",\n       color = \"펭귄 3종\",\n       shape = \"펭귄 3종\") +\n  theme(legend.position = c(0.2, 0.7),\n        legend.background = element_rect(fill = \"white\", color = NA),\n        plot.title.position = \"plot\",\n        plot.caption = element_text(hjust = 0, face= \"italic\"),\n        plot.caption.position = \"plot\")\n\nmass_flipper",
+    "crumbs": [
+      "**1부** 들어가며",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>펭귄 데이터셋</span>"
+    ]
+  },
+  {
+    "objectID": "penguins.html#펭귄-데이터-저장",
+    "href": "penguins.html#펭귄-데이터-저장",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "\n4.7 펭귄 데이터 저장",
+    "text": "4.7 펭귄 데이터 저장\n\n4.7.1 .csv 파일\n\nlibrary(palmerpenguins)\n\npenguins |&gt; \n  drop_na() |&gt; \n  write_csv(\"data/penguins.csv\")\n\n\n4.7.2 .xlsx 엑셀 파일\n\nlibrary(writexl)\n\npenguins |&gt; \n  drop_na() |&gt; \n  write_xlsx(\"data/penguins.xlsx\")\n\n\n4.7.3 .sqlite 데이터베이스\n\nlibrary(DBI)\nlibrary(RSQLite)\n\ncon &lt;- dbConnect(RSQLite::SQLite(), dbname = \"data/penguins.sqlite\")\n\n# 데이터프레임을 SQLite 테이블로 저장합니다. 'my_table'이라는 이름으로 저장됩니다.\n# 데이터베이스에 같은 이름의 테이블이 이미 존재한다면, append, overwrite 또는 fail 중 하나를 선택할 수 있습니다.\ndbWriteTable(con, \"penguin\", penguins |&gt; drop_na() , overwrite = TRUE)\n\n# 연결을 닫습니다.\ndbDisconnect(con)\n\n\n4.7.4 pins\n\n\nlibrary(pins)\n\nboard &lt;- board_folder(\"C:/Users/statkclee/OneDrive/pins\") \n\nmetadata &lt;- list(owner       = \"한국 R 사용자회\",\n                 deptartment = \"R&D\",\n                 URL         = \"https://r2bit.com\")\n\nboard  |&gt; pin_write(penguins |&gt; drop_na(), \n                    name        = \"penguins\",\n                    title       = \"펭귄 데이터셋\",\n                    description = \"남극 파머 연구소 서식 펭귄 데이터셋\",\n                    metadata    = metadata)\n\n\n4.7.5 구글시트\n\nlibrary(googlesheets4)\nlibrary(googledrive)\n\ngoogledrive::drive_auth()\n\ngs4_create(\n  name = \"penguins\",\n  sheets = list(\"penguins\" = penguins |&gt; drop_na())\n)\n\n#&gt; ✔ Creating new Sheet: penguins.\n#&gt; Waiting for authentication in browser...\n#&gt; Press Esc/Ctrl + C to abort\n#&gt; Authentication complete.",
+    "crumbs": [
+      "**1부** 들어가며",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>펭귄 데이터셋</span>"
+    ]
+  },
+  {
+    "objectID": "penguins.html#footnotes",
+    "href": "penguins.html#footnotes",
+    "title": "\n3  펭귄 데이터셋\n",
+    "section": "",
+    "text": "신발끈 여행사, 관광안내자료↩︎",
+    "crumbs": [
+      "**1부** 들어가며",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>펭귄 데이터셋</span>"
+    ]
+  },
+  {
+    "objectID": "dplyr.html",
+    "href": "dplyr.html",
+    "title": "\n7  dplyr 데이터프레임 조작\n",
+    "section": "",
+    "text": "7.1 dplyr 팩키지\n운 좋게도, dplyr 팩키지가 데이터프레임을 솜씨 있게 조작하는 데 있어 유용한 함수를 많이 제공한다. 이를 통해서, 위에서 언급된 반복을 줄이고, 실수를 범할 확률도 줄이고, 심지어 타이핑 수고도 줄일 수 있다. 보너스로, dplyr 문법은 훨씬 더 가독성도 높다.\n가장 흔히 사용되는 6가지 함수뿐만 아니라, 이런 함수를 조합하는 데 사용되는 파이프 (%&gt;%) 연산자 사용법도 다룬다.\n이전 수업에서 팩키지를 설치하지 않았다면, 설치해서 직접 실습해 보기 바란다. 이제 팩키지를 불러와서 적재한다.\ninstall.packages('dplyr')\nlibrary(\"dplyr\")",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`dplyr` 데이터프레임 조작</span>"
+    ]
+  },
+  {
+    "objectID": "dplyr.html#dplyr-팩키지",
+    "href": "dplyr.html#dplyr-팩키지",
+    "title": "\n7  dplyr 데이터프레임 조작\n",
+    "section": "",
+    "text": "select()\nfilter()\ngroup_by()\nsummarize()\nmutate()",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`dplyr` 데이터프레임 조작</span>"
+    ]
+  },
+  {
+    "objectID": "dplyr.html#select-사용",
+    "href": "dplyr.html#select-사용",
+    "title": "\n7  dplyr 데이터 조작\n",
+    "section": "\n7.2 select() 사용",
+    "text": "7.2 select() 사용\n예를 들어, 데이터프레임에서 변수 일부만 뽑아서 작업해 나가고자 한다면, select() 함수를 사용한다. 이 함수는 선택한 변수만 갖도록 지정한다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n그림 7.1: select함수 데이터프레임 적용 도식화\n\n\nyear_country_gdp 데이터프레임을 열어보면, year, country, gdpPercap 변수만 담겨있는 것을 볼 수 있다. 위에서는 정규 문법이 사용되었지만, dplyr 팩키지의 장점은 파이프를 사용해서 함수 다수를 조합하는 데 있다. 파이프 문법은 이전에 R에서 살펴봤던 것과는 사뭇 다르다. 위에서 파이프를 사용했던 것을 다시 작성해본다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n파이프를 사용해서 작성한 이유에 대한 이해를 돕기 위해서, 단계별로 살펴보자. 먼저 gapminder 데이터프레임을 불러오고 나서, %&gt;% 파이프 기호를 사용해서 다음 작업단계(select() 함수)로 전달했다. 이번 경우에는 select() 함수에 데이터 객체를 명세하지 않았는데, 이는 이전 파이프로부터 데이터를 전달받았기 때문이다. 재미난 사실: 유닉스 셸 강의에서 이미 파이프를 접해봤을 것이다. R에서 파이프 기호가 %&gt;%인 반면, 셸에서는 |을 사용한다. 하지만 개념은 동일하다!",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`dplyr` 데이터 조작</span>"
+    ]
+  },
+  {
+    "objectID": "dplyr.html#filter-사용하기",
+    "href": "dplyr.html#filter-사용하기",
+    "title": "\n7  dplyr 데이터 조작\n",
+    "section": "\n7.3 filter() 사용하기",
+    "text": "7.3 filter() 사용하기\n이제 앞선 작업을 바탕으로 작업을 진척시켜 보자. 유럽대륙만 갖고 작업하고자 한다면 select와 filter를 조합하면 된다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n도전과제\n\n\n\n명령어 하나 (여러 행에 걸칠 수 있고, 파이프도 포함한다)를 작성하는데, lifeExp, country, year 변수에 대해서 아프리카 대륙(African)만 갖는 데이터프레임을 작성한다. 하지만, 다른 대륙은 포함되면 안 된다. 데이터프레임 행의 개수는 얼마나 되는가? 그리고 이유는 무엇인가?\n\n\n\n\n\n\n해답\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n지난번과 마찬가지로, gapminder 데이터프레임을 filter() 함수에 전달하고 나서, 필터링된 gapminder 데이터프레임 버전을 select() 함수에 전달한다. 주의: 연산순서가 이번 경우에 무척 중요하다. select() 함수를 먼저 실행하면, filter() 함수는 대륙 변수를 찾을 수 없는데, 이는 이전 단계에서 제거했기 때문이다.",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`dplyr` 데이터 조작</span>"
+    ]
+  },
+  {
+    "objectID": "dplyr.html#group_by-summarize-사용",
+    "href": "dplyr.html#group_by-summarize-사용",
+    "title": "\n7  dplyr 데이터 조작\n",
+    "section": "\n7.4 group_by() + summarize() 사용",
+    "text": "7.4 group_by() + summarize() 사용\n이제, 기본 베이스(base) R로 작업함으로써 실수를 범하기 쉬운 반복작업을 줄일 것으로 생각했지만, 현재까지는 목표를 달성하지 못했다. 왜냐하면, 각 대륙마다 상기 작업을 반복해야 되기 때문이다. filter() 대신에, group_by()를 사용한다. filter()는 특정 기준을 만족하는 관측점만 넘겨준다(이번 경우: continent==\"Europe\"). group_by()는 본질적으로, 필터에서 사용할 수 있는 모든 유일무이한 기준을 사용할 수 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\ngroup_by() 함수를 사용한 데이터프레임 구조(grouped_df)가 원래 gapminder 데이터프레임 구조(data.frame)와 같지 않음에 주목한다. grouped_df는 list 리스트로 간주될 수 있는데, list에 각 항목은 data.frame으로, 각 데이터프레임은 특정 대륙 continent에 대응되는 행만 담겨진다(적어도 상기 예제의 경우).\n\n\n\n\n\n그림 7.2: group_by() 데이터프레임 적용 도식화",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`dplyr` 데이터 조작</span>"
+    ]
+  },
+  {
+    "objectID": "dplyr.html#summarize-사용하기",
+    "href": "dplyr.html#summarize-사용하기",
+    "title": "\n7  dplyr 데이터 조작\n",
+    "section": "\n7.5 summarize() 사용하기",
+    "text": "7.5 summarize() 사용하기\n상기 예제는 그다지 특별한 점이 없다. 왜냐하면 group_by() 함수는 summarize()와 함께 사용할 때 훨씬 더 흥미롭기 때문이다. 두 함수를 조합하면 새로운 변수가 생성되는데, 각 대륙별 데이터프레임에 대해 반복적인 함수 작업을 수행할 수 있다. 다시 말해, group_by() 함수를 사용해서, 최초 데이터프레임을 다수의 조각으로 쪼갠 후, 각각에 대해 함수(예를 들어 mean() 혹은 sd())를 summarize() 내부에서 실행시킨다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n그림 7.3: summarize() 데이터프레임 적용 도식화\n\n\n상기 코드는 각 대륙별로 평균 gdpPercap를 계산할 수 있게 하지만, 훨씬 더 개선할 수 있다.\n\n\n\n\n\n\n도전과제\n\n\n\n국가별로 평균 기대수명을 계산한다. 어느 국가가 가장 평균 기대수명이 길고, 어느 국가가 가장 평균 기대수명이 짧은가?\n\n\n\n\n\n\n해답\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n문제를 푸는 또 다른 방식은 dplyr 패키지의 arrange() 함수를 사용하는 것이다. arrange() 함수는 변수에 따라 데이터프레임을 행으로 정렬하는 기능을 갖고 있으며, dplyr 팩키지의 다른 함수처럼 유사한 구문을 갖추고 있다. arrange() 함수 내부에 desc() 함수를 사용해서 내림차순으로 정렬할 수 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\ngroup_by() 함수에 변수 다수를 사용해서 집단으로 그룹을 만들 수도 있다. year 와 continent 변수로 그룹을 만들어 보자.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n이미 매우 막강한 기능이지만, 더 좋게 만들 수 있다! summarize() 함수에 변수 하나를 정의하는 것에 한정되지 않고, 확장도 가능하다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`dplyr` 데이터 조작</span>"
+    ]
+  },
+  {
+    "objectID": "dplyr.html#count와-n",
+    "href": "dplyr.html#count와-n",
+    "title": "\n7  dplyr 데이터 조작\n",
+    "section": "\n7.6 count()와 n()\n",
+    "text": "7.6 count()와 n()\n\n매우 흔한 연산 중 하나는 각 그룹마다 관측점 수를 세는 것이다. dplyr 패키지에는 개수를 도와주는 연관 함수가 2개 있다.\n예를 들어, 2002년 데이터셋에 포함된 국가 수를 확인하고자 한다면, count() 함수를 사용하는데, 관심 있는 그룹을 포함하는 칼럼을 하나 이상 지정할 수도 있다. 선택사항으로 sort=TRUE를 인자로 추가하면 내림차순으로 결과를 정렬할 수 있다:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n계산과정에서 관측점 개수를 파악할 필요가 있는 경우, n() 함수가 유용하다. 예를 들어, 각 대륙별 기대수명 표준오차를 다음과 같이 구할 수도 있다:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n요약 연산을 몇 개 엮어서 계산할 수도 있다. 이 경우 각 대륙별 기대수명에 대한 minimum, maximum, mean, se 값을 다음과 같이 계산한다:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`dplyr` 데이터 조작</span>"
+    ]
+  },
+  {
+    "objectID": "dplyr.html#mutate-사용하기",
+    "href": "dplyr.html#mutate-사용하기",
+    "title": "\n7  dplyr 데이터 조작\n",
+    "section": "\n7.7 mutate() 사용하기",
+    "text": "7.7 mutate() 사용하기\nmutate() 함수를 사용해서 정보를 요약하기 전에(혹은 후에도) 새로운 변수를 생성할 수 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`dplyr` 데이터 조작</span>"
+    ]
+  },
+  {
+    "objectID": "dplyr.html#mutate-함수를-논리-필터와-연결하기-ifelse",
+    "href": "dplyr.html#mutate-함수를-논리-필터와-연결하기-ifelse",
+    "title": "\n7  dplyr 데이터 조작\n",
+    "section": "\n7.8 mutate() 함수를 논리 필터와 연결하기: ifelse\n",
+    "text": "7.8 mutate() 함수를 논리 필터와 연결하기: ifelse\n\n변수를 새로 만들 때, mutate() 함수를 논리 조건문과 엮을 수 있다. mutate()와 ifelse()의 단순 조합을 통해서 필요한 것만 적절히 필터링할 수 있다. 즉, 새로운 무언가를 생성하는 순간에 말이다. 이러한 가독성 높은 문장을 통해서 (데이터프레임 전체 차원을 변경시키지 않고도) 특정 데이터를 버리거나, 조건에 따라 값을 갱신하는 데 신속하고 강력한 방식을 제공할 수 있게 된다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`dplyr` 데이터 조작</span>"
+    ]
+  },
+  {
+    "objectID": "dplyr.html#dplyr-을-ggplot2와-조합하기",
+    "href": "dplyr.html#dplyr-을-ggplot2와-조합하기",
+    "title": "\n7  dplyr 데이터 조작\n",
+    "section": "\n7.9 dplyr 을 ggplot2와 조합하기",
+    "text": "7.9 dplyr 을 ggplot2와 조합하기\n데이터 시각화를 위해서 ggplot2를 설치하고 불러온다.\n\ninstall.packages('ggplot2')\nlibrary(\"ggplot2\")\n\nggplot2을 사용해서 패싯(facet) 패널 계층을 추가해서 작은 창에 그래프를 담아내는 방식을 앞선 시각화 수업에서 확인했다. 다음에 앞서 사용한 코드가 나와 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n상기 코드는 원하는 그래프를 만들어 주지만, 다른 용도로는 뚜렷이 사용되지 않는 변수(starts.with, az.countries)도 생성시키게 된다. %&gt;% 연산자를 사용해서 dplyr 함수를 엮어 데이터를 파이프에 흘러 보냈듯이, ggplot() 함수에 데이터를 흘러 보낼 수 있다. %&gt;% 파이프 연산자가 함수의 첫 번째 인자를 대체하기 때문에,ggplot() 함수에 data = 인자를 명세할 필요는 없다. dplyr, ggplot2 함수를 조합하게 되면, 동일한 그래프를 생성하는 데 있어 변수를 새로 생성시키거나 데이터를 변경할 필요가 없어진다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\ndplyr 함수를 사용하게 되면 문제를 단순화할 수 있다. 예를 들어, 첫 두 단계를 다음과 같이 조합할 수도 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n고급 도전과제\n\n\n\n각 대륙별로 국가를 두 개씩 임의로 뽑아서 2002년 평균 기대수명을 계산해보자. 그리고 나서, 역순으로 대륙명을 정렬한다. 힌트: dplyr 패키지의 arrange(), sample_n() 함수를 사용한다. 두 함수 모두 다른 dplyr 함수와 유사한 구문을 갖고 있다.\n\n\n\n\n\n\n해답\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`dplyr` 데이터 조작</span>"
+    ]
+  },
+  {
+    "objectID": "dplyr.html#select-동사",
+    "href": "dplyr.html#select-동사",
+    "title": "\n7  dplyr 데이터프레임 조작\n",
+    "section": "\n7.2 select() 동사",
+    "text": "7.2 select() 동사\n예를 들어, 데이터프레임에서 변수 일부만 뽑아서 작업해 나가고자 한다면, select() 함수를 사용한다. 이 함수는 선택한 변수만 갖도록 지정한다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n그림 7.1: select함수 데이터프레임 적용 도식화\n\n\nyear_country_gdp 데이터프레임을 열어보면, year, country, gdpPercap 변수만 담겨있는 것을 볼 수 있다. 위에서는 정규 문법이 사용되었지만, dplyr 팩키지의 장점은 파이프를 사용해서 함수 다수를 조합하는 데 있다. 파이프 문법은 이전에 R에서 살펴봤던 것과는 사뭇 다르다. 위에서 파이프를 사용했던 것을 다시 작성해본다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n파이프를 사용해서 작성한 이유에 대한 이해를 돕기 위해서, 단계별로 살펴보자. 먼저 gapminder 데이터프레임을 불러오고 나서, %&gt;% 파이프 기호를 사용해서 다음 작업단계(select() 함수)로 전달했다. 이번 경우에는 select() 함수에 데이터 객체를 명세하지 않았는데, 이는 이전 파이프로부터 데이터를 전달받았기 때문이다. 재미난 사실: 유닉스 셸 강의에서 이미 파이프를 접해봤을 것이다. R에서 파이프 기호가 %&gt;%인 반면, 셸에서는 |을 사용한다. 하지만 개념은 동일하다!",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`dplyr` 데이터프레임 조작</span>"
+    ]
+  },
+  {
+    "objectID": "dplyr.html#filter-동사",
+    "href": "dplyr.html#filter-동사",
+    "title": "\n7  dplyr 데이터프레임 조작\n",
+    "section": "\n7.3 filter() 동사",
+    "text": "7.3 filter() 동사\n이제 앞선 작업을 바탕으로 작업을 진척시켜 보자. 유럽대륙만 갖고 작업하고자 한다면 select와 filter를 조합하면 된다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n도전과제\n\n\n\n명령어 하나 (여러 행에 걸칠 수 있고, 파이프도 포함한다)를 작성하는데, lifeExp, country, year 변수에 대해서 아프리카 대륙(African)만 갖는 데이터프레임을 작성한다. 하지만, 다른 대륙은 포함되면 안 된다. 데이터프레임 행의 개수는 얼마나 되는가? 그리고 이유는 무엇인가?\n\n\n\n\n\n\n해답\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n지난번과 마찬가지로, gapminder 데이터프레임을 filter() 함수에 전달하고 나서, 필터링된 gapminder 데이터프레임 버전을 select() 함수에 전달한다. 주의: 연산순서가 이번 경우에 무척 중요하다. select() 함수를 먼저 실행하면, filter() 함수는 대륙 변수를 찾을 수 없는데, 이는 이전 단계에서 제거했기 때문이다.",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`dplyr` 데이터프레임 조작</span>"
+    ]
+  },
+  {
+    "objectID": "dplyr.html#group_by-summarize-조합",
+    "href": "dplyr.html#group_by-summarize-조합",
+    "title": "\n7  dplyr 데이터프레임 조작\n",
+    "section": "\n7.4 group_by() + summarize() 조합",
+    "text": "7.4 group_by() + summarize() 조합\n이제, 기본 베이스(base) R로 작업함으로써 실수를 범하기 쉬운 반복작업을 줄일 것으로 생각했지만, 현재까지는 목표를 달성하지 못했다. 왜냐하면, 각 대륙마다 상기 작업을 반복해야 되기 때문이다. filter() 대신에, group_by()를 사용한다. filter()는 특정 기준을 만족하는 관측점만 넘겨준다(이번 경우: continent==\"Europe\"). group_by()는 본질적으로, 필터에서 사용할 수 있는 모든 유일무이한 기준을 사용할 수 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\ngroup_by() 함수를 사용한 데이터프레임 구조(grouped_df)가 원래 gapminder 데이터프레임 구조(data.frame)와 같지 않음에 주목한다. grouped_df는 list 리스트로 간주될 수 있는데, list에 각 항목은 data.frame으로, 각 데이터프레임은 특정 대륙 continent에 대응되는 행만 담겨진다(적어도 상기 예제의 경우).\n\n\n\n\n\n그림 7.2: group_by() 데이터프레임 적용 도식화",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`dplyr` 데이터프레임 조작</span>"
+    ]
+  },
+  {
+    "objectID": "dplyr.html#summarize-동사",
+    "href": "dplyr.html#summarize-동사",
+    "title": "\n7  dplyr 데이터프레임 조작\n",
+    "section": "\n7.5 summarize() 동사",
+    "text": "7.5 summarize() 동사\n상기 예제는 그다지 특별한 점이 없다. 왜냐하면 group_by() 함수는 summarize()와 함께 사용할 때 훨씬 더 흥미롭기 때문이다. 두 함수를 조합하면 새로운 변수가 생성되는데, 각 대륙별 데이터프레임에 대해 반복적인 함수 작업을 수행할 수 있다. 다시 말해, group_by() 함수를 사용해서, 최초 데이터프레임을 다수의 조각으로 쪼갠 후, 각각에 대해 함수(예를 들어 mean() 혹은 sd())를 summarize() 내부에서 실행시킨다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n그림 7.3: summarize() 데이터프레임 적용 도식화\n\n\n상기 코드는 각 대륙별로 평균 gdpPercap를 계산할 수 있게 하지만, 훨씬 더 개선할 수 있다.\n\n\n\n\n\n\n도전과제\n\n\n\n국가별로 평균 기대수명을 계산한다. 어느 국가가 가장 평균 기대수명이 길고, 어느 국가가 가장 평균 기대수명이 짧은가?\n\n\n\n\n\n\n해답\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n문제를 푸는 또 다른 방식은 dplyr 패키지의 arrange() 함수를 사용하는 것이다. arrange() 함수는 변수에 따라 데이터프레임을 행으로 정렬하는 기능을 갖고 있으며, dplyr 팩키지의 다른 함수처럼 유사한 구문을 갖추고 있다. arrange() 함수 내부에 desc() 함수를 사용해서 내림차순으로 정렬할 수 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\ngroup_by() 함수에 변수 다수를 사용해서 집단으로 그룹을 만들 수도 있다. year 와 continent 변수로 그룹을 만들어 보자.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n이미 매우 막강한 기능이지만, 더 좋게 만들 수 있다! summarize() 함수에 변수 하나를 정의하는 것에 한정되지 않고, 확장도 가능하다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`dplyr` 데이터프레임 조작</span>"
+    ]
+  },
+  {
+    "objectID": "dplyr.html#mutate-동사",
+    "href": "dplyr.html#mutate-동사",
+    "title": "\n7  dplyr 데이터프레임 조작\n",
+    "section": "\n7.7 mutate() 동사",
+    "text": "7.7 mutate() 동사\nmutate() 함수를 사용해서 정보를 요약하기 전에(혹은 후에도) 새로운 변수를 생성할 수 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`dplyr` 데이터프레임 조작</span>"
+    ]
+  },
+  {
+    "objectID": "dplyr.html#mutate-논리-필터와-연결-ifelse",
+    "href": "dplyr.html#mutate-논리-필터와-연결-ifelse",
+    "title": "\n7  dplyr 데이터프레임 조작\n",
+    "section": "\n7.8 mutate() 논리 필터와 연결: ifelse\n",
+    "text": "7.8 mutate() 논리 필터와 연결: ifelse\n\n변수를 새로 만들 때, mutate() 함수를 논리 조건문과 엮을 수 있다. mutate()와 ifelse()의 단순 조합을 통해서 필요한 것만 적절히 필터링할 수 있다. 즉, 새로운 무언가를 생성하는 순간에 말이다. 이러한 가독성 높은 문장을 통해서 (데이터프레임 전체 차원을 변경시키지 않고도) 특정 데이터를 버리거나, 조건에 따라 값을 갱신하는 데 신속하고 강력한 방식을 제공할 수 있게 된다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`dplyr` 데이터프레임 조작</span>"
+    ]
+  },
+  {
+    "objectID": "dplyr.html#dplyr와-ggplot2-조합",
+    "href": "dplyr.html#dplyr와-ggplot2-조합",
+    "title": "\n7  dplyr 데이터프레임 조작\n",
+    "section": "\n7.9 dplyr와 ggplot2 조합",
+    "text": "7.9 dplyr와 ggplot2 조합\n데이터 시각화를 위해서 ggplot2를 설치하고 불러온다.\n\ninstall.packages('ggplot2')\nlibrary(\"ggplot2\")\n\nggplot2을 사용해서 패싯(facet) 패널 계층을 추가해서 작은 창에 그래프를 담아내는 방식을 앞선 시각화 수업에서 확인했다. 다음에 앞서 사용한 코드가 나와 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n상기 코드는 원하는 그래프를 만들어 주지만, 다른 용도로는 뚜렷이 사용되지 않는 변수(starts.with, az.countries)도 생성시키게 된다. %&gt;% 연산자를 사용해서 dplyr 함수를 엮어 데이터를 파이프에 흘러 보냈듯이, ggplot() 함수에 데이터를 흘러 보낼 수 있다. %&gt;% 파이프 연산자가 함수의 첫 번째 인자를 대체하기 때문에,ggplot() 함수에 data = 인자를 명세할 필요는 없다. dplyr, ggplot2 함수를 조합하게 되면, 동일한 그래프를 생성하는 데 있어 변수를 새로 생성시키거나 데이터를 변경할 필요가 없어진다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\ndplyr 함수를 사용하게 되면 문제를 단순화할 수 있다. 예를 들어, 첫 두 단계를 다음과 같이 조합할 수도 있다.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n고급 도전과제\n\n\n\n각 대륙별로 국가를 두 개씩 임의로 뽑아서 2002년 평균 기대수명을 계산해보자. 그리고 나서, 역순으로 대륙명을 정렬한다. 힌트: dplyr 패키지의 arrange(), sample_n() 함수를 사용한다. 두 함수 모두 다른 dplyr 함수와 유사한 구문을 갖고 있다.\n\n\n\n\n\n\n해답\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`dplyr` 데이터프레임 조작</span>"
+    ]
+  },
+  {
+    "objectID": "dplyr.html#count와-n-함수",
+    "href": "dplyr.html#count와-n-함수",
+    "title": "\n7  dplyr 데이터프레임 조작\n",
+    "section": "\n7.6 count()와 n() 함수",
+    "text": "7.6 count()와 n() 함수\n매우 흔한 연산 중 하나는 각 그룹마다 관측점 수를 세는 것이다. dplyr 패키지에는 개수를 도와주는 연관 함수가 2개 있다.\n예를 들어, 2002년 데이터셋에 포함된 국가 수를 확인하고자 한다면, count() 함수를 사용하는데, 관심 있는 그룹을 포함하는 칼럼을 하나 이상 지정할 수도 있다. 선택사항으로 sort=TRUE를 인자로 추가하면 내림차순으로 결과를 정렬할 수 있다:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n계산과정에서 관측점 개수를 파악할 필요가 있는 경우, n() 함수가 유용하다. 예를 들어, 각 대륙별 기대수명 표준오차를 다음과 같이 구할 수도 있다:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n요약 연산을 몇 개 엮어서 계산할 수도 있다. 이 경우 각 대륙별 기대수명에 대한 minimum, maximum, mean, se 값을 다음과 같이 계산한다:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`dplyr` 데이터프레임 조작</span>"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "챗GPT 데이터 과학",
+    "section": "",
+    "text": "서문",
+    "crumbs": [
+      "서문"
+    ]
+  },
+  {
+    "objectID": "index.html#책의-구성",
+    "href": "index.html#책의-구성",
+    "title": "챗GPT 데이터 과학",
+    "section": "책의 구성",
+    "text": "책의 구성",
+    "crumbs": [
+      "서문"
+    ]
+  },
+  {
+    "objectID": "index.html#감사의-글",
+    "href": "index.html#감사의-글",
+    "title": "챗GPT 데이터 과학",
+    "section": "감사의 글",
+    "text": "감사의 글\n\n이 책이 탄생할 수 있도록 도움을 주신 여러분께 깊은 감사의 마음을 표합니다.\n공익법인 한국 R 사용자회가 없었다면 데이터 과학분야 챗GPT 시리즈가 세상에 나오지 못했을 것입니다. 한국 R 사용자회의 유충현 회장님, 신종화 사무처장님, 홍성학 감사님, 올해부터 새롭게 공익법인 한국 R 사용자를 이끌어주실 형환희 회장님께 감사드립니다.\n또한 이 책은 2014년 처음 몸담게 된 소프트웨어 카펜트리 그렉 윌슨 박사님과 Python for Informatics 저자인 미시건 대학 찰스 세브란스 교수님을 비롯한 전세계 수많은 익명의 기여자들의 노력과 지원이 있었고, 서울 R 미트업에서 발표해주시고 참여해주신 수많은 분들이 격려와 영감을 주셨기에 가능했습니다.\n이 책이 출간되는데 있어 이들 모든 분들의 도움 없이는 어려웠을 것입니다. 그동안의 관심과 지원에 깊은 감사를 드리며, 이 책이 데이터 과학의 발전과 독자들에게 도움이 될 수 있기를 바라는 마음으로 마무리하겠습니다.\n\n2024년 4월 속초 영금정\n이광춘",
+    "crumbs": [
+      "서문"
+    ]
+  },
+  {
+    "objectID": "tidyr.html",
+    "href": "tidyr.html",
+    "title": "\n8  tidyr 데이터프레임 조작\n",
+    "section": "",
+    "text": "8.1 시작하기\n먼저 설치하지 않았다면 tidyr 패키지를 설치한다(아마도 이전 학습에서 dplyr 팩키지는 설치했을 것이다):\n#install.packages(\"tidyr\")\n#install.packages(\"dplyr\")\n팩키지를 불러와서 적재한다.\nlibrary(\"tidyr\")\nlibrary(\"dplyr\")\n먼저, gapminder 데이터프레임 자료구조를 살펴보자:\nstr(gapminder)\n#&gt; 'data.frame':    1704 obs. of  6 variables:\n#&gt;  $ country  : chr  \"Afghanistan\" \"Afghanistan\" \"Afghanistan\" \"Afghanistan\" ...\n#&gt;  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...\n#&gt;  $ pop      : num  8425333 9240934 10267083 11537966 13079460 ...\n#&gt;  $ continent: chr  \"Asia\" \"Asia\" \"Asia\" \"Asia\" ...\n#&gt;  $ lifeExp  : num  28.8 30.3 32 34 36.1 ...\n#&gt;  $ gdpPercap: num  779 821 853 836 740 ...\ngapminder 데이터셋처럼, 관측된 데이터에는 다양한 자료 형식이 있다. 대부분 순도 100% ‘long’ 혹은 순도 100% ‘wide’ 자료 형식 사이 어딘가에 위치하게 된다. gapminder 데이터셋에는 “ID” 변수가 3개(continent, country, year), “관측변수”가 3개(pop, lifeExp, gdpPercap)가 있다. 저자는 일반적으로 대부분의 경우에 중간단계 형식 데이터를 선호한다. 칼럼 1곳에 모든 관측점이 3가지 서로 다른 단위를 갖는 일은 거의 없다(예를 들어, ID변수 4개, 관측변수 1개).\n흔히 벡터 기반인 다수의 R 함수를 사용할 때, 서로 다른 단위를 갖는 값에 수학적 연산작업을 수행하지는 않는다. 예를 들어, 순수 ‘long’ 형식을 사용할 때, 인구, 기대수명, GDP의 모든 값에 대한 평균은 의미가 없는데, 이는 상호 호환되지 않는 3가지 단위를 갖는 평균값을 계산하여 반환하기 때문이다. 해법은 먼저 집단으로 그룹지어서 데이터를 솜씨 있게 다루거나(dplyr 학습교재 참조), 데이터프레임 구조를 변경시키는 것이다. 주의: R에서 일부 도식화 함수는 ‘wide’ 형식 데이터에 더 잘 작동한다.",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>`tidyr` 데이터프레임 조작</span>"
+    ]
+  },
+  {
+    "objectID": "tidyr.html#시작하기",
+    "href": "tidyr.html#시작하기",
+    "title": "\n8  tidyr 데이터프레임 조작\n",
+    "section": "\n8.2 도전과제 1",
+    "text": "8.2 도전과제 1\ngapminder는 순수하게 ‘long’ 형식인가, ‘wide’ 형식인가, 혹은 두 가지 특징을 갖는 중간 형식인가?\n\n\n8.3 도전과제 1에 대한 해답\n원 gapminder 데이터프레임은 두 가지 특징을 갖는 중간 형식이다. 데이터프레임에 다수의 관측변수(pop, lifeExp, gdpPercap)가 있다는 점에서, 순수한 긴 형식이라고 보기는 어렵다.\n{: .solution} {: .challenge}",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>`tidyr` 데이터프레임 조작</span>"
+    ]
+  },
+  {
+    "objectID": "tidyr.html#gather-함수로-wide에서-long-형식으로-전환",
+    "href": "tidyr.html#gather-함수로-wide에서-long-형식으로-전환",
+    "title": "\n8  tidyr 데이터프레임 조작\n",
+    "section": "\n8.4 gather() 함수로 wide에서 long 형식으로 전환",
+    "text": "8.4 gather() 함수로 wide에서 long 형식으로 전환\n지금까지 깔끔한 형식을 갖는 원본 gapminder 데이터셋으로 작업을 했다. 하지만 ‘실제’ 데이터(즉, 자체 연구 데이터)는 절대로 잘 구성되어 있지 못하다. gapminder 데이터셋에 대한 wide 형식 버전을 가지고 시작해보자.\n\n이곳에서 ‘wide’ 형태를 갖는 gapminder 데이터를 다운로드 받아서, 로컬 data 폴더에 저장시킨다.\n\n데이터 파일을 불러와서 살펴보자. 주의: continent, country 칼럼이 요인형 자료형이 될 필요가 없으므로 read.csv() 함수 인자로 stringsAsFactors을 거짓(FALSE)으로 설정한다.\n\ngap_wide &lt;- read.csv(\"data/gapminder_wide.csv\", stringsAsFactors = FALSE)\nstr(gap_wide)\n#&gt; 'data.frame':    142 obs. of  38 variables:\n#&gt;  $ continent     : chr  \"Africa\" \"Africa\" \"Africa\" \"Africa\" ...\n#&gt;  $ country       : chr  \"Algeria\" \"Angola\" \"Benin\" \"Botswana\" ...\n#&gt;  $ gdpPercap_1952: num  2449 3521 1063 851 543 ...\n#&gt;  $ gdpPercap_1957: num  3014 3828 960 918 617 ...\n#&gt;  $ gdpPercap_1962: num  2551 4269 949 984 723 ...\n#&gt;  $ gdpPercap_1967: num  3247 5523 1036 1215 795 ...\n#&gt;  $ gdpPercap_1972: num  4183 5473 1086 2264 855 ...\n#&gt;  $ gdpPercap_1977: num  4910 3009 1029 3215 743 ...\n#&gt;  $ gdpPercap_1982: num  5745 2757 1278 4551 807 ...\n#&gt;  $ gdpPercap_1987: num  5681 2430 1226 6206 912 ...\n#&gt;  $ gdpPercap_1992: num  5023 2628 1191 7954 932 ...\n#&gt;  $ gdpPercap_1997: num  4797 2277 1233 8647 946 ...\n#&gt;  $ gdpPercap_2002: num  5288 2773 1373 11004 1038 ...\n#&gt;  $ gdpPercap_2007: num  6223 4797 1441 12570 1217 ...\n#&gt;  $ lifeExp_1952  : num  43.1 30 38.2 47.6 32 ...\n#&gt;  $ lifeExp_1957  : num  45.7 32 40.4 49.6 34.9 ...\n#&gt;  $ lifeExp_1962  : num  48.3 34 42.6 51.5 37.8 ...\n#&gt;  $ lifeExp_1967  : num  51.4 36 44.9 53.3 40.7 ...\n#&gt;  $ lifeExp_1972  : num  54.5 37.9 47 56 43.6 ...\n#&gt;  $ lifeExp_1977  : num  58 39.5 49.2 59.3 46.1 ...\n#&gt;  $ lifeExp_1982  : num  61.4 39.9 50.9 61.5 48.1 ...\n#&gt;  $ lifeExp_1987  : num  65.8 39.9 52.3 63.6 49.6 ...\n#&gt;  $ lifeExp_1992  : num  67.7 40.6 53.9 62.7 50.3 ...\n#&gt;  $ lifeExp_1997  : num  69.2 41 54.8 52.6 50.3 ...\n#&gt;  $ lifeExp_2002  : num  71 41 54.4 46.6 50.6 ...\n#&gt;  $ lifeExp_2007  : num  72.3 42.7 56.7 50.7 52.3 ...\n#&gt;  $ pop_1952      : num  9279525 4232095 1738315 442308 4469979 ...\n#&gt;  $ pop_1957      : num  10270856 4561361 1925173 474639 4713416 ...\n#&gt;  $ pop_1962      : num  11000948 4826015 2151895 512764 4919632 ...\n#&gt;  $ pop_1967      : num  12760499 5247469 2427334 553541 5127935 ...\n#&gt;  $ pop_1972      : num  14760787 5894858 2761407 619351 5433886 ...\n#&gt;  $ pop_1977      : num  17152804 6162675 3168267 781472 5889574 ...\n#&gt;  $ pop_1982      : num  20033753 7016384 3641603 970347 6634596 ...\n#&gt;  $ pop_1987      : num  23254956 7874230 4243788 1151184 7586551 ...\n#&gt;  $ pop_1992      : num  26298373 8735988 4981671 1342614 8878303 ...\n#&gt;  $ pop_1997      : num  29072015 9875024 6066080 1536536 10352843 ...\n#&gt;  $ pop_2002      : int  31287142 10866106 7026113 1630347 12251209 7021078 15929988 4048013 8835739 614382 ...\n#&gt;  $ pop_2007      : int  33333216 12420476 8078314 1639131 14326203 8390505 17696293 4369038 10238807 710960 ...\n\n\n\nwide 형식 데이터프레임\n\n깔끔한 중간 데이터 형식을 얻는 첫 단추는 먼저 ‘wide’ 형식에서 ‘long’ 형식으로 변환하는 것이다. tidyr 패키지의 gather() 함수는 관측 변수를 모아서(gather) 단일 변수로 변환한다.\n\n\n\n\n\n그림 8.2: wide 형식에서 long 형식 전환과정 도식화\n\n\n\ngap_long &lt;- gap_wide %&gt;%\n    gather(obstype_year, obs_values, starts_with('pop'),\n           starts_with('lifeExp'), starts_with('gdpPercap'))\nstr(gap_long)\n#&gt; 'data.frame':    5112 obs. of  4 variables:\n#&gt;  $ continent   : chr  \"Africa\" \"Africa\" \"Africa\" \"Africa\" ...\n#&gt;  $ country     : chr  \"Algeria\" \"Angola\" \"Benin\" \"Botswana\" ...\n#&gt;  $ obstype_year: chr  \"pop_1952\" \"pop_1952\" \"pop_1952\" \"pop_1952\" ...\n#&gt;  $ obs_values  : num  9279525 4232095 1738315 442308 4469979 ...\n\n위에서 파이프 구문을 사용했는데, 이는 이전 수업에서 dplyr로 작업한 것과 유사하다. 사실, dplyr과 tidyr은 상호 호환되어 파이프 구문으로 dplyr과 tidyr 팩키지 함수를 섞어 사용할 수 있다.\ngather() 함수 내부에서 먼저 신규 ID 변수(obstype_year)에 대한 명칭, 병합된 관측변수(obs_value)에 대한 명칭, 그리고 이전 관측변수에 대한 명칭을 신규 칼럼 명으로 지정한다. 모든 관측변수를 타이핑할 수도 있지만, select() 함수처럼(dplyr 수업 참조), starts_with() 함수에 인자로 넣어 원하는 문자열로 시작되는 모든 변수를 선택할 수도 있다. gather() 함수는 모을 필요 없는 변수(예를 들어, ID 변수)를 식별하는 데 - 기호를 사용하는 구문도 지원한다.\n\n\ngap_long &lt;- gap_wide %&gt;% gather(obstype_year,obs_values,-continent,-country)\nstr(gap_long)\n#&gt; 'data.frame':    5112 obs. of  4 variables:\n#&gt;  $ continent   : chr  \"Africa\" \"Africa\" \"Africa\" \"Africa\" ...\n#&gt;  $ country     : chr  \"Algeria\" \"Angola\" \"Benin\" \"Botswana\" ...\n#&gt;  $ obstype_year: chr  \"gdpPercap_1952\" \"gdpPercap_1952\" \"gdpPercap_1952\" \"gdpPercap_1952\" ...\n#&gt;  $ obs_values  : num  2449 3521 1063 851 543 ...\n\n이런 특수한 데이터프레임에는 별거 없어 보일 수도 있다. 하지만 ID 변수 하나, 규칙 없는 변수명 관측변수 40개를 갖는 경우가 있을 수 있다. 이런 유연성은 시간을 상당히 절약해 준다!\n이제 obstype_year은 정보가 두 조각으로 나뉜다: 관측 유형(pop, lifeExp, gdpPercap)과 연도(year). separate() 함수를 사용해서 문자열을 다수의 변수로 쪼갠다.\n\ngap_long &lt;- gap_long %&gt;% separate(obstype_year,into=c('obs_type','year'),sep=\"_\")\ngap_long$year &lt;- as.integer(gap_long$year)\n\n\n\n8.5 도전과제 2\ngap_long을 사용해서 각 대륙별로 평균 기대수명, 인구, 1인당 GDP를 계산한다. 힌트: dplyr 수업에서 학습한 group_by()와 summarize() 함수를 사용한다.\n\n\n8.6 도전과제 2에 대한 해답\n\ngap_long %&gt;% group_by(continent,obs_type) %&gt;%\n   summarize(means=mean(obs_values))\n#&gt; # A tibble: 15 × 3\n#&gt; # Groups:   continent [5]\n#&gt;    continent obs_type       means\n#&gt;    &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;\n#&gt;  1 Africa    gdpPercap     2194. \n#&gt;  2 Africa    lifeExp         48.9\n#&gt;  3 Africa    pop        9916003. \n#&gt;  4 Americas  gdpPercap     7136. \n#&gt;  5 Americas  lifeExp         64.7\n#&gt;  6 Americas  pop       24504795. \n#&gt;  7 Asia      gdpPercap     7902. \n#&gt;  8 Asia      lifeExp         60.1\n#&gt;  9 Asia      pop       77038722. \n#&gt; 10 Europe    gdpPercap    14469. \n#&gt; 11 Europe    lifeExp         71.9\n#&gt; 12 Europe    pop       17169765. \n#&gt; 13 Oceania   gdpPercap    18622. \n#&gt; 14 Oceania   lifeExp         74.3\n#&gt; 15 Oceania   pop        8874672.\n\n{: .solution} {: .challenge}",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>`tidyr` 데이터프레임 조작</span>"
+    ]
+  },
+  {
+    "objectID": "tidyr.html#spread-함수로-long-형식에서-중간-형식으로",
+    "href": "tidyr.html#spread-함수로-long-형식에서-중간-형식으로",
+    "title": "\n8  tidyr 데이터프레임 조작\n",
+    "section": "\n8.7 spread() 함수로 ‘long’ 형식에서 중간 형식으로",
+    "text": "8.7 spread() 함수로 ‘long’ 형식에서 중간 형식으로\n이제 작업을 이중 점검하도록, gather()의 역함수(적절히 작명된 spread())를 사용해서 관측변수를 다시 되돌려보자. 그리고 나면 gap_long을 원래 중간 형식 혹은 ‘wide’ 형식으로 퍼뜨릴 수 있다. 중간 형식에서부터 시작해보자.\n\ngap_normal &lt;- gap_long %&gt;% spread(obs_type,obs_values)\ndim(gap_normal)\n#&gt; [1] 1704    6\ndim(gapminder)\n#&gt; [1] 1704    6\nnames(gap_normal)\n#&gt; [1] \"continent\" \"country\"   \"year\"      \"gdpPercap\" \"lifeExp\"   \"pop\"\nnames(gapminder)\n#&gt; [1] \"country\"   \"year\"      \"pop\"       \"continent\" \"lifeExp\"   \"gdpPercap\"\n\n이제 최초 데이터프레임 gapminder와 동일한 차원을 갖는 중간 데이터프레임 gap_normal이 있다. 하지만 변수 순서가 다르다. 순서를 수정하기 전에 all.equal() 함수를 사용해서 동일한지 확인한다.\n\ngap_normal &lt;- gap_normal[,names(gapminder)]\nall.equal(gap_normal,gapminder)\n#&gt; [1] \"Component \\\"country\\\": 1704 string mismatches\"              \n#&gt; [2] \"Component \\\"pop\\\": Mean relative difference: 1.634504\"      \n#&gt; [3] \"Component \\\"continent\\\": 1212 string mismatches\"            \n#&gt; [4] \"Component \\\"lifeExp\\\": Mean relative difference: 0.203822\"  \n#&gt; [5] \"Component \\\"gdpPercap\\\": Mean relative difference: 1.162302\"\nhead(gap_normal)\n#&gt;   country year      pop continent lifeExp gdpPercap\n#&gt; 1 Algeria 1952  9279525    Africa  43.077  2449.008\n#&gt; 2 Algeria 1957 10270856    Africa  45.685  3013.976\n#&gt; 3 Algeria 1962 11000948    Africa  48.303  2550.817\n#&gt; 4 Algeria 1967 12760499    Africa  51.407  3246.992\n#&gt; 5 Algeria 1972 14760787    Africa  54.518  4182.664\n#&gt; 6 Algeria 1977 17152804    Africa  58.014  4910.417\nhead(gapminder)\n#&gt;       country year      pop continent lifeExp gdpPercap\n#&gt; 1 Afghanistan 1952  8425333      Asia  28.801  779.4453\n#&gt; 2 Afghanistan 1957  9240934      Asia  30.332  820.8530\n#&gt; 3 Afghanistan 1962 10267083      Asia  31.997  853.1007\n#&gt; 4 Afghanistan 1967 11537966      Asia  34.020  836.1971\n#&gt; 5 Afghanistan 1972 13079460      Asia  36.088  739.9811\n#&gt; 6 Afghanistan 1977 14880372      Asia  38.438  786.1134\n\n거의 다 왔다. 최초 데이터프레임은 country, continent, year 순으로 정렬되었다.\n\ngap_normal &lt;- gap_normal %&gt;% arrange(country,continent,year)\nall.equal(gap_normal,gapminder)\n#&gt; [1] TRUE\n\n훌륭하다! ‘long’ 형식에서 다시 중간 형식으로 돌아왔지만, 코드에 어떤 오류도 스며들지 않았다.\n이제 ‘long’ 형식을 ‘wide’ 형식으로 변환하자. ‘wide’ 형식에서 country 국가와 contienet 대륙을 ID 변수로 두고, 관측점을 3가지 측정값(pop, lifeExp, gdpPercap)과 시간(year)으로 쭉 뿌렸다. 먼저 모든 신규 변수(측정값 * 시간)에 대한 적절한 라벨을 생성할 필요가 있다. 또한 ID변수를 합쳐서 gap_wide를 정의하는 과정을 단순화할 필요가 있다.\n\ngap_temp &lt;- gap_long %&gt;% unite(var_ID,continent,country,sep=\"_\")\nstr(gap_temp)\n#&gt; 'data.frame':    5112 obs. of  4 variables:\n#&gt;  $ var_ID    : chr  \"Africa_Algeria\" \"Africa_Angola\" \"Africa_Benin\" \"Africa_Botswana\" ...\n#&gt;  $ obs_type  : chr  \"gdpPercap\" \"gdpPercap\" \"gdpPercap\" \"gdpPercap\" ...\n#&gt;  $ year      : int  1952 1952 1952 1952 1952 1952 1952 1952 1952 1952 ...\n#&gt;  $ obs_values: num  2449 3521 1063 851 543 ...\n\ngap_temp &lt;- gap_long %&gt;%\n    unite(ID_var,continent,country,sep=\"_\") %&gt;%\n    unite(var_names,obs_type,year,sep=\"_\")\nstr(gap_temp)\n#&gt; 'data.frame':    5112 obs. of  3 variables:\n#&gt;  $ ID_var    : chr  \"Africa_Algeria\" \"Africa_Angola\" \"Africa_Benin\" \"Africa_Botswana\" ...\n#&gt;  $ var_names : chr  \"gdpPercap_1952\" \"gdpPercap_1952\" \"gdpPercap_1952\" \"gdpPercap_1952\" ...\n#&gt;  $ obs_values: num  2449 3521 1063 851 543 ...\n\nunite()를 사용해서 continent, country를 묶는 ID변수 하나를 생성하고 변수명을 정의했다. 이제 파이프를 통해서 spread() 뿌릴 준비를 마쳤다.\n\ngap_wide_new &lt;- gap_long %&gt;%\n    unite(ID_var,continent,country,sep=\"_\") %&gt;%\n    unite(var_names,obs_type,year,sep=\"_\") %&gt;%\n    spread(var_names,obs_values)\nstr(gap_wide_new)\n#&gt; 'data.frame':    142 obs. of  37 variables:\n#&gt;  $ ID_var        : chr  \"Africa_Algeria\" \"Africa_Angola\" \"Africa_Benin\" \"Africa_Botswana\" ...\n#&gt;  $ gdpPercap_1952: num  2449 3521 1063 851 543 ...\n#&gt;  $ gdpPercap_1957: num  3014 3828 960 918 617 ...\n#&gt;  $ gdpPercap_1962: num  2551 4269 949 984 723 ...\n#&gt;  $ gdpPercap_1967: num  3247 5523 1036 1215 795 ...\n#&gt;  $ gdpPercap_1972: num  4183 5473 1086 2264 855 ...\n#&gt;  $ gdpPercap_1977: num  4910 3009 1029 3215 743 ...\n#&gt;  $ gdpPercap_1982: num  5745 2757 1278 4551 807 ...\n#&gt;  $ gdpPercap_1987: num  5681 2430 1226 6206 912 ...\n#&gt;  $ gdpPercap_1992: num  5023 2628 1191 7954 932 ...\n#&gt;  $ gdpPercap_1997: num  4797 2277 1233 8647 946 ...\n#&gt;  $ gdpPercap_2002: num  5288 2773 1373 11004 1038 ...\n#&gt;  $ gdpPercap_2007: num  6223 4797 1441 12570 1217 ...\n#&gt;  $ lifeExp_1952  : num  43.1 30 38.2 47.6 32 ...\n#&gt;  $ lifeExp_1957  : num  45.7 32 40.4 49.6 34.9 ...\n#&gt;  $ lifeExp_1962  : num  48.3 34 42.6 51.5 37.8 ...\n#&gt;  $ lifeExp_1967  : num  51.4 36 44.9 53.3 40.7 ...\n#&gt;  $ lifeExp_1972  : num  54.5 37.9 47 56 43.6 ...\n#&gt;  $ lifeExp_1977  : num  58 39.5 49.2 59.3 46.1 ...\n#&gt;  $ lifeExp_1982  : num  61.4 39.9 50.9 61.5 48.1 ...\n#&gt;  $ lifeExp_1987  : num  65.8 39.9 52.3 63.6 49.6 ...\n#&gt;  $ lifeExp_1992  : num  67.7 40.6 53.9 62.7 50.3 ...\n#&gt;  $ lifeExp_1997  : num  69.2 41 54.8 52.6 50.3 ...\n#&gt;  $ lifeExp_2002  : num  71 41 54.4 46.6 50.6 ...\n#&gt;  $ lifeExp_2007  : num  72.3 42.7 56.7 50.7 52.3 ...\n#&gt;  $ pop_1952      : num  9279525 4232095 1738315 442308 4469979 ...\n#&gt;  $ pop_1957      : num  10270856 4561361 1925173 474639 4713416 ...\n#&gt;  $ pop_1962      : num  11000948 4826015 2151895 512764 4919632 ...\n#&gt;  $ pop_1967      : num  12760499 5247469 2427334 553541 5127935 ...\n#&gt;  $ pop_1972      : num  14760787 5894858 2761407 619351 5433886 ...\n#&gt;  $ pop_1977      : num  17152804 6162675 3168267 781472 5889574 ...\n#&gt;  $ pop_1982      : num  20033753 7016384 3641603 970347 6634596 ...\n#&gt;  $ pop_1987      : num  23254956 7874230 4243788 1151184 7586551 ...\n#&gt;  $ pop_1992      : num  26298373 8735988 4981671 1342614 8878303 ...\n#&gt;  $ pop_1997      : num  29072015 9875024 6066080 1536536 10352843 ...\n#&gt;  $ pop_2002      : num  31287142 10866106 7026113 1630347 12251209 ...\n#&gt;  $ pop_2007      : num  33333216 12420476 8078314 1639131 14326203 ...\n\n\n\n8.8 도전과제 3\n한 걸음 더 나아가 국가, 연도, 측정값 3개를 쭉 뿌려 터무니없는 gap_ludicrously_wide 형식 데이터를 생성한다. 힌트: 신규 데이터프레임은 단지 행이 5개만 있다.\n\n\n8.9 도전과제 3에 대한 해답\n\ngap_ludicrously_wide &lt;- gap_long %&gt;%\n   unite(var_names,obs_type,year,country,sep=\"_\") %&gt;%\n   spread(var_names,obs_values)\n\n{: .solution} {: .challenge}\n\n\n이제 엄청 ‘wide’ 형식 데이터프레임이 생겼다. 하지만 ID_var 변수는 더 유용할 수 있으므로 separate() 함수로 변수 2개로 구분하자.\n\ngap_wide_betterID &lt;- separate(gap_wide_new,ID_var,c(\"continent\",\"country\"),sep=\"_\")\ngap_wide_betterID &lt;- gap_long %&gt;%\n    unite(ID_var, continent,country,sep=\"_\") %&gt;%\n    unite(var_names, obs_type,year,sep=\"_\") %&gt;%\n    spread(var_names, obs_values) %&gt;%\n    separate(ID_var, c(\"continent\",\"country\"),sep=\"_\")\nstr(gap_wide_betterID)\n#&gt; 'data.frame':    142 obs. of  38 variables:\n#&gt;  $ continent     : chr  \"Africa\" \"Africa\" \"Africa\" \"Africa\" ...\n#&gt;  $ country       : chr  \"Algeria\" \"Angola\" \"Benin\" \"Botswana\" ...\n#&gt;  $ gdpPercap_1952: num  2449 3521 1063 851 543 ...\n#&gt;  $ gdpPercap_1957: num  3014 3828 960 918 617 ...\n#&gt;  $ gdpPercap_1962: num  2551 4269 949 984 723 ...\n#&gt;  $ gdpPercap_1967: num  3247 5523 1036 1215 795 ...\n#&gt;  $ gdpPercap_1972: num  4183 5473 1086 2264 855 ...\n#&gt;  $ gdpPercap_1977: num  4910 3009 1029 3215 743 ...\n#&gt;  $ gdpPercap_1982: num  5745 2757 1278 4551 807 ...\n#&gt;  $ gdpPercap_1987: num  5681 2430 1226 6206 912 ...\n#&gt;  $ gdpPercap_1992: num  5023 2628 1191 7954 932 ...\n#&gt;  $ gdpPercap_1997: num  4797 2277 1233 8647 946 ...\n#&gt;  $ gdpPercap_2002: num  5288 2773 1373 11004 1038 ...\n#&gt;  $ gdpPercap_2007: num  6223 4797 1441 12570 1217 ...\n#&gt;  $ lifeExp_1952  : num  43.1 30 38.2 47.6 32 ...\n#&gt;  $ lifeExp_1957  : num  45.7 32 40.4 49.6 34.9 ...\n#&gt;  $ lifeExp_1962  : num  48.3 34 42.6 51.5 37.8 ...\n#&gt;  $ lifeExp_1967  : num  51.4 36 44.9 53.3 40.7 ...\n#&gt;  $ lifeExp_1972  : num  54.5 37.9 47 56 43.6 ...\n#&gt;  $ lifeExp_1977  : num  58 39.5 49.2 59.3 46.1 ...\n#&gt;  $ lifeExp_1982  : num  61.4 39.9 50.9 61.5 48.1 ...\n#&gt;  $ lifeExp_1987  : num  65.8 39.9 52.3 63.6 49.6 ...\n#&gt;  $ lifeExp_1992  : num  67.7 40.6 53.9 62.7 50.3 ...\n#&gt;  $ lifeExp_1997  : num  69.2 41 54.8 52.6 50.3 ...\n#&gt;  $ lifeExp_2002  : num  71 41 54.4 46.6 50.6 ...\n#&gt;  $ lifeExp_2007  : num  72.3 42.7 56.7 50.7 52.3 ...\n#&gt;  $ pop_1952      : num  9279525 4232095 1738315 442308 4469979 ...\n#&gt;  $ pop_1957      : num  10270856 4561361 1925173 474639 4713416 ...\n#&gt;  $ pop_1962      : num  11000948 4826015 2151895 512764 4919632 ...\n#&gt;  $ pop_1967      : num  12760499 5247469 2427334 553541 5127935 ...\n#&gt;  $ pop_1972      : num  14760787 5894858 2761407 619351 5433886 ...\n#&gt;  $ pop_1977      : num  17152804 6162675 3168267 781472 5889574 ...\n#&gt;  $ pop_1982      : num  20033753 7016384 3641603 970347 6634596 ...\n#&gt;  $ pop_1987      : num  23254956 7874230 4243788 1151184 7586551 ...\n#&gt;  $ pop_1992      : num  26298373 8735988 4981671 1342614 8878303 ...\n#&gt;  $ pop_1997      : num  29072015 9875024 6066080 1536536 10352843 ...\n#&gt;  $ pop_2002      : num  31287142 10866106 7026113 1630347 12251209 ...\n#&gt;  $ pop_2007      : num  33333216 12420476 8078314 1639131 14326203 ...\n\nall.equal(gap_wide, gap_wide_betterID)\n#&gt; [1] TRUE\n\n다시 되돌아왔다!",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>`tidyr` 데이터프레임 조작</span>"
+    ]
+  },
+  {
+    "objectID": "tidyr.html#추가-학습-교재",
+    "href": "tidyr.html#추가-학습-교재",
+    "title": "\n8  tidyr 데이터프레임 조작\n",
+    "section": "\n8.10 추가 학습 교재",
+    "text": "8.10 추가 학습 교재\n\nR for Data Science\nData Wrangling Cheat sheet\nIntroduction to tidyr\nData wrangling with R and RStudio",
+    "crumbs": [
+      "**3부** 데이터 다루기",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>`tidyr` 데이터프레임 조작</span>"
+    ]
+  },
+  {
+    "objectID": "models.html",
+    "href": "models.html",
+    "title": "\n9  모형\n",
+    "section": "",
+    "text": "9.1 회귀분석\n회귀분석은 갤톤(Galton) 부모와 자식의 신장간의 관계를 회귀식으로 표현한 데이터셋이 유명하다. (Caffo 2015) (Friendly 2023) 부모의 신장을 기초로 자녀의 신장을 예측하는 회귀식을 구하기 전에 산점도를 통해 관계를 살펴보면 다음과 같다. 성별에 대한 신장의 차이도 산점도를 통해 시각적으로 확인된다.\nlibrary(tidyverse)\nlibrary(HistData)\ndata(GaltonFamilies)\n\nlibrary(ggplot2)\n\n## 1. 산점도 \n# 성별 색상으로 구분\nGaltonFamilies |&gt; \n  ggplot(aes(midparentHeight, childHeight)) +\n    geom_point(aes(colour=gender)) +\n    stat_smooth(method=\"lm\") +\n    xlab(\"Average Height of the Parents (in inches)\") +\n    ylab(\"Height of the Child (in inches)\")\n\n\n\n\n\n\n\n# 다른 산점도로 성별 구분\nGaltonFamilies |&gt; \n  ggplot(aes(midparentHeight, childHeight, colours=gender)) +\n    geom_point(aes(colour=gender)) +\n    stat_smooth(method=\"lm\") +\n    xlab(\"Average Height of the Parents (in inches)\") +\n    ylab(\"Height of the Child (in inches)\") +\n    facet_wrap(~gender)\n\n\n\n\n\n\n\n# 성별 상관없는 회귀직선\nGaltonFamilies |&gt; \n  ggplot(aes(midparentHeight, childHeight)) +\n    geom_point() +\n    stat_smooth(method=\"lm\") +\n    xlab(\"Average Height of the Parents (in inches)\") +\n    ylab(\"Height of the Child (in inches)\")\n선형대수로 회귀계수를 추정하는 문제를 풀면 다음과 같이 정의된다. 한번 미분해서 \\(\\nabla f(\\beta ) = -2Xy + X^t X \\beta =0\\) 0으로 놓고 푼 값은 최소값이 되는데 이유는 \\(\\beta\\)에 대해서 두번 미분하게 되면 \\(2 X^t X\\) 로 양수가 되기 때문이다.\n\\[f(\\beta ) = ||y - \\beta X ||^2 = (y - \\beta X)^t (y - \\beta X) = y^t y - 2 y^t X^t \\beta + \\beta^t X^t X \\beta\\]\n\\[\\nabla f(\\beta ) = -2Xy + X^t X \\beta\\]\n\\[\\beta = (X^t X)^{-1} X^t y \\]\n위에서 정의된 방식으로 수식을 정의하고 이를 R로 코딩하면 회귀계수를 다음과 같이 구할 수 있다.\n## 2. 회귀분석\n# 선형대수 수식으로 계산\n\nx &lt;- GaltonFamilies$midparentHeight\ny &lt;- GaltonFamilies$childHeight\n\nx &lt;- cbind(1, x)\n\nsolve(t(x) %*% x) %*% t(x) %*% y\n#&gt;         [,1]\n#&gt;   22.6362405\n#&gt; x  0.6373609\n이를 lm 함수를 사용해서 다시 풀면 위에서 선형대수 수식으로 계산한 것과 동일함을 확인하게 된다.\n# lm 함수를 통해 계산\n\nlm(childHeight ~ midparentHeight, data=GaltonFamilies) %&gt;% coef()\n#&gt;     (Intercept) midparentHeight \n#&gt;      22.6362405       0.6373609",
+    "crumbs": [
+      "**4부** 모형",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>모형</span>"
+    ]
+  },
+  {
+    "objectID": "models.html#가내수공업-모형개발",
+    "href": "models.html#가내수공업-모형개발",
+    "title": "\n9  모형\n",
+    "section": "\n9.2 가내수공업 모형개발",
+    "text": "9.2 가내수공업 모형개발\n데이터 과학 분야의 제품 개발 방식은 다양하다. 엔지니어링의 관점에서 볼 때, 전통적인 장인의 기술이 제자에게 계승되는 방식에서 시작하여, 포드의 대량 생산 방식을 거치고, 대량 맞춤생산(Mass Customization) 방식으로 발전하여, 현재에는 기계 학습과 딥러닝이 통합된 혁신적인 개발 방식까지 다양한 방법론이 혼재되어 있다.\n전통적인 가내수공업 방식은 개별 주문에 따라 제품을 최적화하여 만드는 방식이다. 이 방식에서는 인간의 경험과 지식이 중요한 역할을 하며, 고객의 특별한 요구사항을 충족하기 위해 맞춤형 모델을 개발한다. 이러한 방식을 간략히 살펴보면, 각 고객의 고유한 필요에 따라 제품이나 서비스를 특별히 설계하고 생산하는 것이 핵심이다.\n\n##========================================================\n## 01. 데이터 준비\n##========================================================\n## 모의시험 데이터 생성\n\nx &lt;- seq(1, 100,1)\ny &lt;- x**2 + jitter(x, 1000)\n\ndf &lt;- tibble(x,y)\nhead(df)\n#&gt; # A tibble: 6 × 2\n#&gt;       x       y\n#&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n#&gt; 1     1   46.3 \n#&gt; 2     2   38.7 \n#&gt; 3     3  144.  \n#&gt; 4     4   -1.29\n#&gt; 5     5  127.  \n#&gt; 6     6 -116.\n\n##========================================================\n## 02. 탐색적 데이터 분석\n##========================================================\n# 통계량\npsych::describe(df)\n#&gt;   vars   n    mean      sd  median trimmed     mad     min    max    range skew\n#&gt; x    1 100   50.50   29.01   50.50    50.5   37.06    1.00  100.0    99.00 0.00\n#&gt; y    2 100 3424.31 3064.05 2613.93  3124.6 3254.08 -115.73 9972.2 10087.93 0.62\n#&gt;   kurtosis    se\n#&gt; x    -1.24   2.9\n#&gt; y    -0.92 306.4\n\n# 산점도\nplot(x, y)\n\n\n\n\n\n\n\n##========================================================\n## 03. 모형 적합\n##========================================================\n\n#---------------------------------------------------------\n# 3.1. 선형회귀 적합\nlm.m &lt;- lm(y ~ x, data=df)\nsummary(lm.m)\n#&gt; \n#&gt; Call:\n#&gt; lm(formula = y ~ x, data = df)\n#&gt; \n#&gt; Residuals:\n#&gt;    Min     1Q Median     3Q    Max \n#&gt; -994.8 -629.5 -281.5  564.2 1684.7 \n#&gt; \n#&gt; Coefficients:\n#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    \n#&gt; (Intercept) -1740.634    154.805  -11.24   &lt;2e-16 ***\n#&gt; x             102.276      2.661   38.43   &lt;2e-16 ***\n#&gt; ---\n#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n#&gt; \n#&gt; Residual standard error: 768.2 on 98 degrees of freedom\n#&gt; Multiple R-squared:  0.9378, Adjusted R-squared:  0.9371 \n#&gt; F-statistic:  1477 on 1 and 98 DF,  p-value: &lt; 2.2e-16\n\npar(mfrow=c(1,2))\n# 적합모형 시각화\nplot(x,y, data=df, cex=0.7)\nabline(lm.m, col='blue')\n\n# 잔차 \nplot(resid(lm.m))\nabline(h=0, type='3', col='blue')\n\n\n\n\n\n\n\n#---------------------------------------------------------\n# 3.2. 비선형회귀 적합\n# 비선형회귀적합\ndf$x2 &lt;- df$x**2\n\nnlm.m &lt;- lm(y ~ x + x2, data=df)\nsummary(nlm.m)\n#&gt; \n#&gt; Call:\n#&gt; lm(formula = y ~ x + x2, data = df)\n#&gt; \n#&gt; Residuals:\n#&gt;     Min      1Q  Median      3Q     Max \n#&gt; -203.19  -99.57  -18.08  110.89  215.54 \n#&gt; \n#&gt; Coefficients:\n#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    \n#&gt; (Intercept) -9.51990   36.67510  -0.260    0.796    \n#&gt; x            0.44591    1.67615   0.266    0.791    \n#&gt; x2           1.00822    0.01608  62.705   &lt;2e-16 ***\n#&gt; ---\n#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n#&gt; \n#&gt; Residual standard error: 119.8 on 97 degrees of freedom\n#&gt; Multiple R-squared:  0.9985, Adjusted R-squared:  0.9985 \n#&gt; F-statistic: 3.232e+04 on 2 and 97 DF,  p-value: &lt; 2.2e-16\n\npar(mfrow=c(1,2))\n# 적합모형 시각화\nplot(x, y, data=df, cex=0.7)\nlines(x, fitted(nlm.m), col='blue')\n# 잔차 \nplot(resid(nlm.m), cex=0.7)\nabline(h=0, type='3', col='blue')\n\n\n\n\n\n\n\n데이터 준비단계에서 모의시험 데이터를 생성한다. 독립변수 \\(x\\)는 1부터 100까지의 연속적인 수열이며, 종속변수 \\(y\\)는 \\(x^2\\)에 노이즈를 추가한 값으로 정의한다. 생성데이터는 df라는 데이터프레임에 저장하며, 데이터 처음 몇 행을 출력하여 확인한다.\n탐색적 데이터 분석 (EDA) 단계에서 데이터의 기술통계량을 psych 패키지 describe 함수를 활용하여 출력하고, 데이터 분포와 관계를 확인하기 위해 \\(x\\)와 \\(y\\)의 산점도로 시각화한다.\n모형 적합 단계에선 먼저, 선형회귀 모델을 사용하여 \\(y\\)를 \\(x\\)로 예측한다. 적합된 선형 모형 결과를 출력하고, 적합된 모델과 잔차를 시각적으로 확인한다. \\(y = \\beta_0 + \\beta_1 x + \\beta_1 x^2\\) 형태를 가진 2차 회귀 모형을 적합시킨다. \\(x^2\\) 항을 데이터프레임에 추가해서 2차 회귀 모델을 적합한 후, 결과를 출력하고, 적합된 모형과 잔차를 시각적으로 확인한다.\n\n\n\n\nCaffo, Brian. 2015. Advanced Linear Models for Data Science. Leanpub.\n\n\nFriendly, Michael. 2023. HistData: Data Sets from the History of Statistics and Data Visualization.",
+    "crumbs": [
+      "**4부** 모형",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>모형</span>"
+    ]
   }
 ]

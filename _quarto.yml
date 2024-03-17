@@ -49,22 +49,16 @@ book:
         - whole_game.qmd
         - penguins.qmd
 
-    - part: "**2부** 데이터 다루기"
-      chapters:
-        - data_structure.qmd
-        - dataframe.qmd
-
-    - part: "**3부** 가져오기"
+    - part: "**2부** 가져오기"
       chapters:
         - import.qmd
 
-    - part: "**3부** 데이터 과학"
+    - part: "**3부** 데이터 다루기"
       chapters:
-        - simpson.qmd
-        - basic_stat.qmd
-        - sampling.qmd
-        - hypothesis.qmd
-        - NHST.qmd
+        - data_structure.qmd
+        - dataframe.qmd
+        - dplyr.qmd
+        - tidyr.qmd
 
     - part: "**4부** 모형"
       chapters:
@@ -92,6 +86,15 @@ book:
         - llm_python.qmd
         - local_llm.qmd
         - lang_gpt.qmd
+
+    - part: "**8부** 데이터 과학"
+      chapters:
+        - simpson.qmd
+        - basic_stat.qmd
+        - sampling.qmd
+        - hypothesis.qmd
+        - NHST.qmd
+
 
     - references.qmd
 
@@ -135,6 +138,8 @@ lightbox: auto
 webr:
   packages:
   - "stringr"
+  - "dplyr"
+  - "ggplot2"
   # - "readr"
   # - "purrr"
   # - "httr"
