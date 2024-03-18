@@ -60,6 +60,10 @@ book:
         - dplyr.qmd
         - tidyr.qmd
 
+    - part: "**4부** 시각화"
+      chapters:
+        - ggplot2.qmd
+
     - part: "**4부** 모형"
       chapters:
         - models.qmd
@@ -140,6 +144,7 @@ webr:
   - "stringr"
   - "dplyr"
   - "ggplot2"
+  - "tidyr"
   # - "readr"
   # - "purrr"
   # - "httr"

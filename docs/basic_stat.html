@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.5.9">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘, 신종화">
-<title>챗GPT 데이터 과학 – 8&nbsp; 통계</title>
+<title>챗GPT 데이터 과학 – 24&nbsp; 통계</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -149,7 +149,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html"><strong>3부</strong> 데이터 과학</a></li><li class="breadcrumb-item"><a href="./basic_stat.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">통계</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html"><strong>8부</strong> 데이터 과학</a></li><li class="breadcrumb-item"><a href="./basic_stat.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">통계</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -216,7 +216,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text"><strong>2부</strong> 데이터 다루기</span></a>
+ <span class="menu-text"><strong>2부</strong> 가져오기</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -224,14 +224,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
+  <a href="./import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span></a>
   </div>
 </li>
       </ul>
@@ -239,7 +233,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text"><strong>3부</strong> 가져오기</span></a>
+ <span class="menu-text"><strong>3부</strong> 데이터 다루기</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -247,8 +241,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span></a>
+  <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></span></a>
   </div>
 </li>
       </ul>
@@ -256,7 +268,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text"><strong>3부</strong> 데이터 과학</span></a>
+ <span class="menu-text"><strong>4부</strong> 모형</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -264,32 +276,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./simpson.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
+  <a href="./models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./basic_stat.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">통계</span></span></a>
+  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./sampling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
+  <a href="./models_many.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hypothesis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./NHST.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">NHST.html</span></span></a>
+  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
   </div>
 </li>
       </ul>
@@ -297,7 +303,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text"><strong>4부</strong> 모형</span></a>
+ <span class="menu-text"><strong>5부</strong> 프로그래밍</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -305,26 +311,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형</span></span></a>
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./models_many.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
+  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
   </div>
 </li>
       </ul>
@@ -332,7 +326,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text"><strong>5부</strong> 프로그래밍</span></a>
+ <span class="menu-text"><strong>6부</strong> 커뮤니케이션</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -340,14 +334,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+  <a href="./map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
   </div>
 </li>
       </ul>
@@ -355,7 +349,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text"><strong>6부</strong> 커뮤니케이션</span></a>
+ <span class="menu-text"><strong>7부</strong> 챗GPT</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -363,14 +357,38 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+  <a href="./prompt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
+  <a href="./langchain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./llm_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./local_llm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
   </div>
 </li>
       </ul>
@@ -378,7 +396,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text"><strong>7부</strong> 챗GPT</span></a>
+ <span class="menu-text"><strong>8부</strong> 데이터 과학</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -386,38 +404,32 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prompt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
+  <a href="./simpson.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./langchain.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+  <a href="./basic_stat.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">통계</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
+  <a href="./sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./llm_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
+  <a href="./hypothesis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./local_llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
+  <a href="./NHST.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">NHST.html</span></span></a>
   </div>
 </li>
       </ul>
@@ -436,29 +448,29 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-<li><a href="#%ED%86%B5%EA%B3%84-%EB%B6%84%EC%95%BC" id="toc-통계-분야" class="nav-link active" data-scroll-target="#%ED%86%B5%EA%B3%84-%EB%B6%84%EC%95%BC"><span class="header-section-number">8.1</span> 통계 분야</a></li>
+<li><a href="#%ED%86%B5%EA%B3%84-%EB%B6%84%EC%95%BC" id="toc-통계-분야" class="nav-link active" data-scroll-target="#%ED%86%B5%EA%B3%84-%EB%B6%84%EC%95%BC"><span class="header-section-number">24.1</span> 통계 분야</a></li>
   <li>
-<a href="#%EA%B8%B0%EC%88%A0%ED%86%B5%EA%B3%84" id="toc-기술통계" class="nav-link" data-scroll-target="#%EA%B8%B0%EC%88%A0%ED%86%B5%EA%B3%84"><span class="header-section-number">8.2</span> 기술통계</a>
+<a href="#%EA%B8%B0%EC%88%A0%ED%86%B5%EA%B3%84" id="toc-기술통계" class="nav-link" data-scroll-target="#%EA%B8%B0%EC%88%A0%ED%86%B5%EA%B3%84"><span class="header-section-number">24.2</span> 기술통계</a>
   <ul class="collapse">
-<li><a href="#%EC%A4%91%EC%8B%AC-%EC%B8%A1%EB%8F%84" id="toc-중심-측도" class="nav-link" data-scroll-target="#%EC%A4%91%EC%8B%AC-%EC%B8%A1%EB%8F%84"><span class="header-section-number">8.2.1</span> 중심 측도</a></li>
-  <li><a href="#%ED%8D%BC%EC%A7%90-%EC%B8%A1%EB%8F%84" id="toc-퍼짐-측도" class="nav-link" data-scroll-target="#%ED%8D%BC%EC%A7%90-%EC%B8%A1%EB%8F%84"><span class="header-section-number">8.2.2</span> 퍼짐 측도</a></li>
+<li><a href="#%EC%A4%91%EC%8B%AC-%EC%B8%A1%EB%8F%84" id="toc-중심-측도" class="nav-link" data-scroll-target="#%EC%A4%91%EC%8B%AC-%EC%B8%A1%EB%8F%84"><span class="header-section-number">24.2.1</span> 중심 측도</a></li>
+  <li><a href="#%ED%8D%BC%EC%A7%90-%EC%B8%A1%EB%8F%84" id="toc-퍼짐-측도" class="nav-link" data-scroll-target="#%ED%8D%BC%EC%A7%90-%EC%B8%A1%EB%8F%84"><span class="header-section-number">24.2.2</span> 퍼짐 측도</a></li>
   </ul>
 </li>
   <li>
-<a href="#%EA%B0%80%EB%8A%A5%EC%84%B1" id="toc-가능성" class="nav-link" data-scroll-target="#%EA%B0%80%EB%8A%A5%EC%84%B1"><span class="header-section-number">8.3</span> 가능성</a>
+<a href="#%EA%B0%80%EB%8A%A5%EC%84%B1" id="toc-가능성" class="nav-link" data-scroll-target="#%EA%B0%80%EB%8A%A5%EC%84%B1"><span class="header-section-number">24.3</span> 가능성</a>
   <ul class="collapse">
-<li><a href="#%ED%99%95%EB%A5%A0" id="toc-확률" class="nav-link" data-scroll-target="#%ED%99%95%EB%A5%A0"><span class="header-section-number">8.3.1</span> 확률</a></li>
-  <li><a href="#%ED%99%95%EB%A5%A0%EC%9D%98-%EB%8D%A7%EC%85%88%EB%B2%95%EC%B9%99" id="toc-확률의-덧셈법칙" class="nav-link" data-scroll-target="#%ED%99%95%EB%A5%A0%EC%9D%98-%EB%8D%A7%EC%85%88%EB%B2%95%EC%B9%99"><span class="header-section-number">8.3.2</span> 확률의 덧셈법칙</a></li>
-  <li><a href="#%ED%99%95%EB%A5%A0%EB%B3%80%EC%88%98-%ED%95%A9" id="toc-확률변수-합" class="nav-link" data-scroll-target="#%ED%99%95%EB%A5%A0%EB%B3%80%EC%88%98-%ED%95%A9"><span class="header-section-number">8.3.3</span> 확률변수 합</a></li>
+<li><a href="#%ED%99%95%EB%A5%A0" id="toc-확률" class="nav-link" data-scroll-target="#%ED%99%95%EB%A5%A0"><span class="header-section-number">24.3.1</span> 확률</a></li>
+  <li><a href="#%ED%99%95%EB%A5%A0%EC%9D%98-%EB%8D%A7%EC%85%88%EB%B2%95%EC%B9%99" id="toc-확률의-덧셈법칙" class="nav-link" data-scroll-target="#%ED%99%95%EB%A5%A0%EC%9D%98-%EB%8D%A7%EC%85%88%EB%B2%95%EC%B9%99"><span class="header-section-number">24.3.2</span> 확률의 덧셈법칙</a></li>
+  <li><a href="#%ED%99%95%EB%A5%A0%EB%B3%80%EC%88%98-%ED%95%A9" id="toc-확률변수-합" class="nav-link" data-scroll-target="#%ED%99%95%EB%A5%A0%EB%B3%80%EC%88%98-%ED%95%A9"><span class="header-section-number">24.3.3</span> 확률변수 합</a></li>
   </ul>
 </li>
-  <li><a href="#%EB%B6%84%ED%8F%AC" id="toc-분포" class="nav-link" data-scroll-target="#%EB%B6%84%ED%8F%AC"><span class="header-section-number">8.4</span> 분포</a></li>
+  <li><a href="#%EB%B6%84%ED%8F%AC" id="toc-분포" class="nav-link" data-scroll-target="#%EB%B6%84%ED%8F%AC"><span class="header-section-number">24.4</span> 분포</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/basic_stat.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html"><strong>3부</strong> 데이터 과학</a></li><li class="breadcrumb-item"><a href="./basic_stat.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">통계</span></a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simpson.html"><strong>8부</strong> 데이터 과학</a></li><li class="breadcrumb-item"><a href="./basic_stat.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">통계</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title">
-<span class="chapter-number">8</span>&nbsp; <span class="chapter-title">통계</span>
+<span class="chapter-number">24</span>&nbsp; <span class="chapter-title">통계</span>
 </h1>
 </div>
 
@@ -496,11 +508,11 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<section id="통계-분야" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="통계-분야">
-<span class="header-section-number">8.1</span> 통계 분야</h2>
+<section id="통계-분야" class="level2" data-number="24.1"><h2 data-number="24.1" class="anchored" data-anchor-id="통계-분야">
+<span class="header-section-number">24.1</span> 통계 분야</h2>
 <p>데이터가 주어지면 데이터를 기술하는 통계와 추론하는 두가지 영역으로 나눠진다. 데이터를 기술하는 통계를 <strong>기술통계(Descriptive Statistics)</strong>, 데이터에서 추론하는 통계를 <strong>추론통계(Inferential Statistics)</strong>로 지칭한다.</p>
-</section><section id="기술통계" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="기술통계">
-<span class="header-section-number">8.2</span> 기술통계</h2>
+</section><section id="기술통계" class="level2" data-number="24.2"><h2 data-number="24.2" class="anchored" data-anchor-id="기술통계">
+<span class="header-section-number">24.2</span> 기술통계</h2>
 <p>데이터가 수집되어 준비되면 먼저 수집된 데이터의 자료형에 맞춰 요약을 해야한다. 크게 보면 자료형은 범주형과 숫자형으로 나눠지고 숫자형과 범주형에 관계 없이 중심과 퍼짐을 요약하는 측도가 필요하다.</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -583,8 +595,8 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<section id="중심-측도" class="level3" data-number="8.2.1"><h3 data-number="8.2.1" class="anchored" data-anchor-id="중심-측도">
-<span class="header-section-number">8.2.1</span> 중심 측도</h3>
+<section id="중심-측도" class="level3" data-number="24.2.1"><h3 data-number="24.2.1" class="anchored" data-anchor-id="중심-측도">
+<span class="header-section-number">24.2.1</span> 중심 측도</h3>
 <p><code>&lt;fct&gt;</code> 변수는 범주형 자료형이고, <code>&lt;dbl&gt;</code>, <code>&lt;int&gt;</code> 변수는 숫자형 자료형을 나타내고 있다. 각 자료형에 맞춰 데이터를 요약해보자. 먼저 숫자형과 범주형 중심을 각각 나타내는 대표측도로 숫자형은 평균(<code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> 함수), 범주형은 최빈수(<code><a href="https://rdrr.io/r/base/mode.html">mode()</a></code> 함수)로 펭귄 체중의 평균과 펭귄 중 최빈종을 각각 계산해보자. R에 최빈값에 대한 내장함수가 없어 사용자 정의함수를 작성해서 별도 계산한다.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
@@ -621,8 +633,8 @@ window.Quarto = {
 </div>
 </div>
 </div>
-</section><section id="퍼짐-측도" class="level3" data-number="8.2.2"><h3 data-number="8.2.2" class="anchored" data-anchor-id="퍼짐-측도">
-<span class="header-section-number">8.2.2</span> 퍼짐 측도</h3>
+</section><section id="퍼짐-측도" class="level3" data-number="24.2.2"><h3 data-number="24.2.2" class="anchored" data-anchor-id="퍼짐-측도">
+<span class="header-section-number">24.2.2</span> 퍼짐 측도</h3>
 <p>숫자형 변수의 경우 다양한 퍼짐을 측정하는 통계량이 존재한다. 변수의 퍼짐을 측정할 때 최대값에서 최소값을 뺀 통계량도 퍼짐을 측정하는 의미있는 지표가 된다. 그외에도 분위수를 기준으로 4분위수를 사용하여 IQR를 계산하거나 상자그림(Box-Plot)에서 분위수에 1.5배수를 곱해 분포의 상하한을 지정한 후 그 범위를 벗어나는 관측점을 이상점으로 정의하는 방법도 있다. 가장 퍼짐을 측정하는 일반적인 방법은 분산과 표준편차를 혹은 MAD가 있다.</p>
 <p><a href="images/1920px-Boxplot_vs_PDF.svg.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/1920px-Boxplot_vs_PDF.svg.png" class="img-fluid"></a></p>
 <p>남극에 서식하는 펭귄 체중에 대한 분산과 표준편차를 <code><a href="https://rdrr.io/r/stats/cor.html">var()</a></code>, <code><a href="https://rdrr.io/r/stats/sd.html">sd()</a></code> 함수를 사용해서 계산할 수 있다.</p>
@@ -686,11 +698,11 @@ window.Quarto = {
 </div>
 </div>
 </div>
-</section></section><section id="가능성" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="가능성">
-<span class="header-section-number">8.3</span> 가능성</h2>
+</section></section><section id="가능성" class="level2" data-number="24.3"><h2 data-number="24.3" class="anchored" data-anchor-id="가능성">
+<span class="header-section-number">24.3</span> 가능성</h2>
 <p>가능성, 승산, 예상, 전망, 형세 등 다양한 방식으로 미래를 알고자 하는 인간의 호기심이 집대성된 수학의 한분야가 확률이다.</p>
-<section id="확률" class="level3" data-number="8.3.1"><h3 data-number="8.3.1" class="anchored" data-anchor-id="확률">
-<span class="header-section-number">8.3.1</span> 확률</h3>
+<section id="확률" class="level3" data-number="24.3.1"><h3 data-number="24.3.1" class="anchored" data-anchor-id="확률">
+<span class="header-section-number">24.3.1</span> 확률</h3>
 <p>대한민국 시도수는 특별시, 광역시, 자치도 등 포함하여 총 17개가 존재한다. 17개 시도 중 시도 하나를 무작위로 뽑게 되면 확률이 얼마나 될까? 먼저, 17개 시도에서 “서울”을 고를 경우 <span class="math inline">\(\frac{1}{17} = 0.05882353\)</span> 으로 계산된다.</p>
 <p>자연어로 작성된 텍스트를 수학적으로 좀더 엄밀하게 표현하면 다음과 같다.</p>
 <p>시도의 수 <span class="math inline">\(n\)</span>과 선택할 시도의 수 <span class="math inline">\(r\)</span>을 조합의 수식으로 표현하면,</p>
@@ -790,8 +802,8 @@ P(\text{'서울'}) = \frac{1}{C(17, 1)} = \frac{1}{17} \approx 0.05882353
 </div>
 </div>
 </div>
-</section><section id="확률의-덧셈법칙" class="level3" data-number="8.3.2"><h3 data-number="8.3.2" class="anchored" data-anchor-id="확률의-덧셈법칙">
-<span class="header-section-number">8.3.2</span> 확률의 덧셈법칙</h3>
+</section><section id="확률의-덧셈법칙" class="level3" data-number="24.3.2"><h3 data-number="24.3.2" class="anchored" data-anchor-id="확률의-덧셈법칙">
+<span class="header-section-number">24.3.2</span> 확률의 덧셈법칙</h3>
 <p>두 사건 중 적어도 하나만 발생할 확률을 “또는(or)” 연산으로 표현할 수 있는데, 두 사건이 독립을 가정(<span class="math inline">\(Pr(\text{A and B}) = Pr(A) \times Pr(B)\)</span>)하면 다음과 같이 표현할 수 있다. 이를 <strong>확률의 덧셈법칙(addition law of probability)</strong>이라고 부른다.</p>
 <p><span class="math inline">\(\begin{aligned}
 Pr(\text{A or B}) &amp;= Pr(A) + Pr(B) - Pr(\text{A and B})\\
@@ -832,8 +844,8 @@ Pr(\text{A or B}) &amp;= Pr(A) + Pr(B) - Pr(\text{A and B})\\
 <span><span class="va">서건창_확률</span> <span class="op">+</span> <span class="va">이정후_확률</span> <span class="op">-</span> <span class="va">서건창_확률</span><span class="op">*</span><span class="va">이정후_확률</span></span>
 <span><span class="co">#&gt; [1] 0.1189903</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="확률변수-합" class="level3" data-number="8.3.3"><h3 data-number="8.3.3" class="anchored" data-anchor-id="확률변수-합">
-<span class="header-section-number">8.3.3</span> 확률변수 합</h3>
+</section></section><section id="확률변수-합" class="level3" data-number="24.3.3"><h3 data-number="24.3.3" class="anchored" data-anchor-id="확률변수-합">
+<span class="header-section-number">24.3.3</span> 확률변수 합</h3>
 <p>두 확률변수를 곱하거나 더하는 경우를 생각할 수 있다. 이항분포에서 나온 두 변수를 더하여 만들어진 새로운 변수는 어떤 특성을 갖게 되는지 살펴보자</p>
 <p><span class="math display">\[Z \sim X + Y\]</span> 여기서, <span class="math inline">\(X \sim \text{이항분포}(n, p)\)</span>를 따르고, <span class="math inline">\(Y \sim \text{이항분포}(m, p)\)</span>를 따를 때 두 확률변수를 합한 <span class="math inline">\(Z\)</span>를 살펴보자. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p><span class="math display">\[X + Y \sim \text{이항분포}(n+m, p)\]</span></p>
@@ -878,8 +890,8 @@ Pr(\text{A or B}) &amp;= Pr(A) + Pr(B) - Pr(\text{A and B})\\
 <span><span class="co">#&gt;    &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1   15.0</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section></section><section id="분포" class="level2" data-number="8.4"><h2 data-number="8.4" class="anchored" data-anchor-id="분포">
-<span class="header-section-number">8.4</span> 분포</h2>
+</section></section></section><section id="분포" class="level2" data-number="24.4"><h2 data-number="24.4" class="anchored" data-anchor-id="분포">
+<span class="header-section-number">24.4</span> 분포</h2>
 
 
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
@@ -1312,12 +1324,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./simpson.html" class="pagination-link" aria-label="심슨의 역설">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./sampling.html" class="pagination-link" aria-label="표본 추출">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">표본 추출</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">표본 추출</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1333,7 +1345,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","openEffect":"zoom","loop":false});
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":false,"descPosition":"bottom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

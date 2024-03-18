@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.5.9">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘, 신종화">
-<title>챗GPT 데이터 과학 – 14&nbsp; 많은 회귀모형</title>
+<title>챗GPT 데이터 과학 – 11&nbsp; 많은 회귀모형</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./models.html"><strong>4부</strong> 모형</a></li><li class="breadcrumb-item"><a href="./models_many.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./models.html"><strong>4부</strong> 모형</a></li><li class="breadcrumb-item"><a href="./models_many.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -214,7 +214,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text"><strong>2부</strong> 데이터 다루기</span></a>
+ <span class="menu-text"><strong>2부</strong> 가져오기</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -222,14 +222,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
+  <a href="./import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span></a>
   </div>
 </li>
       </ul>
@@ -237,7 +231,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text"><strong>3부</strong> 가져오기</span></a>
+ <span class="menu-text"><strong>3부</strong> 데이터 다루기</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -245,8 +239,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span></a>
+  <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></span></a>
   </div>
 </li>
       </ul>
@@ -254,7 +266,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text"><strong>3부</strong> 데이터 과학</span></a>
+ <span class="menu-text"><strong>4부</strong> 모형</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -262,32 +274,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./simpson.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
+  <a href="./models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./basic_stat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">통계</span></span></a>
+  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./sampling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
+  <a href="./models_many.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hypothesis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./NHST.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">NHST.html</span></span></a>
+  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
   </div>
 </li>
       </ul>
@@ -295,7 +301,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text"><strong>4부</strong> 모형</span></a>
+ <span class="menu-text"><strong>5부</strong> 프로그래밍</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -303,26 +309,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형</span></span></a>
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./models_many.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
+  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
   </div>
 </li>
       </ul>
@@ -330,7 +324,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text"><strong>5부</strong> 프로그래밍</span></a>
+ <span class="menu-text"><strong>6부</strong> 커뮤니케이션</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -338,14 +332,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+  <a href="./map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
   </div>
 </li>
       </ul>
@@ -353,7 +347,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text"><strong>6부</strong> 커뮤니케이션</span></a>
+ <span class="menu-text"><strong>7부</strong> 챗GPT</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -361,14 +355,38 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+  <a href="./prompt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
+  <a href="./langchain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./llm_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./local_llm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
   </div>
 </li>
       </ul>
@@ -376,7 +394,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text"><strong>7부</strong> 챗GPT</span></a>
+ <span class="menu-text"><strong>8부</strong> 데이터 과학</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -384,38 +402,32 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prompt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
+  <a href="./simpson.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./langchain.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+  <a href="./basic_stat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">통계</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
+  <a href="./sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./llm_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
+  <a href="./hypothesis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./local_llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
+  <a href="./NHST.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">NHST.html</span></span></a>
   </div>
 </li>
       </ul>
@@ -435,24 +447,24 @@ window.Quarto = {
    
   <ul>
 <li>
-<a href="#model-reg-viz-data" id="toc-model-reg-viz-data" class="nav-link active" data-scroll-target="#model-reg-viz-data"><span class="header-section-number">14.1</span> 기대수명 데이터</a>
+<a href="#model-reg-viz-data" id="toc-model-reg-viz-data" class="nav-link active" data-scroll-target="#model-reg-viz-data"><span class="header-section-number">11.1</span> 기대수명 데이터</a>
   <ul class="collapse">
-<li><a href="#model-reg-viz-model" id="toc-model-reg-viz-model" class="nav-link" data-scroll-target="#model-reg-viz-model"><span class="header-section-number">14.1.1</span> 기대수명 회귀분석</a></li>
-  <li><a href="#model-reg-viz-model-trelliscope" id="toc-model-reg-viz-model-trelliscope" class="nav-link" data-scroll-target="#model-reg-viz-model-trelliscope"><span class="header-section-number">14.1.2</span> 회귀모형 시각화</a></li>
+<li><a href="#model-reg-viz-model" id="toc-model-reg-viz-model" class="nav-link" data-scroll-target="#model-reg-viz-model"><span class="header-section-number">11.1.1</span> 기대수명 회귀분석</a></li>
+  <li><a href="#model-reg-viz-model-trelliscope" id="toc-model-reg-viz-model-trelliscope" class="nav-link" data-scroll-target="#model-reg-viz-model-trelliscope"><span class="header-section-number">11.1.2</span> 회귀모형 시각화</a></li>
   </ul>
 </li>
   <li>
-<a href="#%EB%AA%A8%ED%98%95%EC%8B%9D%EB%B3%84" id="toc-모형식별" class="nav-link" data-scroll-target="#%EB%AA%A8%ED%98%95%EC%8B%9D%EB%B3%84"><span class="header-section-number">14.2</span> 모형식별</a>
+<a href="#%EB%AA%A8%ED%98%95%EC%8B%9D%EB%B3%84" id="toc-모형식별" class="nav-link" data-scroll-target="#%EB%AA%A8%ED%98%95%EC%8B%9D%EB%B3%84"><span class="header-section-number">11.2</span> 모형식별</a>
   <ul class="collapse">
-<li><a href="#cv-reg-model" id="toc-cv-reg-model" class="nav-link" data-scroll-target="#cv-reg-model"><span class="header-section-number">14.2.1</span> 교차검증 <code>CV</code></a></li>
-  <li><a href="#cv-reg-model-furrr" id="toc-cv-reg-model-furrr" class="nav-link" data-scroll-target="#cv-reg-model-furrr"><span class="header-section-number">14.2.2</span> 병렬처리 - <code>furrr</code></a></li>
+<li><a href="#cv-reg-model" id="toc-cv-reg-model" class="nav-link" data-scroll-target="#cv-reg-model"><span class="header-section-number">11.2.1</span> 교차검증 <code>CV</code></a></li>
+  <li><a href="#cv-reg-model-furrr" id="toc-cv-reg-model-furrr" class="nav-link" data-scroll-target="#cv-reg-model-furrr"><span class="header-section-number">11.2.2</span> 병렬처리 - <code>furrr</code></a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/models_many.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./models.html"><strong>4부</strong> 모형</a></li><li class="breadcrumb-item"><a href="./models_many.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="purrr-many-models" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./models.html"><strong>4부</strong> 모형</a></li><li class="breadcrumb-item"><a href="./models_many.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="purrr-many-models" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></h1>
 </div>
 
 
@@ -466,8 +478,8 @@ window.Quarto = {
   
 
 
-</header><section id="model-reg-viz-data" class="level2" data-number="14.1"><h2 data-number="14.1" class="anchored" data-anchor-id="model-reg-viz-data">
-<span class="header-section-number">14.1</span> 기대수명 데이터</h2>
+</header><section id="model-reg-viz-data" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="model-reg-viz-data">
+<span class="header-section-number">11.1</span> 기대수명 데이터</h2>
 <p><code>gapminder</code> 데이터를 가지고 회귀모형을 구축하고 모형을 활용하여 종속변수(기대수명, <code>lifeExp</code>)가 늘어나지 못한 국가를 뽑아내고 이를 시각적으로 확인해보자.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 0. 환경설정 -----</span></span>
@@ -497,8 +509,8 @@ window.Quarto = {
 <span><span class="co">#&gt; 10 Afghanistan Asia       1997    41.8 22227415      635.</span></span>
 <span><span class="co">#&gt; # ℹ 1,694 more rows</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="model-reg-viz-model" class="level3" data-number="14.1.1"><h3 data-number="14.1.1" class="anchored" data-anchor-id="model-reg-viz-model">
-<span class="header-section-number">14.1.1</span> 기대수명 회귀분석</h3>
+<section id="model-reg-viz-model" class="level3" data-number="11.1.1"><h3 data-number="11.1.1" class="anchored" data-anchor-id="model-reg-viz-model">
+<span class="header-section-number">11.1.1</span> 기대수명 회귀분석</h3>
 <p>대륙과 국가를 그룹으로 잡아 회귀분석을 각각에 대해서 돌리고 나서, 모형 결과값을 데이터와 모형이 함께 위치하도록 티블(tibble)에 저장시켜 놓은다. 그리고 나서, 주요한 회귀모형 성능지표인 결정계수(<span class="math inline">\(R^2\)</span>)를 기준으로 정렬시킨다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 2. 모형 -----</span></span>
@@ -530,8 +542,8 @@ window.Quarto = {
 <span><span class="co">#&gt; 10 Congo, Dem. Rep. Africa    &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [1 × 12]&gt;  0.348 </span></span>
 <span><span class="co">#&gt; # ℹ 132 more rows</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="model-reg-viz-model-trelliscope" class="level3" data-number="14.1.2"><h3 data-number="14.1.2" class="anchored" data-anchor-id="model-reg-viz-model-trelliscope">
-<span class="header-section-number">14.1.2</span> 회귀모형 시각화</h3>
+</section><section id="model-reg-viz-model-trelliscope" class="level3" data-number="11.1.2"><h3 data-number="11.1.2" class="anchored" data-anchor-id="model-reg-viz-model-trelliscope">
+<span class="header-section-number">11.1.2</span> 회귀모형 시각화</h3>
 <p>데이터셋 <code>by_country</code>를 이용하여 각 나라별로 회귀 모델의 $ R^2 $ (결정 계수) 값을 기반으로 “적합국”과 “비적합국”을 분류하고, 그 결과를 시각화한다. $ R^2 $ 값이 큰 나라 5개와 작은 나라 5개를 추출하여 기대수명 변화를 그래프로 대조하여 국가별 차이를 명확히 한다.</p>
 <ol type="1">
 <li>
@@ -597,8 +609,8 @@ window.Quarto = {
 </div>
 </div>
 </div>
-</section></section><section id="모형식별" class="level2" data-number="14.2"><h2 data-number="14.2" class="anchored" data-anchor-id="모형식별">
-<span class="header-section-number">14.2</span> 모형식별</h2>
+</section></section><section id="모형식별" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="모형식별">
+<span class="header-section-number">11.2</span> 모형식별</h2>
 <p><code>purrr</code> 팩키지를 활용하여 원본 모형 데이터와 모형을 하나의 데이터프레임(<code>tibble</code>)에 담을 수가 있다. 즉, 6가지 서로 다른 회귀모형을 일괄적으로 적합시키고 가장 AIC 값이 적은 회귀모형을 선택하는 코드를 다음과 같이 작성한다. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <ol type="1">
 <li>
@@ -659,8 +671,8 @@ window.Quarto = {
 <span><span class="co">#&gt; 5 02_gdppercap &lt;formula&gt;    &lt;lm&gt;         &lt;tibble [1 × 12]&gt; 0.341   12850.</span></span>
 <span><span class="co">#&gt; 6 01_pop       &lt;formula&gt;    &lt;lm&gt;         &lt;tibble [1 × 12]&gt; 0.00422 13553.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="cv-reg-model" class="level3" data-number="14.2.1"><h3 data-number="14.2.1" class="anchored" data-anchor-id="cv-reg-model">
-<span class="header-section-number">14.2.1</span> 교차검증 <code>CV</code>
+<section id="cv-reg-model" class="level3" data-number="11.2.1"><h3 data-number="11.2.1" class="anchored" data-anchor-id="cv-reg-model">
+<span class="header-section-number">11.2.1</span> 교차검증 <code>CV</code>
 </h3>
 <p>데이터를 10조각내서 교차검정을 통해 RMSE가 가장 작은 회귀모형이 어떤 것인지 살펴보자. <code><a href="https://purrr.tidyverse.org/reference/cross.html">cross_df()</a></code> 함수로 교차검증 <code>splits</code> 데이터와 모형을 준비한다. 다음으로 <code>analysis()</code> 함수로 교차검증 데이터에 대해서 회귀모형 각각을 적합시키고, <code>assessment()</code> 함수로 적합시킨 모형에 대해 모형성능을 살펴본다. 마지막으로 RMSE 회귀모형 성능지표를 통해 모형선택을 한다.</p>
 <div class="cell">
@@ -704,16 +716,16 @@ window.Quarto = {
 <span><span class="co">#&gt; # A tibble: 60 × 7</span></span>
 <span><span class="co">#&gt;    splits             id     model_name model_number reg_formula  fit       RMSE</span></span>
 <span><span class="co">#&gt;    &lt;list&gt;             &lt;chr&gt;  &lt;chr&gt;             &lt;int&gt; &lt;named list&gt; &lt;named &gt; &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt;  1 &lt;split [1533/171]&gt; Fold01 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.46</span></span>
-<span><span class="co">#&gt;  2 &lt;split [1533/171]&gt; Fold02 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.19</span></span>
-<span><span class="co">#&gt;  3 &lt;split [1533/171]&gt; Fold03 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.72</span></span>
-<span><span class="co">#&gt;  4 &lt;split [1533/171]&gt; Fold04 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.68</span></span>
-<span><span class="co">#&gt;  5 &lt;split [1534/170]&gt; Fold05 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.26</span></span>
-<span><span class="co">#&gt;  6 &lt;split [1534/170]&gt; Fold06 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.22</span></span>
-<span><span class="co">#&gt;  7 &lt;split [1534/170]&gt; Fold07 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.21</span></span>
-<span><span class="co">#&gt;  8 &lt;split [1534/170]&gt; Fold08 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.57</span></span>
-<span><span class="co">#&gt;  9 &lt;split [1534/170]&gt; Fold09 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.58</span></span>
-<span><span class="co">#&gt; 10 &lt;split [1534/170]&gt; Fold10 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.62</span></span>
+<span><span class="co">#&gt;  1 &lt;split [1533/171]&gt; Fold01 06_full               1 &lt;formula&gt;    &lt;lm&gt;      3.50</span></span>
+<span><span class="co">#&gt;  2 &lt;split [1533/171]&gt; Fold02 06_full               1 &lt;formula&gt;    &lt;lm&gt;      3.14</span></span>
+<span><span class="co">#&gt;  3 &lt;split [1533/171]&gt; Fold03 06_full               1 &lt;formula&gt;    &lt;lm&gt;      1.94</span></span>
+<span><span class="co">#&gt;  4 &lt;split [1533/171]&gt; Fold04 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.36</span></span>
+<span><span class="co">#&gt;  5 &lt;split [1534/170]&gt; Fold05 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.48</span></span>
+<span><span class="co">#&gt;  6 &lt;split [1534/170]&gt; Fold06 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.57</span></span>
+<span><span class="co">#&gt;  7 &lt;split [1534/170]&gt; Fold07 06_full               1 &lt;formula&gt;    &lt;lm&gt;      1.78</span></span>
+<span><span class="co">#&gt;  8 &lt;split [1534/170]&gt; Fold08 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.26</span></span>
+<span><span class="co">#&gt;  9 &lt;split [1534/170]&gt; Fold09 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.14</span></span>
+<span><span class="co">#&gt; 10 &lt;split [1534/170]&gt; Fold10 06_full               1 &lt;formula&gt;    &lt;lm&gt;      1.63</span></span>
 <span><span class="co">#&gt; # ℹ 50 more rows</span></span>
 <span></span>
 <span><span class="co">## 시각화 -----</span></span>
@@ -728,8 +740,8 @@ window.Quarto = {
 </div>
 </div>
 </div>
-</section><section id="cv-reg-model-furrr" class="level3" data-number="14.2.2"><h3 data-number="14.2.2" class="anchored" data-anchor-id="cv-reg-model-furrr">
-<span class="header-section-number">14.2.2</span> 병렬처리 - <code>furrr</code>
+</section><section id="cv-reg-model-furrr" class="level3" data-number="11.2.2"><h3 data-number="11.2.2" class="anchored" data-anchor-id="cv-reg-model-furrr">
+<span class="header-section-number">11.2.2</span> 병렬처리 - <code>furrr</code>
 </h3>
 <p><code><a href="https://rdrr.io/r/parallel/detectCores.html">parallel::detectCores()</a></code>을 통해 전체 코어 숫자를 확인하고 이를 병렬처리를 통해 교차검증에 따른 시간을 대폭 절감시킨다. 이를 위해서 <code>future</code> 팩키지를 사용하고 절약되는 시간을 측정하기 위해서 <code>tictoc</code> 팩키지를 동원한다.</p>
 <div class="cell">
@@ -749,7 +761,7 @@ window.Quarto = {
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fit <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span><span class="op">(</span><span class="va">reg_formula</span>, <span class="va">splits</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">.x</span>, data <span class="op">=</span> <span class="fu">rsample</span><span class="fu">::</span><span class="fu"><a href="https://rsample.tidymodels.org/reference/as.data.frame.rsplit.html">analysis</a></span><span class="op">(</span><span class="va">.y</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 1.3 sec elapsed</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 1.26 sec elapsed</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <p><strong><code>furrr</code> 병렬처리</strong></p>
@@ -761,7 +773,7 @@ window.Quarto = {
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fit <span class="op">=</span> <span class="fu"><a href="https://furrr.futureverse.org/reference/future_map2.html">future_map2</a></span><span class="op">(</span><span class="va">reg_formula</span>, <span class="va">splits</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">.x</span>, data <span class="op">=</span> <span class="fu">rsample</span><span class="fu">::</span><span class="fu"><a href="https://rsample.tidymodels.org/reference/as.data.frame.rsplit.html">analysis</a></span><span class="op">(</span><span class="va">.y</span><span class="op">)</span><span class="op">)</span>, .progress<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> </span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 25.72 sec elapsed</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 22.32 sec elapsed</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1197,12 +1209,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./models_building.html" class="pagination-link" aria-label="모형 개발">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">모형 개발</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">모형 개발</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./models_case_study.html" class="pagination-link" aria-label="사례: 시군 인구증가">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1218,7 +1230,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","openEffect":"zoom","loop":false,"closeEffect":"zoom"});
+</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
