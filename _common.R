@@ -13,6 +13,12 @@ library(JuliaCall)
 
 # julia_setup(JULIA_HOME="C:/Users/statkclee/AppData/Local/Programs/Julia-1.10.1/bin")
 
+
+# 2. 충돌 패키지 ---------------------------------------------------------------
+
+conflicted::conflicts_prefer(dplyr::filter)
+conflicted::conflicts_prefer(dplyr::lag)
+
 # 2. fonts ----------------------------------------------------------------
 
 library(sysfonts)

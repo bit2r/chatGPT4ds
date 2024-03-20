@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.5.9">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘, 신종화">
-<title>챗GPT 데이터 과학 – 8&nbsp; tidyr 데이터프레임 조작</title>
+<title>챗GPT 데이터 과학 – 7&nbsp; tidyr 데이터프레임 조작</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -61,7 +61,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./ggplot2.html" rel="next">
+<link href="./ggplot2_concept.html" rel="next">
 <link href="./dplyr.html" rel="prev">
 <link href="./images/logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -256,7 +256,7 @@ ga('send', {
 // Document level settings ----
 
 // Determine if we need to install R packages
-globalThis.qwebrInstallRPackagesList = ['stringr', 'dplyr', 'ggplot2', 'tidyr', 'palmerpenguins'];
+globalThis.qwebrInstallRPackagesList = ['stringr', 'dplyr', 'ggplot2', 'tidyr', 'palmerpenguins', 'gapminder'];
 
 // Specify possible locations to search for the repository
 globalThis.qwebrPackageRepoURLS = ['https://repo.r-wasm.org/'];
@@ -278,7 +278,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"code":"### 실습 데이터 다운로드 및 불러오기\ndownload.file(\"https://raw.githubusercontent.com/bit2r/gpt-ds/main/data/gapminder_data.csv\", \"gapminder_data.csv\") \ngapminder <- read.csv(\"gapminder_data.csv\", header=TRUE, stringsAsFactors = FALSE)\n\ndownload.file(\"https://raw.githubusercontent.com/bit2r/gpt-ds/main/data/gapminder_wide.csv\", \"gapminder_wide.csv\") \n# gap_wide <- read.csv(\"data/gapminder_wide.csv\", stringsAsFactors = FALSE) # 로컬 작업 \ngap_wide <- read.csv(\"gapminder_wide.csv\", stringsAsFactors = FALSE) # webr\nstr(gap_wide)\n#> 'data.frame':    142 obs. of  38 variables:\n#>  $ continent     : chr  \"Africa\" \"Africa\" \"Africa\" \"Africa\" ...\n#>  $ country       : chr  \"Algeria\" \"Angola\" \"Benin\" \"Botswana\" ...\n#>  $ gdpPercap_1952: num  2449 3521 1063 851 543 ...\n#>  $ gdpPercap_1957: num  3014 3828 960 918 617 ...\n#>  $ gdpPercap_1962: num  2551 4269 949 984 723 ...\n#>  $ gdpPercap_1967: num  3247 5523 1036 1215 795 ...\n#>  $ gdpPercap_1972: num  4183 5473 1086 2264 855 ...\n#>  $ gdpPercap_1977: num  4910 3009 1029 3215 743 ...\n#>  $ gdpPercap_1982: num  5745 2757 1278 4551 807 ...\n#>  $ gdpPercap_1987: num  5681 2430 1226 6206 912 ...\n#>  $ gdpPercap_1992: num  5023 2628 1191 7954 932 ...\n#>  $ gdpPercap_1997: num  4797 2277 1233 8647 946 ...\n#>  $ gdpPercap_2002: num  5288 2773 1373 11004 1038 ...\n#>  $ gdpPercap_2007: num  6223 4797 1441 12570 1217 ...\n#>  $ lifeExp_1952  : num  43.1 30 38.2 47.6 32 ...\n#>  $ lifeExp_1957  : num  45.7 32 40.4 49.6 34.9 ...\n#>  $ lifeExp_1962  : num  48.3 34 42.6 51.5 37.8 ...\n#>  $ lifeExp_1967  : num  51.4 36 44.9 53.3 40.7 ...\n#>  $ lifeExp_1972  : num  54.5 37.9 47 56 43.6 ...\n#>  $ lifeExp_1977  : num  58 39.5 49.2 59.3 46.1 ...\n#>  $ lifeExp_1982  : num  61.4 39.9 50.9 61.5 48.1 ...\n#>  $ lifeExp_1987  : num  65.8 39.9 52.3 63.6 49.6 ...\n#>  $ lifeExp_1992  : num  67.7 40.6 53.9 62.7 50.3 ...\n#>  $ lifeExp_1997  : num  69.2 41 54.8 52.6 50.3 ...\n#>  $ lifeExp_2002  : num  71 41 54.4 46.6 50.6 ...\n#>  $ lifeExp_2007  : num  72.3 42.7 56.7 50.7 52.3 ...\n#>  $ pop_1952      : num  9279525 4232095 1738315 442308 4469979 ...\n#>  $ pop_1957      : num  10270856 4561361 1925173 474639 4713416 ...\n#>  $ pop_1962      : num  11000948 4826015 2151895 512764 4919632 ...\n#>  $ pop_1967      : num  12760499 5247469 2427334 553541 5127935 ...\n#>  $ pop_1972      : num  14760787 5894858 2761407 619351 5433886 ...\n#>  $ pop_1977      : num  17152804 6162675 3168267 781472 5889574 ...\n#>  $ pop_1982      : num  20033753 7016384 3641603 970347 6634596 ...\n#>  $ pop_1987      : num  23254956 7874230 4243788 1151184 7586551 ...\n#>  $ pop_1992      : num  26298373 8735988 4981671 1342614 8878303 ...\n#>  $ pop_1997      : num  29072015 9875024 6066080 1536536 10352843 ...\n#>  $ pop_2002      : int  31287142 10866106 7026113 1630347 12251209 7021078 15929988 4048013 8835739 614382 ...\n#>  $ pop_2007      : int  33333216 12420476 8078314 1639131 14326203 8390505 17696293 4369038 10238807 710960 ...","options":{"fig-height":5,"results":"markup","comment":"","label":"tidyr-gapminder-pivot-longer","context":"interactive","read-only":"false","autorun":"false","out-height":"","warning":"true","dpi":72,"output":"true","message":"true","fig-cap":"","classes":"","fig-width":7,"out-width":"700px"}},{"id":2,"code":"gap_long <- gap_wide %>%\n  pivot_longer(\n    cols = c(starts_with('pop'), starts_with('lifeExp'), starts_with('gdpPercap')),\n    names_to = \"obstype_year\", values_to = \"obs_values\"\n  )\nstr(gap_long)\n\n#> tibble [5,112 × 4] (S3: tbl_df/tbl/data.frame)\n#>  $ continent   : chr [1:5112] \"Africa\" \"Africa\" \"Africa\" \"Africa\" ...\n#>  $ country     : chr [1:5112] \"Algeria\" \"Algeria\" \"Algeria\" \"Algeria\" ...\n#>  $ obstype_year: chr [1:5112] \"pop_1952\" \"pop_1957\" \"pop_1962\" \"pop_1967\" ...\n#>  $ obs_values  : num [1:5112] 9279525 10270856 11000948 12760499 14760787 ...","options":{"fig-height":5,"results":"markup","comment":"","label":"tidyr-gapminder-pivot-longer","context":"interactive","read-only":"false","autorun":"false","out-height":"","warning":"true","dpi":72,"output":"true","message":"true","fig-cap":"","classes":"","fig-width":7,"out-width":"700px"}},{"id":3,"code":"gap_long <- gap_wide %>%\n  pivot_longer(\n    cols = c(-continent, -country),\n    names_to = \"obstype_year\", values_to = \"obs_values\"\n  )\nstr(gap_long)\n\n#> tibble [5,112 × 4] (S3: tbl_df/tbl/data.frame)\n#>  $ continent   : chr [1:5112] \"Africa\" \"Africa\" \"Africa\" \"Africa\" ...\n#>  $ country     : chr [1:5112] \"Algeria\" \"Algeria\" \"Algeria\" \"Algeria\" ...\n#>  $ obstype_year: chr [1:5112] \"gdpPercap_1952\" \"gdpPercap_1957\" \"gdpPercap_1962\" \"gdpPercap_1967\" ...\n#>  $ obs_values  : num [1:5112] 2449 3014 2551 3247 4183 ...","options":{"fig-height":5,"results":"markup","comment":"","label":"tidyr-gapminder-pivot-longer2","context":"interactive","read-only":"false","autorun":"false","out-height":"","warning":"true","dpi":72,"output":"true","message":"true","fig-cap":"","classes":"","fig-width":7,"out-width":"700px"}},{"id":4,"code":"gap_long <- gap_long %>% separate(obstype_year, into = c('obs_type', 'year'), sep = \"_\")\ngap_long$year <- as.integer(gap_long$year)","options":{"fig-height":5,"results":"markup","comment":"","label":"tidyr-gapminder-pivot-longer3","context":"interactive","read-only":"false","autorun":"false","out-height":"","warning":"true","dpi":72,"output":"true","message":"true","fig-cap":"","classes":"","fig-width":7,"out-width":"700px"}},{"id":5,"code":"gap_long %>% group_by(continent,obs_type) %>%\n    summarize(means=mean(obs_values))","options":{"fig-height":5,"results":"markup","comment":"","label":"tidyr-gapminder-group_by","context":"interactive","read-only":"false","autorun":"false","out-height":"","warning":"true","dpi":72,"output":"true","message":"true","fig-cap":"","classes":"","fig-width":7,"out-width":"700px"}},{"id":6,"code":"gap_normal <- gap_long %>%\n    pivot_wider(names_from = obs_type, values_from = obs_values)\ndim(gap_normal)\n#> [1] 1704    6\ndim(gapminder)\n#> [1] 1704    6\nnames(gap_normal)\n#> [1] \"continent\" \"country\"   \"year\"      \"gdpPercap\" \"lifeExp\"   \"pop\"     \nnames(gapminder)\n#> [1] \"country\"   \"year\"      \"pop\"       \"continent\" \"lifeExp\"   \"gdpPercap\"","options":{"fig-height":5,"results":"markup","comment":"","label":"tidyr-gapminder-pivot-wider","context":"interactive","read-only":"false","autorun":"false","out-height":"","warning":"true","dpi":72,"output":"true","message":"true","fig-cap":"","classes":"","fig-width":7,"out-width":"700px"}},{"id":7,"code":"gap_normal <- gap_normal[,names(gapminder)]\nall.equal(gap_normal,gapminder)\n#> [1] \"Attributes: < Component \\\"class\\\": Lengths (3, 1) differ (string compare on first 1) >\"\n#> [2] \"Attributes: < Component \\\"class\\\": 1 string mismatch >\"                                \n#> [3] \"Component \\\"country\\\": 1704 string mismatches\"                                         \n#> [4] \"Component \\\"pop\\\": Mean relative difference: 1.634504\"                                 \n#> [5] \"Component \\\"continent\\\": 1212 string mismatches\"                                       \n#> [6] \"Component \\\"lifeExp\\\": Mean relative difference: 0.203822\"                             \n#> [7] \"Component \\\"gdpPercap\\\": Mean relative difference: 1.162302\"        \n\nhead(gap_normal)\n#> # A tibble: 6 × 6\n#>   country  year      pop continent lifeExp gdpPercap\n#>   <chr>   <int>    <dbl> <chr>       <dbl>     <dbl>\n#> 1 Algeria  1952  9279525 Africa       43.1     2449.\n#> 2 Algeria  1957 10270856 Africa       45.7     3014.\n#> 3 Algeria  1962 11000948 Africa       48.3     2551.\n#> 4 Algeria  1967 12760499 Africa       51.4     3247.\n#> 5 Algeria  1972 14760787 Africa       54.5     4183.\n#> 6 Algeria  1977 17152804 Africa       58.0     4910.\n\nhead(gapminder)\n#>       country year      pop continent lifeExp gdpPercap\n#> 1 Afghanistan 1952  8425333      Asia  28.801  779.4453\n#> 2 Afghanistan 1957  9240934      Asia  30.332  820.8530\n#> 3 Afghanistan 1962 10267083      Asia  31.997  853.1007\n#> 4 Afghanistan 1967 11537966      Asia  34.020  836.1971\n#> 5 Afghanistan 1972 13079460      Asia  36.088  739.9811\n#> 6 Afghanistan 1977 14880372      Asia  38.438  786.1134","options":{"fig-height":5,"results":"markup","comment":"","label":"tidyr-gapminder-pivot-wider2","context":"interactive","read-only":"false","autorun":"false","out-height":"","warning":"true","dpi":72,"output":"true","message":"true","fig-cap":"","classes":"","fig-width":7,"out-width":"700px"}},{"id":8,"code":"gap_normal <- gap_normal %>% arrange(country, year)\nall.equal(gap_normal,gapminder)\n#> [1] \"Attributes: < Component \\\"class\\\": Lengths (3, 1) differ (string compare on first 1) >\"\n#> [2] \"Attributes: < Component \\\"class\\\": 1 string mismatch >\"   ","options":{"fig-height":5,"results":"markup","comment":"","label":"tidyr-gapminder-pivot-wider3","context":"interactive","read-only":"false","autorun":"false","out-height":"","warning":"true","dpi":72,"output":"true","message":"true","fig-cap":"","classes":"","fig-width":7,"out-width":"700px"}},{"id":9,"code":"gap_temp <- gap_long %>% unite(var_ID,continent,country,sep=\"_\")\nstr(gap_temp)\n\n#> tibble [5,112 × 4] (S3: tbl_df/tbl/data.frame)\n#>  $ var_ID    : chr [1:5112] \"Africa_Algeria\" \"Africa_Algeria\" \"Africa_Algeria\" \"Africa_Algeria\" ...\n#>  $ obs_type  : chr [1:5112] \"gdpPercap\" \"gdpPercap\" \"gdpPercap\" \"gdpPercap\" ...\n#>  $ year      : int [1:5112] 1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...\n#>  $ obs_values: num [1:5112] 2449 3014 2551 3247 4183 ...\n\ngap_temp <- gap_long %>%\n    unite(ID_var, continent, country, sep = \"_\") %>%\n    unite(var_names, obs_type, year, sep = \"_\")\nstr(gap_temp)\n\n#> tibble [5,112 × 3] (S3: tbl_df/tbl/data.frame)\n#>  $ ID_var    : chr [1:5112] \"Africa_Algeria\" \"Africa_Algeria\" \"Africa_Algeria\" \"Africa_Algeria\" ...\n#>  $ var_names : chr [1:5112] \"gdpPercap_1952\" \"gdpPercap_1957\" \"gdpPercap_1962\" \"gdpPercap_1967\" ...\n#>  $ obs_values: num [1:5112] 2449 3014 2551 3247 4183 ...","options":{"fig-height":5,"results":"markup","comment":"","label":"tidyr-gapminder-pivot-wider4","context":"interactive","read-only":"false","autorun":"false","out-height":"","warning":"true","dpi":72,"output":"true","message":"true","fig-cap":"","classes":"","fig-width":7,"out-width":"700px"}},{"id":10,"code":"gap_wide_new <- gap_long %>%\n  unite(ID_var, continent, country, sep = \"_\") %>%\n  unite(var_names, obs_type, year, sep = \"_\") %>%\n  pivot_wider(names_from = var_names, values_from = obs_values)\nstr(gap_wide_new)\n\n#> tibble [142 × 37] (S3: tbl_df/tbl/data.frame)\n#>  $ ID_var        : chr [1:142] \"Africa_Algeria\" \"Africa_Angola\" \"Africa_Benin\" \"Africa_Botswana\" ...\n#>  $ gdpPercap_1952: num [1:142] 2449 3521 1063 851 543 ...\n#>  $ gdpPercap_1957: num [1:142] 3014 3828 960 918 617 ...\n#>  $ gdpPercap_1962: num [1:142] 2551 4269 949 984 723 ...\n#>  $ gdpPercap_1967: num [1:142] 3247 5523 1036 1215 795 ...\n#>  $ gdpPercap_1972: num [1:142] 4183 5473 1086 2264 855 ...\n#>  $ gdpPercap_1977: num [1:142] 4910 3009 1029 3215 743 ...\n#>  $ gdpPercap_1982: num [1:142] 5745 2757 1278 4551 807 ...\n#>  $ gdpPercap_1987: num [1:142] 5681 2430 1226 6206 912 ...\n#>  $ gdpPercap_1992: num [1:142] 5023 2628 1191 7954 932 ...\n#>  $ gdpPercap_1997: num [1:142] 4797 2277 1233 8647 946 ...\n#>  $ gdpPercap_2002: num [1:142] 5288 2773 1373 11004 1038 ...\n#>  $ gdpPercap_2007: num [1:142] 6223 4797 1441 12570 1217 ...\n#>  $ lifeExp_1952  : num [1:142] 43.1 30 38.2 47.6 32 ...\n#>  $ lifeExp_1957  : num [1:142] 45.7 32 40.4 49.6 34.9 ...\n#>  $ lifeExp_1962  : num [1:142] 48.3 34 42.6 51.5 37.8 ...\n#>  $ lifeExp_1967  : num [1:142] 51.4 36 44.9 53.3 40.7 ...\n#>  $ lifeExp_1972  : num [1:142] 54.5 37.9 47 56 43.6 ...\n#>  $ lifeExp_1977  : num [1:142] 58 39.5 49.2 59.3 46.1 ...\n#>  $ lifeExp_1982  : num [1:142] 61.4 39.9 50.9 61.5 48.1 ...\n#>  $ lifeExp_1987  : num [1:142] 65.8 39.9 52.3 63.6 49.6 ...\n#>  $ lifeExp_1992  : num [1:142] 67.7 40.6 53.9 62.7 50.3 ...\n#>  $ lifeExp_1997  : num [1:142] 69.2 41 54.8 52.6 50.3 ...\n#>  $ lifeExp_2002  : num [1:142] 71 41 54.4 46.6 50.6 ...\n#>  $ lifeExp_2007  : num [1:142] 72.3 42.7 56.7 50.7 52.3 ...\n#>  $ pop_1952      : num [1:142] 9279525 4232095 1738315 442308 4469979 ...\n#>  $ pop_1957      : num [1:142] 10270856 4561361 1925173 474639 4713416 ...\n#>  $ pop_1962      : num [1:142] 11000948 4826015 2151895 512764 4919632 ...\n#>  $ pop_1967      : num [1:142] 12760499 5247469 2427334 553541 5127935 ...\n#>  $ pop_1972      : num [1:142] 14760787 5894858 2761407 619351 5433886 ...\n#>  $ pop_1977      : num [1:142] 17152804 6162675 3168267 781472 5889574 ...\n#>  $ pop_1982      : num [1:142] 20033753 7016384 3641603 970347 6634596 ...\n#>  $ pop_1987      : num [1:142] 23254956 7874230 4243788 1151184 7586551 ...\n#>  $ pop_1992      : num [1:142] 26298373 8735988 4981671 1342614 8878303 ...\n#>  $ pop_1997      : num [1:142] 29072015 9875024 6066080 1536536 10352843 ...\n#>  $ pop_2002      : num [1:142] 31287142 10866106 7026113 1630347 12251209 ...\n#>  $ pop_2007      : num [1:142] 33333216 12420476 8078314 1639131 14326203 ...","options":{"fig-height":5,"results":"markup","comment":"","label":"tidyr-gapminder-pivot-wider5","context":"interactive","read-only":"false","autorun":"false","out-height":"","warning":"true","dpi":72,"output":"true","message":"true","fig-cap":"","classes":"","fig-width":7,"out-width":"700px"}},{"id":11,"code":"gap_ludicrously_wide <- gap_long %>%\n    unite(var_names, obs_type, year,country, sep=\"_\") %>%\n    pivot_wider(names_from = var_names, values_from = obs_values)","options":{"fig-height":5,"results":"markup","comment":"","label":"tidyr-gapminer-wide-wider","context":"interactive","read-only":"false","autorun":"false","out-height":"","warning":"true","dpi":72,"output":"true","message":"true","fig-cap":"","classes":"","fig-width":7,"out-width":"700px"}},{"id":12,"code":"gap_wide_betterID <- separate(gap_wide_new, ID_var, c(\"continent\", \"country\"), sep=\"_\")\ngap_wide_betterID <- gap_long %>%\n    unite(ID_var, continent, country, sep = \"_\") %>%\n    unite(var_names, obs_type, year, sep = \"_\") %>%\n    pivot_wider(names_from = var_names, values_from = obs_values) %>%\n    separate(ID_var, c(\"continent\",\"country\"), sep = \"_\")\nstr(gap_wide_betterID)\n\n#> tibble [142 × 38] (S3: tbl_df/tbl/data.frame)\n#>  $ continent     : chr [1:142] \"Africa\" \"Africa\" \"Africa\" \"Africa\" ...\n#>  $ country       : chr [1:142] \"Algeria\" \"Angola\" \"Benin\" \"Botswana\" ...\n#>  $ gdpPercap_1952: num [1:142] 2449 3521 1063 851 543 ...\n#>  $ gdpPercap_1957: num [1:142] 3014 3828 960 918 617 ...\n#>  $ gdpPercap_1962: num [1:142] 2551 4269 949 984 723 ...\n#>  $ gdpPercap_1967: num [1:142] 3247 5523 1036 1215 795 ...\n#>  $ gdpPercap_1972: num [1:142] 4183 5473 1086 2264 855 ...\n#>  $ gdpPercap_1977: num [1:142] 4910 3009 1029 3215 743 ...\n#>  $ gdpPercap_1982: num [1:142] 5745 2757 1278 4551 807 ...\n#>  $ gdpPercap_1987: num [1:142] 5681 2430 1226 6206 912 ...\n#>  $ gdpPercap_1992: num [1:142] 5023 2628 1191 7954 932 ...\n#>  $ gdpPercap_1997: num [1:142] 4797 2277 1233 8647 946 ...\n#>  $ gdpPercap_2002: num [1:142] 5288 2773 1373 11004 1038 ...\n#>  $ gdpPercap_2007: num [1:142] 6223 4797 1441 12570 1217 ...\n#>  $ lifeExp_1952  : num [1:142] 43.1 30 38.2 47.6 32 ...\n#>  $ lifeExp_1957  : num [1:142] 45.7 32 40.4 49.6 34.9 ...\n#>  $ lifeExp_1962  : num [1:142] 48.3 34 42.6 51.5 37.8 ...\n#>  $ lifeExp_1967  : num [1:142] 51.4 36 44.9 53.3 40.7 ...\n#>  $ lifeExp_1972  : num [1:142] 54.5 37.9 47 56 43.6 ...\n#>  $ lifeExp_1977  : num [1:142] 58 39.5 49.2 59.3 46.1 ...\n#>  $ lifeExp_1982  : num [1:142] 61.4 39.9 50.9 61.5 48.1 ...\n#>  $ lifeExp_1987  : num [1:142] 65.8 39.9 52.3 63.6 49.6 ...\n#>  $ lifeExp_1992  : num [1:142] 67.7 40.6 53.9 62.7 50.3 ...\n#>  $ lifeExp_1997  : num [1:142] 69.2 41 54.8 52.6 50.3 ...\n#>  $ lifeExp_2002  : num [1:142] 71 41 54.4 46.6 50.6 ...\n#>  $ lifeExp_2007  : num [1:142] 72.3 42.7 56.7 50.7 52.3 ...\n#>  $ pop_1952      : num [1:142] 9279525 4232095 1738315 442308 4469979 ...\n#>  $ pop_1957      : num [1:142] 10270856 4561361 1925173 474639 4713416 ...\n#>  $ pop_1962      : num [1:142] 11000948 4826015 2151895 512764 4919632 ...\n#>  $ pop_1967      : num [1:142] 12760499 5247469 2427334 553541 5127935 ...\n#>  $ pop_1972      : num [1:142] 14760787 5894858 2761407 619351 5433886 ...\n#>  $ pop_1977      : num [1:142] 17152804 6162675 3168267 781472 5889574 ...\n#>  $ pop_1982      : num [1:142] 20033753 7016384 3641603 970347 6634596 ...\n#>  $ pop_1987      : num [1:142] 23254956 7874230 4243788 1151184 7586551 ...\n#>  $ pop_1992      : num [1:142] 26298373 8735988 4981671 1342614 8878303 ...\n#>  $ pop_1997      : num [1:142] 29072015 9875024 6066080 1536536 10352843 ...\n#>  $ pop_2002      : num [1:142] 31287142 10866106 7026113 1630347 12251209 ...\n#>  $ pop_2007      : num [1:142] 33333216 12420476 8078314 1639131 14326203 ...\nall.equal(gap_wide, gap_wide_betterID)\n#> [1] \"Attributes: < Component \\\"class\\\": Lengths (1, 3) differ (string compare on first 1) >\"\n#> [2] \"Attributes: < Component \\\"class\\\": 1 string mismatch >\" ","options":{"fig-height":5,"results":"markup","comment":"","label":"tidyr-gapminer-separate-diff","context":"interactive","read-only":"false","autorun":"false","out-height":"","warning":"true","dpi":72,"output":"true","message":"true","fig-cap":"","classes":"","fig-width":7,"out-width":"700px"}}];
+globalThis.qwebrCellDetails = [{"id":1,"code":"### 실습 데이터 다운로드 및 불러오기\ndownload.file(\"https://raw.githubusercontent.com/bit2r/gpt-ds/main/data/gapminder_data.csv\", \"gapminder_data.csv\") \ngapminder <- read.csv(\"gapminder_data.csv\", header=TRUE, stringsAsFactors = FALSE)\n\ndownload.file(\"https://raw.githubusercontent.com/bit2r/gpt-ds/main/data/gapminder_wide.csv\", \"gapminder_wide.csv\") \n# gap_wide <- read.csv(\"data/gapminder_wide.csv\", stringsAsFactors = FALSE) # 로컬 작업 \ngap_wide <- read.csv(\"gapminder_wide.csv\", stringsAsFactors = FALSE) # webr\nstr(gap_wide)\n#> 'data.frame':    142 obs. of  38 variables:\n#>  $ continent     : chr  \"Africa\" \"Africa\" \"Africa\" \"Africa\" ...\n#>  $ country       : chr  \"Algeria\" \"Angola\" \"Benin\" \"Botswana\" ...\n#>  $ gdpPercap_1952: num  2449 3521 1063 851 543 ...\n#>  $ gdpPercap_1957: num  3014 3828 960 918 617 ...\n#>  $ gdpPercap_1962: num  2551 4269 949 984 723 ...\n#>  $ gdpPercap_1967: num  3247 5523 1036 1215 795 ...\n#>  $ gdpPercap_1972: num  4183 5473 1086 2264 855 ...\n#>  $ gdpPercap_1977: num  4910 3009 1029 3215 743 ...\n#>  $ gdpPercap_1982: num  5745 2757 1278 4551 807 ...\n#>  $ gdpPercap_1987: num  5681 2430 1226 6206 912 ...\n#>  $ gdpPercap_1992: num  5023 2628 1191 7954 932 ...\n#>  $ gdpPercap_1997: num  4797 2277 1233 8647 946 ...\n#>  $ gdpPercap_2002: num  5288 2773 1373 11004 1038 ...\n#>  $ gdpPercap_2007: num  6223 4797 1441 12570 1217 ...\n#>  $ lifeExp_1952  : num  43.1 30 38.2 47.6 32 ...\n#>  $ lifeExp_1957  : num  45.7 32 40.4 49.6 34.9 ...\n#>  $ lifeExp_1962  : num  48.3 34 42.6 51.5 37.8 ...\n#>  $ lifeExp_1967  : num  51.4 36 44.9 53.3 40.7 ...\n#>  $ lifeExp_1972  : num  54.5 37.9 47 56 43.6 ...\n#>  $ lifeExp_1977  : num  58 39.5 49.2 59.3 46.1 ...\n#>  $ lifeExp_1982  : num  61.4 39.9 50.9 61.5 48.1 ...\n#>  $ lifeExp_1987  : num  65.8 39.9 52.3 63.6 49.6 ...\n#>  $ lifeExp_1992  : num  67.7 40.6 53.9 62.7 50.3 ...\n#>  $ lifeExp_1997  : num  69.2 41 54.8 52.6 50.3 ...\n#>  $ lifeExp_2002  : num  71 41 54.4 46.6 50.6 ...\n#>  $ lifeExp_2007  : num  72.3 42.7 56.7 50.7 52.3 ...\n#>  $ pop_1952      : num  9279525 4232095 1738315 442308 4469979 ...\n#>  $ pop_1957      : num  10270856 4561361 1925173 474639 4713416 ...\n#>  $ pop_1962      : num  11000948 4826015 2151895 512764 4919632 ...\n#>  $ pop_1967      : num  12760499 5247469 2427334 553541 5127935 ...\n#>  $ pop_1972      : num  14760787 5894858 2761407 619351 5433886 ...\n#>  $ pop_1977      : num  17152804 6162675 3168267 781472 5889574 ...\n#>  $ pop_1982      : num  20033753 7016384 3641603 970347 6634596 ...\n#>  $ pop_1987      : num  23254956 7874230 4243788 1151184 7586551 ...\n#>  $ pop_1992      : num  26298373 8735988 4981671 1342614 8878303 ...\n#>  $ pop_1997      : num  29072015 9875024 6066080 1536536 10352843 ...\n#>  $ pop_2002      : int  31287142 10866106 7026113 1630347 12251209 7021078 15929988 4048013 8835739 614382 ...\n#>  $ pop_2007      : int  33333216 12420476 8078314 1639131 14326203 8390505 17696293 4369038 10238807 710960 ...","options":{"read-only":"false","output":"true","comment":"","label":"tidyr-gapminder-pivot-longer","results":"markup","message":"true","out-width":"700px","out-height":"","fig-width":7,"warning":"true","dpi":72,"autorun":"false","context":"interactive","fig-height":5,"classes":"","fig-cap":""}},{"id":2,"code":"gap_long <- gap_wide %>%\n  pivot_longer(\n    cols = c(starts_with('pop'), starts_with('lifeExp'), starts_with('gdpPercap')),\n    names_to = \"obstype_year\", values_to = \"obs_values\"\n  )\nstr(gap_long)\n\n#> tibble [5,112 × 4] (S3: tbl_df/tbl/data.frame)\n#>  $ continent   : chr [1:5112] \"Africa\" \"Africa\" \"Africa\" \"Africa\" ...\n#>  $ country     : chr [1:5112] \"Algeria\" \"Algeria\" \"Algeria\" \"Algeria\" ...\n#>  $ obstype_year: chr [1:5112] \"pop_1952\" \"pop_1957\" \"pop_1962\" \"pop_1967\" ...\n#>  $ obs_values  : num [1:5112] 9279525 10270856 11000948 12760499 14760787 ...","options":{"read-only":"false","output":"true","comment":"","label":"tidyr-gapminder-pivot-longer","results":"markup","message":"true","out-width":"700px","out-height":"","fig-width":7,"warning":"true","dpi":72,"autorun":"false","context":"interactive","fig-height":5,"classes":"","fig-cap":""}},{"id":3,"code":"gap_long <- gap_wide %>%\n  pivot_longer(\n    cols = c(-continent, -country),\n    names_to = \"obstype_year\", values_to = \"obs_values\"\n  )\nstr(gap_long)\n\n#> tibble [5,112 × 4] (S3: tbl_df/tbl/data.frame)\n#>  $ continent   : chr [1:5112] \"Africa\" \"Africa\" \"Africa\" \"Africa\" ...\n#>  $ country     : chr [1:5112] \"Algeria\" \"Algeria\" \"Algeria\" \"Algeria\" ...\n#>  $ obstype_year: chr [1:5112] \"gdpPercap_1952\" \"gdpPercap_1957\" \"gdpPercap_1962\" \"gdpPercap_1967\" ...\n#>  $ obs_values  : num [1:5112] 2449 3014 2551 3247 4183 ...","options":{"read-only":"false","output":"true","comment":"","label":"tidyr-gapminder-pivot-longer2","results":"markup","message":"true","out-width":"700px","out-height":"","fig-width":7,"warning":"true","dpi":72,"autorun":"false","context":"interactive","fig-height":5,"classes":"","fig-cap":""}},{"id":4,"code":"gap_long <- gap_long %>% separate(obstype_year, into = c('obs_type', 'year'), sep = \"_\")\ngap_long$year <- as.integer(gap_long$year)","options":{"read-only":"false","output":"true","comment":"","label":"tidyr-gapminder-pivot-longer3","results":"markup","message":"true","out-width":"700px","out-height":"","fig-width":7,"warning":"true","dpi":72,"autorun":"false","context":"interactive","fig-height":5,"classes":"","fig-cap":""}},{"id":5,"code":"gap_long %>% group_by(continent,obs_type) %>%\n    summarize(means=mean(obs_values))","options":{"read-only":"false","output":"true","comment":"","label":"tidyr-gapminder-group_by","results":"markup","message":"true","out-width":"700px","out-height":"","fig-width":7,"warning":"true","dpi":72,"autorun":"false","context":"interactive","fig-height":5,"classes":"","fig-cap":""}},{"id":6,"code":"gap_normal <- gap_long %>%\n    pivot_wider(names_from = obs_type, values_from = obs_values)\ndim(gap_normal)\n#> [1] 1704    6\ndim(gapminder)\n#> [1] 1704    6\nnames(gap_normal)\n#> [1] \"continent\" \"country\"   \"year\"      \"gdpPercap\" \"lifeExp\"   \"pop\"     \nnames(gapminder)\n#> [1] \"country\"   \"year\"      \"pop\"       \"continent\" \"lifeExp\"   \"gdpPercap\"","options":{"read-only":"false","output":"true","comment":"","label":"tidyr-gapminder-pivot-wider","results":"markup","message":"true","out-width":"700px","out-height":"","fig-width":7,"warning":"true","dpi":72,"autorun":"false","context":"interactive","fig-height":5,"classes":"","fig-cap":""}},{"id":7,"code":"gap_normal <- gap_normal[,names(gapminder)]\nall.equal(gap_normal,gapminder)\n#> [1] \"Attributes: < Component \\\"class\\\": Lengths (3, 1) differ (string compare on first 1) >\"\n#> [2] \"Attributes: < Component \\\"class\\\": 1 string mismatch >\"                                \n#> [3] \"Component \\\"country\\\": 1704 string mismatches\"                                         \n#> [4] \"Component \\\"pop\\\": Mean relative difference: 1.634504\"                                 \n#> [5] \"Component \\\"continent\\\": 1212 string mismatches\"                                       \n#> [6] \"Component \\\"lifeExp\\\": Mean relative difference: 0.203822\"                             \n#> [7] \"Component \\\"gdpPercap\\\": Mean relative difference: 1.162302\"        \n\nhead(gap_normal)\n#> # A tibble: 6 × 6\n#>   country  year      pop continent lifeExp gdpPercap\n#>   <chr>   <int>    <dbl> <chr>       <dbl>     <dbl>\n#> 1 Algeria  1952  9279525 Africa       43.1     2449.\n#> 2 Algeria  1957 10270856 Africa       45.7     3014.\n#> 3 Algeria  1962 11000948 Africa       48.3     2551.\n#> 4 Algeria  1967 12760499 Africa       51.4     3247.\n#> 5 Algeria  1972 14760787 Africa       54.5     4183.\n#> 6 Algeria  1977 17152804 Africa       58.0     4910.\n\nhead(gapminder)\n#>       country year      pop continent lifeExp gdpPercap\n#> 1 Afghanistan 1952  8425333      Asia  28.801  779.4453\n#> 2 Afghanistan 1957  9240934      Asia  30.332  820.8530\n#> 3 Afghanistan 1962 10267083      Asia  31.997  853.1007\n#> 4 Afghanistan 1967 11537966      Asia  34.020  836.1971\n#> 5 Afghanistan 1972 13079460      Asia  36.088  739.9811\n#> 6 Afghanistan 1977 14880372      Asia  38.438  786.1134","options":{"read-only":"false","output":"true","comment":"","label":"tidyr-gapminder-pivot-wider2","results":"markup","message":"true","out-width":"700px","out-height":"","fig-width":7,"warning":"true","dpi":72,"autorun":"false","context":"interactive","fig-height":5,"classes":"","fig-cap":""}},{"id":8,"code":"gap_normal <- gap_normal %>% arrange(country, year)\nall.equal(gap_normal,gapminder)\n#> [1] \"Attributes: < Component \\\"class\\\": Lengths (3, 1) differ (string compare on first 1) >\"\n#> [2] \"Attributes: < Component \\\"class\\\": 1 string mismatch >\"   ","options":{"read-only":"false","output":"true","comment":"","label":"tidyr-gapminder-pivot-wider3","results":"markup","message":"true","out-width":"700px","out-height":"","fig-width":7,"warning":"true","dpi":72,"autorun":"false","context":"interactive","fig-height":5,"classes":"","fig-cap":""}},{"id":9,"code":"gap_temp <- gap_long %>% unite(var_ID,continent,country,sep=\"_\")\nstr(gap_temp)\n\n#> tibble [5,112 × 4] (S3: tbl_df/tbl/data.frame)\n#>  $ var_ID    : chr [1:5112] \"Africa_Algeria\" \"Africa_Algeria\" \"Africa_Algeria\" \"Africa_Algeria\" ...\n#>  $ obs_type  : chr [1:5112] \"gdpPercap\" \"gdpPercap\" \"gdpPercap\" \"gdpPercap\" ...\n#>  $ year      : int [1:5112] 1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...\n#>  $ obs_values: num [1:5112] 2449 3014 2551 3247 4183 ...\n\ngap_temp <- gap_long %>%\n    unite(ID_var, continent, country, sep = \"_\") %>%\n    unite(var_names, obs_type, year, sep = \"_\")\nstr(gap_temp)\n\n#> tibble [5,112 × 3] (S3: tbl_df/tbl/data.frame)\n#>  $ ID_var    : chr [1:5112] \"Africa_Algeria\" \"Africa_Algeria\" \"Africa_Algeria\" \"Africa_Algeria\" ...\n#>  $ var_names : chr [1:5112] \"gdpPercap_1952\" \"gdpPercap_1957\" \"gdpPercap_1962\" \"gdpPercap_1967\" ...\n#>  $ obs_values: num [1:5112] 2449 3014 2551 3247 4183 ...","options":{"read-only":"false","output":"true","comment":"","label":"tidyr-gapminder-pivot-wider4","results":"markup","message":"true","out-width":"700px","out-height":"","fig-width":7,"warning":"true","dpi":72,"autorun":"false","context":"interactive","fig-height":5,"classes":"","fig-cap":""}},{"id":10,"code":"gap_wide_new <- gap_long %>%\n  unite(ID_var, continent, country, sep = \"_\") %>%\n  unite(var_names, obs_type, year, sep = \"_\") %>%\n  pivot_wider(names_from = var_names, values_from = obs_values)\nstr(gap_wide_new)\n\n#> tibble [142 × 37] (S3: tbl_df/tbl/data.frame)\n#>  $ ID_var        : chr [1:142] \"Africa_Algeria\" \"Africa_Angola\" \"Africa_Benin\" \"Africa_Botswana\" ...\n#>  $ gdpPercap_1952: num [1:142] 2449 3521 1063 851 543 ...\n#>  $ gdpPercap_1957: num [1:142] 3014 3828 960 918 617 ...\n#>  $ gdpPercap_1962: num [1:142] 2551 4269 949 984 723 ...\n#>  $ gdpPercap_1967: num [1:142] 3247 5523 1036 1215 795 ...\n#>  $ gdpPercap_1972: num [1:142] 4183 5473 1086 2264 855 ...\n#>  $ gdpPercap_1977: num [1:142] 4910 3009 1029 3215 743 ...\n#>  $ gdpPercap_1982: num [1:142] 5745 2757 1278 4551 807 ...\n#>  $ gdpPercap_1987: num [1:142] 5681 2430 1226 6206 912 ...\n#>  $ gdpPercap_1992: num [1:142] 5023 2628 1191 7954 932 ...\n#>  $ gdpPercap_1997: num [1:142] 4797 2277 1233 8647 946 ...\n#>  $ gdpPercap_2002: num [1:142] 5288 2773 1373 11004 1038 ...\n#>  $ gdpPercap_2007: num [1:142] 6223 4797 1441 12570 1217 ...\n#>  $ lifeExp_1952  : num [1:142] 43.1 30 38.2 47.6 32 ...\n#>  $ lifeExp_1957  : num [1:142] 45.7 32 40.4 49.6 34.9 ...\n#>  $ lifeExp_1962  : num [1:142] 48.3 34 42.6 51.5 37.8 ...\n#>  $ lifeExp_1967  : num [1:142] 51.4 36 44.9 53.3 40.7 ...\n#>  $ lifeExp_1972  : num [1:142] 54.5 37.9 47 56 43.6 ...\n#>  $ lifeExp_1977  : num [1:142] 58 39.5 49.2 59.3 46.1 ...\n#>  $ lifeExp_1982  : num [1:142] 61.4 39.9 50.9 61.5 48.1 ...\n#>  $ lifeExp_1987  : num [1:142] 65.8 39.9 52.3 63.6 49.6 ...\n#>  $ lifeExp_1992  : num [1:142] 67.7 40.6 53.9 62.7 50.3 ...\n#>  $ lifeExp_1997  : num [1:142] 69.2 41 54.8 52.6 50.3 ...\n#>  $ lifeExp_2002  : num [1:142] 71 41 54.4 46.6 50.6 ...\n#>  $ lifeExp_2007  : num [1:142] 72.3 42.7 56.7 50.7 52.3 ...\n#>  $ pop_1952      : num [1:142] 9279525 4232095 1738315 442308 4469979 ...\n#>  $ pop_1957      : num [1:142] 10270856 4561361 1925173 474639 4713416 ...\n#>  $ pop_1962      : num [1:142] 11000948 4826015 2151895 512764 4919632 ...\n#>  $ pop_1967      : num [1:142] 12760499 5247469 2427334 553541 5127935 ...\n#>  $ pop_1972      : num [1:142] 14760787 5894858 2761407 619351 5433886 ...\n#>  $ pop_1977      : num [1:142] 17152804 6162675 3168267 781472 5889574 ...\n#>  $ pop_1982      : num [1:142] 20033753 7016384 3641603 970347 6634596 ...\n#>  $ pop_1987      : num [1:142] 23254956 7874230 4243788 1151184 7586551 ...\n#>  $ pop_1992      : num [1:142] 26298373 8735988 4981671 1342614 8878303 ...\n#>  $ pop_1997      : num [1:142] 29072015 9875024 6066080 1536536 10352843 ...\n#>  $ pop_2002      : num [1:142] 31287142 10866106 7026113 1630347 12251209 ...\n#>  $ pop_2007      : num [1:142] 33333216 12420476 8078314 1639131 14326203 ...","options":{"read-only":"false","output":"true","comment":"","label":"tidyr-gapminder-pivot-wider5","results":"markup","message":"true","out-width":"700px","out-height":"","fig-width":7,"warning":"true","dpi":72,"autorun":"false","context":"interactive","fig-height":5,"classes":"","fig-cap":""}},{"id":11,"code":"gap_ludicrously_wide <- gap_long %>%\n    unite(var_names, obs_type, year,country, sep=\"_\") %>%\n    pivot_wider(names_from = var_names, values_from = obs_values)","options":{"read-only":"false","output":"true","comment":"","label":"tidyr-gapminer-wide-wider","results":"markup","message":"true","out-width":"700px","out-height":"","fig-width":7,"warning":"true","dpi":72,"autorun":"false","context":"interactive","fig-height":5,"classes":"","fig-cap":""}},{"id":12,"code":"gap_wide_betterID <- separate(gap_wide_new, ID_var, c(\"continent\", \"country\"), sep=\"_\")\ngap_wide_betterID <- gap_long %>%\n    unite(ID_var, continent, country, sep = \"_\") %>%\n    unite(var_names, obs_type, year, sep = \"_\") %>%\n    pivot_wider(names_from = var_names, values_from = obs_values) %>%\n    separate(ID_var, c(\"continent\",\"country\"), sep = \"_\")\nstr(gap_wide_betterID)\n\n#> tibble [142 × 38] (S3: tbl_df/tbl/data.frame)\n#>  $ continent     : chr [1:142] \"Africa\" \"Africa\" \"Africa\" \"Africa\" ...\n#>  $ country       : chr [1:142] \"Algeria\" \"Angola\" \"Benin\" \"Botswana\" ...\n#>  $ gdpPercap_1952: num [1:142] 2449 3521 1063 851 543 ...\n#>  $ gdpPercap_1957: num [1:142] 3014 3828 960 918 617 ...\n#>  $ gdpPercap_1962: num [1:142] 2551 4269 949 984 723 ...\n#>  $ gdpPercap_1967: num [1:142] 3247 5523 1036 1215 795 ...\n#>  $ gdpPercap_1972: num [1:142] 4183 5473 1086 2264 855 ...\n#>  $ gdpPercap_1977: num [1:142] 4910 3009 1029 3215 743 ...\n#>  $ gdpPercap_1982: num [1:142] 5745 2757 1278 4551 807 ...\n#>  $ gdpPercap_1987: num [1:142] 5681 2430 1226 6206 912 ...\n#>  $ gdpPercap_1992: num [1:142] 5023 2628 1191 7954 932 ...\n#>  $ gdpPercap_1997: num [1:142] 4797 2277 1233 8647 946 ...\n#>  $ gdpPercap_2002: num [1:142] 5288 2773 1373 11004 1038 ...\n#>  $ gdpPercap_2007: num [1:142] 6223 4797 1441 12570 1217 ...\n#>  $ lifeExp_1952  : num [1:142] 43.1 30 38.2 47.6 32 ...\n#>  $ lifeExp_1957  : num [1:142] 45.7 32 40.4 49.6 34.9 ...\n#>  $ lifeExp_1962  : num [1:142] 48.3 34 42.6 51.5 37.8 ...\n#>  $ lifeExp_1967  : num [1:142] 51.4 36 44.9 53.3 40.7 ...\n#>  $ lifeExp_1972  : num [1:142] 54.5 37.9 47 56 43.6 ...\n#>  $ lifeExp_1977  : num [1:142] 58 39.5 49.2 59.3 46.1 ...\n#>  $ lifeExp_1982  : num [1:142] 61.4 39.9 50.9 61.5 48.1 ...\n#>  $ lifeExp_1987  : num [1:142] 65.8 39.9 52.3 63.6 49.6 ...\n#>  $ lifeExp_1992  : num [1:142] 67.7 40.6 53.9 62.7 50.3 ...\n#>  $ lifeExp_1997  : num [1:142] 69.2 41 54.8 52.6 50.3 ...\n#>  $ lifeExp_2002  : num [1:142] 71 41 54.4 46.6 50.6 ...\n#>  $ lifeExp_2007  : num [1:142] 72.3 42.7 56.7 50.7 52.3 ...\n#>  $ pop_1952      : num [1:142] 9279525 4232095 1738315 442308 4469979 ...\n#>  $ pop_1957      : num [1:142] 10270856 4561361 1925173 474639 4713416 ...\n#>  $ pop_1962      : num [1:142] 11000948 4826015 2151895 512764 4919632 ...\n#>  $ pop_1967      : num [1:142] 12760499 5247469 2427334 553541 5127935 ...\n#>  $ pop_1972      : num [1:142] 14760787 5894858 2761407 619351 5433886 ...\n#>  $ pop_1977      : num [1:142] 17152804 6162675 3168267 781472 5889574 ...\n#>  $ pop_1982      : num [1:142] 20033753 7016384 3641603 970347 6634596 ...\n#>  $ pop_1987      : num [1:142] 23254956 7874230 4243788 1151184 7586551 ...\n#>  $ pop_1992      : num [1:142] 26298373 8735988 4981671 1342614 8878303 ...\n#>  $ pop_1997      : num [1:142] 29072015 9875024 6066080 1536536 10352843 ...\n#>  $ pop_2002      : num [1:142] 31287142 10866106 7026113 1630347 12251209 ...\n#>  $ pop_2007      : num [1:142] 33333216 12420476 8078314 1639131 14326203 ...\nall.equal(gap_wide, gap_wide_betterID)\n#> [1] \"Attributes: < Component \\\"class\\\": Lengths (1, 3) differ (string compare on first 1) >\"\n#> [2] \"Attributes: < Component \\\"class\\\": 1 string mismatch >\" ","options":{"read-only":"false","output":"true","comment":"","label":"tidyr-gapminer-separate-diff","results":"markup","message":"true","out-width":"700px","out-height":"","fig-width":7,"warning":"true","dpi":72,"autorun":"false","context":"interactive","fig-height":5,"classes":"","fig-cap":""}}];
 
 </script><script type="module">
 // Declare startupMessageQWebR globally
@@ -998,7 +998,7 @@ globalThis.qwebrExecuteCode = async function (
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_structure.html"><strong>3부</strong> 데이터 다루기</a></li><li class="breadcrumb-item"><a href="./tidyr.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_structure.html"><strong>2부</strong> 데이터 다루기</a></li><li class="breadcrumb-item"><a href="./tidyr.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -1065,7 +1065,7 @@ globalThis.qwebrExecuteCode = async function (
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text"><strong>2부</strong> 가져오기</span></a>
+ <span class="menu-text"><strong>2부</strong> 데이터 다루기</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -1073,8 +1073,26 @@ globalThis.qwebrExecuteCode = async function (
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span></a>
+  <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidyr.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></span></a>
   </div>
 </li>
       </ul>
@@ -1082,7 +1100,7 @@ globalThis.qwebrExecuteCode = async function (
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text"><strong>3부</strong> 데이터 다루기</span></a>
+ <span class="menu-text"><strong>3부</strong> 시각화</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -1090,26 +1108,20 @@ globalThis.qwebrExecuteCode = async function (
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
+  <a href="./ggplot2_concept.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">그래프 문법</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
+  <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dplyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tidyr.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></span></a>
+  <a href="./ggplot2_pattern.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span></a>
   </div>
 </li>
       </ul>
@@ -1117,7 +1129,7 @@ globalThis.qwebrExecuteCode = async function (
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text"><strong>4부</strong> 시각화</span></a>
+ <span class="menu-text"><strong>4부</strong> 모형</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -1125,8 +1137,26 @@ globalThis.qwebrExecuteCode = async function (
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">ggplot으로 논문 품질 그래프 생성하기</span></span></a>
+  <a href="./models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">모형</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_many.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
   </div>
 </li>
       </ul>
@@ -1134,7 +1164,7 @@ globalThis.qwebrExecuteCode = async function (
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text"><strong>4부</strong> 모형</span></a>
+ <span class="menu-text"><strong>5부</strong> 프로그래밍</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -1142,26 +1172,26 @@ globalThis.qwebrExecuteCode = async function (
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">모형</span></span></a>
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
+  <a href="./function_plyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models_many.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
+  <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
   </div>
 </li>
       </ul>
@@ -1169,7 +1199,7 @@ globalThis.qwebrExecuteCode = async function (
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text"><strong>5부</strong> 프로그래밍</span></a>
+ <span class="menu-text"><strong>6부</strong> 커뮤니케이션</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -1177,14 +1207,26 @@ globalThis.qwebrExecuteCode = async function (
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+  <a href="./comm_map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+  <a href="./comm_knitr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">데이터 분석 보고서</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comm_quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comm_export.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">저장하기</span></span></a>
   </div>
 </li>
       </ul>
@@ -1192,7 +1234,7 @@ globalThis.qwebrExecuteCode = async function (
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text"><strong>6부</strong> 커뮤니케이션</span></a>
+ <span class="menu-text"><strong>7부</strong> 가져오기</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -1200,14 +1242,8 @@ globalThis.qwebrExecuteCode = async function (
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
+  <a href="./import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span></a>
   </div>
 </li>
       </ul>
@@ -1215,7 +1251,7 @@ globalThis.qwebrExecuteCode = async function (
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text"><strong>7부</strong> 챗GPT</span></a>
+ <span class="menu-text"><strong>8부</strong> 챗GPT</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -1224,78 +1260,37 @@ globalThis.qwebrExecuteCode = async function (
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prompt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./langchain.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./local_llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
- <span class="menu-text"><strong>8부</strong> 데이터 과학</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true" aria-label="토글 섹션">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./simpson.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./basic_stat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">통계</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./sampling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./hypothesis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./NHST.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">NHST.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
   </div>
 </li>
       </ul>
@@ -1314,9 +1309,9 @@ globalThis.qwebrExecuteCode = async function (
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-<li><a href="#%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0" id="toc-시작하기" class="nav-link active" data-scroll-target="#%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0"><span class="header-section-number">8.1</span> 시작하기</a></li>
-  <li><a href="#pivot_longer-wide%EC%97%90%EC%84%9C-long-%ED%98%95%EC%8B%9D-%EC%A0%84%ED%99%98" id="toc-pivot_longer-wide에서-long-형식-전환" class="nav-link" data-scroll-target="#pivot_longer-wide%EC%97%90%EC%84%9C-long-%ED%98%95%EC%8B%9D-%EC%A0%84%ED%99%98"><span class="header-section-number">8.2</span> <code>pivot_longer()</code>: <code>wide</code>에서 <code>long</code> 형식 전환</a></li>
-  <li><a href="#pivot_wider-long%EC%97%90%EC%84%9C-%EC%A4%91%EA%B0%84-%ED%98%95%EC%8B%9D%EC%9C%BC%EB%A1%9C" id="toc-pivot_wider-long에서-중간-형식으로" class="nav-link" data-scroll-target="#pivot_wider-long%EC%97%90%EC%84%9C-%EC%A4%91%EA%B0%84-%ED%98%95%EC%8B%9D%EC%9C%BC%EB%A1%9C"><span class="header-section-number">8.3</span> <code>pivot_wider()</code>: ’long’에서 중간 형식으로</a></li>
+<li><a href="#%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0" id="toc-시작하기" class="nav-link active" data-scroll-target="#%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0"><span class="header-section-number">7.1</span> 시작하기</a></li>
+  <li><a href="#pivot_longer-wide%EC%97%90%EC%84%9C-long-%ED%98%95%EC%8B%9D-%EC%A0%84%ED%99%98" id="toc-pivot_longer-wide에서-long-형식-전환" class="nav-link" data-scroll-target="#pivot_longer-wide%EC%97%90%EC%84%9C-long-%ED%98%95%EC%8B%9D-%EC%A0%84%ED%99%98"><span class="header-section-number">7.2</span> <code>pivot_longer()</code>: <code>wide</code>에서 <code>long</code> 형식 전환</a></li>
+  <li><a href="#pivot_wider-long%EC%97%90%EC%84%9C-%EC%A4%91%EA%B0%84-%ED%98%95%EC%8B%9D%EC%9C%BC%EB%A1%9C" id="toc-pivot_wider-long에서-중간-형식으로" class="nav-link" data-scroll-target="#pivot_wider-long%EC%97%90%EC%84%9C-%EC%A4%91%EA%B0%84-%ED%98%95%EC%8B%9D%EC%9C%BC%EB%A1%9C"><span class="header-section-number">7.3</span> <code>pivot_wider()</code>: ’long’에서 중간 형식으로</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/tidyr.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -1491,9 +1486,9 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   };
   
 }
-</script><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_structure.html"><strong>3부</strong> 데이터 다루기</a></li><li class="breadcrumb-item"><a href="./tidyr.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></a></li></ol></nav><div class="quarto-title">
+</script><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_structure.html"><strong>2부</strong> 데이터 다루기</a></li><li class="breadcrumb-item"><a href="./tidyr.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title">
-<span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span>
+<span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span>
 </h1>
 </div>
 
@@ -1517,15 +1512,15 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <p>‘wide’ 형식에서 각 행은 흔히 관측점(site/subject/patient)이며, 동일한 자료형을 담고 있는 다수 관측변수를 갖게 된다. 시간이 경과함에 따라 반복되는 관측점이거나, 다수 변수의 관측점(혹은 둘이 혼합된 사례)일 수 있다. 데이터 입력이 더 단순하거나 일부 다른 응용 사례에서 ‘wide’ 형식을 선호할 수 있다. 하지만, <code>R</code> 함수 다수는 ’long’형식을 가정하고 설계되었다. 원래 데이터 형식에 관계없이 데이터를 효율적으로 변환하는 방식을 자세히 살펴보자.</p>
 <div id="fig-gapminder-long" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gapminder-long-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/gapminder/14-tidyr-fig1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="그림&nbsp;8.1: wide와 long 데이터프레임 비교"><img src="images/gapminder/14-tidyr-fig1.png" class="img-fluid figure-img"></a>
+<a href="images/gapminder/14-tidyr-fig1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="그림&nbsp;7.1: wide와 long 데이터프레임 비교"><img src="images/gapminder/14-tidyr-fig1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gapminder-long-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;8.1: <code>wide</code>와 <code>long</code> 데이터프레임 비교
+그림&nbsp;7.1: <code>wide</code>와 <code>long</code> 데이터프레임 비교
 </figcaption></figure>
 </div>
 <p>데이터 형식은 주로 가독성에 영향을 준다. 사람에게는 ‘wide’ 형식이 좀 더 직관적인데, 이유는 데이터 형상으로 인해 화면에 더 많은 데이터를 볼 수 있기 때문이다. 하지만, 컴퓨터에게는 ‘long’ 형식이 더 가독성이 높고, 데이터베이스 형식에 훨씬 더 가깝다. 데이터프레임의 ID 변수는 데이터베이스 필드(Field)와 유사하고, 관측변수는 데이터베이스 값(Value)과 유사하다.</p>
-<section id="시작하기" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="시작하기">
-<span class="header-section-number">8.1</span> 시작하기</h2>
+<section id="시작하기" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="시작하기">
+<span class="header-section-number">7.1</span> 시작하기</h2>
 <p>먼저 설치하지 않았다면 <code>tidyr</code> 패키지를 설치한다(아마도 앞에서 <code>dplyr</code> 패키지는 설치했을 것이다):</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#install.packages("tidyr")</span></span>
@@ -1578,8 +1573,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <p><code>gapminder</code> 데이터셋처럼, 관측된 데이터에는 다양한 자료 형식이 있다. 대부분 순도 100% ‘long’ 혹은 순도 100% ‘wide’ 자료 형식 사이 어딘가에 위치하게 된다. <code>gapminder</code> 데이터셋에는 “ID” 변수가 3개(<code>continent</code>, <code>country</code>, <code>year</code>), “관측변수”가 3개(<code>pop</code>, <code>lifeExp</code>, <code>gdpPercap</code>)가 있다. 저자는 일반적으로 대부분의 경우에 중간단계 형식 데이터를 선호한다. 칼럼 1곳에 모든 관측점이 3가지 서로 다른 단위를 갖는 일은 거의 없다(예를 들어, ID변수 4개, 관측변수 1개).</p>
 <p>흔히 벡터 기반인 다수의 R 함수를 사용할 때, 서로 다른 단위를 갖는 값에 수학적 연산작업을 수행하지는 않는다. 예를 들어, 순수 ‘long’ 형식을 사용할 때, 인구, 기대수명, GDP의 모든 값에 대한 평균은 의미가 없는데, 이는 상호 호환되지 않는 3가지 단위를 갖는 평균값을 계산하여 반환하기 때문이다. 해법은 먼저 집단으로 그룹지어서 데이터를 솜씨 있게 다루거나(<code>dplyr</code> 학습교재 참조), 데이터프레임 구조를 변경시키는 것이다. <strong>주의:</strong> R에서 일부 도식화 함수는 ‘wide’ 형식 데이터에 더 잘 작동한다.</p>
-</section><section id="pivot_longer-wide에서-long-형식-전환" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="pivot_longer-wide에서-long-형식-전환">
-<span class="header-section-number">8.2</span> <code>pivot_longer()</code>: <code>wide</code>에서 <code>long</code> 형식 전환</h2>
+</section><section id="pivot_longer-wide에서-long-형식-전환" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="pivot_longer-wide에서-long-형식-전환">
+<span class="header-section-number">7.2</span> <code>pivot_longer()</code>: <code>wide</code>에서 <code>long</code> 형식 전환</h2>
 <p>지금까지 깔끔한 형식을 갖는 원본 <code>gapminder</code> 데이터셋으로 작업을 했다. 하지만 ‘실제’ 데이터(즉, 자체 연구 데이터)는 절대로 잘 구성되어 있지 못하다. <code>gapminder</code> 데이터셋에 대한 <code>wide</code> 형식 버전을 가지고 시작해보자.</p>
 <blockquote class="blockquote">
 <p><a href="https://raw.githubusercontent.com/bit2r/gpt-ds/main/data/gapminder_wide.csv">이곳에서</a> ‘wide’ 형태를 갖는 <code>gapminder</code> 데이터를 다운로드 받아서, 로컬 <code>data</code> 폴더에 저장시킨다.</p>
@@ -1594,10 +1589,10 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <p>깔끔한 중간 데이터 형식을 얻는 첫 단추는 먼저 ‘wide’ 형식에서 ‘long’ 형식으로 변환하는 것이다. <code>tidyr</code> 패키지의 <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> 함수는 관측 변수를 모아서(gather) <code>long</code> 형식 단일 변수로 변환한다. <code>wide</code>에서 <code>long</code> 형식으로 변환하기 위해 <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> 함수를 사용한다. <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code>는 행의 수를 늘리고 열의 수를 줄임으로써 데이터셋을 더 길게 만들거나 관측 변수를 단일 변수로 ’연장’한다.</p>
 <div id="fig-gapminder-pivot-longer" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gapminder-pivot-longer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/gapminder/14-tidyr-fig3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="그림&nbsp;8.2: wide 형식에서 long 형식 전환과정 도식화"><img src="images/gapminder/14-tidyr-fig3.png" class="img-fluid figure-img"></a>
+<a href="images/gapminder/14-tidyr-fig3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="그림&nbsp;7.2: wide 형식에서 long 형식 전환과정 도식화"><img src="images/gapminder/14-tidyr-fig3.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gapminder-pivot-longer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;8.2: <code>wide</code> 형식에서 <code>long</code> 형식 전환과정 도식화
+그림&nbsp;7.2: <code>wide</code> 형식에서 <code>long</code> 형식 전환과정 도식화
 </figcaption></figure>
 </div>
 <div id="qwebr-insertion-location-2"></div>
@@ -1640,8 +1635,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 </div>
 </div>
-</section><section id="pivot_wider-long에서-중간-형식으로" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="pivot_wider-long에서-중간-형식으로">
-<span class="header-section-number">8.3</span> <code>pivot_wider()</code>: ’long’에서 중간 형식으로</h2>
+</section><section id="pivot_wider-long에서-중간-형식으로" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="pivot_wider-long에서-중간-형식으로">
+<span class="header-section-number">7.3</span> <code>pivot_wider()</code>: ’long’에서 중간 형식으로</h2>
 <p>작업을 항상 확인하는 것이 좋다. <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code>는 <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code>의 반대로, 열의 수를 늘리고 행의 수를 줄여 데이터셋을 더 넓게 만든다. <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code>를 사용하여 <code>gap_long</code>을 원래의 중간 형식 또는 가장 넓은 형식으로 피벗하거나 재구성할 수 있다. 중간 형식에서부터 시작해보자.</p>
 <div id="qwebr-insertion-location-6"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
@@ -2122,12 +2117,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./dplyr.html" class="pagination-link" aria-label="`dplyr` 데이터프레임 조작">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ggplot2.html" class="pagination-link" aria-label="ggplot으로 논문 품질 그래프 생성하기">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">ggplot으로 논문 품질 그래프 생성하기</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ggplot2_concept.html" class="pagination-link" aria-label="그래프 문법">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">그래프 문법</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -2254,7 +2249,7 @@ qwebrInstance.then(
     );  
   }
 );
-</script><script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});
+</script><script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","descPosition":"bottom","loop":false,"closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

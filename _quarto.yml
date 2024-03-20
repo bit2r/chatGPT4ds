@@ -49,20 +49,18 @@ book:
         - whole_game.qmd
         - penguins.qmd
 
-    - part: "**2부** 가져오기"
-      chapters:
-        - import.qmd
-
-    - part: "**3부** 데이터 다루기"
+    - part: "**2부** 데이터 다루기"
       chapters:
         - data_structure.qmd
         - dataframe.qmd
         - dplyr.qmd
         - tidyr.qmd
 
-    - part: "**4부** 시각화"
+    - part: "**3부** 시각화"
       chapters:
+        - ggplot2_concept.qmd
         - ggplot2.qmd
+        - ggplot2_pattern.qmd
 
     - part: "**4부** 모형"
       chapters:
@@ -80,10 +78,16 @@ book:
 
     - part: "**6부** 커뮤니케이션"
       chapters:
-        - quarto.qmd
-        - map.qmd
+        - comm_map.qmd
+        - comm_knitr.qmd
+        - comm_quarto.qmd
+        - comm_export.qmd
 
-    - part: "**7부** 챗GPT"
+    - part: "**7부** 가져오기"
+      chapters:
+        - import.qmd
+
+    - part: "**8부** 챗GPT"
       chapters:
         - prompt.qmd
         - langchain.qmd
@@ -91,14 +95,6 @@ book:
         - llm_python.qmd
         - local_llm.qmd
         - lang_gpt.qmd
-
-    - part: "**8부** 데이터 과학"
-      chapters:
-        - simpson.qmd
-        - basic_stat.qmd
-        - sampling.qmd
-        - hypothesis.qmd
-        - NHST.qmd
 
     - references.qmd
 

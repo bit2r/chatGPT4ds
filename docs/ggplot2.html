@@ -31,8 +31,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./models.html" rel="next">
-<link href="./tidyr.html" rel="prev">
+<link href="./ggplot2_pattern.html" rel="next">
+<link href="./ggplot2_concept.html" rel="prev">
 <link href="./images/logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -228,7 +228,7 @@ ga('send', {
 // Document level settings ----
 
 // Determine if we need to install R packages
-globalThis.qwebrInstallRPackagesList = ['stringr', 'dplyr', 'ggplot2', 'tidyr', 'palmerpenguins'];
+globalThis.qwebrInstallRPackagesList = ['stringr', 'dplyr', 'ggplot2', 'tidyr', 'palmerpenguins', 'gapminder'];
 
 // Specify possible locations to search for the repository
 globalThis.qwebrPackageRepoURLS = ['https://repo.r-wasm.org/'];
@@ -250,7 +250,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"options":{"output":"true","comment":"","context":"interactive","message":"true","results":"markup","label":"lifeExp-vs-gdpPercap-scatter","read-only":"false","classes":"","out-height":"","dpi":72,"fig-height":5,"warning":"true","fig-cap":"","autorun":"false","fig-width":7,"out-width":"700px"},"code":"download.file(\"https://raw.githubusercontent.com/bit2r/gpt-ds/main/data/gapminder_data.csv\", \"gapminder_data.csv\") \ngapminder <- read.csv(\"gapminder_data.csv\", header=TRUE, stringsAsFactors = FALSE)\n\nlibrary(ggplot2)\nggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point()"},{"id":2,"options":{"output":"true","comment":"","context":"interactive","message":"true","results":"markup","label":"lifeExp-vs-gdpPercap-scatter1","read-only":"false","classes":"","out-height":"","dpi":72,"fig-height":5,"warning":"true","fig-cap":"","autorun":"false","fig-width":7,"out-width":"700px"},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp))"},{"id":3,"options":{"output":"true","comment":"","context":"interactive","message":"true","results":"markup","label":"lifeExp-vs-gdpPercap-scatter2","read-only":"false","classes":"","out-height":"","dpi":72,"fig-height":5,"warning":"true","fig-cap":"","autorun":"false","fig-width":7,"out-width":"700px"},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point()"},{"id":4,"options":{"output":"true","comment":"","context":"interactive","message":"true","results":"markup","label":"lifeExp-vs-year-scatter-challenge","read-only":"false","classes":"","out-height":"","dpi":72,"fig-height":5,"warning":"true","fig-cap":"","autorun":"false","fig-width":7,"out-width":"700px"},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) + geom_point()"},{"id":5,"options":{"output":"true","comment":"","context":"interactive","message":"true","results":"markup","label":"lifeExp-vs-year-scatter-challenge-solution","read-only":"false","classes":"","out-height":"","dpi":72,"fig-height":5,"warning":"true","fig-cap":"","autorun":"false","fig-width":7,"out-width":"700px"},"code":"ggplot(data = gapminder, aes(x = year, y = lifeExp)) + geom_point()"},{"id":6,"options":{"output":"true","comment":"","context":"interactive","message":"true","results":"markup","label":"lifeExp-vs-year-scatter-challenge-solution","read-only":"false","classes":"","out-height":"","dpi":72,"fig-height":5,"warning":"true","fig-cap":"","autorun":"false","fig-width":7,"out-width":"700px"},"code":"ggplot(data = gapminder, aes(x = year, y = lifeExp, color=continent)) +\n   geom_point()"},{"id":7,"options":{"output":"true","comment":"","context":"interactive","message":"true","results":"markup","label":"lifeExp-line","read-only":"false","classes":"","out-height":"","dpi":72,"fig-height":5,"warning":"true","fig-cap":"","autorun":"false","fig-width":7,"out-width":"700px"},"code":"ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country, color=continent)) +\n  geom_line()"},{"id":8,"options":{"output":"true","comment":"","context":"interactive","message":"true","results":"markup","label":"lifeExp-line-point","read-only":"false","classes":"","out-height":"","dpi":72,"fig-height":5,"warning":"true","fig-cap":"","autorun":"false","fig-width":7,"out-width":"700px"},"code":"ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country, color=continent)) +\n  geom_line() + geom_point()"},{"id":9,"options":{"output":"true","comment":"","context":"interactive","message":"true","results":"markup","label":"lifeExp-line-point2","read-only":"false","classes":"","out-height":"","dpi":72,"fig-height":5,"warning":"true","fig-cap":"","autorun":"false","fig-width":7,"out-width":"700px"},"code":"ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country)) +\n  geom_line(aes(color=continent)) + geom_point()"},{"id":10,"options":{"output":"true","comment":"","context":"interactive","message":"true","results":"markup","label":"lifeExp-point-line-country-solution","read-only":"false","classes":"","out-height":"","dpi":72,"fig-height":5,"warning":"true","fig-cap":"","autorun":"false","fig-width":7,"out-width":"700px"},"code":"ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country)) +\n  geom_point() + geom_line(aes(color=continent))"},{"id":11,"options":{"output":"true","comment":"","context":"interactive","message":"true","results":"markup","label":"lifeExp-vs-gdpPercap-scatter","read-only":"false","classes":"","out-height":"","dpi":72,"fig-height":5,"warning":"true","fig-cap":"","autorun":"false","fig-width":7,"out-width":"700px"},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, color=continent)) +\n  geom_point()"},{"id":12,"options":{"output":"true","comment":"","context":"interactive","message":"true","results":"markup","label":"lifeExp-vs-gdpPercap-scatter-log10","read-only":"false","classes":"","out-height":"","dpi":72,"fig-height":5,"warning":"true","fig-cap":"","autorun":"false","fig-width":7,"out-width":"700px"},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point(alpha = 0.5) + scale_x_log10()"},{"id":13,"options":{"output":"true","comment":"","context":"interactive","message":"true","results":"markup","label":"gapminder-lm-fit","read-only":"false","classes":"","out-height":"","dpi":72,"fig-height":5,"warning":"true","fig-cap":"","autorun":"false","fig-width":7,"out-width":"700px"},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point() + scale_x_log10() + geom_smooth(method=\"lm\")"},{"id":14,"options":{"output":"true","comment":"","context":"interactive","message":"true","results":"markup","label":"gapminder-lm-fit-size","read-only":"false","classes":"","out-height":"","dpi":72,"fig-height":5,"warning":"true","fig-cap":"","autorun":"false","fig-width":7,"out-width":"700px"},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point() + scale_x_log10() + geom_smooth(method=\"lm\", size=1.5)"},{"id":15,"options":{"output":"true","comment":"","context":"interactive","message":"true","results":"markup","label":"gapminder-lm-fit-size-color","read-only":"false","classes":"","out-height":"","dpi":72,"fig-height":5,"warning":"true","fig-cap":"","autorun":"false","fig-width":7,"out-width":"700px"},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n geom_point(size=3, color=\"orange\") + scale_x_log10() +\n geom_smooth(method=\"lm\", size=1.5)"},{"id":16,"options":{"output":"true","comment":"","context":"interactive","message":"true","results":"markup","label":"gapminder-lm-fit-shape-color","read-only":"false","classes":"","out-height":"","dpi":72,"fig-height":5,"warning":"true","fig-cap":"","autorun":"false","fig-width":7,"out-width":"700px"},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, color = continent)) +\n  geom_point(size=3, shape=17) + scale_x_log10() +\n  geom_smooth(method=\"lm\", size=1.5)"},{"id":17,"options":{"output":"true","comment":"","context":"interactive","message":"true","results":"markup","label":"gapminder-facet","read-only":"false","classes":"","out-height":"","dpi":72,"fig-height":5,"warning":"true","fig-cap":"","autorun":"false","fig-width":7,"out-width":"700px"},"code":"starts.with <- substr(gapminder$country, start = 1, stop = 1)\naz.countries <- gapminder[starts.with %in% c(\"A\", \"Z\"), ]\nggplot(data = az.countries, aes(x = year, y = lifeExp, color=continent)) +\n  geom_line() + facet_wrap( ~ country)"},{"id":18,"options":{"output":"true","comment":"","context":"interactive","message":"true","results":"markup","label":"gapminder-facet-theme","read-only":"false","classes":"","out-height":"","dpi":72,"fig-height":5,"warning":"true","fig-cap":"","autorun":"false","fig-width":7,"out-width":"700px"},"code":"ggplot(data = az.countries, aes(x = year, y = lifeExp, color=continent)) +\n  geom_line() + facet_wrap( ~ country) +\n  labs(\n    x = \"Year\",              # x 축 제목\n    y = \"Life expectancy\",   # y 축 제목\n    title = \"Figure 1\",      # 그래프 주제목\n    color = \"Continent\"      # 범례 제목\n  ) +\n  theme(axis.text.x=element_blank(), axis.ticks.x=element_blank())"},{"id":19,"options":{"output":"true","comment":"","context":"interactive","message":"true","results":"markup","label":"gapminder-facet-theme-ggsave","read-only":"false","classes":"","out-height":"","dpi":72,"fig-height":5,"warning":"true","fig-cap":"","autorun":"false","fig-width":7,"out-width":"700px"},"code":"lifeExp_plot <- ggplot(data = az.countries, aes(x = year, y = lifeExp, color=continent)) +\n  geom_line() + facet_wrap( ~ country) +\n  labs(\n    x = \"Year\",              # x 축 제목\n    y = \"Life expectancy\",   # y 축 제목\n    title = \"Figure 1\",      # 그래프 주제목\n    color = \"Continent\"      # 범례 제목\n  ) +\n  theme(axis.text.x=element_blank(), axis.ticks.x=element_blank())\n\nggsave(filename = \"results/lifeExp.png\", plot = lifeExp_plot, width = 12, height = 10, dpi = 300, units = \"cm\")"},{"id":20,"options":{"output":"true","comment":"","context":"interactive","message":"true","results":"markup","label":"gapminder-facet-boxplot","read-only":"false","classes":"","out-height":"","dpi":72,"fig-height":5,"warning":"true","fig-cap":"","autorun":"false","fig-width":7,"out-width":"700px"},"code":"ggplot(data = gapminder, mapping = aes(x = continent, y = lifeExp, fill = continent)) +\n geom_boxplot() + facet_wrap(~year) +\n ylab(\"기대수명\") +\n theme(axis.title.x=element_blank(),\n       axis.text.x = element_blank(),\n       axis.ticks.x = element_blank())"}];
+globalThis.qwebrCellDetails = [{"id":1,"options":{"results":"markup","context":"interactive","autorun":"false","comment":"","dpi":72,"label":"lifeExp-vs-gdpPercap-scatter","message":"true","classes":"","output":"true","fig-height":5,"out-width":"700px","fig-width":7,"out-height":"","warning":"true","read-only":"false","fig-cap":""},"code":"download.file(\"https://raw.githubusercontent.com/bit2r/gpt-ds/main/data/gapminder_data.csv\", \"gapminder_data.csv\") \ngapminder <- read.csv(\"gapminder_data.csv\", header=TRUE, stringsAsFactors = FALSE)\n\nlibrary(ggplot2)\nggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point()"},{"id":2,"options":{"results":"markup","context":"interactive","autorun":"false","comment":"","dpi":72,"label":"lifeExp-vs-gdpPercap-scatter1","message":"true","classes":"","output":"true","fig-height":5,"out-width":"700px","fig-width":7,"out-height":"","warning":"true","read-only":"false","fig-cap":""},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp))"},{"id":3,"options":{"results":"markup","context":"interactive","autorun":"false","comment":"","dpi":72,"label":"lifeExp-vs-gdpPercap-scatter2","message":"true","classes":"","output":"true","fig-height":5,"out-width":"700px","fig-width":7,"out-height":"","warning":"true","read-only":"false","fig-cap":""},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point()"},{"id":4,"options":{"results":"markup","context":"interactive","autorun":"false","comment":"","dpi":72,"label":"lifeExp-vs-year-scatter-challenge","message":"true","classes":"","output":"true","fig-height":5,"out-width":"700px","fig-width":7,"out-height":"","warning":"true","read-only":"false","fig-cap":""},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) + geom_point()"},{"id":5,"options":{"results":"markup","context":"interactive","autorun":"false","comment":"","dpi":72,"label":"lifeExp-vs-year-scatter-challenge-solution","message":"true","classes":"","output":"true","fig-height":5,"out-width":"700px","fig-width":7,"out-height":"","warning":"true","read-only":"false","fig-cap":""},"code":"ggplot(data = gapminder, aes(x = year, y = lifeExp)) + geom_point()"},{"id":6,"options":{"results":"markup","context":"interactive","autorun":"false","comment":"","dpi":72,"label":"lifeExp-vs-year-scatter-challenge-solution","message":"true","classes":"","output":"true","fig-height":5,"out-width":"700px","fig-width":7,"out-height":"","warning":"true","read-only":"false","fig-cap":""},"code":"ggplot(data = gapminder, aes(x = year, y = lifeExp, color=continent)) +\n   geom_point()"},{"id":7,"options":{"results":"markup","context":"interactive","autorun":"false","comment":"","dpi":72,"label":"lifeExp-line","message":"true","classes":"","output":"true","fig-height":5,"out-width":"700px","fig-width":7,"out-height":"","warning":"true","read-only":"false","fig-cap":""},"code":"ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country, color=continent)) +\n  geom_line()"},{"id":8,"options":{"results":"markup","context":"interactive","autorun":"false","comment":"","dpi":72,"label":"lifeExp-line-point","message":"true","classes":"","output":"true","fig-height":5,"out-width":"700px","fig-width":7,"out-height":"","warning":"true","read-only":"false","fig-cap":""},"code":"ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country, color=continent)) +\n  geom_line() + geom_point()"},{"id":9,"options":{"results":"markup","context":"interactive","autorun":"false","comment":"","dpi":72,"label":"lifeExp-line-point2","message":"true","classes":"","output":"true","fig-height":5,"out-width":"700px","fig-width":7,"out-height":"","warning":"true","read-only":"false","fig-cap":""},"code":"ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country)) +\n  geom_line(aes(color=continent)) + geom_point()"},{"id":10,"options":{"results":"markup","context":"interactive","autorun":"false","comment":"","dpi":72,"label":"lifeExp-point-line-country-solution","message":"true","classes":"","output":"true","fig-height":5,"out-width":"700px","fig-width":7,"out-height":"","warning":"true","read-only":"false","fig-cap":""},"code":"ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country)) +\n  geom_point() + geom_line(aes(color=continent))"},{"id":11,"options":{"results":"markup","context":"interactive","autorun":"false","comment":"","dpi":72,"label":"lifeExp-vs-gdpPercap-scatter","message":"true","classes":"","output":"true","fig-height":5,"out-width":"700px","fig-width":7,"out-height":"","warning":"true","read-only":"false","fig-cap":""},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, color=continent)) +\n  geom_point()"},{"id":12,"options":{"results":"markup","context":"interactive","autorun":"false","comment":"","dpi":72,"label":"lifeExp-vs-gdpPercap-scatter-log10","message":"true","classes":"","output":"true","fig-height":5,"out-width":"700px","fig-width":7,"out-height":"","warning":"true","read-only":"false","fig-cap":""},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point(alpha = 0.5) + scale_x_log10()"},{"id":13,"options":{"results":"markup","context":"interactive","autorun":"false","comment":"","dpi":72,"label":"gapminder-lm-fit","message":"true","classes":"","output":"true","fig-height":5,"out-width":"700px","fig-width":7,"out-height":"","warning":"true","read-only":"false","fig-cap":""},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point() + scale_x_log10() + geom_smooth(method=\"lm\")"},{"id":14,"options":{"results":"markup","context":"interactive","autorun":"false","comment":"","dpi":72,"label":"gapminder-lm-fit-size","message":"true","classes":"","output":"true","fig-height":5,"out-width":"700px","fig-width":7,"out-height":"","warning":"true","read-only":"false","fig-cap":""},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point() + scale_x_log10() + geom_smooth(method=\"lm\", size=1.5)"},{"id":15,"options":{"results":"markup","context":"interactive","autorun":"false","comment":"","dpi":72,"label":"gapminder-lm-fit-size-color","message":"true","classes":"","output":"true","fig-height":5,"out-width":"700px","fig-width":7,"out-height":"","warning":"true","read-only":"false","fig-cap":""},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n geom_point(size=3, color=\"orange\") + scale_x_log10() +\n geom_smooth(method=\"lm\", size=1.5)"},{"id":16,"options":{"results":"markup","context":"interactive","autorun":"false","comment":"","dpi":72,"label":"gapminder-lm-fit-shape-color","message":"true","classes":"","output":"true","fig-height":5,"out-width":"700px","fig-width":7,"out-height":"","warning":"true","read-only":"false","fig-cap":""},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, color = continent)) +\n  geom_point(size=3, shape=17) + scale_x_log10() +\n  geom_smooth(method=\"lm\", size=1.5)"},{"id":17,"options":{"results":"markup","context":"interactive","autorun":"false","comment":"","dpi":72,"label":"gapminder-facet","message":"true","classes":"","output":"true","fig-height":5,"out-width":"700px","fig-width":7,"out-height":"","warning":"true","read-only":"false","fig-cap":""},"code":"starts.with <- substr(gapminder$country, start = 1, stop = 1)\naz.countries <- gapminder[starts.with %in% c(\"A\", \"Z\"), ]\nggplot(data = az.countries, aes(x = year, y = lifeExp, color=continent)) +\n  geom_line() + facet_wrap( ~ country)"},{"id":18,"options":{"results":"markup","context":"interactive","autorun":"false","comment":"","dpi":72,"label":"gapminder-facet-theme","message":"true","classes":"","output":"true","fig-height":5,"out-width":"700px","fig-width":7,"out-height":"","warning":"true","read-only":"false","fig-cap":""},"code":"ggplot(data = az.countries, aes(x = year, y = lifeExp, color=continent)) +\n  geom_line() + facet_wrap( ~ country) +\n  labs(\n    x = \"Year\",              # x 축 제목\n    y = \"Life expectancy\",   # y 축 제목\n    title = \"Figure 1\",      # 그래프 주제목\n    color = \"Continent\"      # 범례 제목\n  ) +\n  theme(axis.text.x=element_blank(), axis.ticks.x=element_blank())"},{"id":19,"options":{"results":"markup","context":"interactive","autorun":"false","comment":"","dpi":72,"label":"gapminder-facet-theme-ggsave","message":"true","classes":"","output":"true","fig-height":5,"out-width":"700px","fig-width":7,"out-height":"","warning":"true","read-only":"false","fig-cap":""},"code":"lifeExp_plot <- ggplot(data = az.countries, aes(x = year, y = lifeExp, color=continent)) +\n  geom_line() + facet_wrap( ~ country) +\n  labs(\n    x = \"Year\",              # x 축 제목\n    y = \"Life expectancy\",   # y 축 제목\n    title = \"Figure 1\",      # 그래프 주제목\n    color = \"Continent\"      # 범례 제목\n  ) +\n  theme(axis.text.x=element_blank(), axis.ticks.x=element_blank())\n\nggsave(filename = \"results/lifeExp.png\", plot = lifeExp_plot, width = 12, height = 10, dpi = 300, units = \"cm\")"},{"id":20,"options":{"results":"markup","context":"interactive","autorun":"false","comment":"","dpi":72,"label":"gapminder-facet-boxplot","message":"true","classes":"","output":"true","fig-height":5,"out-width":"700px","fig-width":7,"out-height":"","warning":"true","read-only":"false","fig-cap":""},"code":"ggplot(data = gapminder, mapping = aes(x = continent, y = lifeExp, fill = continent)) +\n geom_boxplot() + facet_wrap(~year) +\n ylab(\"기대수명\") +\n theme(axis.title.x=element_blank(),\n       axis.text.x = element_blank(),\n       axis.ticks.x = element_blank())"}];
 
 </script>
 <script type="module">
@@ -979,7 +979,7 @@ globalThis.qwebrExecuteCode = async function (
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ggplot2.html"><strong>4부</strong> 시각화</a></li><li class="breadcrumb-item"><a href="./ggplot2.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ggplot2_concept.html"><strong>3부</strong> 시각화</a></li><li class="breadcrumb-item"><a href="./ggplot2.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -1050,7 +1050,7 @@ globalThis.qwebrExecuteCode = async function (
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text"><strong>2부</strong> 가져오기</span></a>
+ <span class="menu-text"><strong>2부</strong> 데이터 다루기</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -1058,8 +1058,26 @@ globalThis.qwebrExecuteCode = async function (
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span></a>
+  <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></span></a>
   </div>
 </li>
       </ul>
@@ -1067,7 +1085,7 @@ globalThis.qwebrExecuteCode = async function (
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text"><strong>3부</strong> 데이터 다루기</span></a>
+ <span class="menu-text"><strong>3부</strong> 시각화</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -1075,26 +1093,20 @@ globalThis.qwebrExecuteCode = async function (
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
+  <a href="./ggplot2_concept.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">그래프 문법</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
+  <a href="./ggplot2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dplyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tidyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></span></a>
+  <a href="./ggplot2_pattern.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span></a>
   </div>
 </li>
       </ul>
@@ -1102,7 +1114,7 @@ globalThis.qwebrExecuteCode = async function (
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text"><strong>4부</strong> 시각화</span></a>
+ <span class="menu-text"><strong>4부</strong> 모형</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -1110,8 +1122,26 @@ globalThis.qwebrExecuteCode = async function (
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ggplot2.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></span></a>
+  <a href="./models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">모형</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_many.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
   </div>
 </li>
       </ul>
@@ -1119,7 +1149,7 @@ globalThis.qwebrExecuteCode = async function (
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text"><strong>4부</strong> 모형</span></a>
+ <span class="menu-text"><strong>5부</strong> 프로그래밍</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -1127,26 +1157,26 @@ globalThis.qwebrExecuteCode = async function (
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">모형</span></span></a>
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
+  <a href="./function_plyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models_many.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
+  <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
   </div>
 </li>
       </ul>
@@ -1154,7 +1184,7 @@ globalThis.qwebrExecuteCode = async function (
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text"><strong>5부</strong> 프로그래밍</span></a>
+ <span class="menu-text"><strong>6부</strong> 커뮤니케이션</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -1162,14 +1192,26 @@ globalThis.qwebrExecuteCode = async function (
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+  <a href="./comm_map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+  <a href="./comm_knitr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">데이터 분석 보고서</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comm_quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comm_export.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">저장하기</span></span></a>
   </div>
 </li>
       </ul>
@@ -1177,7 +1219,7 @@ globalThis.qwebrExecuteCode = async function (
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text"><strong>6부</strong> 커뮤니케이션</span></a>
+ <span class="menu-text"><strong>7부</strong> 가져오기</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -1185,14 +1227,8 @@ globalThis.qwebrExecuteCode = async function (
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
+  <a href="./import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span></a>
   </div>
 </li>
       </ul>
@@ -1200,7 +1236,7 @@ globalThis.qwebrExecuteCode = async function (
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text"><strong>7부</strong> 챗GPT</span></a>
+ <span class="menu-text"><strong>8부</strong> 챗GPT</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -1209,78 +1245,37 @@ globalThis.qwebrExecuteCode = async function (
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prompt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./langchain.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./local_llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
- <span class="menu-text"><strong>8부</strong> 데이터 과학</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true" aria-label="토글 섹션">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./simpson.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./basic_stat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">통계</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./sampling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./hypothesis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./NHST.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">NHST.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
   </div>
 </li>
       </ul>
@@ -1486,7 +1481,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 }
 </script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ggplot2.html"><strong>4부</strong> 시각화</a></li><li class="breadcrumb-item"><a href="./ggplot2.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ggplot2_concept.html"><strong>3부</strong> 시각화</a></li><li class="breadcrumb-item"><a href="./ggplot2.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></h1>
 </div>
@@ -2247,13 +2242,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./tidyr.html" class="pagination-link" aria-label="`tidyr` 데이터프레임 조작">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></span>
+      <a href="./ggplot2_concept.html" class="pagination-link" aria-label="그래프 문법">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">그래프 문법</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./models.html" class="pagination-link" aria-label="모형">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">모형</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ggplot2_pattern.html" class="pagination-link" aria-label="시각화 패턴">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
