@@ -1,0 +1,172 @@
+# 분할-적용-병합 전략
+
+
+앞서, 함수를 사용해서 코드를 단순화하는 방법을 살펴봤다.
+`gapminder` 데이터셋을 인자로 받아, `pop`와 `gdpPercap`를 곱해 GDP를 계산하는 `calcGDP` 함수를 정의했다. 추가적인 인자를 정의해서, `year`별, `country`별 필터를 적용할 수도 있다.
+
+```{webr-r}
+#| label: pry-calcGDP
+# 데이터셋을 가져와서 인구 열과 1인당 GDP 열을 곱한다.
+calcGDP <- function(dat, year=NULL, country=NULL) {
+  if(!is.null(year)) {
+    dat <- dat[dat$year %in% year, ]
+  }
+  if (!is.null(country)) {
+    dat <- dat[dat$country %in% country,]
+  }
+  gdp <- dat$pop * dat$gdpPercap
+
+  new <- cbind(dat, gdp=gdp)
+  return(new)
+}
+```
+
+데이터 작업을 할 때, 흔히 마주치는 작업이 집단별로 그룹을 묶어 계산하는 것이다.
+위에서는 단순히 두 열을 곱해서 GDP를 계산했다.
+하지만, 대륙별로 평균 GDP를 계산하고자 한다면 어떻게 해야 할까?
+
+`calcGDP`를 실행하고 나서, 각 대륙별로 평균을 산출해보자.
+데이터셋을 가져와서 인구 열과 1인당 GDP 열을 곱합니다.
+
+```{webr-r}
+#| label: pry-calcGDP-command
+withGDP <- calcGDP(gapminder)
+
+mean(withGDP[withGDP$continent == "Africa", "gdp"])
+mean(withGDP[withGDP$continent == "Americas", "gdp"])
+mean(withGDP[withGDP$continent == "Asia", "gdp"])
+```
+
+하지만, 그다지 *멋있지는* 않다.
+그렇다. 함수를 사용해서 반복되는 작업을 상당량 줄일 수 있었다.
+함수 사용은 **멋있었다**. 하지만, 여전히 반복이 있다.
+직접 반복하게 되면, 지금은 물론이고 나중에도 시간을 까먹게 되고, 잠재적으로 버그가 스며들 여지를 남기게 된다.
+
+`calcGDP`처럼 유연성 있는 함수를 새로 작성할 수도 있지만, 제대로 동작하는 함수를 개발하기까지 상당한 노력과 테스트가 필요하다.
+
+여기서 맞닥뜨린 추상화 문제를 **"분할-적용-병합(split-apply-combine)" 전략**이라고 한다.
+
+![분할-적용-병합 전략 도식화](images/gapminder/12-plyr-fig1.png){#fig-split-apply-combine}
+
+데이터를 집단으로 *분할(split)*하고, 이번 경우에는 대륙별로 분할한다.
+그리고 분할된 집단에 연산을 *적용(apply)*한 후, 선택적으로 결과를 묶어 *병합(combine)*한다.
+
+## `dplyr` 패키지
+
+`dplyr` 패키지는 데이터 조작을 위한 문법을 제공하며, 이를 통해 "분할-적용-병합" 문제를 해결할 수 있다. 먼저 `dplyr` 패키지를 로드하고, `dplyr`을 사용하여 대륙별 평균 GDP를 빠르게 계산한다.
+
+```{webr-r}
+#| label: pry-dplyr-split-apply-combine
+library(dplyr)
+
+calcGDP(gapminder) %>%
+  group_by(continent) %>%
+  summarise(mean_gdp = mean(gdp))
+```
+
+방금 코드에서 일어난 일을 복기해 보자.
+
+- `%>%` 파이프 연산자를 사용하여 `calcGDP(gapminder)` 함수의 결과를 다음 단계로 전달했다.
+- `group_by(continent)`를 사용하여 데이터를 대륙별로 그룹화했다.
+- `summarise()`를 사용하여 각 그룹에 대해 `mean(gdp)`를 계산하고, 결과를 `mean_gdp`라는 새로운 열에 저장했다.
+
+그룹화 변수를 추가하면 어떻게 될까?
+
+```{webr-r}
+#| label: pry-dplyr-split-apply-combine-group
+calcGDP(gapminder) %>%
+  group_by(continent, year) %>%
+  summarise(mean_gdp = mean(gdp))
+```
+
+`group_by()`에 `year`를 추가하여 대륙과 연도별로 그룹화했다.
+
+::::: callout-tip
+### 도전과제
+
+대륙별로 평균 기대수명을 계산해보자.
+어느 대륙의 기대수명이 가장 길고, 어느 대륙이 가장 짧은가?
+
+::: {.callout-caution collapse="true"}
+### 해답
+
+```{webr-r}
+#| label: pry-dplyr-challenge1-solution
+gapminder |> 
+  group_by(continent)  |> 
+  summarise(mean_lifeExp = mean(lifeExp))
+```
+
+:::
+  
+:::::
+
+
+::::: callout-tip  
+### 도전과제
+
+`dplyr`의 함수를 사용하여 도전과제 2의 출력 결과로부터,
+1952년에서 2007년 사이의 평균 기대수명 차이를 계산해보자.
+
+::: {.callout-caution collapse="true"}
+### 해답
+
+```{webr-r}
+#| label: pry-dplyr-challenge2-solution
+calcGDP(gapminder) |> 
+  group_by(continent, year)  |> 
+  summarise(mean_gdp = mean(gdp))
+```
+
+:::
+
+:::::
+
+
+이렇게 `dplyr` 패키지를 사용하면 데이터 조작과 분석을 보다 간결하고 직관적으로 수행할 수 있다.
+파이프 연산자(`%>%`)를 사용하여 연산을 연결하면 코드의 가독성도 향상된다.
+`group_by()`, `summarise()`, `mutate()` 등의 함수를 조합하여 다양한 분석 작업을 수행할 수 있다.알겠습니다.
+계속해서 교정 작업을 진행하겠습니다.
+
+::::: callout-tip
+### 도전과제
+
+실제로 실행하지 말고, 다음 중 어떤 코드가 대륙별 평균 기대수명을 계산하는지 살펴보자.
+
+1.
+```{r, eval=FALSE}
+gapminder %>%
+  group_by(continent) %>%
+  summarise(mean_lifeExp = mean(lifeExp))
+```
+
+2.
+```{r, eval=FALSE}
+gapminder %>%
+  group_by(gapminder$continent) %>%
+  summarise(mean_lifeExp = mean(lifeExp))
+```
+
+3.
+```{r, eval=FALSE}
+gapminder %>%
+  group_by(continent) %>%
+  summarise(mean_lifeExp = mean(lifeExp))
+```
+
+4.
+```{r, eval=FALSE}
+gapminder %>%
+  filter(continent) %>%
+  summarise(mean_lifeExp = mean(lifeExp))
+```
+
+::: {.callout-caution collapse="true"}
+### 해답
+
+답안 3은 대륙별 평균 기대 수명을 계산한다.
+
+:::
+
+:::::
+

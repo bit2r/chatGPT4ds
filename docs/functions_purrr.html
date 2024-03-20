@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.9">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="이광춘, 신종화">
+<title>챗GPT 데이터 과학 – 17&nbsp; 함수형 프로그래밍</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./quarto.html" rel="next">
+<link href="./functions_ds.html" rel="prev">
+<link href="./images/logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script><script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-229551680-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script><script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="site_libs/jsoneditor-5.25.6/jsoneditor.min.css" rel="stylesheet">
+<script src="site_libs/jsoneditor-5.25.6/jsoneditor.min.js"></script><script src="site_libs/jsonedit-binding-3.0.0/jsonedit.js"></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions.html"><strong>5부</strong> 프로그래밍</a></li><li class="breadcrumb-item"><a href="./functions_purrr.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">챗GPT 데이터 과학</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/bit2r/gpt-ds" title="소스 코드" class="quarto-navigation-tool px-1" aria-label="소스 코드"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="리더 모드 전환">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="검색"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">서문</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text"><strong>1부</strong> 들어가며</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">들어가며</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./whole_game.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">데이터 과학 맛보기</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./penguins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text"><strong>2부</strong> 가져오기</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text"><strong>3부</strong> 데이터 다루기</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text"><strong>4부</strong> 시각화</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text"><strong>4부</strong> 모형</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">모형</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_many.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text"><strong>5부</strong> 프로그래밍</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./function_plyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text"><strong>6부</strong> 커뮤니케이션</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text"><strong>7부</strong> 챗GPT</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prompt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./langchain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./llm_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./local_llm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
+ <span class="menu-text"><strong>8부</strong> 데이터 과학</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./simpson.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">심슨의 역설</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./basic_stat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">통계</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">표본 추출</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hypothesis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">코딩 가설검정</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./NHST.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">NHST.html</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">참고문헌</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li><a href="#why-functional-programming" id="toc-why-functional-programming" class="nav-link active" data-scroll-target="#why-functional-programming"><span class="header-section-number">17.1</span> 왜 함수형 프로그래밍인가?</a></li>
+  <li><a href="#functional-programming-newton" id="toc-functional-programming-newton" class="nav-link" data-scroll-target="#functional-programming-newton"><span class="header-section-number">17.2</span> 뉴튼 방법(Newton’s Method)</a></li>
+  <li><a href="#functional-programming-newton-method" id="toc-functional-programming-newton-method" class="nav-link" data-scroll-target="#functional-programming-newton-method"><span class="header-section-number">17.3</span> 뉴튼 방법 R 코드 </a></li>
+  <li><a href="#map-reduce-apply" id="toc-map-reduce-apply" class="nav-link" data-scroll-target="#map-reduce-apply"><span class="header-section-number">17.4</span> <code>Map()</code>, <code>Reduce()</code>와 <code>*apply()</code> 함수</a></li>
+  <li>
+<a href="#functional-programming-purrr" id="toc-functional-programming-purrr" class="nav-link" data-scroll-target="#functional-programming-purrr"><span class="header-section-number">17.5</span> <code>purrr</code> 팩키지</a>
+  <ul class="collapse">
+<li><a href="#functional-programming-purrr-hello-world" id="toc-functional-programming-purrr-hello-world" class="nav-link" data-scroll-target="#functional-programming-purrr-hello-world"><span class="header-section-number">17.5.1</span> <code>purrr</code> 헬로월드</a></li>
+  </ul>
+</li>
+  <li><a href="#functional-programming-purrr-read-iris" id="toc-functional-programming-purrr-read-iris" class="nav-link" data-scroll-target="#functional-programming-purrr-read-iris"><span class="header-section-number">17.6</span> 병렬 데이터 분석</a></li>
+  <li>
+<a href="#functional-programming-purrr-random-number" id="toc-functional-programming-purrr-random-number" class="nav-link" data-scroll-target="#functional-programming-purrr-random-number"><span class="header-section-number">17.7</span> 표본추출</a>
+  <ul class="collapse">
+<li><a href="#functional-programming-purrr-random-number-mean" id="toc-functional-programming-purrr-random-number-mean" class="nav-link" data-scroll-target="#functional-programming-purrr-random-number-mean"><span class="header-section-number">17.7.1</span> <span class="math inline">\(\mu\)</span> 평균 변화</a></li>
+  <li><a href="#functional-programming-purrr-random-number-mean-sd" id="toc-functional-programming-purrr-random-number-mean-sd" class="nav-link" data-scroll-target="#functional-programming-purrr-random-number-mean-sd"><span class="header-section-number">17.7.2</span> <span class="math inline">\(\mu\)</span> 평균, <span class="math inline">\(\sigma\)</span> 표준편차</a></li>
+  <li><a href="#functional-programming-purrr-random-number-mean-sd-size" id="toc-functional-programming-purrr-random-number-mean-sd-size" class="nav-link" data-scroll-target="#functional-programming-purrr-random-number-mean-sd-size"><span class="header-section-number">17.7.3</span> <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma\)</span>, 표본크기</a></li>
+  </ul>
+</li>
+  <li><a href="#functional-programming-purrr-ggplot" id="toc-functional-programming-purrr-ggplot" class="nav-link" data-scroll-target="#functional-programming-purrr-ggplot"><span class="header-section-number">17.8</span> <code>ggplot</code> 시각화</a></li>
+  <li><a href="#fp-theory-practice" id="toc-fp-theory-practice" class="nav-link" data-scroll-target="#fp-theory-practice"><span class="header-section-number">17.9</span> 함수형 프로그래밍 이론과 실제</a></li>
+  <li>
+<a href="#pure-vs-impure-function" id="toc-pure-vs-impure-function" class="nav-link" data-scroll-target="#pure-vs-impure-function"><span class="header-section-number">17.10</span> 순수한 함수 vs 불순한 함수</a>
+  <ul class="collapse">
+<li><a href="#fp-lambda-functin" id="toc-fp-lambda-functin" class="nav-link" data-scroll-target="#fp-lambda-functin"><span class="header-section-number">17.10.1</span> 무명함수와 매퍼</a></li>
+  <li><a href="#high-order-function" id="toc-high-order-function" class="nav-link" data-scroll-target="#high-order-function"><span class="header-section-number">17.10.2</span> 고차 함수(High order function)</a></li>
+  <li><a href="#adverbs-safely-possibly" id="toc-adverbs-safely-possibly" class="nav-link" data-scroll-target="#adverbs-safely-possibly"><span class="header-section-number">17.10.3</span> 부사 - <code>safely</code>, <code>possibly</code>,…</a></li>
+  </ul>
+</li>
+  <li><a href="#fp-clean-code" id="toc-fp-clean-code" class="nav-link" data-scroll-target="#fp-clean-code"><span class="header-section-number">17.11</span> 깨끗한 코드</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/functions_purrr.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions.html"><strong>5부</strong> 프로그래밍</a></li><li class="breadcrumb-item"><a href="./functions_purrr.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="r-functional-programming" class="quarto-section-identifier"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><p>데이터 과학 맥락에서 함수형 프로그래밍을 이해하고, 수치해석 예제를 통해 코드를 작성하고, 함수형 프로그래밍과 짝꿍인 단위 테스트에 대해서 살펴본다.</p>
+<p><strong>함수형 프로그래밍(functional programming)</strong>은 코드를 작성하는 한 방식으로 특정 연산을 수행하는 함수를 먼저 작성하고 나서, 사용자가 함수를 호출해서 작업을 수행하는 방식이다. 순수 함수형 언어, 예를 들어 <a href="https://ko.wikipedia.org/wiki/%ED%95%98%EC%8A%A4%EC%BC%88">하스켈(Haskell)</a>은 루프가 없다. 루푸없이 어떻게 프로그램을 작성할 수 있을까? 루프는 재귀(recursion)로 대체된다. 이런 이유로 아래에서 뉴톤 방법을 통해 근을 구하는 방식을 R코드로 두가지 방법을 보여준다. R은 아직 <a href="http://hanmomhanda.github.io/2015/07/27/%EC%9E%AC%EA%B7%80-%EB%B0%98%EB%B3%B5-Tail-Recursion/">꼬리 호출(tail-call recurssion)</a> 기능을 제공하지 않기 때문에 루프를 사용하는 것이 더 낫다.</p>
+<p>수학 함수는 멋진 특성이 있는데, 즉 해당 입력에 항상 동일한 결과를 갖는다. 이 특성을 <strong>참조 투명성(referential transparaency)</strong> 이라고 부른다. 참조 투명성은 <strong>부수효과(side effect)</strong> 없음을 표현하는 속성인데, 함수가 결과값 외에 다른 상태를 변경시킬 때 부수효과(side effect)가 있다고 한다. 부수 효과는 프로그램 버그를 발생시키는 온상으로, 부수 효과를 없애면 디버깅이 용이해진다. 따라서, 부수 효과를 제거하고 참조 투명성을 유지함으로써 데이터 분석 수행 결과를 예측 가능한 상태로 유지시켜 <strong>재현가능한 과학</strong>이 가능하게 된다.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+함수형 프로그래밍
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>R 함수형 프로그래밍을 이해하기 위해서는 먼저 자료구조에 대한 이해가 선행되어야 한다. 그리고 나서, 함수를 작성하는 이유와 더불어 작성법에 대한 이해도 확고히 해야만 한다.</p>
+<p>객체(object)가 함수를 갖는 데이터라면, 클러져는 데이터를 갖는 함수다.</p>
+<blockquote class="blockquote">
+<p>“An object is data with functions. A closure is a function with data.” – John D. Cook</p>
+</blockquote>
+</div>
+</div>
+<p>명령형 언어(Imperative Language) 방식으로 R코드를 쭉 작성하게 되면, 각 단계별로 상태가 변경되는 것에 대해 신경을 쓰고 관리를 해나가야 된다. 그렇지 않으면 예기치 않은 부수 효과가 발생하여 데이터 분석 및 모형을 잘못 해석하게 된다.</p>
+<p>그렇다고, 부수효과가 없는 순수 함수가 반듯이 좋은 것은 아니다. 예를 들어 <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> 함수를 통해 평균 0, 분산 1인 난수를 생성시키는데, 항상 동일한 값만 뽑아내면 사용자에게 의미있는 함수는 아니다.</p>
+<p>결국, 함수형 프로그래밍을 통해 <strong>테스팅(testing)</strong>과 <strong>디버깅(debugging)</strong>을 수월하게 하는 것이 추구하는 바이다. 이를 위해 다음 3가지 요인이 중요하다.</p>
+<ul>
+<li>한번에 한가지 작업을 수행하는 함수</li>
+<li>부수효과(side effect) 회피</li>
+<li>참조 투명성(Referential transparaency)</li>
+</ul>
+<section id="why-functional-programming" class="level2" data-number="17.1"><h2 data-number="17.1" class="anchored" data-anchor-id="why-functional-programming">
+<span class="header-section-number">17.1</span> 왜 함수형 프로그래밍인가?</h2>
+<p>데이터 분석을 아주 추상화해서 간략하게 얘기한다면 데이터프레임을 함수에 넣어 새로운 데이터프레임으로 만들어 내는 것이다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/fp-data-analysis.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="함수로 이해하는 데이터 분석"><img src="images/fp-data-analysis.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="810" alt="함수로 이해하는 데이터 분석"></a></p>
+<figcaption>함수로 이해하는 데이터 분석</figcaption></figure>
+</div>
+<p>데이터 분석, 데이터 전처리, 변수 선택, 모형 개발이 한번에 해결되는 것이 아니라서, 데이터프레임을 함수에 넣어 상태가 변경된 데이터프레임이 생성되고, 이를 다시 함수에 넣어 또다른 변경된 상태 데이터프레임을 얻게 되는 과정을 쭉 반복해 나간다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/fp-data-analysis-workflow.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="데이터 분석 작업흐름"><img src="images/fp-data-analysis-workflow.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="377" alt="데이터 분석 작업흐름"></a></p>
+<figcaption>데이터 분석 작업흐름</figcaption></figure>
+</div>
+<p>따라서… 데이터 분석에는 함수형 프로그래밍 패러다임을 활용하고, 툴/패키지 개발에는 객체지향 프로그래밍 패러다임 사용이 권장된다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/fp-data-analysis-choice.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="데이터 분석과 툴/패키지 도구 개발"><img src="images/fp-data-analysis-choice.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="687" alt="데이터 분석과 툴/패키지 도구 개발"></a></p>
+<figcaption>데이터 분석과 툴/패키지 도구 개발</figcaption></figure>
+</div>
+</section><section id="functional-programming-newton" class="level2" data-number="17.2"><h2 data-number="17.2" class="anchored" data-anchor-id="functional-programming-newton">
+<span class="header-section-number">17.2</span> <a href="https://en.wikipedia.org/wiki/Newton%27s_method">뉴튼 방법(Newton’s Method)</a>
+</h2>
+<p>뉴튼-랩슨 알고리즘으로도 알려진 뉴튼(Newton Method) 방법은 컴퓨터를 사용해서 수치해석 방법으로 실함수의 근을 찾아내는 방법이다.</p>
+<p>특정 함수 <span class="math inline">\(f\)</span> 의 근을 찾을 경우, 함수 미분값 <span class="math inline">\(f'\)</span>, 초기값 <span class="math inline">\(x_0\)</span>가 주어지면 근사적 근에 가까운 값은 다음과 같이 정의된다.</p>
+<p><span class="math display">\[x_{1} = x_0 - \frac{f(x_0)}{f'(x_0)}\]</span></p>
+<p>이 과정을 반복하게 되면 오차가 매우 적게 근의 값에 도달하게 된다.</p>
+<p><span class="math display">\[x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}\]</span></p>
+<p>기하적으로 보면, 파란 선은 함수 <span class="math inline">\(f\)</span> 이고, <span class="math inline">\(f\)</span>를 미분한 <span class="math inline">\(f'\)</span> 빨간 선은 뉴턴방법을 활용하여 근을 구해가는 과정을 시각적으로 보여주고 있다. <span class="math inline">\(x_{n-1}\)</span> 보다 <span class="math inline">\(x_n\)</span>이, <span class="math inline">\(x_n\)</span> 보다 <span class="math inline">\(x_{n+1}\)</span>이 함수 <span class="math inline">\(f\)</span> 근에 더 가깝게 접근해 나가는 것이 확인된다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/newton_method_ani.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="뉴튼 방법 도식화"><img src="images/newton_method_ani.gif" class="img-fluid figure-img" alt="뉴튼 방법 도식화"></a></p>
+<figcaption>뉴튼 방법 도식화</figcaption></figure>
+</div>
+</section><section id="functional-programming-newton-method" class="level2" data-number="17.3"><h2 data-number="17.3" class="anchored" data-anchor-id="functional-programming-newton-method">
+<span class="header-section-number">17.3</span> 뉴튼 방법 R 코드 <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+</h2>
+<p>뉴튼 방법을 R코들 구현하면 다음과 같이 612의 제곱근 값을 수치적으로 컴퓨터를 활용하여 구할 수 있다. <code>while</code>같은 루프를 활용하여 반복적으로 해를 구하는 것도 가능하지만 재귀를 활용하여 해를 구하는 방법이 코드를 작성하고 읽는 개발자 관점에서는 훨씬 더 편리하고 권장된다.</p>
+<p>하지만, 속도는 <code>while</code> 루프를 사용하는 것이 R에서는 득이 많다. 이유는 오랜 세월에 걸쳐 최적화 과정을 거쳐 진화했기 때문이다.</p>
+<div class="row">
+<div class="col-md-6">
+<p><strong>while 루프를 사용한 방법</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">find_root</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">guess</span>, <span class="va">init</span>, <span class="va">eps</span> <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="kw">while</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">init</span><span class="op">**</span><span class="fl">2</span> <span class="op">-</span> <span class="va">guess</span><span class="op">)</span> <span class="op">&gt;</span> <span class="va">eps</span><span class="op">)</span><span class="op">{</span></span>
+<span>        <span class="va">init</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span> <span class="op">*</span><span class="op">(</span><span class="va">init</span> <span class="op">+</span> <span class="va">guess</span><span class="op">/</span><span class="va">init</span><span class="op">)</span></span>
+<span>        <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"현재 값: "</span>, <span class="va">init</span>, <span class="st">"\n"</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">init</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">find_root</span><span class="op">(</span><span class="fl">612</span>, <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 현재 값:  35.6 </span></span>
+<span><span class="co">#&gt; 현재 값:  26.39551 </span></span>
+<span><span class="co">#&gt; 현재 값:  24.79064 </span></span>
+<span><span class="co">#&gt; 현재 값:  24.73869 </span></span>
+<span><span class="co">#&gt; 현재 값:  24.73863 </span></span>
+<span><span class="co">#&gt; 현재 값:  24.73863</span></span>
+<span><span class="co">#&gt; [1] 24.73863</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="col-md-6">
+<p><strong>재귀를 사용한 방법</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">find_root_recur</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">guess</span>, <span class="va">init</span>, <span class="va">eps</span> <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">init</span><span class="op">**</span><span class="fl">2</span> <span class="op">-</span> <span class="va">guess</span><span class="op">)</span> <span class="op">&lt;</span> <span class="va">eps</span><span class="op">)</span><span class="op">{</span></span>
+<span>        <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">init</span><span class="op">)</span></span>
+<span>    <span class="op">}</span> <span class="kw">else</span><span class="op">{</span></span>
+<span>        <span class="va">init</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span> <span class="op">*</span><span class="op">(</span><span class="va">init</span> <span class="op">+</span> <span class="va">guess</span><span class="op">/</span><span class="va">init</span><span class="op">)</span></span>
+<span>        <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"재귀방법 현재 값: "</span>, <span class="va">init</span>, <span class="st">"\n"</span><span class="op">)</span></span>
+<span>        <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu">find_root_recur</span><span class="op">(</span><span class="va">guess</span>, <span class="va">init</span>, <span class="va">eps</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">find_root_recur</span><span class="op">(</span><span class="fl">612</span>, <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 재귀방법 현재 값:  35.6 </span></span>
+<span><span class="co">#&gt; 재귀방법 현재 값:  26.39551 </span></span>
+<span><span class="co">#&gt; 재귀방법 현재 값:  24.79064 </span></span>
+<span><span class="co">#&gt; 재귀방법 현재 값:  24.73869 </span></span>
+<span><span class="co">#&gt; 재귀방법 현재 값:  24.73863 </span></span>
+<span><span class="co">#&gt; 재귀방법 현재 값:  24.73863</span></span>
+<span><span class="co">#&gt; [1] 24.73863</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section><section id="map-reduce-apply" class="level2" data-number="17.4"><h2 data-number="17.4" class="anchored" data-anchor-id="map-reduce-apply">
+<span class="header-section-number">17.4</span> <code>Map()</code>, <code>Reduce()</code>와 <code>*apply()</code> 함수</h2>
+<p>함수를 인자로 받는 함수를 고차함수(High-order function)라고 부른다. 대표적으로 <code><a href="https://rdrr.io/r/base/funprog.html">Map()</a></code>, <code><a href="https://rdrr.io/r/base/funprog.html">Reduce()</a></code>가 있다. 숫자 하나가 아닌 벡터에 대한 제곱근을 구하기 위해서 <code>Map</code> 함수를 사용한다. <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 제곱근 함수 -------------------------------------------</span></span>
+<span></span>
+<span><span class="va">find_root_recur</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">guess</span>, <span class="va">init</span>, <span class="va">eps</span> <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">init</span><span class="op">**</span><span class="fl">2</span> <span class="op">-</span> <span class="va">guess</span><span class="op">)</span> <span class="op">&lt;</span> <span class="va">eps</span><span class="op">)</span><span class="op">{</span></span>
+<span>        <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">init</span><span class="op">)</span></span>
+<span>    <span class="op">}</span> <span class="kw">else</span><span class="op">{</span></span>
+<span>        <span class="va">init</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span> <span class="op">*</span><span class="op">(</span><span class="va">init</span> <span class="op">+</span> <span class="va">guess</span><span class="op">/</span><span class="va">init</span><span class="op">)</span></span>
+<span>        <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu">find_root_recur</span><span class="op">(</span><span class="va">guess</span>, <span class="va">init</span>, <span class="va">eps</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># 벡터에 대한 제곱근 계산 </span></span>
+<span></span>
+<span><span class="va">numbers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">25</span>, <span class="fl">36</span>, <span class="fl">49</span>, <span class="fl">64</span>, <span class="fl">81</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/funprog.html">Map</a></span><span class="op">(</span><span class="va">find_root_recur</span>, <span class="va">numbers</span>, init<span class="op">=</span><span class="fl">1</span>, eps <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="op">-</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt; [1] 4</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[2]]</span></span>
+<span><span class="co">#&gt; [1] 5</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[3]]</span></span>
+<span><span class="co">#&gt; [1] 6</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[4]]</span></span>
+<span><span class="co">#&gt; [1] 7</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[5]]</span></span>
+<span><span class="co">#&gt; [1] 8</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[6]]</span></span>
+<span><span class="co">#&gt; [1] 9</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>숫자 하나를 받는 함수가 아니라, 벡터를 인자로 받아 제곱근을 계산하는 함수를 작성할 경우 함수 내부에서 함수를 인자로 받을 수 있도록 <code>Map</code> 함수를 활용한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># `Map` 벡터 제곱근 계산</span></span>
+<span></span>
+<span><span class="va">find_vec_root_recur</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">numbers</span>, <span class="va">init</span>, <span class="va">eps</span> <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/funprog.html">Map</a></span><span class="op">(</span><span class="va">find_root_recur</span>, <span class="va">numbers</span>, <span class="va">init</span>, <span class="va">eps</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">numbers_z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">16</span>, <span class="fl">25</span>, <span class="fl">49</span>, <span class="fl">121</span><span class="op">)</span></span>
+<span><span class="fu">find_vec_root_recur</span><span class="op">(</span><span class="va">numbers_z</span>, init<span class="op">=</span><span class="fl">1</span>, eps<span class="op">=</span><span class="fl">10</span><span class="op">^</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt; [1] 3</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[2]]</span></span>
+<span><span class="co">#&gt; [1] 4</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[3]]</span></span>
+<span><span class="co">#&gt; [1] 5</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[4]]</span></span>
+<span><span class="co">#&gt; [1] 7</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[5]]</span></span>
+<span><span class="co">#&gt; [1] 11</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>이러한 패턴이 많이 활용되어 <code>*apply</code> 함수가 있어, 이전에 많이 사용했을 것이다. 벡터를 인자로 먼저 넣고, 함수명을 두번째 인자로 넣고, 함수에 들어갈 매개변수를 순서대로 쭉 나열하여 <code>lapply</code>, <code>sapply</code> 함수에 넣는다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># `lapply` 활용 제급근 계산</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">numbers_z</span>, <span class="va">find_root_recur</span>, init<span class="op">=</span><span class="fl">1</span>, eps<span class="op">=</span><span class="fl">10</span><span class="op">^</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt; [1] 3</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[2]]</span></span>
+<span><span class="co">#&gt; [1] 4</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[3]]</span></span>
+<span><span class="co">#&gt; [1] 5</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[4]]</span></span>
+<span><span class="co">#&gt; [1] 7</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[5]]</span></span>
+<span><span class="co">#&gt; [1] 11</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">numbers_z</span>, <span class="va">find_root_recur</span>, init<span class="op">=</span><span class="fl">1</span>, eps<span class="op">=</span><span class="fl">10</span><span class="op">^</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1]  3  4  5  7 11</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>Reduce</code> 함수도 삶을 편안하게 할 수 있는, 루프를 회피하는 또다른 방법이다. 이름에서 알 수 있듯이 <code>numbers_z</code> 벡터 원소 각각에 대해 해당 연산작업 <code>+</code>, <code>%%</code>을 수행시킨다. <code>%%</code>는 나머지 연산자로 기본디폴트 설정으로 <span class="math inline">\(\frac{10}{7}\)</span>로 몫 대신에 나머지 3을 우선 계산하고, 그 다음으로 <span class="math inline">\(\frac{3}{5}\)</span>로 최종 나머지 3을 순차적으로 계산하여 결과를 도출한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Reduce ----------------------------------------------</span></span>
+<span><span class="va">numbers_z</span></span>
+<span><span class="co">#&gt; [1]   9  16  25  49 121</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/funprog.html">Reduce</a></span><span class="op">(</span><span class="va">`+`</span>, <span class="va">numbers_z</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 220</span></span>
+<span></span>
+<span><span class="va">numbers_z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">7</span>,<span class="fl">5</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/funprog.html">Reduce</a></span><span class="op">(</span><span class="va">`%%`</span>, <span class="va">numbers_z</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 3</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="functional-programming-purrr" class="level2" data-number="17.5"><h2 data-number="17.5" class="anchored" data-anchor-id="functional-programming-purrr">
+<span class="header-section-number">17.5</span> <code>purrr</code> 팩키지</h2>
+<p><code>*apply</code> 계열 함수는 각각의 자료형에 맞춰 기억하기가 쉽지 않아, 매번 도움말을 찾아 확인하고 코딩을 해야하는 번거러움이 많다. 데이터 분석을 함수형 프로그래밍 패러다임으로 실행하도록 <code>purrr</code> 팩키지가 개발되었다. 이를 통해 데이터 분석 작업이 수월하게 되어 저녁이 있는 삶이 길어질 것으로 기대된다.</p>
+<section id="functional-programming-purrr-hello-world" class="level3" data-number="17.5.1"><h3 data-number="17.5.1" class="anchored" data-anchor-id="functional-programming-purrr-hello-world">
+<span class="header-section-number">17.5.1</span> <code>purrr</code> 헬로월드</h3>
+<p><code>purrr</code> 팩키지를 불러와서 <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl()</a></code> 함수에 구문에 맞게 작성하면 동일한 결과를 깔끔하게 얻을 수 있다. 즉,</p>
+<ul>
+<li>
+<code><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl()</a></code>: 벡터, 데이터프레임, 리스트에 대해 함수를 원소별로 적용시켜 결과를 <code>double</code> 숫자형으로 출력시킨다.</li>
+<li>
+<code>numbers</code>: 함수를 각 원소별로 적용시킬 벡터 입력값</li>
+<li>
+<code>find_root_recur</code>: 앞서 작성한 뉴톤 방법으로 제곱근을 수치적으로 구하는 사용자 정의함수.</li>
+<li>
+<code>init=1, eps = 10^-10</code>: 뉴톤 방법을 구현한 사용자 정의함수에 필요한 초기값.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/">purrr</a></span><span class="op">)</span></span>
+<span><span class="va">numbers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">25</span>, <span class="fl">36</span>, <span class="fl">49</span>, <span class="fl">64</span>, <span class="fl">81</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">numbers</span>, <span class="va">find_root_recur</span>, init<span class="op">=</span><span class="fl">1</span>, eps <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="op">-</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 4 5 6 7 8 9</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section><section id="functional-programming-purrr-read-iris" class="level2" data-number="17.6"><h2 data-number="17.6" class="anchored" data-anchor-id="functional-programming-purrr-read-iris">
+<span class="header-section-number">17.6</span> 병렬 데이터 분석</h2>
+<p>구글 검색을 통해서 쉽게 <a href="https://gist.githubusercontent.com/curran/a08a1080b88344b0c8a7/raw/d546eaee765268bf2f487608c537c05e22e4b221/iris.csv">iris(붓꽃) 데이터</a>를 구할 수 있다. 이를 불러와서 각 종별로 <code>setosa</code> <code>versicolor</code>, <code>virginica</code>로 나눠 로컬 <code>.csv</code> 파일로 저장하고 나서 이를 다시 불러오는 사례를 함수형 프로그래밍으로 구현해본다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/fp-iris.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="붓꽃 데이터 불러오기"><img src="images/fp-iris.png" class="img-fluid figure-img" alt="붓꽃 데이터 불러오기"></a></p>
+<figcaption>붓꽃 데이터 불러오기</figcaption></figure>
+</div>
+<p>먼저 <code>iris.csv</code> 파일을 R로 불러와서 각 종별로 나눠서 <code>iris_종명.csv</code> 파일형식으로 저장시킨다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">iris_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://gist.githubusercontent.com/curran/a08a1080b88344b0c8a7/raw/d546eaee765268bf2f487608c537c05e22e4b221/iris.csv"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">iris_species</span> <span class="op">&lt;-</span> <span class="va">iris_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">iris_df</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">tmp_df</span> <span class="op">&lt;-</span> <span class="va">iris_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="va">iris_species</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="va">species_name</span> <span class="op">&lt;-</span> <span class="va">iris_species</span><span class="op">[</span><span class="va">i</span><span class="op">]</span></span>
+<span>  <span class="va">tmp_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"data/iris_"</span>, <span class="va">species_name</span>, <span class="st">".csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Sys.glob.html">Sys.glob</a></span><span class="op">(</span><span class="st">"data/iris_*.csv"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "data/iris_NA.csv"         "data/iris_setosa.csv"    </span></span>
+<span><span class="co">#&gt; [3] "data/iris_versicolor.csv" "data/iris_virginica.csv"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>로컬 파일 <code>iris_종명.csv</code> 형식으로 저장된 데이터를 함수형 프로그래밍을 통해 불러와서 분석작업을 수행해보자. <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> 함수를 사용해서 각 종별로 데이터를 깔끔하게 불러왔다.</p>
+<p><code>iris_filename</code> 벡터에 <code>iris_종명.csv</code>과 경로명이 포함된 문자열을 저장시켜 놓고 <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> 함수를 각 벡터 원소에 적용시켜 출력값으로 리스트 <code>iris_list</code> 객체를 생성시켰다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iris_filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"data/iris_setosa.csv"</span>, <span class="st">"data/iris_versicolor.csv"</span>, <span class="st">"data/iris_virginica.csv"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">iris_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">iris_filename</span>, <span class="va">read_csv</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rlang.r-lib.org/reference/set_names.html">set_names</a></span><span class="op">(</span><span class="va">iris_species</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">iris_list</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/enframe.html">enframe</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 2</span></span>
+<span><span class="co">#&gt;   name       value              </span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;      &lt;list&gt;             </span></span>
+<span><span class="co">#&gt; 1 setosa     &lt;spc_tbl_ [50 × 5]&gt;</span></span>
+<span><span class="co">#&gt; 2 versicolor &lt;spc_tbl_ [50 × 5]&gt;</span></span>
+<span><span class="co">#&gt; 3 virginica  &lt;spc_tbl_ [50 × 5]&gt;</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>iris_list</code> 각 원소는 데이터프레임이라 <code>summary</code> 함수를 사용해서 기술 통계량을 구할 수도 있다. 물론 <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code> 함수를 사용해서 <code>iris_list</code>의 각 원소를 지정하는 <code>.x</code> 여기서는 종별 데이터프레임에서 변수 두개를 추출하여 <code>sepal_length</code>, <code>sepal_width</code> 이 둘간의 스피커만 상관계수를 계산하는데 출력값이 <code>double</code> 연속형이라 <code>map_dbl</code>로 저정하여 작업시킨다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">iris_list</span>, <span class="va">summary</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $setosa</span></span>
+<span><span class="co">#&gt;   sepal_length    sepal_width     petal_length    petal_width   </span></span>
+<span><span class="co">#&gt;  Min.   :4.300   Min.   :2.300   Min.   :1.000   Min.   :0.100  </span></span>
+<span><span class="co">#&gt;  1st Qu.:4.800   1st Qu.:3.125   1st Qu.:1.400   1st Qu.:0.200  </span></span>
+<span><span class="co">#&gt;  Median :5.000   Median :3.400   Median :1.500   Median :0.200  </span></span>
+<span><span class="co">#&gt;  Mean   :5.006   Mean   :3.418   Mean   :1.464   Mean   :0.244  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:5.200   3rd Qu.:3.675   3rd Qu.:1.575   3rd Qu.:0.300  </span></span>
+<span><span class="co">#&gt;  Max.   :5.800   Max.   :4.400   Max.   :1.900   Max.   :0.600  </span></span>
+<span><span class="co">#&gt;    species         </span></span>
+<span><span class="co">#&gt;  Length:50         </span></span>
+<span><span class="co">#&gt;  Class :character  </span></span>
+<span><span class="co">#&gt;  Mode  :character  </span></span>
+<span><span class="co">#&gt;                    </span></span>
+<span><span class="co">#&gt;                    </span></span>
+<span><span class="co">#&gt;                    </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $versicolor</span></span>
+<span><span class="co">#&gt;   sepal_length    sepal_width     petal_length   petal_width   </span></span>
+<span><span class="co">#&gt;  Min.   :4.900   Min.   :2.000   Min.   :3.00   Min.   :1.000  </span></span>
+<span><span class="co">#&gt;  1st Qu.:5.600   1st Qu.:2.525   1st Qu.:4.00   1st Qu.:1.200  </span></span>
+<span><span class="co">#&gt;  Median :5.900   Median :2.800   Median :4.35   Median :1.300  </span></span>
+<span><span class="co">#&gt;  Mean   :5.936   Mean   :2.770   Mean   :4.26   Mean   :1.326  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:6.300   3rd Qu.:3.000   3rd Qu.:4.60   3rd Qu.:1.500  </span></span>
+<span><span class="co">#&gt;  Max.   :7.000   Max.   :3.400   Max.   :5.10   Max.   :1.800  </span></span>
+<span><span class="co">#&gt;    species         </span></span>
+<span><span class="co">#&gt;  Length:50         </span></span>
+<span><span class="co">#&gt;  Class :character  </span></span>
+<span><span class="co">#&gt;  Mode  :character  </span></span>
+<span><span class="co">#&gt;                    </span></span>
+<span><span class="co">#&gt;                    </span></span>
+<span><span class="co">#&gt;                    </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $virginica</span></span>
+<span><span class="co">#&gt;   sepal_length    sepal_width     petal_length    petal_width   </span></span>
+<span><span class="co">#&gt;  Min.   :4.900   Min.   :2.200   Min.   :4.500   Min.   :1.400  </span></span>
+<span><span class="co">#&gt;  1st Qu.:6.225   1st Qu.:2.800   1st Qu.:5.100   1st Qu.:1.800  </span></span>
+<span><span class="co">#&gt;  Median :6.500   Median :3.000   Median :5.550   Median :2.000  </span></span>
+<span><span class="co">#&gt;  Mean   :6.588   Mean   :2.974   Mean   :5.552   Mean   :2.026  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:6.900   3rd Qu.:3.175   3rd Qu.:5.875   3rd Qu.:2.300  </span></span>
+<span><span class="co">#&gt;  Max.   :7.900   Max.   :3.800   Max.   :6.900   Max.   :2.500  </span></span>
+<span><span class="co">#&gt;    species         </span></span>
+<span><span class="co">#&gt;  Length:50         </span></span>
+<span><span class="co">#&gt;  Class :character  </span></span>
+<span><span class="co">#&gt;  Mode  :character  </span></span>
+<span><span class="co">#&gt;                    </span></span>
+<span><span class="co">#&gt;                    </span></span>
+<span><span class="co">#&gt; </span></span>
+<span></span>
+<span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">iris_list</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">.x</span><span class="op">$</span><span class="va">sepal_length</span>, <span class="va">.x</span><span class="op">$</span><span class="va">sepal_width</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;     setosa versicolor  virginica </span></span>
+<span><span class="co">#&gt;  0.7686085  0.5176060  0.4265165</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="functional-programming-purrr-random-number" class="level2" data-number="17.7"><h2 data-number="17.7" class="anchored" data-anchor-id="functional-programming-purrr-random-number">
+<span class="header-section-number">17.7</span> 표본추출</h2>
+<p>서로 다른 난수를 생성시키는 방법을 살펴보자. 정규분포를 가정하고 평균과 표준편차를 달리하는 모수를 지정하고 난수갯수도 숫자를 달리하여 난수를 생성시킨다.</p>
+<section id="functional-programming-purrr-random-number-mean" class="level3" data-number="17.7.1"><h3 data-number="17.7.1" class="anchored" data-anchor-id="functional-programming-purrr-random-number-mean">
+<span class="header-section-number">17.7.1</span> <span class="math inline">\(\mu\)</span> 평균 변화</h3>
+<p>정규분포에서 난수를 10개 추출하는데 표준편차는 1로 고정시키고, 평균만 달리한다. 평균만 달리하기 때문에 <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> 함수를 그대로 사용한다. 즉, 입력값으로 평균만 달리하는 리스트를 입력값으로 넣는다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## 평균을 달리하는 경우</span></span>
+<span><span class="va">normal_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">5</span>,<span class="fl">10</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">sim_mu_name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"mu: "</span>, <span class="va">normal_mean</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">sim_mu_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">normal_mean</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="va">.x</span>, </span>
+<span>                            random_number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>mean<span class="op">=</span><span class="va">.x</span>, sd<span class="op">=</span><span class="fl">1</span>, n<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rlang.r-lib.org/reference/set_names.html">set_names</a></span><span class="op">(</span><span class="va">sim_mu_name</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">sim_mu_list</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.x</span><span class="op">$</span><span class="va">random_number</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;     mu: 1     mu: 5    mu: 10 </span></span>
+<span><span class="co">#&gt; 0.9774252 5.1067705 9.6557945</span></span>
+<span></span>
+<span><span class="va">sim_mu_list</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/enframe.html">enframe</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 2</span></span>
+<span><span class="co">#&gt;   name   value        </span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;  &lt;list&gt;       </span></span>
+<span><span class="co">#&gt; 1 mu: 1  &lt;df [10 × 2]&gt;</span></span>
+<span><span class="co">#&gt; 2 mu: 5  &lt;df [10 × 2]&gt;</span></span>
+<span><span class="co">#&gt; 3 mu: 10 &lt;df [10 × 2]&gt;</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="functional-programming-purrr-random-number-mean-sd" class="level3" data-number="17.7.2"><h3 data-number="17.7.2" class="anchored" data-anchor-id="functional-programming-purrr-random-number-mean-sd">
+<span class="header-section-number">17.7.2</span> <span class="math inline">\(\mu\)</span> 평균, <span class="math inline">\(\sigma\)</span> 표준편차</h3>
+<p>난수갯수만 고정시키고 평균과 표준편차를 달리하여 난수를 정규분포에서 추출한다. 입력값으로 평균과 표준편차 두개가 되기 때문에 <code><a href="https://purrr.tidyverse.org/reference/map2.html">map2()</a></code> 함수를 사용한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## 평균과 표준편차를 달리하는 경우</span></span>
+<span><span class="va">normal_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">5</span>,<span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">normal_sd</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">5</span>,<span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">sim_mu_sd_name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"mu: "</span>, <span class="va">normal_mean</span>, <span class="st">",  sd: "</span>, <span class="va">normal_sd</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">sim_mu_sd_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span><span class="op">(</span><span class="va">normal_mean</span>, <span class="va">normal_sd</span>, </span>
+<span>                        <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="va">.x</span>, sd <span class="op">=</span> <span class="va">.y</span>,</span>
+<span>                            random_number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>mean<span class="op">=</span><span class="va">.x</span>, sd<span class="op">=</span><span class="va">.y</span>, n<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rlang.r-lib.org/reference/set_names.html">set_names</a></span><span class="op">(</span><span class="va">sim_mu_sd_name</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">sim_mu_sd_list</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">.x</span><span class="op">$</span><span class="va">random_number</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; mu: 1,  sd: 10  mu: 5,  sd: 5 mu: 10,  sd: 1 </span></span>
+<span><span class="co">#&gt;      7.4495526      6.2588362      0.7741449</span></span>
+<span></span>
+<span><span class="va">sim_mu_sd_list</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/enframe.html">enframe</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 2</span></span>
+<span><span class="co">#&gt;   name           value        </span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;          &lt;list&gt;       </span></span>
+<span><span class="co">#&gt; 1 mu: 1,  sd: 10 &lt;df [10 × 3]&gt;</span></span>
+<span><span class="co">#&gt; 2 mu: 5,  sd: 5  &lt;df [10 × 3]&gt;</span></span>
+<span><span class="co">#&gt; 3 mu: 10,  sd: 1 &lt;df [10 × 3]&gt;</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="functional-programming-purrr-random-number-mean-sd-size" class="level3" data-number="17.7.3"><h3 data-number="17.7.3" class="anchored" data-anchor-id="functional-programming-purrr-random-number-mean-sd-size">
+<span class="header-section-number">17.7.3</span> <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma\)</span>, 표본크기</h3>
+<p><span class="math inline">\(\mu\)</span> 평균, <span class="math inline">\(\sigma\)</span> 표준편차, 표본크기를 모두 다르게 지정하여 난수를 추출한다. 이런 경우 <code><a href="https://purrr.tidyverse.org/reference/pmap.html">pmap()</a></code> 함수를 사용하고 입력 리스트가 다수라 이를 <code>normal_list</code>로 한번더 감싸서 이름이 붙은 리스트(named list)형태로 넣어주고, 이를 <code>function()</code> 함수의 내부 인수로 사용한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## 평균, 표준편차, 표본크기를 달리하는 경우</span></span>
+<span><span class="va">normal_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">5</span>,<span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">normal_sd</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">5</span>,<span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">normal_size</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">20</span>,<span class="fl">30</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">sim_mu_sd_size_name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"mu: "</span>, <span class="va">normal_mean</span>, <span class="st">",  sd: "</span>, <span class="va">normal_sd</span>,</span>
+<span>                              <span class="st">"  size: "</span>, <span class="va">normal_size</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">normal_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>normal_mean<span class="op">=</span><span class="va">normal_mean</span>, normal_sd<span class="op">=</span><span class="va">normal_sd</span>, normal_size<span class="op">=</span><span class="va">normal_size</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">sim_mu_sd_size_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/pmap.html">pmap</a></span><span class="op">(</span><span class="va">normal_list</span>,</span>
+<span>                            <span class="kw">function</span><span class="op">(</span><span class="va">normal_mean</span>, <span class="va">normal_sd</span>, <span class="va">normal_size</span><span class="op">)</span></span>
+<span>                        <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>mean<span class="op">=</span><span class="va">normal_mean</span>, sd <span class="op">=</span> <span class="va">normal_sd</span>, size <span class="op">=</span> <span class="va">normal_size</span>,</span>
+<span>                            random_number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>mean<span class="op">=</span><span class="va">normal_mean</span>, sd<span class="op">=</span><span class="va">normal_sd</span>, n<span class="op">=</span><span class="va">normal_size</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rlang.r-lib.org/reference/set_names.html">set_names</a></span><span class="op">(</span><span class="va">sim_mu_sd_size_name</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">sim_mu_sd_size_list</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">.x</span><span class="op">$</span><span class="va">random_number</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; mu: 1,  sd: 10  size: 10  mu: 5,  sd: 5  size: 20 mu: 10,  sd: 1  size: 30 </span></span>
+<span><span class="co">#&gt;                       10                       20                       30</span></span>
+<span></span>
+<span><span class="va">sim_mu_sd_size_list</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/enframe.html">enframe</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 2</span></span>
+<span><span class="co">#&gt;   name                     value        </span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                    &lt;list&gt;       </span></span>
+<span><span class="co">#&gt; 1 mu: 1,  sd: 10  size: 10 &lt;df [10 × 4]&gt;</span></span>
+<span><span class="co">#&gt; 2 mu: 5,  sd: 5  size: 20  &lt;df [20 × 4]&gt;</span></span>
+<span><span class="co">#&gt; 3 mu: 10,  sd: 1  size: 30 &lt;df [30 × 4]&gt;</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section><section id="functional-programming-purrr-ggplot" class="level2" data-number="17.8"><h2 data-number="17.8" class="anchored" data-anchor-id="functional-programming-purrr-ggplot">
+<span class="header-section-number">17.8</span> <code>ggplot</code> 시각화</h2>
+<p><code>list-column</code>을 활용하여 티블(tibble) 데이터프레임에 담아서 시각화를 진행해도 되고, 다른 방법으로 리스트에 담아서 이를 한장에 찍는 것도 가능하다. <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<div class="cell">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## 데이터 -----</span></span>
+<span><span class="va">three_country</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Korea, Rep."</span>, <span class="st">"Japan"</span>, <span class="st">"China"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">gapminder_tbl</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">continent</span>, <span class="st">"Asia"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">continent</span>, <span class="va">country</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">continent</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">three_country</span> <span class="op">)</span></span>
+<span></span>
+<span><span class="co">## 티블 데이터 시각화 -----</span></span>
+<span><span class="va">gapminder_plot_tbl</span> <span class="op">&lt;-</span> <span class="va">gapminder_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>graph <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">country</span>, </span>
+<span>                     <span class="op">~</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">.x</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">year</span>, y<span class="op">=</span><span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>                       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>                       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="va">.y</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">gapminder_plot_tbl</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 4</span></span>
+<span><span class="co">#&gt; # Groups:   continent, country [3]</span></span>
+<span><span class="co">#&gt;   continent country     data              graph </span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;     &lt;fct&gt;       &lt;list&gt;            &lt;list&gt;</span></span>
+<span><span class="co">#&gt; 1 Asia      China       &lt;tibble [12 × 4]&gt; &lt;gg&gt;  </span></span>
+<span><span class="co">#&gt; 2 Asia      Japan       &lt;tibble [12 × 4]&gt; &lt;gg&gt;  </span></span>
+<span><span class="co">#&gt; 3 Asia      Korea, Rep. &lt;tibble [12 × 4]&gt; &lt;gg&gt;</span></span>
+<span></span>
+<span><span class="co">## 리스트 데이터 시각화 -----</span></span>
+<span><span class="va">gapminder_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span><span class="op">(</span><span class="va">gapminder_tbl</span><span class="op">$</span><span class="va">data</span> , <span class="va">three_country</span>, </span>
+<span>                     <span class="op">~</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">.x</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">year</span>, y<span class="op">=</span><span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>                       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>                       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="va">.y</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">walk</a></span><span class="op">(</span><span class="va">gapminder_plot</span>, <span class="va">print</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="functions_purrr_files/figure-html/fp-iris-viz-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="functions_purrr_files/figure-html/fp-iris-viz-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="functions_purrr_files/figure-html/fp-iris-viz-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="functions_purrr_files/figure-html/fp-iris-viz-2.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="functions_purrr_files/figure-html/fp-iris-viz-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="functions_purrr_files/figure-html/fp-iris-viz-3.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<span><span class="co">## 리스트 데이터 시각화 - 한장에 찍기 -----</span></span>
+<span><span class="fu">cowplot</span><span class="fu">::</span><span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span>plotlist <span class="op">=</span> <span class="va">gapminder_plot</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="functions_purrr_files/figure-html/fp-iris-viz-4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="functions_purrr_files/figure-html/fp-iris-viz-4.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="fp-theory-practice" class="level2" data-number="17.9"><h2 data-number="17.9" class="anchored" data-anchor-id="fp-theory-practice">
+<span class="header-section-number">17.9</span> 함수형 프로그래밍 이론과 실제</h2>
+<p>함수는 다음과 같이 될 수도 있어 함수형 프로그래밍 언어가 된다. <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<ul>
+<li>함수의 인자</li>
+<li>함수로 반환</li>
+<li>리스트에 저장</li>
+<li>변수에 저장</li>
+<li>무명함수</li>
+<li>조작할 수 있다.</li>
+</ul>
+<p>Firstly, functional languages have first-class functions, functions that behave like any other data structure. In R, this means that you can do anything with a function that you can do with a vector: you can assign them to variables, store them in lists, pass them as arguments to other functions, create them inside functions, and even return them as the result of a function.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+John Chambers 창시자가 말하는 R 계산의 기본원칙
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>존재하는 모든 것은 객체다. (Everything that exists is an object.)</li>
+<li>일어나는 모든 것은 함수호출이다. (Everything that happens is a function call.)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">`%&gt;%`</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "function"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">`$`</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "function"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">`&lt;-`</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "function"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">`+`</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "function"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section><section id="pure-vs-impure-function" class="level2" data-number="17.10"><h2 data-number="17.10" class="anchored" data-anchor-id="pure-vs-impure-function">
+<span class="header-section-number">17.10</span> 순수한 함수 vs 불순한 함수</h2>
+<p><strong>순수한 함수(pure function)</strong>는 입력값에만 출력값이 의존하게 되는 특성과 부수효과(side-effect)를 갖지 않는 반면 <strong>순수하지 않은 함수(impure function)</strong>는 환경에 의존하며 부수효과도 갖는다.</p>
+<div class="columns">
+<div class="column">
+<p><strong>순수한 함수(pure function)</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 1</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 50.5</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column">
+<p><strong>순수하지 않은 함수(impure function)</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "2024-03-20 09:31:29 KST"</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] -1.4959541 -0.2486522 -0.4523397  1.1723539 -0.2992888 -1.0520736</span></span>
+<span><span class="co">#&gt;  [7]  0.7389625  0.4706090 -0.7900775  0.8746797</span></span>
+<span></span>
+<span><span class="co"># write_csv("data/sample.csv")</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<section id="fp-lambda-functin" class="level3" data-number="17.10.1"><h3 data-number="17.10.1" class="anchored" data-anchor-id="fp-lambda-functin">
+<span class="header-section-number">17.10.1</span> 무명함수와 매퍼</h3>
+<p><span class="math inline">\(\lambda\)</span> (람다) 함수는 무명(anonymous) 함수는 함수명을 갖는 일반적인 함수와 비교하여 함수의 좋은 점은 그대로 누리면서 함수가 많아 함수명으로 메모리가 난잡하게 지져분해지는 것을 막을 수 있다.</p>
+<p>무명함수로 기능르 구현한 후에 매퍼(mapper)를 사용해서 <code><a href="https://purrr.tidyverse.org/reference/as_mapper.html">as_mapper()</a></code> 명칭을 부여하여 함수처럼 사용하는 것도 가능하다. 매퍼(mapper)를 사용하는 이유를 다음과 같이 정리할 수 있다.</p>
+<ul>
+<li>간결함(Concise)</li>
+<li>가독성(Easy to read)</li>
+<li>재사용성(Reusable)</li>
+</ul>
+<p>정치인 페이스북 페이지에서 팬수를 추출한다. 그리고 이를 이름이 부은 리스트(named list)로 일자별 팬수 추이를 리스트로 준비한다. 그리고 나서 안철수, 문재인, 심상정 세 후보에 대한 최고 팬수증가를 무명함수로 계산한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="co">## 데이터프레임을 리스트로 변환</span></span>
+<span><span class="va">ahn_df</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/fb_ahn.csv"</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>fans <span class="op">=</span> <span class="va">ahn_fans</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fans_lag <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag</a></span><span class="op">(</span><span class="va">fans</span><span class="op">)</span>,</span>
+<span>         fans_diff <span class="op">=</span> <span class="va">fans</span> <span class="op">-</span> <span class="va">fans_lag</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">fdate</span>, fans <span class="op">=</span> <span class="va">fans_diff</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">fans</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">moon_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/fb_moon.csv"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>fans <span class="op">=</span> <span class="va">moon_fans</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fans_lag <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag</a></span><span class="op">(</span><span class="va">fans</span><span class="op">)</span>,</span>
+<span>         fans_diff <span class="op">=</span> <span class="va">fans</span> <span class="op">-</span> <span class="va">fans_lag</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">fdate</span>, fans <span class="op">=</span> <span class="va">fans_diff</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">fans</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">sim_df</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/fb_sim.csv"</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>fans <span class="op">=</span> <span class="va">sim_fans</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fans_lag <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag</a></span><span class="op">(</span><span class="va">fans</span><span class="op">)</span>,</span>
+<span>         fans_diff <span class="op">=</span> <span class="va">fans</span> <span class="op">-</span> <span class="va">fans_lag</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">fdate</span>, fans <span class="op">=</span> <span class="va">fans_diff</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">fans</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">convert_to_list</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">df_fans_v</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">$</span><span class="va">fans</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://rlang.r-lib.org/reference/set_names.html">set_names</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">fdate</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">df_fans_v</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">ahn_v</span>  <span class="op">&lt;-</span> <span class="fu">convert_to_list</span><span class="op">(</span><span class="va">ahn_df</span><span class="op">)</span></span>
+<span><span class="va">moon_v</span> <span class="op">&lt;-</span> <span class="fu">convert_to_list</span><span class="op">(</span><span class="va">moon_df</span><span class="op">)</span></span>
+<span><span class="va">sim_v</span>  <span class="op">&lt;-</span> <span class="fu">convert_to_list</span><span class="op">(</span><span class="va">sim_df</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">fans_lst</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>ahn_fans  <span class="op">=</span> <span class="va">ahn_v</span>,</span>
+<span>                 moon_fans <span class="op">=</span> <span class="va">moon_v</span>,</span>
+<span>                 sim_fans  <span class="op">=</span> <span class="va">sim_v</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">listviewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/listviewer/man/jsonedit.html">jsonedit</a></span><span class="op">(</span><span class="va">fans_lst</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="jsonedit html-widget html-fill-item" id="htmlwidget-a79edcef4c312e30d5d8" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-a79edcef4c312e30d5d8">{"x":{"data":{"ahn_fans":{"2017-01-02":4,"2017-01-03":31,"2017-01-04":33,"2017-01-05":290,"2017-01-06":140,"2017-01-07":61,"2017-01-08":34,"2017-01-09":38,"2017-01-10":40,"2017-01-11":24,"2017-01-12":45,"2017-01-13":30,"2017-01-14":29,"2017-01-15":17,"2017-01-16":26,"2017-01-17":17,"2017-01-18":23,"2017-01-19":66,"2017-01-20":45,"2017-01-21":22,"2017-01-22":37,"2017-01-23":52,"2017-01-24":21,"2017-01-25":80,"2017-01-26":47,"2017-01-27":51,"2017-01-28":77,"2017-01-29":69,"2017-01-30":580,"2017-01-31":63,"2017-02-01":32,"2017-02-02":144,"2017-02-03":43,"2017-02-04":106,"2017-02-05":65,"2017-02-06":86,"2017-02-07":112,"2017-02-08":63,"2017-02-09":69,"2017-02-10":92,"2017-02-11":38,"2017-02-12":14,"2017-02-13":15,"2017-02-14":63,"2017-02-15":28,"2017-02-16":252,"2017-02-17":115,"2017-02-18":74,"2017-02-19":38,"2017-02-20":46,"2017-02-21":61,"2017-02-22":57,"2017-02-23":71,"2017-02-24":445,"2017-02-25":299,"2017-02-26":147,"2017-02-27":87,"2017-02-28":91,"2017-03-01":32,"2017-03-02":50,"2017-03-03":37,"2017-03-04":89,"2017-03-05":64,"2017-03-06":55,"2017-03-07":51,"2017-03-08":38,"2017-03-09":34,"2017-03-10":183,"2017-03-11":157,"2017-03-12":141,"2017-03-13":125,"2017-03-14":105,"2017-03-15":155,"2017-03-16":178,"2017-03-17":135,"2017-03-18":135,"2017-03-19":183,"2017-03-20":183,"2017-03-21":144,"2017-03-22":174,"2017-03-23":181,"2017-03-24":153,"2017-03-25":135,"2017-03-26":240,"2017-03-27":226,"2017-03-28":241,"2017-03-29":190,"2017-03-30":175,"2017-03-31":258,"2017-04-01":283,"2017-04-02":252,"2017-04-03":239,"2017-04-04":430,"2017-04-05":796,"2017-04-06":744,"2017-04-07":581,"2017-04-08":509,"2017-04-09":409,"2017-04-10":591,"2017-04-11":444,"2017-04-12":333,"2017-04-13":189,"2017-04-14":233,"2017-04-15":238,"2017-04-16":212,"2017-04-17":320,"2017-04-18":636,"2017-04-19":516,"2017-04-20":629,"2017-04-21":484,"2017-04-22":385,"2017-04-23":676,"2017-04-24":469,"2017-04-25":289},"moon_fans":{"2017-01-02":413,"2017-01-03":397,"2017-01-04":465,"2017-01-05":381,"2017-01-06":511,"2017-01-07":645,"2017-01-08":350,"2017-01-09":264,"2017-01-10":236,"2017-01-11":260,"2017-01-12":419,"2017-01-13":570,"2017-01-14":356,"2017-01-15":372,"2017-01-16":306,"2017-01-17":386,"2017-01-18":570,"2017-01-19":370,"2017-01-20":414,"2017-01-21":207,"2017-01-22":378,"2017-01-23":690,"2017-01-24":558,"2017-01-25":373,"2017-01-26":452,"2017-01-27":438,"2017-01-28":301,"2017-01-29":267,"2017-01-30":347,"2017-01-31":192,"2017-02-01":237,"2017-02-02":647,"2017-02-03":554,"2017-02-04":559,"2017-02-05":550,"2017-02-06":467,"2017-02-07":463,"2017-02-08":329,"2017-02-09":142,"2017-02-10":296,"2017-02-11":144,"2017-02-12":163,"2017-02-13":107,"2017-02-14":114,"2017-02-15":80,"2017-02-16":250,"2017-02-17":114,"2017-02-18":162,"2017-02-19":61,"2017-02-20":40,"2017-02-21":72,"2017-02-22":23,"2017-02-23":17,"2017-02-24":13,"2017-02-25":12,"2017-02-26":52,"2017-02-27":75,"2017-02-28":129,"2017-03-01":12,"2017-03-02":61,"2017-03-03":72,"2017-03-04":56,"2017-03-05":285,"2017-03-06":184,"2017-03-07":3,"2017-03-08":-9,"2017-03-09":14,"2017-03-10":733,"2017-03-11":322,"2017-03-12":245,"2017-03-13":123,"2017-03-14":98,"2017-03-15":73,"2017-03-16":278,"2017-03-17":121,"2017-03-18":76,"2017-03-19":-25,"2017-03-20":-44,"2017-03-21":88,"2017-03-22":455,"2017-03-23":257,"2017-03-24":188,"2017-03-25":166,"2017-03-26":77,"2017-03-27":45,"2017-03-28":1464,"2017-03-29":695,"2017-03-30":302,"2017-03-31":115,"2017-04-01":149,"2017-04-02":104,"2017-04-03":55,"2017-04-04":160,"2017-04-05":151,"2017-04-06":141,"2017-04-07":139,"2017-04-08":358,"2017-04-09":488,"2017-04-10":521,"2017-04-11":629,"2017-04-12":397,"2017-04-13":205,"2017-04-14":303,"2017-04-15":207,"2017-04-16":541,"2017-04-17":944,"2017-04-18":1310,"2017-04-19":732,"2017-04-20":1093,"2017-04-21":880,"2017-04-22":812,"2017-04-23":930,"2017-04-24":955,"2017-04-25":616},"sim_fans":{"2017-01-02":167,"2017-01-03":134,"2017-01-04":145,"2017-01-05":133,"2017-01-06":144,"2017-01-07":156,"2017-01-08":93,"2017-01-09":117,"2017-01-10":88,"2017-01-11":175,"2017-01-12":136,"2017-01-13":147,"2017-01-14":158,"2017-01-15":135,"2017-01-16":101,"2017-01-17":229,"2017-01-18":721,"2017-01-19":566,"2017-01-20":541,"2017-01-21":341,"2017-01-22":217,"2017-01-23":239,"2017-01-24":302,"2017-01-25":240,"2017-01-26":221,"2017-01-27":200,"2017-01-28":234,"2017-01-29":91,"2017-01-30":106,"2017-01-31":86,"2017-02-01":140,"2017-02-02":681,"2017-02-03":332,"2017-02-04":331,"2017-02-05":239,"2017-02-06":371,"2017-02-07":514,"2017-02-08":306,"2017-02-09":265,"2017-02-10":123,"2017-02-11":51,"2017-02-12":125,"2017-02-13":28,"2017-02-14":66,"2017-02-15":62,"2017-02-16":94,"2017-02-17":134,"2017-02-18":106,"2017-02-19":93,"2017-02-20":57,"2017-02-21":32,"2017-02-22":72,"2017-02-23":62,"2017-02-24":63,"2017-02-25":46,"2017-02-26":167,"2017-02-27":638,"2017-02-28":292,"2017-03-01":291,"2017-03-02":219,"2017-03-03":184,"2017-03-04":157,"2017-03-05":236,"2017-03-06":288,"2017-03-07":134,"2017-03-08":79,"2017-03-09":113,"2017-03-10":789,"2017-03-11":489,"2017-03-12":1301,"2017-03-13":1079,"2017-03-14":657,"2017-03-15":439,"2017-03-16":414,"2017-03-17":325,"2017-03-18":321,"2017-03-19":248,"2017-03-20":559,"2017-03-21":529,"2017-03-22":394,"2017-03-23":528,"2017-03-24":523,"2017-03-25":454,"2017-03-26":474,"2017-03-27":202,"2017-03-28":499,"2017-03-29":250,"2017-03-30":167,"2017-03-31":196,"2017-04-01":292,"2017-04-02":429,"2017-04-03":469,"2017-04-04":403,"2017-04-05":433,"2017-04-06":364,"2017-04-07":636,"2017-04-08":450,"2017-04-09":285,"2017-04-10":380,"2017-04-11":395,"2017-04-12":571,"2017-04-13":397,"2017-04-14":1070,"2017-04-15":975,"2017-04-16":755,"2017-04-17":671,"2017-04-18":806,"2017-04-19":1441,"2017-04-20":1190,"2017-04-21":1025,"2017-04-22":950,"2017-04-23":896,"2017-04-24":1948,"2017-04-25":2029}},"options":{"mode":"tree","modes":["code","form","text","tree","view"]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<span><span class="co">## 무명함수 테스트</span></span>
+<span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">fans_lst</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  ahn_fans moon_fans  sim_fans </span></span>
+<span><span class="co">#&gt;       796      1464      2029</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>rlang_lambda_function</code> 무명함수로 <code>increase_1000_fans</code> 작성해서 일별 팬수 증가가 1000명 이상인 경우 <code><a href="https://purrr.tidyverse.org/reference/keep.html">keep()</a></code> 함수를 사용해서 각 후보별로 추출할 수 있다. <code><a href="https://purrr.tidyverse.org/reference/keep.html">discard()</a></code> 함수를 사용해서 반대로 버려버릴 수도 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">increase_1000_fans</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/as_mapper.html">as_mapper</a></span><span class="op">(</span> <span class="op">~</span><span class="va">.x</span> <span class="op">&gt;</span> <span class="fl">1000</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">fans_lst</span>, <span class="op">~</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/keep.html">keep</a></span><span class="op">(</span><span class="va">.x</span>, <span class="va">increase_1000_fans</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $ahn_fans</span></span>
+<span><span class="co">#&gt; named numeric(0)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $moon_fans</span></span>
+<span><span class="co">#&gt; 2017-03-28 2017-04-18 2017-04-20 </span></span>
+<span><span class="co">#&gt;       1464       1310       1093 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $sim_fans</span></span>
+<span><span class="co">#&gt; 2017-03-12 2017-03-13 2017-04-14 2017-04-19 2017-04-20 2017-04-21 2017-04-24 </span></span>
+<span><span class="co">#&gt;       1301       1079       1070       1441       1190       1025       1948 </span></span>
+<span><span class="co">#&gt; 2017-04-25 </span></span>
+<span><span class="co">#&gt;       2029</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><a href="https://terms.naver.com/entry.nhn?docId=1116302&amp;cid=40942&amp;categoryId=31530">술어논리(predicate logic)</a>은 조건을 테스트하여 참(<code>TRUE</code>), 거짓(<code>FALSE</code>)을 반환시킨다. <code>every</code>, <code>some</code>을 사용하여 팬수가 증가한 날이 매일 1,000명이 증가했는지, 전부는 아니고 일부 특정한 날에 1,000명이 증가했는지 파악할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## 세후보 팬수가 매일 모두 1000명 이상 증가했나요?</span></span>
+<span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">fans_lst</span>, <span class="op">~</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/every.html">every</a></span><span class="op">(</span><span class="va">.x</span>, <span class="va">increase_1000_fans</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $ahn_fans</span></span>
+<span><span class="co">#&gt; [1] FALSE</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $moon_fans</span></span>
+<span><span class="co">#&gt; [1] FALSE</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $sim_fans</span></span>
+<span><span class="co">#&gt; [1] FALSE</span></span>
+<span><span class="co">## 세후보 팬수가 전체는 아니고 일부 특정한 날에 1000명 이상 증가했나요?</span></span>
+<span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">fans_lst</span>, <span class="op">~</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/every.html">some</a></span><span class="op">(</span><span class="va">.x</span>, <span class="va">increase_1000_fans</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $ahn_fans</span></span>
+<span><span class="co">#&gt; [1] FALSE</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $moon_fans</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $sim_fans</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="high-order-function" class="level3" data-number="17.10.2"><h3 data-number="17.10.2" class="anchored" data-anchor-id="high-order-function">
+<span class="header-section-number">17.10.2</span> 고차 함수(High order function)</h3>
+<p>고차 함수(High order function)는 함수의 인자로 함수를 받아 함수로 반환시키는 함수를 지칭한다. <code>high_order_fun</code> 함수는 함수를 인자(<code>func</code>)로 받아 함수를 반환시키는 고차함수다. 평균 함수(<code>mean</code>)를 인자로 넣어 출력값으로 <code>mean_na()</code> 함수를 새롭게 생성시킨다. <code>NA</code>가 포함된 벡터를 넣어 평균값을 계산하게 된다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">high_order_fun</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">func</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="kw">function</span><span class="op">(</span><span class="va">...</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="fu">func</span><span class="op">(</span><span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">mean_na</span> <span class="op">&lt;-</span> <span class="fu">high_order_fun</span><span class="op">(</span><span class="va">mean</span><span class="op">)</span></span>
+<span><span class="fu">mean_na</span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 5.5</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>벡터가 입력값으로 들어가서 벡터가 출력값으로 나오는 보통 함수(Regular Function)외에 고차함수는 3가지 유형이 있다.</p>
+<ul>
+<li>벡터 → 함수: 함수공장(Function Factory)</li>
+<li>함수 → 벡터: Functional - <code>for</code>루프를 <code>purrr</code> 팩키지 <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> 함수로 대체</li>
+<li>함수 → 함수: 함수연산자(Function Operator) - <code>Functional</code>과 함께 사용될 경우 <code>adverbs</code>로서 강력한 기능을 발휘</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/fp.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="고차함수 유형"><img src="images/fp.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="416" alt="고차함수 유형"></a></p>
+<figcaption>고차함수 유형</figcaption></figure>
+</div>
+</section><section id="adverbs-safely-possibly" class="level3" data-number="17.10.3"><h3 data-number="17.10.3" class="anchored" data-anchor-id="adverbs-safely-possibly">
+<span class="header-section-number">17.10.3</span> 부사 - <code>safely</code>, <code>possibly</code>,…</h3>
+<p><code>purrr</code> 팩키지의 대표적인 부사(adverbs)에는 <code><a href="https://purrr.tidyverse.org/reference/possibly.html">possibly()</a></code>와 <code><a href="https://purrr.tidyverse.org/reference/safely.html">safely()</a></code>가 있다. 그외에도 <code>silently()</code>, <code>surely()</code> 등 다른 부사도 있으니 필요한 경우 <code>purrr</code> 팩키지 문서를 참조한다.</p>
+<p><code>safely(mean)</code>은 동사 함수(<code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>)를 받아 부사 <code><a href="https://purrr.tidyverse.org/reference/safely.html">safely()</a></code>로 “부사 + 동사”로 기능이 추가된 부사 동사를 반환시킨다. 따라서, <code>NA</code>가 추가된 벡터를 넣을 경우 <code>$result</code>와 <code>$error</code>를 원소로 갖는 리스트를 반환시킨다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mean_safe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/safely.html">safely</a></span><span class="op">(</span><span class="va">mean</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">mean_safe</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "function"</span></span>
+<span></span>
+<span><span class="fu">mean_safe</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $result</span></span>
+<span><span class="co">#&gt; [1] NA</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $error</span></span>
+<span><span class="co">#&gt; NULL</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>이를 활용하여 오류처리작업을 간결하게 수행시킬 수 있다. <code>$result</code>와 <code>$error</code>을 원소로 갖는 리스트를 반환시키기 때문에 오류와 결과값을 추출하여 후속작업을 수행하여 디버깅하는데 유용하게 활용할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test_lst</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"NA"</span>, <span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">log_safe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/safely.html">safely</a></span><span class="op">(</span><span class="va">log</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">test_lst</span>, <span class="va">log_safe</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="st">"result"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt; NULL</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[2]]</span></span>
+<span><span class="co">#&gt; [1] 0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[3]]</span></span>
+<span><span class="co">#&gt; [1] 0.6931472</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[4]]</span></span>
+<span><span class="co">#&gt; [1] 1.098612</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[5]]</span></span>
+<span><span class="co">#&gt; [1] 1.386294</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[6]]</span></span>
+<span><span class="co">#&gt; [1] 1.609438</span></span>
+<span></span>
+<span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">test_lst</span>, <span class="va">log_safe</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="st">"error"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt; &lt;simpleError in .Primitive("log")(x, base): non-numeric argument to mathematical function&gt;</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[2]]</span></span>
+<span><span class="co">#&gt; NULL</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[3]]</span></span>
+<span><span class="co">#&gt; NULL</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[4]]</span></span>
+<span><span class="co">#&gt; NULL</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[5]]</span></span>
+<span><span class="co">#&gt; NULL</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[6]]</span></span>
+<span><span class="co">#&gt; NULL</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>반면에 <code><a href="https://purrr.tidyverse.org/reference/possibly.html">possibly()</a></code>는 결과와 <code>otherwise</code> 값을 반환시켜서 오류가 발생되면 중단되는 것이 아니라 오류가 있다는 사실을 알고 예외처리시킨 후에 쭉 정상진행시킨다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">max_possibly</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/possibly.html">possibly</a></span><span class="op">(</span><span class="va">sum</span>, otherwise <span class="op">=</span> <span class="st">"watch out"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">max_possibly</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 55</span></span>
+<span></span>
+<span><span class="fu">max_possibly</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] NA</span></span>
+<span></span>
+<span><span class="fu">max_possibly</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NA"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "watch out"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code><a href="https://purrr.tidyverse.org/reference/possibly.html">possibly()</a></code>는 부울 논리값, <code>NA</code>, 문자열, 숫자를 반환시킬 수 있다.</p>
+<p><code><a href="https://purrr.tidyverse.org/reference/transpose.html">transpose()</a></code>와 결합하여 <code><a href="https://purrr.tidyverse.org/reference/safely.html">safely()</a></code>, <code><a href="https://purrr.tidyverse.org/reference/possibly.html">possibly()</a></code> 결과를 변형시킬 수도 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">test_lst</span>, <span class="va">log_safe</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 6</span></span>
+<span></span>
+<span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">test_lst</span>, <span class="va">log_safe</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/transpose.html">transpose</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 2</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code><a href="https://purrr.tidyverse.org/reference/keep.html">compact()</a></code>를 사용해서 <code>NULL</code>을 제거하는데, 앞서 <code><a href="https://purrr.tidyverse.org/reference/possibly.html">possibly()</a></code>의 인자로 <code>otherwise=</code>를 지정하는 경우 <code>otherwise=NULL</code>와 같이 정의해서 예외처리로 <code>NULL</code>을 만들어 내고 <code><a href="https://purrr.tidyverse.org/reference/keep.html">compact()</a></code>로 정상처리된 데이터만 얻는 작업흐름을 갖춘다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">null_lst</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span>, <span class="cn">NULL</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="cn">NULL</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="cn">NA</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://purrr.tidyverse.org/reference/keep.html">compact</a></span><span class="op">(</span><span class="va">null_lst</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt; [1] 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[2]]</span></span>
+<span><span class="co">#&gt; [1] 3</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[3]]</span></span>
+<span><span class="co">#&gt; [1] 4</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[4]]</span></span>
+<span><span class="co">#&gt; [1] 6</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[5]]</span></span>
+<span><span class="co">#&gt; [1] 7</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[6]]</span></span>
+<span><span class="co">#&gt; [1] NA</span></span>
+<span></span>
+<span><span class="va">possibly_log</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/possibly.html">possibly</a></span><span class="op">(</span><span class="va">log</span>, otherwise <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">null_lst</span>, <span class="va">possibly_log</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/keep.html">compact</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt; [1] 0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[2]]</span></span>
+<span><span class="co">#&gt; [1] 1.098612</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[3]]</span></span>
+<span><span class="co">#&gt; [1] 1.386294</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[4]]</span></span>
+<span><span class="co">#&gt; [1] 1.791759</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[5]]</span></span>
+<span><span class="co">#&gt; [1] 1.94591</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[6]]</span></span>
+<span><span class="co">#&gt; [1] NA</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section><section id="fp-clean-code" class="level2" data-number="17.11"><h2 data-number="17.11" class="anchored" data-anchor-id="fp-clean-code">
+<span class="header-section-number">17.11</span> 깨끗한 코드</h2>
+<p><code>round_mean()</code> 함수를 <code><a href="https://purrr.tidyverse.org/reference/compose.html">compose()</a></code> 함수를 사용해서 <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> 함수로 평균을 구한 후에 <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code>함수로 반올림하는 코드를 다음과 같이 쉽게 작성할 수 있다. <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
+<div class="cell">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">round_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/compose.html">compose</a></span><span class="op">(</span><span class="va">round</span>, <span class="va">mean</span><span class="op">)</span></span>
+<span><span class="fu">round_mean</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 6</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>두번째 사례로 전형적인 데이터 분석 사례로 <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> → <code><a href="https://rdrr.io/r/stats/anova.html">anova()</a></code> → <code>tidy()</code>를 통해 한방에 선형회귀 모형 산출물을 깨끗한 코드로 작성하는 사례를 살펴보자.</p>
+<p><code>mtcars</code> 데이터셋에서 연비 예측에 변수 두개를 넣고 일반적인 <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> 선형예측모형 제작방식과 동일하게 인자를 넣는다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">clean_lm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/compose.html">compose</a></span><span class="op">(</span><span class="fu">broom</span><span class="fu">::</span><span class="va"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span>, <span class="va">anova</span>, <span class="va">lm</span><span class="op">)</span></span>
+<span><span class="fu">clean_lm</span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">wt</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 6</span></span>
+<span><span class="co">#&gt;   term         df sumsq meansq statistic   p.value</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 hp            1  678. 678.       101.   5.99e-11</span></span>
+<span><span class="co">#&gt; 2 wt            1  253. 253.        37.6  1.12e- 6</span></span>
+<span><span class="co">#&gt; 3 Residuals    29  195.   6.73      NA   NA</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code><a href="https://purrr.tidyverse.org/reference/compose.html">compose()</a></code>를 통해 함수를 조합하는 경우 함수의 인자를 함께 전달해야될 경우가 있다. 이와 같은 경우 <code><a href="https://purrr.tidyverse.org/reference/partial.html">partial()</a></code>을 사용해서 인자를 넘기는 함수를 제작하여 <code><a href="https://purrr.tidyverse.org/reference/compose.html">compose()</a></code>에 넣어준다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">robust_round_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/compose.html">compose</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/partial.html">partial</a></span><span class="op">(</span><span class="va">round</span>, digits<span class="op">=</span><span class="fl">1</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/partial.html">partial</a></span><span class="op">(</span><span class="va">mean</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">robust_round_mean</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 5.5</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>리스트 칼럼(list-column)과 결합하여 모형에서 나온 데이터 분석결과를 깔끔하게 코드로 제작해보자. 먼저 <code>lm</code>을 돌려 모형 요약하는 함수 <code>summary</code>를 통해 <code>r.squared</code>값을 추출하는 함수를 <code>summary_lm</code>으로 제작한다.</p>
+<p>그리고 나서 <code><a href="https://tidyr.tidyverse.org/reference/nest.html">nest()</a></code> 함수로 리스트 칼럼(list-column)을 만들고 두개의 집단 수동/자동을 나타내는 <code>am</code> 변수를 그룹으로 삼아 두 집단에 속한 수동/자동 데이터에 대한 선형 회귀모형을 적합시키고 나서 “r.squared”값을 추출하여 이를 티블 데이터프레임에 저장시킨다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">summary_lm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/compose.html">compose</a></span><span class="op">(</span><span class="va">summary</span>, <span class="va">lm</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>lm_mod <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">data</span>, <span class="op">~</span> <span class="fu">summary_lm</span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">.x</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>         r_squared <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">lm_mod</span>, <span class="st">"r.squared"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest.html">unnest</a></span><span class="op">(</span><span class="va">r_squared</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 2 × 4</span></span>
+<span><span class="co">#&gt; # Groups:   am [2]</span></span>
+<span><span class="co">#&gt;      am data               lm_mod     r_squared</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;list&gt;             &lt;list&gt;         &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1     1 &lt;tibble [13 × 10]&gt; &lt;smmry.lm&gt;     0.837</span></span>
+<span><span class="co">#&gt; 2     0 &lt;tibble [19 × 10]&gt; &lt;smmry.lm&gt;     0.768</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p><a href="http://www.brodrigues.co/fput/">Bruno Rodrigues(2016), “Functional programming and unit testing for data munging with R”, LeanPub, 2016-12-23</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://jennybc.github.io/purrr-tutorial/index.html"><code>purrr</code> tutorial: Lessons and Examples</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://github.com/jennybc/purrr-tutorial/"><code>purrr</code> tutorial GitHub Webpage</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a href="https://aosmith.rbind.io/2018/08/20/automating-exploratory-plots/">Very statisticious (August 20, 2018), “Automating exploratory plots with ggplot2 and purrr”</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><a href="https://adv-r.hadley.nz/fp.html">Advanced R, “Introduction”</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p><a href="https://colinfay.me/purrr-code-optim/">Colin Fay, “A Crazy Little Thing Called {purrr} - Part 5: code optimization”</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "복사완료!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "복사완료!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
+          }
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./functions_ds.html" class="pagination-link" aria-label="데이터 과학 함수">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./quarto.html" class="pagination-link" aria-label="쿼토">
+        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">쿼토</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p>챗GPT 데이터 과학 책은 소프트웨어 카펜트리 “R for Reproducible Scientific Analysis”를 번역한 것이 포함되어 있습니다.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/functions_purrr.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
+</div>
+  </div>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
+
+
+</body></html>

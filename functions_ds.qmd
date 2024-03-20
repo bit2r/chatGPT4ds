@@ -371,5 +371,4 @@ draw_bar_chart <- function(dataframe, varname, penguin_species) {
 penguins |> draw_bar_chart(species, "Adelie")
 ```
 
-## 역사
 

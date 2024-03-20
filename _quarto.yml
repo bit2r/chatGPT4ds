@@ -74,8 +74,9 @@ book:
     - part: "**5부** 프로그래밍"
       chapters:
         - functions.qmd
+        - function_plyr.qmd
         - functions_ds.qmd
-        # - functions_purrr.qmd
+        - functions_purrr.qmd
 
     - part: "**6부** 커뮤니케이션"
       chapters:
@@ -98,7 +99,6 @@ book:
         - sampling.qmd
         - hypothesis.qmd
         - NHST.qmd
-
 
     - references.qmd
 
@@ -151,8 +151,8 @@ webr:
   # - "curl"
   # - "rvest"
   # - "fs"
-  # - "ggplot2"
   - "palmerpenguins"
+  - "gapminder"
 
 code-annotations: hover
 
