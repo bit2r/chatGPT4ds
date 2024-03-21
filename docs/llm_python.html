@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.5.9">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘, 신종화">
-<title>챗GPT 데이터 과학 – 1&nbsp; 들어가며</title>
+<title>챗GPT 데이터 과학 – 27&nbsp; 쿼토 파이썬 환경</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -61,8 +61,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro_tidyverse.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./local_llm.html" rel="next">
+<link href="./code_interpreter.html" rel="prev">
 <link href="./images/logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -110,8 +110,7 @@ ga('send', {
   hitType: 'pageview',
   'anonymizeIp': true,
 });
-</script><meta name="mermaid-theme" content="neutral">
-<script src="site_libs/quarto-diagram/mermaid.min.js"></script><script src="site_libs/quarto-diagram/mermaid-init.js"></script><link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+</script>
 </head>
 <body class="nav-sidebar floating">
 
@@ -120,7 +119,7 @@ ga('send', {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html"><strong>1부</strong> 들어가며</a></li><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">들어가며</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prompt.html"><strong>8부</strong> 챗GPT</a></li><li class="breadcrumb-item"><a href="./llm_python.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -166,26 +165,20 @@ ga('send', {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link active">
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">들어가며</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">데이터 사이언스 운영체제</span></span></a>
+  <a href="./whole_game.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">데이터 과학 맛보기</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_whole_game.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">데이터 과학 맛보기</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./intro_penguins.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
+  <a href="./penguins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
   </div>
 </li>
       </ul>
@@ -202,25 +195,25 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dplyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></span></a>
   </div>
 </li>
       </ul>
@@ -237,19 +230,19 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2_concept.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">그래프 문법</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">그래프 문법</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2_pattern.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span></a>
   </div>
 </li>
       </ul>
@@ -266,25 +259,25 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_building.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_many.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
   </div>
 </li>
       </ul>
@@ -301,25 +294,25 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./function_plyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
   </div>
 </li>
       </ul>
@@ -336,25 +329,25 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_knitr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">데이터 분석 보고서</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">데이터 분석 보고서</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">저장하기</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">저장하기</span></span></a>
   </div>
 </li>
       </ul>
@@ -371,7 +364,7 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ingest_import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span></a>
   </div>
 </li>
       </ul>
@@ -388,37 +381,37 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prompt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./langchain.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./llm_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
+  <a href="./llm_python.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./local_llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
   </div>
 </li>
       </ul>
@@ -437,26 +430,14 @@ ga('send', {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-<li>
-<a href="#%EC%A2%8B%EC%9D%80-%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4-%EC%9E%91%EC%84%B1%EB%B2%95" id="toc-좋은-소프트웨어-작성법" class="nav-link active" data-scroll-target="#%EC%A2%8B%EC%9D%80-%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4-%EC%9E%91%EC%84%B1%EB%B2%95"><span class="header-section-number">1.1</span> 좋은 소프트웨어 작성법</a>
-  <ul class="collapse">
-<li><a href="#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%8F%B4%EB%8D%94-%EA%B5%AC%EC%A1%B0%ED%99%94" id="toc-프로젝트-폴더-구조화" class="nav-link" data-scroll-target="#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%8F%B4%EB%8D%94-%EA%B5%AC%EC%A1%B0%ED%99%94"><span class="header-section-number">1.1.1</span> 프로젝트 폴더 구조화</a></li>
-  <li><a href="#%EA%B0%80%EB%8F%85%EC%84%B1-%EB%86%92%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%83%9D%EC%84%B1" id="toc-가독성-높은-코드-생성" class="nav-link" data-scroll-target="#%EA%B0%80%EB%8F%85%EC%84%B1-%EB%86%92%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%83%9D%EC%84%B1"><span class="header-section-number">1.1.2</span> 가독성 높은 코드 생성</a></li>
-  <li><a href="#%EB%AC%B8%EC%84%9C%ED%99%94" id="toc-문서화" class="nav-link" data-scroll-target="#%EB%AC%B8%EC%84%9C%ED%99%94"><span class="header-section-number">1.1.3</span> 문서화</a></li>
-  <li><a href="#%EC%BD%94%EB%93%9C-%EB%AA%A8%EB%93%88%ED%99%94" id="toc-코드-모듈화" class="nav-link" data-scroll-target="#%EC%BD%94%EB%93%9C-%EB%AA%A8%EB%93%88%ED%99%94"><span class="header-section-number">1.1.4</span> 코드 모듈화</a></li>
-  <li><a href="#%EB%AC%B8%EC%A0%9C%EB%A5%BC-%EC%9E%91%EA%B2%8C-%EB%B6%84%ED%95%B4" id="toc-문제를-작게-분해" class="nav-link" data-scroll-target="#%EB%AC%B8%EC%A0%9C%EB%A5%BC-%EC%9E%91%EA%B2%8C-%EB%B6%84%ED%95%B4"><span class="header-section-number">1.1.5</span> 문제를 작게 분해</a></li>
-  <li><a href="#%EC%BD%94%EB%93%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8" id="toc-코드-테스트" class="nav-link" data-scroll-target="#%EC%BD%94%EB%93%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8"><span class="header-section-number">1.1.6</span> 코드 테스트</a></li>
-  <li><a href="#%EB%B3%B5%EB%B6%99-%EA%B8%88%EC%A7%80" id="toc-복붙-금지" class="nav-link" data-scroll-target="#%EB%B3%B5%EB%B6%99-%EA%B8%88%EC%A7%80"><span class="header-section-number">1.1.7</span> 복붙 금지</a></li>
-  <li><a href="#%EC%8A%A4%ED%83%80%EC%9D%BC-%EA%B3%A0%EC%A7%91" id="toc-스타일-고집" class="nav-link" data-scroll-target="#%EC%8A%A4%ED%83%80%EC%9D%BC-%EA%B3%A0%EC%A7%91"><span class="header-section-number">1.1.8</span> 스타일 고집</a></li>
-  <li><a href="#%EC%BD%94%EB%93%9C-%EC%8A%A4%ED%83%80%EC%9D%BC%EA%B3%BC-%EA%B0%80%EB%8F%85%EC%84%B1" id="toc-코드-스타일과-가독성" class="nav-link" data-scroll-target="#%EC%BD%94%EB%93%9C-%EC%8A%A4%ED%83%80%EC%9D%BC%EA%B3%BC-%EA%B0%80%EB%8F%85%EC%84%B1"><span class="header-section-number">1.1.9</span> 코드 스타일과 가독성</a></li>
-  <li><a href="#%ED%95%B5%EC%8B%AC%EC%9D%80-%EC%9D%BC%EA%B4%80%EC%84%B1" id="toc-핵심은-일관성" class="nav-link" data-scroll-target="#%ED%95%B5%EC%8B%AC%EC%9D%80-%EC%9D%BC%EA%B4%80%EC%84%B1"><span class="header-section-number">1.1.10</span> 핵심은 일관성</a></li>
-  </ul>
-</li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/intro.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
+<li><a href="#%EA%B0%90%EC%84%B1%EB%B6%84%EC%84%9D" id="toc-감성분석" class="nav-link active" data-scroll-target="#%EA%B0%90%EC%84%B1%EB%B6%84%EC%84%9D"><span class="header-section-number">28</span> 감성분석</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/llm_python.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html"><strong>1부</strong> 들어가며</a></li><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">들어가며</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="intro" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">들어가며</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prompt.html"><strong>8부</strong> 챗GPT</a></li><li class="breadcrumb-item"><a href="./llm_python.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title">
+<span class="chapter-number">27</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span>
+</h1>
 </div>
 
 
@@ -470,114 +451,53 @@ ga('send', {
   
 
 
-</header><div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-workflow" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div>
-<pre class="mermaid mermaid-js" data-label="fig-workflow">graph TB
-    subgraph Software["좋은 소프트웨어 개발, 챗GPT"]
-        subgraph 이해하기
-            모형 --&gt; 시각화
-            변환 --&gt; 모형
-            시각화 --&gt; 변환
-            
-        end
-    가져오기 --&gt; 깔끔화 --&gt; 이해하기
-    이해하기 --&gt; 의사소통
-    end
-    
-    classDef modern fill:#fff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:12px;
-    classDef emphasize fill:#8CBDE3,stroke:#333,stroke-width:3px,color:#333,font-family:MaruBuri,font-size:15px,font-weight:bold;
-    classDef subgraphStyle fill:#f0f8ff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:15px;
-    
-    class 깔끔화,변환,모형,시각화,의사소통 modern
-    class 가져오기 emphasize
-    class 이해하기 subgraphStyle
-</pre>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;1.1: 데이터 과학 작업흐름도
-</figcaption></figure>
-</div>
-</div>
-</div>
-<section id="좋은-소프트웨어-작성법" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="좋은-소프트웨어-작성법">
-<span class="header-section-number">1.1</span> 좋은 소프트웨어 작성법</h2>
-<p>좋은 소프트웨어를 작성하려면,</p>
-<ul>
-<li>프로젝트를 적절히 구조화하고,</li>
-<li>필요한 사항은 문서화하고,</li>
-<li>복잡한 문제는 작은 모듈로 나누어 해결하고,</li>
-<li>코드 작동을 검증하는 테스트를 만들고,</li>
-<li>반복되는 코드는 함수로 묶어서 처리하고,</li>
-<li>일관된 코딩 스타일을 고수해야 한다.</li>
-</ul>
-<p>위의 원칙을 지키면 다른 동료 연구자들과 미래의 자신에게 읽기 쉽고, 이해하기 쉽고, 확장 가능한 코드를 선물할 수 있을 것이다.</p>
-<section id="프로젝트-폴더-구조화" class="level3" data-number="1.1.1"><h3 data-number="1.1.1" class="anchored" data-anchor-id="프로젝트-폴더-구조화">
-<span class="header-section-number">1.1.1</span> 프로젝트 폴더 구조화</h3>
-<p>하위 폴더를 코드, 매뉴얼, 데이터, 바이너리, 출력 그래프 등으로 구분하여 프로젝트 폴더를 구조화하고, 잘 조직화하고, 깔끔하게 만든다. 완전 수작업으로 할 수도 있고, RStudio <code>New Project</code> 기능을 활용하거나 <code>ProjectTemplate</code> 같은 패키지를 사용한다.</p>
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<code>ProjectTemplate</code> - 가능한 해결책
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>프로젝트 관리를 자동화하는 한 방식은 제3자 패키지, <code>ProjectTemplate</code>을 설치하는 것이다. 해당 패키지는 프로젝트 관리에 대한 이상적인 디렉토리 구조를 설정해 놓는다. 패키지가 자동으로 분석 파이프라인/작업 흐름을 구성해서 구조화해 놓는다. RStudio 기본 설정된 프로젝트 관리 기능과 Git을 섞어 사용하면, 작업을 기록할 뿐만 아니라, 동료 연구원과 작업 산출물을 공유할 수 있게 한다.</p>
-<ol type="1">
-<li>
-<code>ProjectTemplate</code>을 설치한다.</li>
-<li>라이브러리를 불러 적재한다.</li>
-<li>프로젝트를 초기화한다.</li>
-</ol>
+</header><p>아나콘다를 설치하고 <code>conda</code> 가상환경을 설정한다. 가상환경 이름은 <code>envs</code>로 설정하고 데이터 과학, 인공지능을 위한 기본 파이썬 패키지도 가상환경 안에 설치한다.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> conda create <span class="at">--prefix</span> ./envs python=3.11 numpy seaborn pandas matplotlib scikit-learn transformers</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> conda activate ./envs</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> which python</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>파이썬(<code>python.exe</code>)를 R 환경에 연결시키기 위해 정확한 경로명을 <code><a href="https://rstudio.github.io/reticulate/reference/conda-tools.html">reticulate::conda_list()</a></code> 함수로 확인한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ProjectTemplate"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://projecttemplate.net">ProjectTemplate</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ProjectTemplate/man/create.project.html">create.project</a></span><span class="op">(</span><span class="st">"../my_project"</span>, merge.strategy <span class="op">=</span> <span class="st">"allow.non.conflict"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">reticulate</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/reticulate/reference/conda-tools.html">conda_list</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>ProjectTemplate</code>과 기능에 대한 자세한 사항은 <a href="http://projecttemplate.net/index.html">ProjectTemplate</a> 홈페이지를 방문한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/edit.html">edit_r_profile</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code><a href="https://usethis.r-lib.org/reference/edit.html">usethis::edit_r_profile()</a></code> 명령어를 통해 <code>.Rprofile</code> 파일을 열고 아래 내용을 추가한다.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="at">Sys.setenv(RETICULATE_PYTHON="C:\\chatGPT4ds\\envs\\python.exe")</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/reticulate/">reticulate</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rstudio.github.io/reticulate/reference/py_config.html">py_config</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>python:         D:/tcs/chatGPT4ds/envs/python.exe
+libpython:      D:/tcs/chatGPT4ds/envs/python311.dll
+pythonhome:     D:/tcs/chatGPT4ds/envs
+version:        3.11.7 | packaged by Anaconda, Inc. | (main, Dec 15 2023, 18:05:47) [MSC v.1916 64 bit (AMD64)]
+Architecture:   64bit
+numpy:          D:/tcs/chatGPT4ds/envs/Lib/site-packages/numpy
+numpy_version:  1.26.3
+
+NOTE: Python version was forced by RETICULATE_PYTHON</code></pre>
 </div>
 </div>
-</section><section id="가독성-높은-코드-생성" class="level3" data-number="1.1.2"><h3 data-number="1.1.2" class="anchored" data-anchor-id="가독성-높은-코드-생성">
-<span class="header-section-number">1.1.2</span> 가독성 높은 코드 생성</h3>
-<p>코드 작성에 있어 가장 중요한 부분은 코드를 가독성 있고 이해할 수 있게 작성하는 것이다. 누군가 여러분이 작성한 코드를 보고 무슨 작업을 수행하는지 이해할 수 있어야 한다. 흔히 누군가는 6개월 후에 <strong>바로 당신</strong>이 될 수 있고, 만약 그렇게 작성하지 않았다면 과거 자기 자신을 분명히 저주하게 될 것이다.</p>
-</section><section id="문서화" class="level3" data-number="1.1.3"><h3 data-number="1.1.3" class="anchored" data-anchor-id="문서화">
-<span class="header-section-number">1.1.3</span> 문서화</h3>
-<p>처음 코드를 작성할 때, 주석은 명령어가 무엇을 수행하는지 기술한다. 왜냐하면, 여전히 학습 중이라 개념을 명확히 하고, 나중에 다시 상기하는 데 도움이 되기 때문이다. 하지만, 이러한 주석은 나중에 작성한 코드가 어떤 문제를 해결하고자 하는지 기억하지 못하면 그다지 도움이 되지 않는다.</p>
-<p><strong>왜(why)</strong> 문제를 해결하려고 하는지, 그리고 <strong>어떤(what)</strong> 문제인지 전달하는 주석을 달려고 노력한다. <strong>어떻게(how)</strong>는 그 다음에 온다. 정말 걱정할 필요가 없는 사항은 구체적인 구현이다.</p>
-</section><section id="코드-모듈화" class="level3" data-number="1.1.4"><h3 data-number="1.1.4" class="anchored" data-anchor-id="코드-모듈화">
-<span class="header-section-number">1.1.4</span> 코드 모듈화</h3>
-<p>소프트웨어 카펜트리에서 추천하는 것은 작성한 함수를 분석 스크립트와 구별해서 별도 파일에 저장하는 것이다. 프로젝트 R세션을 열 때, <code>source</code> 함수로 불러올 수 있게 별도 파일로 저장한다.</p>
-<p>분석 스크립트를 깔끔하게 유지하고, 유용한 함수 저장소를 프로젝트 분석 스크립트에 적재할 수 있게 함으로써 이러한 접근법이 깔끔하다. 또한 관련된 함수를 쉽게 그룹화한다.</p>
-</section><section id="문제를-작게-분해" class="level3" data-number="1.1.5"><h3 data-number="1.1.5" class="anchored" data-anchor-id="문제를-작게-분해">
-<span class="header-section-number">1.1.5</span> 문제를 작게 분해</h3>
-<p>처음 시작할 때, 문제 해결과 함수 작성은 어마어마한 작업이고, 코드를 쪼개는 것도 힘들다. 문제를 소화 가능한 덩어리로 쪼개고, 나중에 구현에 관한 구체적인 사항을 걱정한다. 해결책을 코드로 작성할 수 있는 지점까지 문제를 더 작게 그리고 더 작은 함수로 계속 쪼개 나간다. 그리고 나서 다시 거꾸로 조립해서 만들어 낸다.</p>
-</section><section id="코드-테스트" class="level3" data-number="1.1.6"><h3 data-number="1.1.6" class="anchored" data-anchor-id="코드-테스트">
-<span class="header-section-number">1.1.6</span> 코드 테스트</h3>
-<p>작성한 코드가 올바른 작업을 수행하도록 만든다. 작성한 함수를 테스트해서 확실히 동작하게 만든다.</p>
-</section><section id="복붙-금지" class="level3" data-number="1.1.7"><h3 data-number="1.1.7" class="anchored" data-anchor-id="복붙-금지">
-<span class="header-section-number">1.1.7</span> 복붙 금지</h3>
-<p>복붙은 코드를 작성하는 데 있어서 가장 나쁜 방법이다. 함수는 프로젝트 내부에서 재사용을 쉽게 한다. 프로젝트를 통해서 유사한 코드 라인 덩어리를 보게 되면, 대체로 함수로 옮겨져야 하는 대상을 찾은 것이다.</p>
-<p>연산 작업이 연속된 함수를 통해 실행되면, 프로젝트는 모듈로 만들기 쉽고, 변경하기 쉽다. 항상 특정한 입력값을 넣으면 특정한 출력값이 나오는 경우에 특히 그렇다.</p>
-</section><section id="스타일-고집" class="level3" data-number="1.1.8"><h3 data-number="1.1.8" class="anchored" data-anchor-id="스타일-고집">
-<span class="header-section-number">1.1.8</span> 스타일 고집</h3>
-<p>코드에 일관된 스타일을 지킨다. 이것은 코드를 읽고 이해하는 데 도움이 된다.</p>
-</section><section id="코드-스타일과-가독성" class="level3" data-number="1.1.9"><h3 data-number="1.1.9" class="anchored" data-anchor-id="코드-스타일과-가독성">
-<span class="header-section-number">1.1.9</span> 코드 스타일과 가독성</h3>
-<p>일관된 코딩 스타일은 가독성을 높이고 버그를 최소화한다. R 커뮤니티에서 가장 널리 사용되는 스타일 가이드 중 하나는 <a href="http://adv-r.had.co.nz/Style.html">해들리 위컴 스타일 가이드</a>다. Google의 R 스타일 가이드도 널리 사용된다.</p>
-<p>일관된 스타일에 프로젝트를 고수하면, 다른 사람들이 코드를 더 쉽게 읽고 확장할 수 있다. RStudio의 코드 정리 기능을 활용하여 코드 스타일을 자동으로 적용할 수도 있다.</p>
-</section><section id="핵심은-일관성" class="level3" data-number="1.1.10"><h3 data-number="1.1.10" class="anchored" data-anchor-id="핵심은-일관성">
-<span class="header-section-number">1.1.10</span> 핵심은 일관성</h3>
-<p>함수 이름 붙이기, 코드 들여쓰기, 주석 달기 등 코딩 스타일의 어떤 요소든 한번 선택하면 이후로도 꾸준히 같은 스타일을 고수해야 한다. 코드 작성자에게는 편한 스타일이 좋지만, 팀 단위로 협업한다면 팀에서 합의한 코딩 스타일을 따르는 것이 바람직하다.</p>
+<section id="감성분석" class="level1" data-number="28"><h1 data-number="28">
+<span class="header-section-number">28</span> 감성분석</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> pipeline</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="st">"The ambience was good, food was quite good."</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>classifier <span class="op">=</span> pipeline(<span class="st">"text-classification"</span>, </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                      model<span class="op">=</span><span class="st">'nlptown/bert-base-multilingual-uncased-sentiment'</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>prediction <span class="op">=</span> classifier(prompt)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prediction)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[{'label': '4 stars', 'score': 0.5752392411231995}]</code></pre>
+</div>
+</div>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1003,13 +923,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="서문">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">서문</span>
+      <a href="./code_interpreter.html" class="pagination-link" aria-label="데이터 사이언스">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro_tidyverse.html" class="pagination-link" aria-label="데이터 사이언스 운영체제">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">데이터 사이언스 운영체제</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./local_llm.html" class="pagination-link" aria-label="오라마 설치">
+        <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">오라마 설치</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1020,7 +940,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/intro.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/llm_python.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>

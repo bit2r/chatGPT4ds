@@ -46,8 +46,9 @@ book:
     - part: "**1부** 들어가며"
       chapters:
         - intro.qmd
-        - whole_game.qmd
-        - penguins.qmd
+        - intro_tidyverse.qmd
+        - intro_whole_game.qmd
+        - intro_penguins.qmd
 
     - part: "**2부** 데이터 다루기"
       chapters:
@@ -85,7 +86,7 @@ book:
 
     - part: "**7부** 가져오기"
       chapters:
-        - import.qmd
+        - ingest_import.qmd
 
     - part: "**8부** 챗GPT"
       chapters:
