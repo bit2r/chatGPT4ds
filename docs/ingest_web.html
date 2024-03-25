@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.9">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="이광춘, 신종화">
+<title>챗GPT 데이터 과학 – 25&nbsp; 웹 데이터</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./prompt.html" rel="next">
+<link href="./ingest_import.html" rel="prev">
+<link href="./images/logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script><script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-229551680-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script><meta name="mermaid-theme" content="neutral">
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script><script src="site_libs/quarto-diagram/mermaid-init.js"></script><link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ingest_import.html"><strong>7부</strong> 가져오기</a></li><li class="breadcrumb-item"><a href="./ingest_web.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">웹 데이터</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">챗GPT 데이터 과학</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/bit2r/gpt-ds" title="소스 코드" class="quarto-navigation-tool px-1" aria-label="소스 코드"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="리더 모드 전환">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="검색"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">서문</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text"><strong>1부</strong> 들어가며</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">들어가며</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">데이터 사이언스 운영체제</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_whole_game.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">데이터 과학 맛보기</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_penguins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text"><strong>2부</strong> 데이터 다루기</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text"><strong>3부</strong> 시각화</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2_concept.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">그래프 문법</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2_pattern.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text"><strong>4부</strong> 모형</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_many.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text"><strong>5부</strong> 프로그래밍</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./function_plyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text"><strong>6부</strong> 커뮤니케이션</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comm_map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comm_knitr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">데이터 분석 보고서</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comm_quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comm_export.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">저장하기</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text"><strong>7부</strong> 가져오기</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ingest_import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ingest_web.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">웹 데이터</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text"><strong>8부</strong> 챗GPT</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prompt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./langchain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./llm_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./local_llm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">참고문헌</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li><a href="#%EC%97%91%EC%85%80" id="toc-엑셀" class="nav-link active" data-scroll-target="#%EC%97%91%EC%85%80"><span class="header-section-number">25.1</span> 엑셀</a></li>
+  <li>
+<a href="#api" id="toc-api" class="nav-link" data-scroll-target="#api"><span class="header-section-number">25.2</span> API</a>
+  <ul class="collapse">
+<li><a href="#%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8" id="toc-스크립트" class="nav-link" data-scroll-target="#%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8"><span class="header-section-number">25.2.1</span> 스크립트</a></li>
+  <li><a href="#%ED%95%A8%EC%88%98" id="toc-함수" class="nav-link" data-scroll-target="#%ED%95%A8%EC%88%98"><span class="header-section-number">25.2.2</span> 함수</a></li>
+  <li><a href="#%EC%84%A0%EA%B1%B0%EA%B5%AC" id="toc-선거구" class="nav-link" data-scroll-target="#%EC%84%A0%EA%B1%B0%EA%B5%AC"><span class="header-section-number">25.2.3</span> 선거구</a></li>
+  <li><a href="#%EC%84%A0%EA%B1%B0%EA%B5%AC-%EB%8B%B9%EC%84%A0%EC%9D%B8" id="toc-선거구-당선인" class="nav-link" data-scroll-target="#%EC%84%A0%EA%B1%B0%EA%B5%AC-%EB%8B%B9%EC%84%A0%EC%9D%B8"><span class="header-section-number">25.2.4</span> 선거구 당선인</a></li>
+  <li><a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A0%80%EC%9E%A5" id="toc-데이터-저장" class="nav-link" data-scroll-target="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A0%80%EC%9E%A5"><span class="header-section-number">25.2.5</span> 데이터 저장</a></li>
+  </ul>
+</li>
+  <li><a href="#%EB%8F%99%EC%A0%81-%EC%9B%B9-%ED%8E%98%EC%9D%B4%EC%A7%80" id="toc-동적-웹-페이지" class="nav-link" data-scroll-target="#%EB%8F%99%EC%A0%81-%EC%9B%B9-%ED%8E%98%EC%9D%B4%EC%A7%80"><span class="header-section-number">25.3</span> 동적 웹 페이지</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/ingest_web.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ingest_import.html"><strong>7부</strong> 가져오기</a></li><li class="breadcrumb-item"><a href="./ingest_web.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">웹 데이터</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="intro" class="quarto-section-identifier"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">웹 데이터</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><p>중앙선거관리위원회(이하 선관위)가 데이터를 엑셀, 웹, API 형식으로 제작하고 배포하는 이유는 국민들의 다양한 정보 접근성을 보장하고, 선거 정보의 활용도를 높이기 위해서다. 선관위의 다양한 형태 데이터 제작 및 배포 노력이 시민들 선거 참여를 촉진하고, 민주주의 발전에 기여할 것으로 기대하고 있다. 다양한 형식 데이터 제공은 시민들이 자신의 필요와 선호에 따라 선거 정보를 활용할 수 있도록 하며, 시민들의 정치적 권리 행사를 지원하는 데 도움이 된다.</p>
+<p>엑셀 형식은 데이터 분석과 가공이 용이하므로, 연구자나 데이터 분석가들이 선거 데이터를 심층적으로 분석하고 새로운 통찰을 도출하는 데 도움이 된다. 또한, 엑셀 파일은 일반 국민들이 쉽게 다운로드하여 사용할 수 있어, 선거 정보의 접근성을 높이는 데 기여한다.</p>
+<p>웹 형식은 일반 국민들이 쉽게 접근하고 이해할 수 있는 형태로 선거 정보를 제공한다. 시각화된 데이터와 인터랙티브한 웹 페이지를 통해 선거에 대한 국민들의 관심과 참여를 높일 수 있다. 웹 페이지를 통해 선거 정보를 실시간으로 업데이트되어, 시민들에게 최신 정보를 제공한다.</p>
+<p>API 형식은 개발자들이 선거 데이터를 활용하여 다양한 애플리케이션과 서비스를 개발할 수 있도록 하여 선거 정보의 활용 범위를 넓히고, 시민들에게 더욱 편리하고 유용한 서비스를 제공하는 데 기여한다. API를 통해 선거 데이터를 다른 시스템과 연동하여 활용할 수 있어, 선거 정보의 활용도를 다양한 제품과 서비스로 녹여내는데 비용과 노력을 크게 낮출 수 있다.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-import-web" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-import-web-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-import-web">graph LR
+    subgraph 선관위 정보 제공 방식
+        A[선관위 정보 제공] --&gt; B[엑셀]
+        A --&gt; C[웹]
+        A --&gt; D[API]
+    end
+
+    subgraph 엑셀
+        B --&gt; E[다운로드 가능한 파일]
+        E --&gt; H[표 형식 데이터]
+    end
+
+    subgraph 웹
+        C --&gt; F[웹사이트 직접 접근]
+        F --&gt; I[동적 웹 인터페이스]
+    end
+
+    subgraph API
+        D --&gt; G[프로그래밍으로 데이터 접근]
+        G --&gt; J[JSON, XML 형식 데이터]
+    end
+
+    style A fill:#000,stroke:#fff,stroke-width:4px,color:#fff
+    style B fill:#d3d3d3,stroke:#000,stroke-width:2px
+    style C fill:#a9a9a9,stroke:#000,stroke-width:2px
+    style D fill:#808080,stroke:#000,stroke-width:2px
+    style E fill:#f2f2f2,stroke:#000,stroke-width:2px
+    style F fill:#e6e6e6,stroke:#000,stroke-width:2px
+    style G fill:#d9d9d9,stroke:#000,stroke-width:2px
+    style H fill:#fff,stroke:#000,stroke-width:2px
+    style I fill:#f9f9f9,stroke:#000,stroke-width:2px
+    style J fill:#f5f5f5,stroke:#000,stroke-width:2px
+
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-import-web-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;25.1: 선관위 제공 데이터
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>입장을 바꾸어 선관위에서는 데이터를 어떻게 제공할까? 선관위는 자체 선거데이터를 체계적으로 관리하는 데이터베이스와 웹서버, API 서버 등을 갖추고 PC 뿐만 아니라 모바일에서도 선거 관련 다양한 정보를 제공하고 있다. 데이터 제공측면에서 보면 선거 데이터를 수집 정제 가공한 후 엑셀 파일, 웹 페이지, API 형식으로 별도 개발을 통해 시민에게 다양한 형식으로 제공하고 있다.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"></figure><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    subgraph 선관위 데이터 제작 과정
+        AB[데이터 수집 &lt;br&gt; 데이터 정제 및 가공]
+        AB --&gt; C{데이터 &lt;br&gt; 형식 결정}
+        C --&gt; D[엑셀 파일 &lt;br&gt; 생성]
+        C --&gt; E[웹 페이지 &lt;br&gt; 생성]
+        C --&gt; F[API 개발]
+    end
+
+    subgraph 엑셀
+        D --&gt; G[데이터 시트 구성]
+        G --&gt; H[데이터 입력 &lt;br&gt; 서식 지정]
+        H --&gt; I[파일 저장 &lt;br&gt; 검토]
+    end
+
+    subgraph 웹
+        E --&gt; J[웹 페이지 디자인]
+        J --&gt; K[데이터 시각화 &lt;br&gt; 인터랙티브 요소 추가]
+        K --&gt; L[웹 페이지 &lt;br&gt; 테스트, 배포]
+    end
+
+    subgraph API
+        F --&gt; M[API 설계 &lt;br&gt; 문서화]
+        M --&gt; N[API 구현 &lt;br&gt; 테스트]
+        N --&gt; O[API 배포 &lt;br&gt; 모니터링]
+    end
+
+    style AB fill:#d9d9d9,stroke:#000,stroke-width:2px
+    style C fill:#000,stroke:#fff,stroke-width:4px,color:#fff
+    style D fill:#f2f2f2,stroke:#000,stroke-width:2px
+    style E fill:#e6e6e6,stroke:#000,stroke-width:2px
+    style F fill:#d9d9d9,stroke:#000,stroke-width:2px
+    style G fill:#fff,stroke:#000,stroke-width:2px
+    style H fill:#f9f9f9,stroke:#000,stroke-width:2px
+    style I fill:#f5f5f5,stroke:#000,stroke-width:2px
+    style J fill:#fff,stroke:#000,stroke-width:2px
+    style K fill:#f9f9f9,stroke:#000,stroke-width:2px
+    style L fill:#f5f5f5,stroke:#000,stroke-width:2px
+    style M fill:#fff,stroke:#000,stroke-width:2px
+    style N fill:#f9f9f9,stroke:#000,stroke-width:2px
+    style O fill:#f5f5f5,stroke:#000,stroke-width:2px
+</pre>
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<section id="엑셀" class="level2" data-number="25.1"><h2 data-number="25.1" class="anchored" data-anchor-id="엑셀">
+<span class="header-section-number">25.1</span> 엑셀</h2>
+<p>제21대 국회의원 선거 당선인 명부 데이터를 엑셀 형태로 구하려면, <a href="https://www.nec.go.kr/site/nec/ex/bbs/List.do?cbIdx=1129">선관위 자료공간</a> 웹사이트 게시판을 통해 엑셀 파일을 다운로드할 수 있다.</p>
+<div id="fig-nec-excel" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-nec-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/nec_excel.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="그림&nbsp;25.2: 선관위 제21대 국회의원 당선인 명부 엑셀파일"><img src="images/nec_excel.jpeg" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nec-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;25.2: 선관위 제21대 국회의원 당선인 명부 엑셀파일
+</figcaption></figure>
+</div>
+<p>다운로드 받은 엑셀 데이터를 가져오는 코드를 <a href="#lst-excel" class="quarto-xref">목록&nbsp;<span>25.1</span></a> 와 같이 작성할 수 있다. 먼저, <code><a href="https://readxl.tidyverse.org">library(readxl)</a></code>과 <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code>를 통해 필요한 패키지를 로드한다. <code>nec_sheets &lt;- readxl::excel_sheets(...)</code>는 엑셀 파일의 시트 이름을 가져오는 코드로 엑셀 파일에서 가져올할 시트를 선택한다. <code>winner_raw &lt;- readxl::read_excel(...)</code>는 선택한 시트의 데이터를 읽어오는 코드로 당선인 명부 데이터를 R 환경으로 불러온다.</p>
+<p>이후, <code>winner_raw |&gt; count(소속정당명, name = "당선인수", sort = TRUE)</code>는 파이프 연산자(<code>|&gt;</code>)를 사용하여 데이터를 조작하여 정당별로 집계하고, 당선인 수를 계산한 후, 결과를 내림차순으로 정렬하여 당선인 수를 쉽게 파악할 수 있다. <code>janitor::adorn_totals(where = "row", name = "합계")</code>는 <code>janitor</code> 패키지 함수로, 집계 결과에 총합 행을 추가하여 전체 당선인 수를 확인할 수 있다.</p>
+<div class="cell">
+<div id="lst-excel" class="r cell-code listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure"><div aria-describedby="lst-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-excel"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">nec_sheets</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/excel_sheets.html">excel_sheets</a></span><span class="op">(</span><span class="st">"data/nec/제21대_국회의원선거(재보궐선거_포함)_당선인명부.xlsx"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">winner_raw</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"data/nec/제21대_국회의원선거(재보궐선거_포함)_당선인명부.xlsx"</span>, sheet <span class="op">=</span> <span class="va">nec_sheets</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">winner_raw</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">소속정당명</span>, name <span class="op">=</span> <span class="st">"당선인수"</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/adorn_totals.html">adorn_totals</a></span><span class="op">(</span>where <span class="op">=</span> <span class="st">"row"</span>, name <span class="op">=</span> <span class="st">"합계"</span><span class="op">)</span>  </span>
+<span><span class="co">#&gt;    소속정당명 당선인수</span></span>
+<span><span class="co">#&gt;  더불어민주당      163</span></span>
+<span><span class="co">#&gt;    미래통합당       84</span></span>
+<span><span class="co">#&gt;        무소속        5</span></span>
+<span><span class="co">#&gt;        정의당        1</span></span>
+<span><span class="co">#&gt;          합계      253</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-lst" id="lst-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+목록&nbsp;25.1: 제21대 국회의원 선거 당선인 명부 데이터 불러오기
+</figcaption></figure>
+</div>
+</div>
+</section><section id="api" class="level2" data-number="25.2"><h2 data-number="25.2" class="anchored" data-anchor-id="api">
+<span class="header-section-number">25.2</span> API</h2>
+<p>공공데이터포털 <a href="https://www.data.go.kr/data/15000864/openapi.do">중앙선거관리위원회 당선인정보 API</a>를 활용하여 당선인 정보를 프로그래밍을 통해 직접 가져올 수 있다. 아래아한글로 작성된 당선인 정보 조회 서비스 API 명세서를 참고하여 Java, Javascript, C#, PHP, Curl, Objective-C, Python, Nodejs, R 언어로 예제 코드가 작성되어 있어 사용자가 편리하게 API를 활용할 수 있다.</p>
+<div id="fig-nec-api" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-nec-api-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/nec_api.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="그림&nbsp;25.3: 국가선거정보 - 당선인 정보 조회 서비스 API 명세서"><img src="images/nec_api.jpg" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nec-api-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;25.3: 국가선거정보 - 당선인 정보 조회 서비스 API 명세서
+</figcaption></figure>
+</div>
+<p>공공데이터포털 API 끝점(Endpoint)와 API KEY를 발급받고 API 서비스 신청을 하였다면 다음 단계로 아래아한글 당선인 정보 조회 서비스 API 명세서 내용을 참고하여 코드를 작성한다.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"></figure><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+
+  subgraph API 파악
+    A[공공데이터포털&lt;br&gt;API 발급] --&gt; B[API 명세서&lt;br&gt;참고]
+  end
+  
+  subgraph 스크립트 작성
+    B --&gt; C[당선인 정보 API 호출&lt;br&gt;스크립트 작성]
+    B --&gt; D[선거구 정보 API 호출&lt;br&gt;스크립트 작성]
+  end
+  
+  subgraph 함수 작성
+    C --&gt; E[당선인 정보 API 호출&lt;br&gt;함수 제작]
+    D --&gt; F[선거구 정보 API 호출&lt;br&gt;함수 제작]
+  end
+  
+  subgraph 데이터 가져오기 및 저장
+    F --&gt; G[선거구 데이터프레임&lt;br&gt;제작]
+    G --&gt; H[선거구 당선인&lt;br&gt;데이터프레임 제작]
+    H --&gt; I[데이터 저장]
+  end
+  
+E --&gt; H
+
+linkStyle 8 stroke:red,stroke-width:4px
+
+style A fill:#f0f0f0,stroke:#333,stroke-width:2px
+style B fill:#f0f0f0,stroke:#333,stroke-width:2px
+style C fill:#e0e0e0,stroke:#333,stroke-width:2px
+style D fill:#e0e0e0,stroke:#333,stroke-width:2px
+style E fill:#d0d0d0,stroke:#333,stroke-width:2px
+style F fill:#d0d0d0,stroke:#333,stroke-width:2px
+style G fill:#c0c0c0,stroke:#333,stroke-width:2px
+style H fill:#c0c0c0,stroke:#333,stroke-width:2px
+style I fill:#c0c0c0,stroke:#333,stroke-width:2px
+</pre>
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p>공공데이터포털에서 제공하는 API를 활용하여 당선인 정보와 선거구 정보를 수집하고 분석에 용이한 형태로 가공하는 과정은 다음과 같다. API 사용을 위해 활용신청과 API KEY 발급을 진행한 후 명세서를 참고하여 API 호출 방법과 반환되는 데이터 형식을 파악한다.</p>
+<p>당선인 정보와 선거구 정보를 가져오기 위한 API 호출 스크립트를 작성하고, 반복을 줄이고 재사용성을 높이기 위해 함수로 변환하는 작업을 수행한다. 선거구 데이터프레임에서 기본정보 즉, 시도명과 선거구명을 작성한 함수 <code>get_winner()</code> 에 전달하여 선거구별 당선인 정보를 데이터프레임으로 가져온다.</p>
+<section id="스크립트" class="level3" data-number="25.2.1"><h3 data-number="25.2.1" class="anchored" data-anchor-id="스크립트">
+<span class="header-section-number">25.2.1</span> 스크립트</h3>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://httr.r-lib.org/">httr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jeroen.r-universe.dev/jsonlite">jsonlite</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">response</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://httr.r-lib.org/reference/GET.html">GET</a></span><span class="op">(</span><span class="st">"http://apis.data.go.kr/9760000/WinnerInfoInqireService2/getWinnerInfoInqire"</span>,</span>
+<span>                query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sgId <span class="op">=</span> <span class="st">"20200415"</span>,</span>
+<span>                              sgTypecode <span class="op">=</span> <span class="st">"2"</span>,</span>
+<span>                              sdName <span class="op">=</span> <span class="st">"서울특별시"</span>,</span>
+<span>                              sggName <span class="op">=</span> <span class="st">"종로구"</span>,</span>
+<span>                              pageNo <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>                              numOfRows <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>                              resultType <span class="op">=</span> <span class="st">"json"</span>,</span>
+<span>                              serviceKey <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">'DATA_GO_DECODE_KEY'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://httr.r-lib.org/reference/status_code.html">status_code</a></span><span class="op">(</span><span class="va">response</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 200</span></span>
+<span></span>
+<span><span class="va">response_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span><span class="va">response</span>, <span class="st">"text"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">response_tbl</span> <span class="op">&lt;-</span> <span class="va">response_list</span><span class="op">$</span><span class="va">response</span><span class="op">$</span><span class="va">body</span><span class="op">$</span><span class="va">items</span><span class="op">$</span><span class="va">item</span></span>
+<span></span>
+<span><span class="va">response_tbl</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">sgId</span>, <span class="va">sggName</span>, <span class="va">sdName</span>, <span class="va">giho</span>, <span class="va">jdName</span>, <span class="va">name</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#&gt;       sgId sggName     sdName giho       jdName   name</span></span>
+<span><span class="co">#&gt; 1 20200415  종로구 서울특별시    1 더불어민주당 이낙연</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="함수" class="level3" data-number="25.2.2"><h3 data-number="25.2.2" class="anchored" data-anchor-id="함수">
+<span class="header-section-number">25.2.2</span> 함수</h3>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">get_winner</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">sdName</span> <span class="op">=</span> <span class="st">"서울특별시"</span>, <span class="va">sggName</span> <span class="op">=</span> <span class="st">"종로구"</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">response</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://httr.r-lib.org/reference/GET.html">GET</a></span><span class="op">(</span><span class="st">"http://apis.data.go.kr/9760000/WinnerInfoInqireService2/getWinnerInfoInqire"</span>,</span>
+<span>                query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sgId <span class="op">=</span> <span class="st">"20200415"</span>,</span>
+<span>                              sgTypecode <span class="op">=</span> <span class="st">"2"</span>,</span>
+<span>                              sdName <span class="op">=</span> <span class="va">sdName</span>,</span>
+<span>                              sggName <span class="op">=</span> <span class="va">sggName</span>,</span>
+<span>                              pageNo <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>                              numOfRows <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>                              resultType <span class="op">=</span> <span class="st">"json"</span>,</span>
+<span>                              serviceKey <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">'DATA_GO_DECODE_KEY'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span>    <span class="va">response_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span><span class="va">response</span>, <span class="st">"text"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>    </span>
+<span>    <span class="va">response_tbl</span> <span class="op">&lt;-</span> <span class="va">response_list</span><span class="op">$</span><span class="va">response</span><span class="op">$</span><span class="va">body</span><span class="op">$</span><span class="va">items</span><span class="op">$</span><span class="va">item</span> <span class="op">|&gt;</span> </span>
+<span>        <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">sgId</span>, <span class="va">sggName</span>, <span class="va">sdName</span>, <span class="va">giho</span>, <span class="va">jdName</span>, <span class="va">name</span><span class="op">)</span></span>
+<span>    </span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">response_tbl</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">get_winner</span><span class="op">(</span><span class="st">"서울특별시"</span>, <span class="st">"종로구"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#&gt;       sgId sggName     sdName giho       jdName   name</span></span>
+<span><span class="co">#&gt; 1 20200415  종로구 서울특별시    1 더불어민주당 이낙연</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="선거구" class="level3" data-number="25.2.3"><h3 data-number="25.2.3" class="anchored" data-anchor-id="선거구">
+<span class="header-section-number">25.2.3</span> 선거구</h3>
+<p><a href="https://www.data.go.kr/data/15000897/openapi.do">중앙선거관리위원회 코드정보</a> API를 활용하여 선거구 정보를 프로그래밍을 통해 가져올 수 있다. 당선인 명부 데이터를 불러올 때 선거구 정보가 필수적이라 이 과정을 생략할 수는 없다. 당선인 정보와 동일하기 때문에 스크립트 제작과정은 생략하고 명세서에 나와 있는 내용을 바탕으로 R 코드를 작성해서 선거구 데이터프레임을 제작한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">get_precinct</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">pageNo</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">response</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://httr.r-lib.org/reference/GET.html">GET</a></span><span class="op">(</span><span class="st">"http://apis.data.go.kr/9760000/CommonCodeService/getCommonSggCodeList"</span>,</span>
+<span>              query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sgId <span class="op">=</span> <span class="st">"20200415"</span>,</span>
+<span>                            sgTypecode <span class="op">=</span> <span class="st">"2"</span>,</span>
+<span>                            pageNo <span class="op">=</span>  <span class="va">pageNo</span>,</span>
+<span>                            numOfRows <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>                            resultType <span class="op">=</span> <span class="st">"json"</span>,</span>
+<span>                            serviceKey <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">'DATA_GO_DECODE_KEY'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="va">response_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span><span class="va">response</span>, <span class="st">"text"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="va">response_tbl</span> <span class="op">&lt;-</span> <span class="va">response_list</span><span class="op">$</span><span class="va">response</span><span class="op">$</span><span class="va">body</span><span class="op">$</span><span class="va">items</span><span class="op">$</span><span class="va">item</span></span>
+<span>  </span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">response_tbl</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">precinct_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>page <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">page</span>, <span class="va">get_precinct</span><span class="op">)</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="va">precinct_tbl</span> <span class="op">&lt;-</span> <span class="va">precinct_raw</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest.html">unnest</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">precinct_tbl</span>  <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">sgId</span>, <span class="va">sdName</span>, <span class="va">sggName</span>, <span class="va">sggJungsu</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#&gt; # A tibble: 30 × 4</span></span>
+<span><span class="co">#&gt;    sgId     sdName     sggName      sggJungsu</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;    </span></span>
+<span><span class="co">#&gt;  1 20200415 서울특별시 종로구       1        </span></span>
+<span><span class="co">#&gt;  2 20200415 서울특별시 중구성동구갑 1        </span></span>
+<span><span class="co">#&gt;  3 20200415 서울특별시 중구성동구을 1        </span></span>
+<span><span class="co">#&gt;  4 20200415 서울특별시 용산구       1        </span></span>
+<span><span class="co">#&gt;  5 20200415 서울특별시 광진구갑     1        </span></span>
+<span><span class="co">#&gt;  6 20200415 서울특별시 광진구을     1        </span></span>
+<span><span class="co">#&gt;  7 20200415 서울특별시 동대문구갑   1        </span></span>
+<span><span class="co">#&gt;  8 20200415 서울특별시 동대문구을   1        </span></span>
+<span><span class="co">#&gt;  9 20200415 서울특별시 중랑구갑     1        </span></span>
+<span><span class="co">#&gt; 10 20200415 서울특별시 중랑구을     1        </span></span>
+<span><span class="co">#&gt; # ℹ 20 more rows</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="선거구-당선인" class="level3" data-number="25.2.4"><h3 data-number="25.2.4" class="anchored" data-anchor-id="선거구-당선인">
+<span class="header-section-number">25.2.4</span> 선거구 당선인</h3>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">winners_raw</span> <span class="op">&lt;-</span> <span class="va">precinct_tbl</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>winner <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span><span class="op">(</span><span class="va">sdName</span>, <span class="va">sggName</span>, <span class="va">get_winner</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">winners_tbl</span> <span class="op">&lt;-</span><span class="va">winners_raw</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">winner</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest.html">unnest</a></span><span class="op">(</span><span class="va">winner</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">winners_tbl</span></span>
+<span></span>
+<span><span class="co">#&gt; # A tibble: 253 × 6</span></span>
+<span><span class="co">#&gt;    sgId     sggName      sdName     giho  jdName       name  </span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;    &lt;chr&gt;        &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt; </span></span>
+<span><span class="co">#&gt;  1 20200415 종로구       서울특별시 1     더불어민주당 이낙연</span></span>
+<span><span class="co">#&gt;  2 20200415 중구성동구갑 서울특별시 1     더불어민주당 홍익표</span></span>
+<span><span class="co">#&gt;  3 20200415 중구성동구을 서울특별시 1     더불어민주당 박성준</span></span>
+<span><span class="co">#&gt;  4 20200415 용산구       서울특별시 2     미래통합당   권영세</span></span>
+<span><span class="co">#&gt;  5 20200415 광진구갑     서울특별시 1     더불어민주당 전혜숙</span></span>
+<span><span class="co">#&gt;  6 20200415 광진구을     서울특별시 1     더불어민주당 고민정</span></span>
+<span><span class="co">#&gt;  7 20200415 동대문구갑   서울특별시 1     더불어민주당 안규백</span></span>
+<span><span class="co">#&gt;  8 20200415 동대문구을   서울특별시 1     더불어민주당 장경태</span></span>
+<span><span class="co">#&gt;  9 20200415 중랑구갑     서울특별시 1     더불어민주당 서영교</span></span>
+<span><span class="co">#&gt; 10 20200415 중랑구을     서울특별시 1     더불어민주당 박홍근</span></span>
+<span><span class="co">#&gt; # ℹ 243 more rows</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="데이터-저장" class="level3" data-number="25.2.5"><h3 data-number="25.2.5" class="anchored" data-anchor-id="데이터-저장">
+<span class="header-section-number">25.2.5</span> 데이터 저장</h3>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">winners_tbl</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span><span class="op">(</span><span class="st">"data/21st_election_winners.csv"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section><section id="동적-웹-페이지" class="level2" data-number="25.3"><h2 data-number="25.3" class="anchored" data-anchor-id="동적-웹-페이지">
+<span class="header-section-number">25.3</span> 동적 웹 페이지</h2>
+<p>중앙선거관리위원회 선거통계시스템에서 제공하는 제21대 국회의원선거 당선인 명단을 R과 RSelenium을 활용한 동적 웹 크롤링을 통해 수집하고 정제하는 과정을 살펴본다. <code>RSelenium</code> 패키지를 설치하고 불여우(Firefox) 브라우저를 제어하기 위해 드라이버를 설치하고 선관위 웹사이트로 이동한다.</p>
+<p>다음으로 CSS 선택자(selector)를 이용하여 선거유형, 선거명, 선거코드, 시도 등의 조회조건을 순차적으로 선택하고 클릭 이벤트를 실행하여 검색조건을 완성한 후 검색 버튼을 클릭하여 해당 조건에 맞는 당선인 명단이 포함된 HTML 표를 브라우저에 렌더링한다. 마지막 단계로, 다시 CSS 선택자로 해당 표를 선택하고 <code>getElementAttribute()</code> 함수를 통해 HTML 표를 추출한 다음, <code>rvest</code> 패키지 <code>read_html()</code>, <code>html_table()</code> 함수를 이용하여 HTML 표를 데이터프레임으로 변환하여 <code>tibble</code> 형태로 크롤링 작업을 마무리 힌다.</p>
+<p>과거 <code>RSelenium</code>을 <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> 명령어를 통해서 CRAN에서 다운로드를 할 수는 없었으나 이제 <a href="https://cran.r-project.org/web/packages/RSelenium/index.html">CRAN, RSelenium</a> 에서 직접 설치가 가능하고 <a href="https://github.com/ropensci/RSelenium">GitHub rOpenSci</a> 저장소에서 <code>devtools</code>로 설치한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># devtools::install_github("ropensci/binman")</span></span>
+<span><span class="co"># devtools::install_github("ropensci/wdman")</span></span>
+<span><span class="co"># devtools::install_github("ropensci/RSelenium")</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/RSelenium/">RSelenium</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 1. 데이터 ----</span></span>
+<span></span>
+<span><span class="va">rem_driver</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/RSelenium/reference/rsDriver.html">rsDriver</a></span><span class="op">(</span>browser <span class="op">=</span> <span class="st">"firefox"</span>, port <span class="op">=</span> <span class="fl">4568L</span><span class="op">)</span></span>
+<span><span class="va">remdrv_client</span> <span class="op">&lt;-</span> <span class="va">rem_driver</span><span class="op">[[</span><span class="st">"client"</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="va">remdrv_client</span><span class="op">$</span><span class="fu">navigate</span><span class="op">(</span><span class="st">"http://info.nec.go.kr/main/showDocument.xhtml?electionId=0000000000&amp;topMenuId=EP&amp;secondMenuId=EPEI01"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 선거유형 "electionType2" 선택 후 클릭</span></span>
+<span><span class="va">electionType2</span> <span class="op">&lt;-</span> <span class="va">remdrv_client</span><span class="op">$</span><span class="fu">findElement</span><span class="op">(</span>using <span class="op">=</span> <span class="st">"css selector"</span>, <span class="st">"#electionType2"</span><span class="op">)</span></span>
+<span><span class="va">electionType2</span><span class="op">$</span><span class="fu">clickElement</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 조회조건: 제21대 선택</span></span>
+<span><span class="va">electionName</span> <span class="op">&lt;-</span> <span class="va">remdrv_client</span><span class="op">$</span><span class="fu">findElement</span><span class="op">(</span>using <span class="op">=</span> <span class="st">"css selector"</span>, <span class="st">"#electionName &gt; option:nth-child(2)"</span><span class="op">)</span></span>
+<span><span class="va">electionName</span><span class="op">$</span><span class="fu">clickElement</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 조회조건: 제21대 선택 &gt; 국회의원선거</span></span>
+<span><span class="va">electionCode</span> <span class="op">&lt;-</span> <span class="va">remdrv_client</span><span class="op">$</span><span class="fu">findElement</span><span class="op">(</span>using <span class="op">=</span> <span class="st">"css selector"</span>, <span class="st">"#electionCode &gt; option:nth-child(2)"</span><span class="op">)</span></span>
+<span><span class="va">electionCode</span><span class="op">$</span><span class="fu">clickElement</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 조회조건: 제21대 선택 &gt; 국회의원선거 &gt; 시도 &gt; 서울특별시</span></span>
+<span><span class="va">cityCode</span> <span class="op">&lt;-</span> <span class="va">remdrv_client</span><span class="op">$</span><span class="fu">findElement</span><span class="op">(</span>using <span class="op">=</span> <span class="st">"css selector"</span>, <span class="st">"#cityCode &gt; option:nth-child(2)"</span><span class="op">)</span></span>
+<span><span class="va">cityCode</span><span class="op">$</span><span class="fu">clickElement</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 검색 실행</span></span>
+<span><span class="va">runButton</span> <span class="op">&lt;-</span> <span class="va">remdrv_client</span><span class="op">$</span><span class="fu">findElement</span><span class="op">(</span>using <span class="op">=</span> <span class="st">"css selector"</span>, <span class="st">"#searchBtn"</span><span class="op">)</span></span>
+<span><span class="va">runButton</span><span class="op">$</span><span class="fu">clickElement</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># HTML 표 --&gt; 데이터프레임 변환</span></span>
+<span><span class="va">winner_html</span> <span class="op">&lt;-</span> <span class="va">remdrv_client</span><span class="op">$</span><span class="fu">findElement</span><span class="op">(</span><span class="st">"css"</span>, <span class="st">"#table01"</span><span class="op">)</span><span class="op">$</span><span class="fu">getElementAttribute</span><span class="op">(</span><span class="st">"outerHTML"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<span></span>
+<span><span class="va">winner_table</span> <span class="op">&lt;-</span> <span class="fu">read_html</span><span class="op">(</span><span class="va">winner_html</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">html_table</span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="va">.</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> </span>
+<span></span>
+<span><span class="va">remdrv_client</span><span class="op">$</span><span class="fu">close</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">winner_table</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">직업</span>, <span class="op">-</span><span class="va">학력</span>, <span class="op">-</span><span class="va">경력</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#&gt; # A tibble: 49 × 6</span></span>
+<span><span class="co">#&gt;    선거구명     정당명       `성명(한자)`   성별  `생년월일(연령)` `득표수(득표율)`</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;          &lt;chr&gt; &lt;chr&gt;            &lt;chr&gt;           </span></span>
+<span><span class="co">#&gt;  1 종로구       더불어민주당 이낙연(李洛淵) 남    1952.12.20(67세) 54,902(58.38)   </span></span>
+<span><span class="co">#&gt;  2 중구성동구갑 더불어민주당 홍익표(洪翼杓) 남    1967.11.20(52세) 70,387(54.25)   </span></span>
+<span><span class="co">#&gt;  3 중구성동구을 더불어민주당 박성준(朴省俊) 남    1969.04.23(50세) 64,071(51.96)   </span></span>
+<span><span class="co">#&gt;  4 용산구       미래통합당   권영세(權寧世) 남    1959.02.24(61세) 63,891(47.80)   </span></span>
+<span><span class="co">#&gt;  5 광진구갑     더불어민주당 전혜숙(全惠淑) 여    1955.05.05(64세) 56,608(53.68)   </span></span>
+<span><span class="co">#&gt;  6 광진구을     더불어민주당 고민정(高旼廷) 여    1979.08.23(40세) 54,210(50.37)   </span></span>
+<span><span class="co">#&gt;  7 동대문구갑   더불어민주당 안규백(安圭伯) 남    1961.04.29(58세) 51,551(52.72)   </span></span>
+<span><span class="co">#&gt;  8 동대문구을   더불어민주당 장경태(張耿態) 남    1983.10.12(36세) 55,230(54.54)   </span></span>
+<span><span class="co">#&gt;  9 중랑구갑     더불어민주당 서영교(徐瑛敎) 여    1964.11.11(55세) 55,185(57.76)   </span></span>
+<span><span class="co">#&gt; 10 중랑구을     더불어민주당 박홍근(朴洪根) 남    1969.10.08(50세) 74,131(59.28)   </span></span>
+<span><span class="co">#&gt; # ℹ 39 more rows</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="fig-nec_selelium" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-nec_selelium-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/nec_selelium.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="그림&nbsp;25.4: 동적 웹 페이지 데이터 추출과정"><img src="images/nec_selelium.gif" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nec_selelium-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;25.4: 동적 웹 페이지 데이터 추출과정
+</figcaption></figure>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+자바(Java) 설치 오류
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>RSelenium</code> 패키지를 사용하기 위해서는 자바(Java)가 설치되어 있어야 한다. <a href="https://statkclee.github.io/data-science/ds-windows.html">데이터 과학 PC (Java) - 윈도우</a> 블로그 게시글을 참조하거나 <code><a href="https://github.com/mrchypark/multilinguer">library(multilinguer); install_java()</a></code> 함수를 사용해서 설치하여 사용할 수 있다.</p>
+<blockquote class="blockquote">
+<p>java_check()에서 다음과 같은 에러가 발생했습니다: PATH to JAVA not found. Please check JAVA is installed.</p>
+</blockquote>
+</div>
+</div>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "복사완료!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "복사완료!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
+          }
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./ingest_import.html" class="pagination-link" aria-label="텍스트 파일">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./prompt.html" class="pagination-link" aria-label="프롬프트 공학">
+        <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p>챗GPT 데이터 과학 책은 소프트웨어 카펜트리 “R for Reproducible Scientific Analysis”를 번역한 것이 포함되어 있습니다.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/ingest_web.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
+</div>
+  </div>
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom","loop":false});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
+
+
+</body></html>
