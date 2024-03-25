@@ -489,5 +489,71 @@
       "**7부** 가져오기",
       "<span class='chapter-number'>25</span>  <span class='chapter-title'>웹 데이터</span>"
     ]
+  },
+  {
+    "objectID": "ingest_file.html",
+    "href": "ingest_file.html",
+    "title": "24  파일 데이터",
+    "section": "",
+    "text": "24.1 데이터 종류\ngraph TB\n    subgraph 가져오기[\"가져오기(Import)\"]\n        csv[CSV 파일] --&gt; 핸들러\n        스프레드쉬트 --&gt; 핸들러\n        데이터베이스 --&gt; 핸들러\n        웹 --&gt; 핸들러\n\n        핸들러 --&gt; 데이터프레임\n    end\n    \n    classDef modern fill:#fff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:12px;\n    classDef emphasize fill:#8CBDE3,stroke:#333,stroke-width:3px,color:#333,font-family:MaruBuri,font-size:15px,font-weight:bold;\n    classDef subgraphStyle fill:#f0f8ff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:20px;\n    \n    class csv,스프레드쉬트,데이터베이스,웹,핸들러 modern\n    class 데이터프레임 emphasize\n    class 가져오기 subgraphStyle\n\n\n\n\n그림 24.2: 다양한 데이터 종류",
+    "crumbs": [
+      "**7부** 가져오기",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>파일 데이터</span>"
+    ]
+  },
+  {
+    "objectID": "ingest_file.html#spss",
+    "href": "ingest_file.html#spss",
+    "title": "24  파일 데이터",
+    "section": "\n24.2 SPSS",
+    "text": "24.2 SPSS\n세종시에 위치한 한국보건사회연구원에서 조사하여 발표하는 한국복지패널데이터는 특이하게도 오픈 파일 형식만 제외하고 상용 통계 패키지가 있어야 열어볼 수 있는 SPSS, STATA, SAS 파일 형식으로 제공되고 있다. 총4가지 종류 파일을 제공하고 있지만 여기서는 다양한 파일 데이터를 불러오는 방법을 중심으로 살펴보기 때문에 가장 단순한 파일만 R 환경으로 불러오는 방법을 살펴보자.\n\n가구용데이터(SAS, SPSS, STATA):koweps_h17_2022_Beta1\n가구원용데이터(SAS, SPSS, STATA):koweps_p17_2022_Beta1\n복지인식설문용데이터(SAS, SPSS, STATA):koweps_wc17_2022_Beta1\n가구용, 가구원용, 복지인식설문용 머지데이터(SAS, SPSS, STATA):koweps_hpwc17_2022_Beta1\n\nSPSS 로 작성된 .sav 파일으로 R 환경으로 불러오기 위해서는 haven 패키지를 로드하여 SPSS (.sav) 데이터 파일을 R로 읽어온다. read_spss() 함수를 사용하여 “koweps_hpwc17_2022_Beta1.sav” 파일을 welfare_raw 데이터 프레임으로 저장한 후, map_chr() 함수를 사용하여 welfare_raw의 각 변수에 대해 attributes(.x)$label을 적용하여 변수의 레이블을 추출하고 후속 작업을 위해서 문자형 벡터로 변환시킨다.\nenframe() 함수를 사용하여 추출된 레이블을 데이터 프레임으로 변환하고, filter() 함수와 str_detect() 함수를 사용하여 “성별”, “종교”, “태어난 연도”, “혼인상태”, “가구원수”라는 키워드가 포함된 변수만 선택한다. pull() 함수를 사용하여 선택된 변수의 이름을 추출하고, setdiff() 함수를 사용하여 정규표현식 작성과정에서 함께 추출된”h1707_6aq6” 변수를 제외시킨 후 demo_vars 변수로 저장한다.\nwelfare_raw 데이터 프레임에서 select() 함수와 all_of() 함수를 사용하여 demo_vars에 해당하는 변수만 선택한 후 set_names() 함수를 사용하여 선택된 변수명을 “성별”, “종교”, “태어난 연도”, “혼인상태”, “가구원수”로 변경한다. str_split()과 dput()을 사용하여 변수 이름을 파이프(|)로 연산으로 한 명령어로 처리한다. janitor 패키지 clean_names() 함수를 사용하여 변수 이름을 깔끔하게 정리하는데, ascii = FALSE 옵션을 사용하여 한글 변수명을 유지한다.\n한국보건사회연구원에서 한국복지패널 데이터가 SPSS로 제공되고 있지만 상용 SPSS 패키지가 없더라도 R 환경에서 haven 패키지와 janitor 패키지를 활용하여 SPSS 데이터를 불러와서 본격적인 분석을 오픈 데이터 분석 및 통계 언어 R로 수행할 준비가 되었다.\n\nlibrary(haven) # install.packages(\"foreign\")\n\n# Read the .sav file\nwelfare_raw &lt;- read_spss(\"data/file/SPSS/koweps_hpwc17_2022_Beta1.sav\")\n\n## 관심 변수 추출\ndemo_vars &lt;- welfare_raw %&gt;%\n  map_chr(~attributes(.x)$label) |&gt; \n    enframe() |&gt; \n    filter(str_detect(value, \"성별|종교|(태어난 연도)|혼인상태|가구원수\")) |&gt; \n    pull(name) |&gt; \n    setdiff(\"h1707_6aq6\") # 기타소비-종교관련비 변수 제거\n\n## 인구통계학적 변수로 구성된 데이터셋\nwelfare_raw %&gt;%\n  select(all_of(demo_vars)) |&gt; \n    set_names(str_split(\"성별|종교|(태어난 연도)|혼인상태|가구원수\", \"\\\\|\")[[1]] |&gt; dput()) |&gt; \n    janitor::clean_names(ascii = FALSE)\n#&gt; c(\"성별\", \"종교\", \"(태어난 연도)\", \"혼인상태\", \"가구원수\"\n#&gt; )\n#&gt; # A tibble: 16,591 × 5\n#&gt;     성별  종교 태어난_연도 혼인상태 가구원수\n#&gt;    &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n#&gt;  1     1     2        1945        2        1\n#&gt;  2     1     1        1948        2        2\n#&gt;  3     1     1        1942        3        1\n#&gt;  4     5     1        1962        1        1\n#&gt;  5     5     2        1963        1        1\n#&gt;  6     5     2        2003        5        1\n#&gt;  7     5     1        1927        1        1\n#&gt;  8     5     2        1934        1        1\n#&gt;  9     1     2        1940        2        1\n#&gt; 10     2     2        1970        3        1\n#&gt; # ℹ 16,581 more rows",
+    "crumbs": [
+      "**7부** 가져오기",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>파일 데이터</span>"
+    ]
+  },
+  {
+    "objectID": "ingest_file.html#sas",
+    "href": "ingest_file.html#sas",
+    "title": "24  파일 데이터",
+    "section": "\n24.3 SAS",
+    "text": "24.3 SAS\nSAS 통계패키지 koweps_hpwc17_2022_beta1.sas7bdat 파일을 작성된 동일한 한국보건사회연구원에서 한국복지패널 데이터도 haven 패키지를 사용하여 read_sas() 함수를 사용하여 SAS 데이터 파일(.sas7bdat)을 불러온다. 이후 코드는 앞서 SPSS 데이터를 R 인구통계 데이터프레임으로 변환시켜 가져온 것과 동일한 방법으로 진행된다. 즉, 코드를 재사용하게 된다.\n\nlibrary(haven) # install.packages(\"foreign\")\n\nsas_raw &lt;- read_sas(\"data/file/SAS/koweps_hpwc17_2022_Beta1.sas7bdat\")\n\n## 관심 변수 추출\nsas_vars &lt;- sas_raw %&gt;%\n  map_chr(~attributes(.x)$label) |&gt;\n  enframe() |&gt;\n  filter(str_detect(value, \"성별|종교|(태어난 연도)|혼인상태|가구원수\")) |&gt;\n  pull(name) |&gt;\n  setdiff(\"h1707_6aq6\") # 기타소비-종교관련비 변수 제거\n\n## 인구통계학적 변수로 구성된 데이터셋\nsas_raw %&gt;%\n  select(all_of(sas_vars)) |&gt;\n  set_names(str_split(\"성별|종교|(태어난 연도)|혼인상태|가구원수\", \"\\\\|\")[[1]] |&gt; dput()) |&gt;\n  janitor::clean_names(ascii = FALSE)\n#&gt; c(\"성별\", \"종교\", \"(태어난 연도)\", \"혼인상태\", \"가구원수\"\n#&gt; )\n#&gt; # A tibble: 16,591 × 5\n#&gt;     성별  종교 태어난_연도 혼인상태 가구원수\n#&gt;    &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n#&gt;  1     1     2        1945        2        1\n#&gt;  2     1     1        1948        2        2\n#&gt;  3     1     1        1942        3        1\n#&gt;  4     5     1        1962        1        1\n#&gt;  5     5     2        1963        1        1\n#&gt;  6     5     2        2003        5        1\n#&gt;  7     5     1        1927        1        1\n#&gt;  8     5     2        1934        1        1\n#&gt;  9     1     2        1940        2        1\n#&gt; 10     2     2        1970        3        1\n#&gt; # ℹ 16,581 more rows",
+    "crumbs": [
+      "**7부** 가져오기",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>파일 데이터</span>"
+    ]
+  },
+  {
+    "objectID": "ingest_file.html#stata",
+    "href": "ingest_file.html#stata",
+    "title": "24  파일 데이터",
+    "section": "\n24.4 STATA",
+    "text": "24.4 STATA\nSTATA 통계패키지 koweps_hpwc17_2022_beta1.dta 파일은 SAS 버전과 동일한 한국복지패널 데이터다. R에서 haven 패키지 read_dta() 함수를 사용하여 STATA 데이터 파일(.dta)을 불러올 수 있다. 이후 코드는 앞서 SPSS, SAS 데이터를 R로 가져와 인구통계 데이터프레임으로 변환한 것과 동일한 방법으로 진행된다. 따라서 이전에 작성한 코드를 그대로 재사용할 수 있다.\n\nlibrary(haven) # install.packages(\"haven\")\n\n# STATA 파일 불러오기\nstata_raw &lt;- read_dta(\"data/file/STATA/Koweps_hpwc17_2022_beta1.dta\")\n\n## 관심 변수 추출\nstata_vars &lt;- stata_raw %&gt;%\n  map_chr(~attributes(.x)$label) |&gt;\n  enframe() |&gt;\n  filter(str_detect(value, \"성별|종교|(태어난 연도)|혼인상태|가구원수\")) |&gt;\n  pull(name) |&gt;\n  setdiff(\"h1707_6aq6\") # 기타소비-종교관련비 변수 제거\n\n## 인구통계학적 변수로 구성된 데이터셋\nstata_raw %&gt;%\n  select(all_of(stata_vars)) |&gt;\n  set_names(str_split(\"성별|종교|(태어난 연도)|혼인상태|가구원수\", \"\\\\|\")[[1]] |&gt; dput()) |&gt;\n  janitor::clean_names(ascii = FALSE)\n#&gt; c(\"성별\", \"종교\", \"(태어난 연도)\", \"혼인상태\", \"가구원수\"\n#&gt; )\n#&gt; # A tibble: 16,591 × 5\n#&gt;     성별  종교 태어난_연도 혼인상태 가구원수\n#&gt;    &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n#&gt;  1     1     2        1945        2        1\n#&gt;  2     1     1        1948        2        2\n#&gt;  3     1     1        1942        3        1\n#&gt;  4     5     1        1962        1        1\n#&gt;  5     5     2        1963        1        1\n#&gt;  6     5     2        2003        5        1\n#&gt;  7     5     1        1927        1        1\n#&gt;  8     5     2        1934        1        1\n#&gt;  9     1     2        1940        2        1\n#&gt; 10     2     2        1970        3        1\n#&gt; # ℹ 16,581 more rows",
+    "crumbs": [
+      "**7부** 가져오기",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>파일 데이터</span>"
+    ]
+  },
+  {
+    "objectID": "ingest_file.html#아스키-파일",
+    "href": "ingest_file.html#아스키-파일",
+    "title": "24  파일 데이터",
+    "section": "\n24.5 아스키 파일",
+    "text": "24.5 아스키 파일\n\nlibrary(palmerpenguins)\n\nnine_penguins &lt;- palmerpenguins::penguins |&gt; \n    drop_na() |&gt; \n    slice_sample(n = 3, replace = FALSE, by = species) |&gt; \n    select(-bill_depth_mm)\n\n\n24.5.1 탭 구분자\n\nnine_penguins |&gt; \n    # write_tsv(\"data/file/ASCII/nine_penguins.tsv\") |&gt; \n    write_delim(\"data/file/nine_penguins.txt\", delim = \"\\t\") \n\nspecies\tisland\tbill_length_mm\tflipper_length_mm\tbody_mass_g\tsex\tyear\nAdelie\tTorgersen\t36.6\t185\t3700\tfemale\t2007\nAdelie\tDream\t36.2\t187\t3300\tfemale\t2008\nAdelie\tBiscoe\t35\t192\t3725\tfemale\t2009\nGentoo\tBiscoe\t47.2\t214\t4925\tfemale\t2009\nGentoo\tBiscoe\t45.5\t220\t5000\tmale\t2008\nGentoo\tBiscoe\t46.2\t217\t4375\tfemale\t2009\nChinstrap\tDream\t47.5\t199\t3900\tfemale\t2008\nChinstrap\tDream\t49.7\t195\t3600\tmale\t2008\nChinstrap\tDream\t51.3\t198\t3700\tmale\t2007\n\n24.5.2 CSV 구분자\n\nnine_penguins |&gt; \n    write_csv(\"data/file/nine_penguins.csv\")\n\nspecies,island,bill_length_mm,flipper_length_mm,body_mass_g,sex,year\nAdelie,Torgersen,36.6,185,3700,female,2007\nAdelie,Dream,36.2,187,3300,female,2008\nAdelie,Biscoe,35,192,3725,female,2009\nGentoo,Biscoe,47.2,214,4925,female,2009\nGentoo,Biscoe,45.5,220,5000,male,2008\nGentoo,Biscoe,46.2,217,4375,female,2009\nChinstrap,Dream,47.5,199,3900,female,2008\nChinstrap,Dream,49.7,195,3600,male,2008\nChinstrap,Dream,51.3,198,3700,male,2007\n\n24.5.3 고정길이 파일\nAdelie    Dream     37.6          181            3300     female   2007\nAdelie    Biscoe    35.3          187            3800     female   2007\nAdelie    Biscoe    37.8          174            3400     female   2007\nGentoo    Biscoe    47.4          212            4725     female   2009\nGentoo    Biscoe    49.1          220            5150     female   2008\nGentoo    Biscoe    47.5          209            4600     female   2008\nChinstrap Dream     40.9          187            3200     female   2008\nChinstrap Dream     47.6          195            3850     female   2008\nChinstrap Dream     46            195            4150     female   2007",
+    "crumbs": [
+      "**7부** 가져오기",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>파일 데이터</span>"
+    ]
+  },
+  {
+    "objectID": "ingest_file.html#불러오기",
+    "href": "ingest_file.html#불러오기",
+    "title": "24  파일 데이터",
+    "section": "\n24.6 불러오기",
+    "text": "24.6 불러오기\n\n24.6.1 탭 구분자\n\n24.6.2 CSV 구분자\n\n24.6.3 고정길이 파일\n\n\nnine_penguins_fwf &lt;-read_fwf(\"data/file/nine_penguins.fwf\",\n                             skip = 0,\n         col_positions = fwf_widths(c(10, 10, 14, 15, 9, 9, 5),\n           col_names = c(\"species\", \"island\", \"bill_length_mm\",\n                         \"flipper_length_mm\", \"body_mass_g\", \"sex\", \"year\")))\n\nnine_penguins_fwf\n#&gt; # A tibble: 9 × 7\n#&gt;   species   island bill_length_mm flipper_length_mm body_mass_g sex     year\n#&gt;   &lt;chr&gt;     &lt;chr&gt;           &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;\n#&gt; 1 Adelie    Dream            37.6               181        3300 female  2007\n#&gt; 2 Adelie    Biscoe           35.3               187        3800 female  2007\n#&gt; 3 Adelie    Biscoe           37.8               174        3400 female  2007\n#&gt; 4 Gentoo    Biscoe           47.4               212        4725 female  2009\n#&gt; 5 Gentoo    Biscoe           49.1               220        5150 female  2008\n#&gt; 6 Gentoo    Biscoe           47.5               209        4600 female  2008\n#&gt; 7 Chinstrap Dream            40.9               187        3200 female  2008\n#&gt; 8 Chinstrap Dream            47.6               195        3850 female  2008\n#&gt; 9 Chinstrap Dream            46                 195        4150 female  2007",
+    "crumbs": [
+      "**7부** 가져오기",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>파일 데이터</span>"
+    ]
   }
 ]

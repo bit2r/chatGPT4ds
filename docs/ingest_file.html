@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.9">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="이광춘, 신종화">
+<title>챗GPT 데이터 과학 – 24&nbsp; 파일 데이터</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./ingest_web.html" rel="next">
+<link href="./comm_export.html" rel="prev">
+<link href="./images/logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script><script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-229551680-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script><meta name="mermaid-theme" content="neutral">
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script><script src="site_libs/quarto-diagram/mermaid-init.js"></script><link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ingest_file.html"><strong>7부</strong> 가져오기</a></li><li class="breadcrumb-item"><a href="./ingest_file.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">파일 데이터</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">챗GPT 데이터 과학</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/bit2r/gpt-ds" title="소스 코드" class="quarto-navigation-tool px-1" aria-label="소스 코드"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="리더 모드 전환">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="검색"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">서문</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text"><strong>1부</strong> 들어가며</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">들어가며</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">데이터 사이언스 운영체제</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_whole_game.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">데이터 과학 맛보기</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_penguins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text"><strong>2부</strong> 데이터 다루기</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text"><strong>3부</strong> 시각화</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2_concept.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">그래프 문법</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2_pattern.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text"><strong>4부</strong> 모형</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_many.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text"><strong>5부</strong> 프로그래밍</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./function_plyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text"><strong>6부</strong> 커뮤니케이션</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comm_map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comm_knitr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">데이터 분석 보고서</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comm_quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comm_export.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">저장하기</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text"><strong>7부</strong> 가져오기</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ingest_file.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">파일 데이터</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ingest_web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">웹 데이터</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text"><strong>8부</strong> 챗GPT</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prompt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./langchain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./llm_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./local_llm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">참고문헌</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li><a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A2%85%EB%A5%98" id="toc-데이터-종류" class="nav-link active" data-scroll-target="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A2%85%EB%A5%98"><span class="header-section-number">24.1</span> 데이터 종류</a></li>
+  <li><a href="#spss" id="toc-spss" class="nav-link" data-scroll-target="#spss"><span class="header-section-number">24.2</span> SPSS</a></li>
+  <li><a href="#sas" id="toc-sas" class="nav-link" data-scroll-target="#sas"><span class="header-section-number">24.3</span> SAS</a></li>
+  <li><a href="#stata" id="toc-stata" class="nav-link" data-scroll-target="#stata"><span class="header-section-number">24.4</span> STATA</a></li>
+  <li>
+<a href="#%EC%95%84%EC%8A%A4%ED%82%A4-%ED%8C%8C%EC%9D%BC" id="toc-아스키-파일" class="nav-link" data-scroll-target="#%EC%95%84%EC%8A%A4%ED%82%A4-%ED%8C%8C%EC%9D%BC"><span class="header-section-number">24.5</span> 아스키 파일</a>
+  <ul class="collapse">
+<li><a href="#%ED%83%AD-%EA%B5%AC%EB%B6%84%EC%9E%90" id="toc-탭-구분자" class="nav-link" data-scroll-target="#%ED%83%AD-%EA%B5%AC%EB%B6%84%EC%9E%90"><span class="header-section-number">24.5.1</span> 탭 구분자</a></li>
+  <li><a href="#csv-%EA%B5%AC%EB%B6%84%EC%9E%90" id="toc-csv-구분자" class="nav-link" data-scroll-target="#csv-%EA%B5%AC%EB%B6%84%EC%9E%90"><span class="header-section-number">24.5.2</span> CSV 구분자</a></li>
+  <li><a href="#%EA%B3%A0%EC%A0%95%EA%B8%B8%EC%9D%B4-%ED%8C%8C%EC%9D%BC" id="toc-고정길이-파일" class="nav-link" data-scroll-target="#%EA%B3%A0%EC%A0%95%EA%B8%B8%EC%9D%B4-%ED%8C%8C%EC%9D%BC"><span class="header-section-number">24.5.3</span> 고정길이 파일</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#%EB%B6%88%EB%9F%AC%EC%98%A4%EA%B8%B0" id="toc-불러오기" class="nav-link" data-scroll-target="#%EB%B6%88%EB%9F%AC%EC%98%A4%EA%B8%B0"><span class="header-section-number">24.6</span> 불러오기</a>
+  <ul class="collapse">
+<li><a href="#%ED%83%AD-%EA%B5%AC%EB%B6%84%EC%9E%90-1" id="toc-탭-구분자-1" class="nav-link" data-scroll-target="#%ED%83%AD-%EA%B5%AC%EB%B6%84%EC%9E%90-1"><span class="header-section-number">24.6.1</span> 탭 구분자</a></li>
+  <li><a href="#csv-%EA%B5%AC%EB%B6%84%EC%9E%90-1" id="toc-csv-구분자-1" class="nav-link" data-scroll-target="#csv-%EA%B5%AC%EB%B6%84%EC%9E%90-1"><span class="header-section-number">24.6.2</span> CSV 구분자</a></li>
+  <li><a href="#%EA%B3%A0%EC%A0%95%EA%B8%B8%EC%9D%B4-%ED%8C%8C%EC%9D%BC-1" id="toc-고정길이-파일-1" class="nav-link" data-scroll-target="#%EA%B3%A0%EC%A0%95%EA%B8%B8%EC%9D%B4-%ED%8C%8C%EC%9D%BC-1"><span class="header-section-number">24.6.3</span> 고정길이 파일</a></li>
+  </ul>
+</li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/ingest_file.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ingest_file.html"><strong>7부</strong> 가져오기</a></li><li class="breadcrumb-item"><a href="./ingest_file.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">파일 데이터</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="intro" class="quarto-section-identifier"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">파일 데이터</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-workflow" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-workflow">graph LR
+    subgraph 이해하기
+        모형 --&gt; 시각화
+        변환 --&gt; 모형
+        시각화 --&gt; 변환
+        
+    end
+    가져오기 --&gt; 깔끔화 --&gt; 이해하기
+    이해하기 --&gt; 의사소통
+    
+    classDef modern fill:#fff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:12px;
+    classDef emphasize fill:#8CBDE3,stroke:#333,stroke-width:3px,color:#333,font-family:MaruBuri,font-size:15px,font-weight:bold;
+    classDef subgraphStyle fill:#f0f8ff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:15px;
+    
+    class 깔끔화,변환,모형,시각화,의사소통 modern
+    class 가져오기 emphasize
+    class 이해하기 subgraphStyle
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;24.1: 데이터 과학 작업흐름도
+</figcaption></figure>
+</div>
+</div>
+</div>
+<section id="데이터-종류" class="level2" data-number="24.1"><h2 data-number="24.1" class="anchored" data-anchor-id="데이터-종류">
+<span class="header-section-number">24.1</span> 데이터 종류</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-import-data" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-import-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-import-data">graph TB
+    subgraph 가져오기["가져오기(Import)"]
+        csv[CSV 파일] --&gt; 핸들러
+        스프레드쉬트 --&gt; 핸들러
+        데이터베이스 --&gt; 핸들러
+        웹 --&gt; 핸들러
+
+        핸들러 --&gt; 데이터프레임
+    end
+    
+    classDef modern fill:#fff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:12px;
+    classDef emphasize fill:#8CBDE3,stroke:#333,stroke-width:3px,color:#333,font-family:MaruBuri,font-size:15px,font-weight:bold;
+    classDef subgraphStyle fill:#f0f8ff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:20px;
+    
+    class csv,스프레드쉬트,데이터베이스,웹,핸들러 modern
+    class 데이터프레임 emphasize
+    class 가져오기 subgraphStyle
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-import-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;24.2: 다양한 데이터 종류
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section><section id="spss" class="level2" data-number="24.2"><h2 data-number="24.2" class="anchored" data-anchor-id="spss">
+<span class="header-section-number">24.2</span> SPSS</h2>
+<p>세종시에 위치한 <a href="https://www.koweps.re.kr/">한국보건사회연구원</a>에서 조사하여 발표하는 한국복지패널데이터는 특이하게도 오픈 파일 형식만 제외하고 상용 통계 패키지가 있어야 열어볼 수 있는 SPSS, STATA, SAS 파일 형식으로 제공되고 있다. 총4가지 종류 파일을 제공하고 있지만 여기서는 다양한 파일 데이터를 불러오는 방법을 중심으로 살펴보기 때문에 가장 단순한 파일만 R 환경으로 불러오는 방법을 살펴보자.</p>
+<ol type="1">
+<li>가구용데이터(SAS, SPSS, STATA):koweps_h17_2022_Beta1</li>
+<li>가구원용데이터(SAS, SPSS, STATA):koweps_p17_2022_Beta1</li>
+<li>복지인식설문용데이터(SAS, SPSS, STATA):koweps_wc17_2022_Beta1</li>
+<li><strong>가구용, 가구원용, 복지인식설문용 머지데이터(SAS, SPSS, STATA):koweps_hpwc17_2022_Beta1</strong></li>
+</ol>
+<p>SPSS 로 작성된 <code>.sav</code> 파일으로 R 환경으로 불러오기 위해서는 <code>haven</code> 패키지를 로드하여 SPSS (.sav) 데이터 파일을 R로 읽어온다. <code><a href="https://haven.tidyverse.org/reference/read_spss.html">read_spss()</a></code> 함수를 사용하여 “koweps_hpwc17_2022_Beta1.sav” 파일을 <code>welfare_raw</code> 데이터 프레임으로 저장한 후, <code>map_chr()</code> 함수를 사용하여 <code>welfare_raw</code>의 각 변수에 대해 <code>attributes(.x)$label</code>을 적용하여 변수의 레이블을 추출하고 후속 작업을 위해서 문자형 벡터로 변환시킨다.</p>
+<p><code>enframe()</code> 함수를 사용하여 추출된 레이블을 데이터 프레임으로 변환하고, <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> 함수와 <code>str_detect()</code> 함수를 사용하여 “성별”, “종교”, “태어난 연도”, “혼인상태”, “가구원수”라는 키워드가 포함된 변수만 선택한다. <code>pull()</code> 함수를 사용하여 선택된 변수의 이름을 추출하고, <code><a href="https://rdrr.io/r/base/sets.html">setdiff()</a></code> 함수를 사용하여 정규표현식 작성과정에서 함께 추출된”h1707_6aq6” 변수를 제외시킨 후 <code>demo_vars</code> 변수로 저장한다.</p>
+<p><code>welfare_raw</code> 데이터 프레임에서 <code>select()</code> 함수와 <code>all_of()</code> 함수를 사용하여 <code>demo_vars</code>에 해당하는 변수만 선택한 후 <code>set_names()</code> 함수를 사용하여 선택된 변수명을 “성별”, “종교”, “태어난 연도”, “혼인상태”, “가구원수”로 변경한다. <code>str_split()</code>과 <code><a href="https://rdrr.io/r/base/dput.html">dput()</a></code>을 사용하여 변수 이름을 파이프(<code>|</code>)로 연산으로 한 명령어로 처리한다. <code>janitor</code> 패키지 <code>clean_names()</code> 함수를 사용하여 변수 이름을 깔끔하게 정리하는데, <code>ascii = FALSE</code> 옵션을 사용하여 한글 변수명을 유지한다.</p>
+<p>한국보건사회연구원에서 한국복지패널 데이터가 SPSS로 제공되고 있지만 상용 SPSS 패키지가 없더라도 R 환경에서 <code>haven</code> 패키지와 <code>janitor</code> 패키지를 활용하여 SPSS 데이터를 불러와서 본격적인 분석을 오픈 데이터 분석 및 통계 언어 R로 수행할 준비가 되었다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org">haven</a></span><span class="op">)</span> <span class="co"># install.packages("foreign")</span></span>
+<span></span>
+<span><span class="co"># Read the .sav file</span></span>
+<span><span class="va">welfare_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/read_spss.html">read_spss</a></span><span class="op">(</span><span class="st">"data/file/SPSS/koweps_hpwc17_2022_Beta1.sav"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## 관심 변수 추출</span></span>
+<span><span class="va">demo_vars</span> <span class="op">&lt;-</span> <span class="va">welfare_raw</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">map_chr</span><span class="op">(</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">$</span><span class="va">label</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu">enframe</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="fu">str_detect</span><span class="op">(</span><span class="va">value</span>, <span class="st">"성별|종교|(태어난 연도)|혼인상태|가구원수"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu">pull</span><span class="op">(</span><span class="va">name</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="st">"h1707_6aq6"</span><span class="op">)</span> <span class="co"># 기타소비-종교관련비 변수 제거</span></span>
+<span></span>
+<span><span class="co">## 인구통계학적 변수로 구성된 데이터셋</span></span>
+<span><span class="va">welfare_raw</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">all_of</span><span class="op">(</span><span class="va">demo_vars</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu">set_names</span><span class="op">(</span><span class="fu">str_split</span><span class="op">(</span><span class="st">"성별|종교|(태어난 연도)|혼인상태|가구원수"</span>, <span class="st">"\\|"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/dput.html">dput</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names</a></span><span class="op">(</span>ascii <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; c("성별", "종교", "(태어난 연도)", "혼인상태", "가구원수"</span></span>
+<span><span class="co">#&gt; )</span></span>
+<span><span class="co">#&gt; # A tibble: 16,591 × 5</span></span>
+<span><span class="co">#&gt;     성별  종교 태어난_연도 혼인상태 가구원수</span></span>
+<span><span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1     1     2        1945        2        1</span></span>
+<span><span class="co">#&gt;  2     1     1        1948        2        2</span></span>
+<span><span class="co">#&gt;  3     1     1        1942        3        1</span></span>
+<span><span class="co">#&gt;  4     5     1        1962        1        1</span></span>
+<span><span class="co">#&gt;  5     5     2        1963        1        1</span></span>
+<span><span class="co">#&gt;  6     5     2        2003        5        1</span></span>
+<span><span class="co">#&gt;  7     5     1        1927        1        1</span></span>
+<span><span class="co">#&gt;  8     5     2        1934        1        1</span></span>
+<span><span class="co">#&gt;  9     1     2        1940        2        1</span></span>
+<span><span class="co">#&gt; 10     2     2        1970        3        1</span></span>
+<span><span class="co">#&gt; # ℹ 16,581 more rows</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="sas" class="level2" data-number="24.3"><h2 data-number="24.3" class="anchored" data-anchor-id="sas">
+<span class="header-section-number">24.3</span> SAS</h2>
+<p>SAS 통계패키지 <code>koweps_hpwc17_2022_beta1.sas7bdat</code> 파일을 작성된 동일한 한국보건사회연구원에서 한국복지패널 데이터도 <code>haven</code> 패키지를 사용하여 <code><a href="https://haven.tidyverse.org/reference/read_sas.html">read_sas()</a></code> 함수를 사용하여 SAS 데이터 파일(.sas7bdat)을 불러온다. 이후 코드는 앞서 SPSS 데이터를 R 인구통계 데이터프레임으로 변환시켜 가져온 것과 동일한 방법으로 진행된다. 즉, 코드를 재사용하게 된다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org">haven</a></span><span class="op">)</span> <span class="co"># install.packages("foreign")</span></span>
+<span></span>
+<span><span class="va">sas_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html">read_sas</a></span><span class="op">(</span><span class="st">"data/file/SAS/koweps_hpwc17_2022_Beta1.sas7bdat"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## 관심 변수 추출</span></span>
+<span><span class="va">sas_vars</span> <span class="op">&lt;-</span> <span class="va">sas_raw</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">map_chr</span><span class="op">(</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">$</span><span class="va">label</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">enframe</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="fu">str_detect</span><span class="op">(</span><span class="va">value</span>, <span class="st">"성별|종교|(태어난 연도)|혼인상태|가구원수"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">pull</span><span class="op">(</span><span class="va">name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="st">"h1707_6aq6"</span><span class="op">)</span> <span class="co"># 기타소비-종교관련비 변수 제거</span></span>
+<span></span>
+<span><span class="co">## 인구통계학적 변수로 구성된 데이터셋</span></span>
+<span><span class="va">sas_raw</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">all_of</span><span class="op">(</span><span class="va">sas_vars</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">set_names</span><span class="op">(</span><span class="fu">str_split</span><span class="op">(</span><span class="st">"성별|종교|(태어난 연도)|혼인상태|가구원수"</span>, <span class="st">"\\|"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/dput.html">dput</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names</a></span><span class="op">(</span>ascii <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; c("성별", "종교", "(태어난 연도)", "혼인상태", "가구원수"</span></span>
+<span><span class="co">#&gt; )</span></span>
+<span><span class="co">#&gt; # A tibble: 16,591 × 5</span></span>
+<span><span class="co">#&gt;     성별  종교 태어난_연도 혼인상태 가구원수</span></span>
+<span><span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1     1     2        1945        2        1</span></span>
+<span><span class="co">#&gt;  2     1     1        1948        2        2</span></span>
+<span><span class="co">#&gt;  3     1     1        1942        3        1</span></span>
+<span><span class="co">#&gt;  4     5     1        1962        1        1</span></span>
+<span><span class="co">#&gt;  5     5     2        1963        1        1</span></span>
+<span><span class="co">#&gt;  6     5     2        2003        5        1</span></span>
+<span><span class="co">#&gt;  7     5     1        1927        1        1</span></span>
+<span><span class="co">#&gt;  8     5     2        1934        1        1</span></span>
+<span><span class="co">#&gt;  9     1     2        1940        2        1</span></span>
+<span><span class="co">#&gt; 10     2     2        1970        3        1</span></span>
+<span><span class="co">#&gt; # ℹ 16,581 more rows</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="stata" class="level2" data-number="24.4"><h2 data-number="24.4" class="anchored" data-anchor-id="stata">
+<span class="header-section-number">24.4</span> STATA</h2>
+<p>STATA 통계패키지 <code>koweps_hpwc17_2022_beta1.dta</code> 파일은 SAS 버전과 동일한 한국복지패널 데이터다. R에서 <code>haven</code> 패키지 <code><a href="https://haven.tidyverse.org/reference/read_dta.html">read_dta()</a></code> 함수를 사용하여 STATA 데이터 파일(.dta)을 불러올 수 있다. 이후 코드는 앞서 SPSS, SAS 데이터를 R로 가져와 인구통계 데이터프레임으로 변환한 것과 동일한 방법으로 진행된다. 따라서 이전에 작성한 코드를 그대로 재사용할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org">haven</a></span><span class="op">)</span> <span class="co"># install.packages("haven")</span></span>
+<span></span>
+<span><span class="co"># STATA 파일 불러오기</span></span>
+<span><span class="va">stata_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/read_dta.html">read_dta</a></span><span class="op">(</span><span class="st">"data/file/STATA/Koweps_hpwc17_2022_beta1.dta"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## 관심 변수 추출</span></span>
+<span><span class="va">stata_vars</span> <span class="op">&lt;-</span> <span class="va">stata_raw</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">map_chr</span><span class="op">(</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">$</span><span class="va">label</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">enframe</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="fu">str_detect</span><span class="op">(</span><span class="va">value</span>, <span class="st">"성별|종교|(태어난 연도)|혼인상태|가구원수"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">pull</span><span class="op">(</span><span class="va">name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="st">"h1707_6aq6"</span><span class="op">)</span> <span class="co"># 기타소비-종교관련비 변수 제거</span></span>
+<span></span>
+<span><span class="co">## 인구통계학적 변수로 구성된 데이터셋</span></span>
+<span><span class="va">stata_raw</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">all_of</span><span class="op">(</span><span class="va">stata_vars</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">set_names</span><span class="op">(</span><span class="fu">str_split</span><span class="op">(</span><span class="st">"성별|종교|(태어난 연도)|혼인상태|가구원수"</span>, <span class="st">"\\|"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/dput.html">dput</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names</a></span><span class="op">(</span>ascii <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; c("성별", "종교", "(태어난 연도)", "혼인상태", "가구원수"</span></span>
+<span><span class="co">#&gt; )</span></span>
+<span><span class="co">#&gt; # A tibble: 16,591 × 5</span></span>
+<span><span class="co">#&gt;     성별  종교 태어난_연도 혼인상태 가구원수</span></span>
+<span><span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1     1     2        1945        2        1</span></span>
+<span><span class="co">#&gt;  2     1     1        1948        2        2</span></span>
+<span><span class="co">#&gt;  3     1     1        1942        3        1</span></span>
+<span><span class="co">#&gt;  4     5     1        1962        1        1</span></span>
+<span><span class="co">#&gt;  5     5     2        1963        1        1</span></span>
+<span><span class="co">#&gt;  6     5     2        2003        5        1</span></span>
+<span><span class="co">#&gt;  7     5     1        1927        1        1</span></span>
+<span><span class="co">#&gt;  8     5     2        1934        1        1</span></span>
+<span><span class="co">#&gt;  9     1     2        1940        2        1</span></span>
+<span><span class="co">#&gt; 10     2     2        1970        3        1</span></span>
+<span><span class="co">#&gt; # ℹ 16,581 more rows</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="아스키-파일" class="level2" data-number="24.5"><h2 data-number="24.5" class="anchored" data-anchor-id="아스키-파일">
+<span class="header-section-number">24.5</span> 아스키 파일</h2>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">nine_penguins</span> <span class="op">&lt;-</span> <span class="fu">palmerpenguins</span><span class="fu">::</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/reference/penguins.html">penguins</a></span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu">drop_na</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu">slice_sample</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span>, replace <span class="op">=</span> <span class="cn">FALSE</span>, by <span class="op">=</span> <span class="va">species</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">bill_depth_mm</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="탭-구분자" class="level3" data-number="24.5.1"><h3 data-number="24.5.1" class="anchored" data-anchor-id="탭-구분자">
+<span class="header-section-number">24.5.1</span> 탭 구분자</h3>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nine_penguins</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="co"># write_tsv("data/file/ASCII/nine_penguins.tsv") |&gt; </span></span>
+<span>    <span class="fu">write_delim</span><span class="op">(</span><span class="st">"data/file/nine_penguins.txt"</span>, delim <span class="op">=</span> <span class="st">"\t"</span><span class="op">)</span> </span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>species	island	bill_length_mm	flipper_length_mm	body_mass_g	sex	year</span>
+<span id="cb6-2"><a href="#cb6-2"></a>Adelie	Torgersen	<span class="fl">36.6</span>	<span class="dv">185</span>	<span class="dv">3700</span>	female	<span class="dv">2007</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>Adelie	Dream	<span class="fl">36.2</span>	<span class="dv">187</span>	<span class="dv">3300</span>	female	<span class="dv">2008</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>Adelie	Biscoe	<span class="dv">35</span>	<span class="dv">192</span>	<span class="dv">3725</span>	female	<span class="dv">2009</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>Gentoo	Biscoe	<span class="fl">47.2</span>	<span class="dv">214</span>	<span class="dv">4925</span>	female	<span class="dv">2009</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>Gentoo	Biscoe	<span class="fl">45.5</span>	<span class="dv">220</span>	<span class="dv">5000</span>	male	<span class="dv">2008</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>Gentoo	Biscoe	<span class="fl">46.2</span>	<span class="dv">217</span>	<span class="dv">4375</span>	female	<span class="dv">2009</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>Chinstrap	Dream	<span class="fl">47.5</span>	<span class="dv">199</span>	<span class="dv">3900</span>	female	<span class="dv">2008</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>Chinstrap	Dream	<span class="fl">49.7</span>	<span class="dv">195</span>	<span class="dv">3600</span>	male	<span class="dv">2008</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>Chinstrap	Dream	<span class="fl">51.3</span>	<span class="dv">198</span>	<span class="dv">3700</span>	male	<span class="dv">2007</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="csv-구분자" class="level3" data-number="24.5.2"><h3 data-number="24.5.2" class="anchored" data-anchor-id="csv-구분자">
+<span class="header-section-number">24.5.2</span> CSV 구분자</h3>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nine_penguins</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu">write_csv</span><span class="op">(</span><span class="st">"data/file/nine_penguins.csv"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>species,island,bill_length_mm,flipper_length_mm,body_mass_g,sex,year</span>
+<span id="cb8-2"><a href="#cb8-2"></a>Adelie,Torgersen,<span class="fl">36.6</span>,<span class="dv">185</span>,<span class="dv">3700</span>,female,<span class="dv">2007</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>Adelie,Dream,<span class="fl">36.2</span>,<span class="dv">187</span>,<span class="dv">3300</span>,female,<span class="dv">2008</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>Adelie,Biscoe,<span class="dv">35</span>,<span class="dv">192</span>,<span class="dv">3725</span>,female,<span class="dv">2009</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>Gentoo,Biscoe,<span class="fl">47.2</span>,<span class="dv">214</span>,<span class="dv">4925</span>,female,<span class="dv">2009</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>Gentoo,Biscoe,<span class="fl">45.5</span>,<span class="dv">220</span>,<span class="dv">5000</span>,male,<span class="dv">2008</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>Gentoo,Biscoe,<span class="fl">46.2</span>,<span class="dv">217</span>,<span class="dv">4375</span>,female,<span class="dv">2009</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>Chinstrap,Dream,<span class="fl">47.5</span>,<span class="dv">199</span>,<span class="dv">3900</span>,female,<span class="dv">2008</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>Chinstrap,Dream,<span class="fl">49.7</span>,<span class="dv">195</span>,<span class="dv">3600</span>,male,<span class="dv">2008</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>Chinstrap,Dream,<span class="fl">51.3</span>,<span class="dv">198</span>,<span class="dv">3700</span>,male,<span class="dv">2007</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="고정길이-파일" class="level3" data-number="24.5.3"><h3 data-number="24.5.3" class="anchored" data-anchor-id="고정길이-파일">
+<span class="header-section-number">24.5.3</span> 고정길이 파일</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>Adelie    Dream     <span class="fl">37.6</span>          <span class="dv">181</span>            <span class="dv">3300</span>     female   <span class="dv">2007</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>Adelie    Biscoe    <span class="fl">35.3</span>          <span class="dv">187</span>            <span class="dv">3800</span>     female   <span class="dv">2007</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>Adelie    Biscoe    <span class="fl">37.8</span>          <span class="dv">174</span>            <span class="dv">3400</span>     female   <span class="dv">2007</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>Gentoo    Biscoe    <span class="fl">47.4</span>          <span class="dv">212</span>            <span class="dv">4725</span>     female   <span class="dv">2009</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>Gentoo    Biscoe    <span class="fl">49.1</span>          <span class="dv">220</span>            <span class="dv">5150</span>     female   <span class="dv">2008</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>Gentoo    Biscoe    <span class="fl">47.5</span>          <span class="dv">209</span>            <span class="dv">4600</span>     female   <span class="dv">2008</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>Chinstrap Dream     <span class="fl">40.9</span>          <span class="dv">187</span>            <span class="dv">3200</span>     female   <span class="dv">2008</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>Chinstrap Dream     <span class="fl">47.6</span>          <span class="dv">195</span>            <span class="dv">3850</span>     female   <span class="dv">2008</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a>Chinstrap Dream     <span class="dv">46</span>            <span class="dv">195</span>            <span class="dv">4150</span>     female   <span class="dv">2007</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section><section id="불러오기" class="level2" data-number="24.6"><h2 data-number="24.6" class="anchored" data-anchor-id="불러오기">
+<span class="header-section-number">24.6</span> 불러오기</h2>
+<section id="탭-구분자-1" class="level3" data-number="24.6.1"><h3 data-number="24.6.1" class="anchored" data-anchor-id="탭-구분자-1">
+<span class="header-section-number">24.6.1</span> 탭 구분자</h3>
+</section><section id="csv-구분자-1" class="level3" data-number="24.6.2"><h3 data-number="24.6.2" class="anchored" data-anchor-id="csv-구분자-1">
+<span class="header-section-number">24.6.2</span> CSV 구분자</h3>
+</section><section id="고정길이-파일-1" class="level3" data-number="24.6.3"><h3 data-number="24.6.3" class="anchored" data-anchor-id="고정길이-파일-1">
+<span class="header-section-number">24.6.3</span> 고정길이 파일</h3>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<span><span class="va">nine_penguins_fwf</span> <span class="op">&lt;-</span><span class="fu">read_fwf</span><span class="op">(</span><span class="st">"data/file/nine_penguins.fwf"</span>,</span>
+<span>                             skip <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>         col_positions <span class="op">=</span> <span class="fu">fwf_widths</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">14</span>, <span class="fl">15</span>, <span class="fl">9</span>, <span class="fl">9</span>, <span class="fl">5</span><span class="op">)</span>,</span>
+<span>           col_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"species"</span>, <span class="st">"island"</span>, <span class="st">"bill_length_mm"</span>,</span>
+<span>                         <span class="st">"flipper_length_mm"</span>, <span class="st">"body_mass_g"</span>, <span class="st">"sex"</span>, <span class="st">"year"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">nine_penguins_fwf</span></span>
+<span><span class="co">#&gt; # A tibble: 9 × 7</span></span>
+<span><span class="co">#&gt;   species   island bill_length_mm flipper_length_mm body_mass_g sex     year</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;           &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Adelie    Dream            37.6               181        3300 female  2007</span></span>
+<span><span class="co">#&gt; 2 Adelie    Biscoe           35.3               187        3800 female  2007</span></span>
+<span><span class="co">#&gt; 3 Adelie    Biscoe           37.8               174        3400 female  2007</span></span>
+<span><span class="co">#&gt; 4 Gentoo    Biscoe           47.4               212        4725 female  2009</span></span>
+<span><span class="co">#&gt; 5 Gentoo    Biscoe           49.1               220        5150 female  2008</span></span>
+<span><span class="co">#&gt; 6 Gentoo    Biscoe           47.5               209        4600 female  2008</span></span>
+<span><span class="co">#&gt; 7 Chinstrap Dream            40.9               187        3200 female  2008</span></span>
+<span><span class="co">#&gt; 8 Chinstrap Dream            47.6               195        3850 female  2008</span></span>
+<span><span class="co">#&gt; 9 Chinstrap Dream            46                 195        4150 female  2007</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "복사완료!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "복사완료!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
+          }
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./comm_export.html" class="pagination-link" aria-label="저장하기">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">저장하기</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./ingest_web.html" class="pagination-link" aria-label="웹 데이터">
+        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">웹 데이터</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p>챗GPT 데이터 과학 책은 소프트웨어 카펜트리 “R for Reproducible Scientific Analysis”를 번역한 것이 포함되어 있습니다.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/ingest_file.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
+</div>
+  </div>
+</footer>
+
+
+</body></html>
