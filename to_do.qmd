@@ -85,7 +85,7 @@ source("_common.R")
 
 :::
 
-# --------------------------------------
+# file import --------------------------------------
 
 ```{.python include="dashboards/corona_dashboards_v1_book.qmd" code-line-numbers="true" start-line=8 end-line=41}
 ```

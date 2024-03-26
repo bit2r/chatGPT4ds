@@ -1,0 +1,144 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# 상용 데이터 {#intro}
+
+
+```{mermaid}
+%%| label: fig-import-data
+%%| fig-cap: 다양한 데이터 종류
+%%| fig-align: center
+
+graph TB
+    subgraph 가져오기["가져오기(Import)"]
+        csv[CSV 파일] --> 핸들러
+        스프레드쉬트 --> 핸들러
+        데이터베이스 --> 핸들러
+        웹 --> 핸들러
+
+        핸들러 --> 데이터프레임
+    end
+    
+    classDef modern fill:#fff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:12px;
+    classDef emphasize fill:#8CBDE3,stroke:#333,stroke-width:3px,color:#333,font-family:MaruBuri,font-size:15px,font-weight:bold;
+    classDef subgraphStyle fill:#f0f8ff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:20px;
+    
+    class csv,스프레드쉬트,데이터베이스,웹,핸들러 modern
+    class 데이터프레임 emphasize
+    class 가져오기 subgraphStyle
+```    
+
+## 통계패키지
+
+SPSS, SAS, STATA는 널리 사용되는 통계 분석 소프트웨어 패키지로, 각각 고유한 파일 형식을 사용한다. 고유한 파일 형식을 갖게 되면 데이터가 통계 패키지 내부에서 원활히 동작할 수 있는 메타 정보를 담을 수 있고 속도 향상도 기대할 수 있다. 그러나 이러한 독점적인 파일 형식은 다른 통계 패키지와의 상호 운용성을 제한할 수 있고, 장기적으로 데이터 보존 및 이식성에 문제를 일으킬 수 있다.
+
+SPSS는 `.sav` 확장자를 사용하는 이진 파일 형식을 사용한다. `.sav` 파일은 데이터, 변수 레이블, 값 레이블 등의 메타데이터를 포함하고 있다. SPSS `.por` 확장자를 가진 파일은 다른 시스템으로 이식도 가능하다. 
+
+SAS는 `.sas7bdat` 확장자를 사용하는 이진 파일 형식을 사용한다. `.sas7bdat` 파일은 데이터와 메타데이터를 모두 포함하며, SAS에서만 읽을 수 있다. SAS도 SPSS `.por`처럼 `.xpt` 확장자를 가진 다른 시스템에 이식 가능한 파일 형식도 지원한다.
+
+STATA는 `.dta` 확장자를 사용하는 이진 파일 형식을 사용한다. `.dta` 파일에는 데이터, 변수 레이블, 값 레이블 등 메타데이터가 포함되어 있다. `.dta` 파일은 STATA에서만 읽을 수 있고 SAS, SPSS에서 읽을 수는 없다 하지만, 'SAS STATA Transfer' 프로시저를 'SPSS Data Access Pack'을 구매하여 STATA 파일을 불러읽을 수 있으며, STATA에서 CSV 파일 형태로 내보낸 후 별도 프로시저나 팩없이 SPSS, SAS에서 불러읽을 수 있는 방법이 있다.
+
+하지만, 통계 패키지 간에 데이터를 교환하려면 일반적으로 `.csv`(쉼표로 분리된 값) 또는 `.txt`(탭으로 분리된 값) 형식과 같은 중간 파일 형식을 사용하는 과정에서 변수 레이블과 값 레이블과 같은 일부 메타데이터가 손실될 수 있다.
+
+따라서, 단기적으로 SAS/SPSS/STATA와 같은 독점 파일 형식이 제공하는 장점보다 개방형 파일 형식이 장기적으로 데이터 접근성과 재사용성을 높일 수 있다는 면에서 장점이 크다.
+
+### SPSS
+
+세종시에 위치한 [한국보건사회연구원](https://www.koweps.re.kr/)에서 조사하여 발표하는
+한국복지패널데이터는 특이하게도 오픈 파일 형식만 제외하고 상용 통계 패키지가 있어야 
+열어볼 수 있는 SPSS, STATA, SAS 파일 형식으로 제공되고 있다. 
+총4가지 종류 파일을 제공하고 있지만 여기서는 다양한 파일 데이터를 불러오는 방법을 중심으로 살펴보기 때문에 가장 단순한 파일만 R 환경으로 불러오는 방법을 살펴보자.
+
+1. 가구용데이터(SAS, SPSS, STATA):koweps_h17_2022_Beta1
+2. 가구원용데이터(SAS, SPSS, STATA):koweps_p17_2022_Beta1
+3. 복지인식설문용데이터(SAS, SPSS, STATA):koweps_wc17_2022_Beta1
+4. **가구용, 가구원용, 복지인식설문용 머지데이터(SAS, SPSS, STATA):koweps_hpwc17_2022_Beta1**
+
+SPSS 로 작성된 `.sav` 파일으로 R 환경으로 불러오기 위해서는 `haven` 패키지를 로드하여 SPSS (.sav) 데이터 파일을 R로 읽어온다. `read_spss()` 함수를 사용하여 "koweps_hpwc17_2022_Beta1.sav" 파일을 `welfare_raw` 데이터 프레임으로 저장한 후, `map_chr()` 함수를 사용하여 `welfare_raw`의 각 변수에 대해 `attributes(.x)$label`을 적용하여 변수의 레이블을 추출하고 후속 작업을 위해서 문자형 벡터로 변환시킨다.
+
+`enframe()` 함수를 사용하여 추출된 레이블을 데이터 프레임으로 변환하고, `filter()` 함수와 `str_detect()` 함수를 사용하여 "성별", "종교", "태어난 연도", "혼인상태", "가구원수"라는 키워드가 포함된 변수만 선택한다. `pull()` 함수를 사용하여 선택된 변수의 이름을 추출하고, `setdiff()` 함수를 사용하여 정규표현식 작성과정에서 함께 추출된"h1707_6aq6" 변수를 제외시킨 후 `demo_vars` 변수로 저장한다.
+
+`welfare_raw` 데이터 프레임에서 `select()` 함수와 `all_of()` 함수를 사용하여 `demo_vars`에 해당하는 변수만 선택한 후 `set_names()` 함수를 사용하여 선택된 변수명을 "성별", "종교", "태어난 연도", "혼인상태", "가구원수"로 변경한다. `str_split()`과 `dput()`을 사용하여 변수 이름을 파이프(`|`)로 연산으로 한 명령어로 처리한다. `janitor` 패키지 `clean_names()` 함수를 사용하여 변수 이름을 깔끔하게 정리하는데, `ascii = FALSE` 옵션을 사용하여 한글 변수명을 유지한다. 
+
+한국보건사회연구원에서 한국복지패널 데이터가 SPSS로 제공되고 있지만 상용 SPSS 패키지가 없더라도 R 환경에서 `haven` 패키지와 `janitor` 패키지를 활용하여 SPSS 데이터를 불러와서 본격적인 분석을 오픈 데이터 분석 및 통계 언어 R로 수행할 준비가 되었다.
+
+```{r}
+library(haven) # install.packages("foreign")
+
+# Read the .sav file
+welfare_raw <- read_spss("data/file/SPSS/koweps_hpwc17_2022_Beta1.sav")
+
+## 관심 변수 추출
+demo_vars <- welfare_raw %>%
+  map_chr(~attributes(.x)$label) |> 
+    enframe() |> 
+    filter(str_detect(value, "성별|종교|(태어난 연도)|혼인상태|가구원수")) |> 
+    pull(name) |> 
+    setdiff("h1707_6aq6") # 기타소비-종교관련비 변수 제거
+
+## 인구통계학적 변수로 구성된 데이터셋
+welfare_raw %>%
+  select(all_of(demo_vars)) |> 
+    set_names(str_split("성별|종교|(태어난 연도)|혼인상태|가구원수", "\\|")[[1]] |> dput()) |> 
+    janitor::clean_names(ascii = FALSE)
+```
+
+### SAS
+
+SAS 통계패키지 `koweps_hpwc17_2022_beta1.sas7bdat` 파일을 작성된 동일한 
+한국보건사회연구원에서 한국복지패널 데이터도 
+`haven` 패키지를 사용하여 `read_sas()` 함수를 사용하여 SAS 데이터 파일(.sas7bdat)을 불러온다. 이후 코드는 앞서 SPSS 데이터를 R 인구통계 데이터프레임으로 변환시켜 가져온 것과 동일한 방법으로 진행된다. 즉, 코드를 재사용하게 된다. 
+
+
+```{r}
+library(haven) # install.packages("foreign")
+
+sas_raw <- read_sas("data/file/SAS/koweps_hpwc17_2022_Beta1.sas7bdat")
+
+## 관심 변수 추출
+sas_vars <- sas_raw %>%
+  map_chr(~attributes(.x)$label) |>
+  enframe() |>
+  filter(str_detect(value, "성별|종교|(태어난 연도)|혼인상태|가구원수")) |>
+  pull(name) |>
+  setdiff("h1707_6aq6") # 기타소비-종교관련비 변수 제거
+
+## 인구통계학적 변수로 구성된 데이터셋
+sas_raw %>%
+  select(all_of(sas_vars)) |>
+  set_names(str_split("성별|종교|(태어난 연도)|혼인상태|가구원수", "\\|")[[1]] |> dput()) |>
+  janitor::clean_names(ascii = FALSE)
+```
+
+### STATA
+
+STATA 통계패키지 `koweps_hpwc17_2022_beta1.dta` 파일은 SAS 버전과 동일한 한국복지패널 데이터다. R에서 `haven` 패키지 `read_dta()` 함수를 사용하여 STATA 데이터 파일(.dta)을 불러올 수 있다. 이후 코드는 앞서 SPSS, SAS 데이터를 R로 가져와 인구통계 데이터프레임으로 변환한 것과 동일한 방법으로 진행된다. 따라서 이전에 작성한 코드를 그대로 재사용할 수 있다.
+
+```{r}
+library(haven) # install.packages("haven")
+
+# STATA 파일 불러오기
+stata_raw <- read_dta("data/file/STATA/Koweps_hpwc17_2022_beta1.dta")
+
+## 관심 변수 추출
+stata_vars <- stata_raw %>%
+  map_chr(~attributes(.x)$label) |>
+  enframe() |>
+  filter(str_detect(value, "성별|종교|(태어난 연도)|혼인상태|가구원수")) |>
+  pull(name) |>
+  setdiff("h1707_6aq6") # 기타소비-종교관련비 변수 제거
+
+## 인구통계학적 변수로 구성된 데이터셋
+stata_raw %>%
+  select(all_of(stata_vars)) |>
+  set_names(str_split("성별|종교|(태어난 연도)|혼인상태|가구원수", "\\|")[[1]] |> dput()) |>
+  janitor::clean_names(ascii = FALSE)
+```
+
+## 엑셀
+
+
+
