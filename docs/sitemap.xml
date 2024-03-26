@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://r2bit.com/gpt-ds/index.html</loc>
-    <lastmod>2024-03-16T08:30:29.654Z</lastmod>
-  </url>
-  <url>
-    <loc>https://r2bit.com/gpt-ds/ingest_import.html</loc>
-    <lastmod>2024-03-21T07:51:11.045Z</lastmod>
+    <loc>https://r2bit.com/gpt-ds/ingest_file.html</loc>
+    <lastmod>2024-03-26T09:47:50.352Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/llm_python.html</loc>
@@ -23,34 +19,6 @@
   <url>
     <loc>https://r2bit.com/gpt-ds/references.html</loc>
     <lastmod>2023-08-01T09:56:54.411Z</lastmod>
-  </url>
-  <url>
-    <loc>https://r2bit.com/gpt-ds/intro.html</loc>
-    <lastmod>2024-03-21T08:28:50.950Z</lastmod>
-  </url>
-  <url>
-    <loc>https://r2bit.com/gpt-ds/intro_tidyverse.html</loc>
-    <lastmod>2024-03-21T08:56:04.232Z</lastmod>
-  </url>
-  <url>
-    <loc>https://r2bit.com/gpt-ds/intro_whole_game.html</loc>
-    <lastmod>2023-08-21T12:30:38.617Z</lastmod>
-  </url>
-  <url>
-    <loc>https://r2bit.com/gpt-ds/intro_penguins.html</loc>
-    <lastmod>2024-03-16T15:40:19.512Z</lastmod>
-  </url>
-  <url>
-    <loc>https://r2bit.com/gpt-ds/functions.html</loc>
-    <lastmod>2024-03-21T08:16:21.498Z</lastmod>
-  </url>
-  <url>
-    <loc>https://r2bit.com/gpt-ds/ingest_web.html</loc>
-    <lastmod>2024-03-25T07:32:18.571Z</lastmod>
-  </url>
-  <url>
-    <loc>https://r2bit.com/gpt-ds/ingest_file.html</loc>
-    <lastmod>2024-03-26T04:16:59.276Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/ingest_spreadsheet.html</loc>

@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.5.9">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘, 신종화">
-<title>챗GPT 데이터 과학 – 11&nbsp; 모형</title>
+<title>챗GPT 데이터 과학 – 12&nbsp; 모형</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -167,7 +167,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./models.html"><strong>4부</strong> 모형</a></li><li class="breadcrumb-item"><a href="./models.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">모형</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./models.html"><strong>4부</strong> 모형</a></li><li class="breadcrumb-item"><a href="./models.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -219,14 +219,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./whole_game.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">데이터 과학 맛보기</span></span></a>
+  <a href="./intro_tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">데이터 사이언스 운영체제</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./penguins.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
+  <a href="./intro_whole_game.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">데이터 과학 맛보기</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_penguins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
   </div>
 </li>
       </ul>
@@ -243,25 +249,25 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dplyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></span></a>
   </div>
 </li>
       </ul>
@@ -278,19 +284,19 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2_concept.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">그래프 문법</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">그래프 문법</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2_pattern.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span></a>
   </div>
 </li>
       </ul>
@@ -307,25 +313,25 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">모형</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_building.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_many.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
   </div>
 </li>
       </ul>
@@ -342,25 +348,25 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./function_plyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
   </div>
 </li>
       </ul>
@@ -377,25 +383,25 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_knitr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">데이터 분석 보고서</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">데이터 분석 보고서</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">저장하기</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">저장하기</span></span></a>
   </div>
 </li>
       </ul>
@@ -411,8 +417,20 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span></a>
+  <a href="./ingest_file.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">파일 데이터</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ingest_web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">웹 데이터</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ingest_spreadsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">상용 데이터</span></span></a>
   </div>
 </li>
       </ul>
@@ -429,37 +447,37 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prompt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./langchain.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./local_llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
   </div>
 </li>
       </ul>
@@ -478,14 +496,14 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-<li><a href="#%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D" id="toc-회귀분석" class="nav-link active" data-scroll-target="#%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D"><span class="header-section-number">11.1</span> 회귀분석</a></li>
-  <li><a href="#%EA%B0%80%EB%82%B4%EC%88%98%EA%B3%B5%EC%97%85-%EB%AA%A8%ED%98%95%EA%B0%9C%EB%B0%9C" id="toc-가내수공업-모형개발" class="nav-link" data-scroll-target="#%EA%B0%80%EB%82%B4%EC%88%98%EA%B3%B5%EC%97%85-%EB%AA%A8%ED%98%95%EA%B0%9C%EB%B0%9C"><span class="header-section-number">11.2</span> 가내수공업 모형개발</a></li>
+<li><a href="#%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D" id="toc-회귀분석" class="nav-link active" data-scroll-target="#%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D"><span class="header-section-number">12.1</span> 회귀분석</a></li>
+  <li><a href="#%EA%B0%80%EB%82%B4%EC%88%98%EA%B3%B5%EC%97%85-%EB%AA%A8%ED%98%95%EA%B0%9C%EB%B0%9C" id="toc-가내수공업-모형개발" class="nav-link" data-scroll-target="#%EA%B0%80%EB%82%B4%EC%88%98%EA%B3%B5%EC%97%85-%EB%AA%A8%ED%98%95%EA%B0%9C%EB%B0%9C"><span class="header-section-number">12.2</span> 가내수공업 모형개발</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/models.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./models.html"><strong>4부</strong> 모형</a></li><li class="breadcrumb-item"><a href="./models.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">모형</span></a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./models.html"><strong>4부</strong> 모형</a></li><li class="breadcrumb-item"><a href="./models.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title">
-<span class="chapter-number">11</span>&nbsp; <span class="chapter-title">모형</span>
+<span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형</span>
 </h1>
 </div>
 
@@ -518,8 +536,8 @@ window.Quarto = {
 <p>자연과학과 사회과학에서 두가지 사례를 통해 조지 박스 박사의 모형에 대한 명언을 되새겨보자. 지구의 움직임을 설명하기 위한 기본모형은 “평편한 지구” 모형으로, 지구의 실제 구조와 움직임을 정확히 반영하지 못했지만, 일상적인 생활에서 지구의 특성을 설명하기에는 충분했다. 경제학에서 사용되는 많은 모형은 단순화된 가정을 바탕으로 한다. 예를 들어, 모든 소비자와 생산자가 완벽한 정보를 가지고 있고 합리적으로 행동한다는 가정을 바탕으로 한 경제 모형은 현실 세계의 복잡한 상황을 반영하지 않지만, 복잡한 경제관계를 단순화시켜 기본적인 경제원리를 이해시키는데 도움이 된다.</p>
 </div>
 </div>
-<section id="회귀분석" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="회귀분석">
-<span class="header-section-number">11.1</span> 회귀분석</h2>
+<section id="회귀분석" class="level2" data-number="12.1"><h2 data-number="12.1" class="anchored" data-anchor-id="회귀분석">
+<span class="header-section-number">12.1</span> 회귀분석</h2>
 <p>회귀분석은 갤톤(Galton) 부모와 자식의 신장간의 관계를 회귀식으로 표현한 데이터셋이 유명하다. <span class="citation" data-cites="caffo2015advanced">(Caffo 2015)</span> <span class="citation" data-cites="histdata2023">(Friendly 2023)</span> 부모의 신장을 기초로 자녀의 신장을 예측하는 회귀식을 구하기 전에 산점도를 통해 관계를 살펴보면 다음과 같다. 성별에 대한 신장의 차이도 산점도를 통해 시각적으로 확인된다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
@@ -599,8 +617,8 @@ window.Quarto = {
 <span><span class="co">#&gt;     (Intercept) midparentHeight </span></span>
 <span><span class="co">#&gt;      22.6362405       0.6373609</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="가내수공업-모형개발" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="가내수공업-모형개발">
-<span class="header-section-number">11.2</span> 가내수공업 모형개발</h2>
+</section><section id="가내수공업-모형개발" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="가내수공업-모형개발">
+<span class="header-section-number">12.2</span> 가내수공업 모형개발</h2>
 <p>데이터 과학 분야의 제품 개발 방식은 다양하다. 엔지니어링의 관점에서 볼 때, 전통적인 장인의 기술이 제자에게 계승되는 방식에서 시작하여, 포드의 대량 생산 방식을 거치고, <strong>대량 맞춤생산(Mass Customization)</strong> 방식으로 발전하여, 현재에는 기계 학습과 딥러닝이 통합된 혁신적인 개발 방식까지 다양한 방법론이 혼재되어 있다.</p>
 <p>전통적인 가내수공업 방식은 개별 주문에 따라 제품을 최적화하여 만드는 방식이다. 이 방식에서는 인간의 경험과 지식이 중요한 역할을 하며, 고객의 특별한 요구사항을 충족하기 위해 맞춤형 모델을 개발한다. 이러한 방식을 간략히 살펴보면, 각 고객의 고유한 필요에 따라 제품이나 서비스를 특별히 설계하고 생산하는 것이 핵심이다.</p>
 <div class="cell">
@@ -615,26 +633,26 @@ window.Quarto = {
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">x</span>,<span class="va">y</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 2</span></span>
-<span><span class="co">#&gt;       x      y</span></span>
-<span><span class="co">#&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1     1   93.4</span></span>
-<span><span class="co">#&gt; 2     2 -186. </span></span>
-<span><span class="co">#&gt; 3     3 -182. </span></span>
-<span><span class="co">#&gt; 4     4   51.3</span></span>
-<span><span class="co">#&gt; 5     5  -61.0</span></span>
-<span><span class="co">#&gt; 6     6  228.</span></span>
+<span><span class="co">#&gt;       x     y</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1     1 165. </span></span>
+<span><span class="co">#&gt; 2     2 107. </span></span>
+<span><span class="co">#&gt; 3     3 -64.6</span></span>
+<span><span class="co">#&gt; 4     4 -93.4</span></span>
+<span><span class="co">#&gt; 5     5 -42.6</span></span>
+<span><span class="co">#&gt; 6     6 169.</span></span>
 <span></span>
 <span><span class="co">##========================================================</span></span>
 <span><span class="co">## 02. 탐색적 데이터 분석</span></span>
 <span><span class="co">##========================================================</span></span>
 <span><span class="co"># 통계량</span></span>
 <span><span class="fu">psych</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/describe.html">describe</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   vars   n    mean      sd  median trimmed     mad     min      max    range</span></span>
-<span><span class="co">#&gt; x    1 100   50.50   29.01   50.50   50.50   37.06    1.00   100.00    99.00</span></span>
-<span><span class="co">#&gt; y    2 100 3447.76 3054.68 2594.39 3152.03 3124.73 -186.18 10201.67 10387.85</span></span>
+<span><span class="co">#&gt;   vars   n    mean      sd  median trimmed     mad    min      max    range</span></span>
+<span><span class="co">#&gt; x    1 100   50.50   29.01   50.50   50.50   37.06   1.00   100.00    99.00</span></span>
+<span><span class="co">#&gt; y    2 100 3452.02 3047.47 2652.05 3153.02 3237.55 -93.43 10188.22 10281.64</span></span>
 <span><span class="co">#&gt;   skew kurtosis     se</span></span>
 <span><span class="co">#&gt; x 0.00    -1.24   2.90</span></span>
-<span><span class="co">#&gt; y 0.62    -0.89 305.47</span></span>
+<span><span class="co">#&gt; y 0.63    -0.89 304.75</span></span>
 <span></span>
 <span><span class="co"># 산점도</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -658,19 +676,19 @@ window.Quarto = {
 <span><span class="co">#&gt; lm(formula = y ~ x, data = df)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Residuals:</span></span>
-<span><span class="co">#&gt;    Min     1Q Median     3Q    Max </span></span>
-<span><span class="co">#&gt; -977.5 -654.2 -191.3  527.5 1702.7 </span></span>
+<span><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></span>
+<span><span class="co">#&gt; -1014.0  -647.1  -193.0   559.0  1749.2 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Coefficients:</span></span>
-<span><span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">#&gt; (Intercept) -1705.502    152.465  -11.19   &lt;2e-16 ***</span></span>
-<span><span class="co">#&gt; x             102.045      2.621   38.93   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; (Intercept) -1685.87     153.56  -10.98   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; x             101.74       2.64   38.54   &lt;2e-16 ***</span></span>
 <span><span class="co">#&gt; ---</span></span>
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Residual standard error: 756.6 on 98 degrees of freedom</span></span>
-<span><span class="co">#&gt; Multiple R-squared:  0.9393, Adjusted R-squared:  0.9386 </span></span>
-<span><span class="co">#&gt; F-statistic:  1516 on 1 and 98 DF,  p-value: &lt; 2.2e-16</span></span>
+<span><span class="co">#&gt; Residual standard error: 762.1 on 98 degrees of freedom</span></span>
+<span><span class="co">#&gt; Multiple R-squared:  0.9381, Adjusted R-squared:  0.9375 </span></span>
+<span><span class="co">#&gt; F-statistic:  1485 on 1 and 98 DF,  p-value: &lt; 2.2e-16</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># 적합모형 시각화</span></span>
@@ -700,19 +718,19 @@ window.Quarto = {
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Residuals:</span></span>
 <span><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></span>
-<span><span class="co">#&gt; -214.44  -89.31   -1.23   97.92  184.13 </span></span>
+<span><span class="co">#&gt; -209.43  -99.83   12.46   97.27  185.32 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Coefficients:</span></span>
 <span><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">#&gt; (Intercept) -1.17293   36.64998  -0.032    0.975    </span></span>
-<span><span class="co">#&gt; x            1.79007    1.67500   1.069    0.288    </span></span>
-<span><span class="co">#&gt; x2           0.99262    0.01607  61.777   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; (Intercept) 34.48273   33.60965   1.026    0.307    </span></span>
+<span><span class="co">#&gt; x            0.54335    1.53605   0.354    0.724    </span></span>
+<span><span class="co">#&gt; x2           1.00195    0.01473  67.999   &lt;2e-16 ***</span></span>
 <span><span class="co">#&gt; ---</span></span>
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Residual standard error: 119.7 on 97 degrees of freedom</span></span>
-<span><span class="co">#&gt; Multiple R-squared:  0.9985, Adjusted R-squared:  0.9985 </span></span>
-<span><span class="co">#&gt; F-statistic: 3.217e+04 on 2 and 97 DF,  p-value: &lt; 2.2e-16</span></span>
+<span><span class="co">#&gt; Residual standard error: 109.8 on 97 degrees of freedom</span></span>
+<span><span class="co">#&gt; Multiple R-squared:  0.9987, Adjusted R-squared:  0.9987 </span></span>
+<span><span class="co">#&gt; F-statistic: 3.808e+04 on 2 and 97 DF,  p-value: &lt; 2.2e-16</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># 적합모형 시각화</span></span>
@@ -1168,12 +1186,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./ggplot2_pattern.html" class="pagination-link" aria-label="시각화 패턴">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./models_building.html" class="pagination-link" aria-label="모형 개발">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형 개발</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">모형 개발</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1189,7 +1207,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false,"openEffect":"zoom"});
+</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

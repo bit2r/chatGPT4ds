@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.5.9">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘, 신종화">
-<title>챗GPT 데이터 과학 – 17&nbsp; 데이터 과학 함수</title>
+<title>챗GPT 데이터 과학 – 18&nbsp; 데이터 과학 함수</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -142,7 +142,7 @@ ga('send', {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions.html"><strong>5부</strong> 프로그래밍</a></li><li class="breadcrumb-item"><a href="./functions_ds.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions.html"><strong>5부</strong> 프로그래밍</a></li><li class="breadcrumb-item"><a href="./functions_ds.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -194,14 +194,20 @@ ga('send', {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./whole_game.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">데이터 과학 맛보기</span></span></a>
+  <a href="./intro_tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">데이터 사이언스 운영체제</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./penguins.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
+  <a href="./intro_whole_game.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">데이터 과학 맛보기</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_penguins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
   </div>
 </li>
       </ul>
@@ -218,25 +224,25 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dplyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></span></a>
   </div>
 </li>
       </ul>
@@ -253,19 +259,19 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2_concept.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">그래프 문법</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">그래프 문법</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2_pattern.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span></a>
   </div>
 </li>
       </ul>
@@ -282,25 +288,25 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">모형</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_building.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_many.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
   </div>
 </li>
       </ul>
@@ -317,25 +323,25 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./function_plyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions_ds.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
   </div>
 </li>
       </ul>
@@ -352,25 +358,25 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_knitr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">데이터 분석 보고서</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">데이터 분석 보고서</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">저장하기</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">저장하기</span></span></a>
   </div>
 </li>
       </ul>
@@ -386,8 +392,20 @@ ga('send', {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">텍스트 파일</span></span></a>
+  <a href="./ingest_file.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">파일 데이터</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ingest_web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">웹 데이터</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ingest_spreadsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">상용 데이터</span></span></a>
   </div>
 </li>
       </ul>
@@ -404,37 +422,37 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prompt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./langchain.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./local_llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
   </div>
 </li>
       </ul>
@@ -453,25 +471,25 @@ ga('send', {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-<li><a href="#defuse-and-inject-%ED%8C%A8%ED%84%B4" id="toc-defuse-and-inject-패턴" class="nav-link active" data-scroll-target="#defuse-and-inject-%ED%8C%A8%ED%84%B4"><span class="header-section-number">17.1</span> Defuse-and-Inject 패턴</a></li>
+<li><a href="#defuse-and-inject-%ED%8C%A8%ED%84%B4" id="toc-defuse-and-inject-패턴" class="nav-link active" data-scroll-target="#defuse-and-inject-%ED%8C%A8%ED%84%B4"><span class="header-section-number">18.1</span> Defuse-and-Inject 패턴</a></li>
   <li>
-<a href="#%EC%97%AD%EC%82%AC" id="toc-역사" class="nav-link" data-scroll-target="#%EC%97%AD%EC%82%AC"><span class="header-section-number">17.2</span> 역사</a>
+<a href="#%EC%97%AD%EC%82%AC" id="toc-역사" class="nav-link" data-scroll-target="#%EC%97%AD%EC%82%AC"><span class="header-section-number">18.2</span> 역사</a>
   <ul class="collapse">
-<li><a href="#attach-%ED%95%A8%EC%88%98" id="toc-attach-함수" class="nav-link" data-scroll-target="#attach-%ED%95%A8%EC%88%98"><span class="header-section-number">17.2.1</span> <code>attach()</code> 함수</a></li>
-  <li><a href="#with-%ED%95%A8%EC%88%98" id="toc-with-함수" class="nav-link" data-scroll-target="#with-%ED%95%A8%EC%88%98"><span class="header-section-number">17.2.2</span> <code>with()</code> 함수</a></li>
-  <li><a href="#aggregate-%ED%95%A8%EC%88%98" id="toc-aggregate-함수" class="nav-link" data-scroll-target="#aggregate-%ED%95%A8%EC%88%98"><span class="header-section-number">17.2.3</span> <code>aggregate()</code> 함수</a></li>
+<li><a href="#attach-%ED%95%A8%EC%88%98" id="toc-attach-함수" class="nav-link" data-scroll-target="#attach-%ED%95%A8%EC%88%98"><span class="header-section-number">18.2.1</span> <code>attach()</code> 함수</a></li>
+  <li><a href="#with-%ED%95%A8%EC%88%98" id="toc-with-함수" class="nav-link" data-scroll-target="#with-%ED%95%A8%EC%88%98"><span class="header-section-number">18.2.2</span> <code>with()</code> 함수</a></li>
+  <li><a href="#aggregate-%ED%95%A8%EC%88%98" id="toc-aggregate-함수" class="nav-link" data-scroll-target="#aggregate-%ED%95%A8%EC%88%98"><span class="header-section-number">18.2.3</span> <code>aggregate()</code> 함수</a></li>
   </ul>
 </li>
-  <li><a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%A7%88%EC%8A%A4%ED%82%B9" id="toc-데이터-마스킹" class="nav-link" data-scroll-target="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%A7%88%EC%8A%A4%ED%82%B9"><span class="header-section-number">17.3</span> 데이터 마스킹</a></li>
-  <li><a href="#%EA%B9%94%EB%81%94%ED%95%9C-%ED%8F%89%EA%B0%80" id="toc-깔끔한-평가" class="nav-link" data-scroll-target="#%EA%B9%94%EB%81%94%ED%95%9C-%ED%8F%89%EA%B0%80"><span class="header-section-number">17.4</span> 깔끔한 평가</a></li>
-  <li><a href="#%EA%B7%B8%EB%A3%B9%EB%B3%84-%ED%8F%89%EA%B7%A0" id="toc-그룹별-평균" class="nav-link" data-scroll-target="#%EA%B7%B8%EB%A3%B9%EB%B3%84-%ED%8F%89%EA%B7%A0"><span class="header-section-number">17.5</span> 그룹별 평균</a></li>
-  <li><a href="#%EA%B7%B8%EB%9E%98%ED%94%84" id="toc-그래프" class="nav-link" data-scroll-target="#%EA%B7%B8%EB%9E%98%ED%94%84"><span class="header-section-number">17.6</span> 그래프</a></li>
+  <li><a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%A7%88%EC%8A%A4%ED%82%B9" id="toc-데이터-마스킹" class="nav-link" data-scroll-target="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%A7%88%EC%8A%A4%ED%82%B9"><span class="header-section-number">18.3</span> 데이터 마스킹</a></li>
+  <li><a href="#%EA%B9%94%EB%81%94%ED%95%9C-%ED%8F%89%EA%B0%80" id="toc-깔끔한-평가" class="nav-link" data-scroll-target="#%EA%B9%94%EB%81%94%ED%95%9C-%ED%8F%89%EA%B0%80"><span class="header-section-number">18.4</span> 깔끔한 평가</a></li>
+  <li><a href="#%EA%B7%B8%EB%A3%B9%EB%B3%84-%ED%8F%89%EA%B7%A0" id="toc-그룹별-평균" class="nav-link" data-scroll-target="#%EA%B7%B8%EB%A3%B9%EB%B3%84-%ED%8F%89%EA%B7%A0"><span class="header-section-number">18.5</span> 그룹별 평균</a></li>
+  <li><a href="#%EA%B7%B8%EB%9E%98%ED%94%84" id="toc-그래프" class="nav-link" data-scroll-target="#%EA%B7%B8%EB%9E%98%ED%94%84"><span class="header-section-number">18.6</span> 그래프</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/functions_ds.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions.html"><strong>5부</strong> 프로그래밍</a></li><li class="breadcrumb-item"><a href="./functions_ds.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions.html"><strong>5부</strong> 프로그래밍</a></li><li class="breadcrumb-item"><a href="./functions_ds.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title">
-<span class="chapter-number">17</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span>
+<span class="chapter-number">18</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span>
 </h1>
 </div>
 
@@ -500,8 +518,8 @@ ga('send', {
 <li>데이터프레임을 입력받아 데이터프레임을 반환하는 함수.</li>
 <li>데이터프레임을 입력받아 그래프를 반환하는 함수.</li>
 </ul>
-<section id="defuse-and-inject-패턴" class="level2" data-number="17.1"><h2 data-number="17.1" class="anchored" data-anchor-id="defuse-and-inject-패턴">
-<span class="header-section-number">17.1</span> Defuse-and-Inject 패턴</h2>
+<section id="defuse-and-inject-패턴" class="level2" data-number="18.1"><h2 data-number="18.1" class="anchored" data-anchor-id="defuse-and-inject-패턴">
+<span class="header-section-number">18.1</span> Defuse-and-Inject 패턴</h2>
 <p><code>tidy evaluation</code>에서 Defuse-and-Inject 패턴을 통해 데이터프레임 <code>dplyr</code> 패키지와 그래프 문법에 따른 시각화 <code>ggplot2</code> 패키지에 함수를 직관적으로 적용시킬 수 있다. <strong>신관제거(defuse)</strong>는 기본적으로 표현식의 평가를 지연시켜 바로 실행되는 것을 막는 역할을 수행한다. 이런 기능을 통해 환경의 맥락을 유지하는 역할을 수행한다. <strong>주입(injection)</strong>은 포획되거나 신관제거된 표현석을 다른 맥락에서 평가하거나 다른 표현식에 주입하는 개념이다. 신관제거에 <code><a href="https://rlang.r-lib.org/reference/enquo.html">enquo()</a></code>가 사용되었다면 주입에는 <code>!!</code> (뱅-뱅 이라고 읽음) 연산자를 사용하여 으로 다른 함수 내부에서 평가되어 실행되는 역할을 수행한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
@@ -534,8 +552,8 @@ ga('send', {
 <span><span class="co">#&gt; 11 Gentoo  Biscoe    &lt;NA&gt;   2009          NA</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>filter_na()</code> 함수는 데이터프레임과 칼럼명을 패러미터로 받아 칼럼명에 결측값이 있는 행만 추출하여 반환하는 역할을 수행한다. 이를 위해서 칼럼명을 신관제거하여 <code>col_quo</code> 표현식으로 지연시킨 후에 <code>!!col_quo</code>에 주입시켜 평가작업을 수행하여 원하는 결과를 반환한다.</p>
-</section><section id="역사" class="level2" data-number="17.2"><h2 data-number="17.2" class="anchored" data-anchor-id="역사">
-<span class="header-section-number">17.2</span> 역사</h2>
+</section><section id="역사" class="level2" data-number="18.2"><h2 data-number="18.2" class="anchored" data-anchor-id="역사">
+<span class="header-section-number">18.2</span> 역사</h2>
 <p><code>tidyvserse</code>는 <strong>데이터 마스킹(data-masking)</strong> 방식을 <code>ggplot2</code>, <code>dplyr</code> 패키지에 도입했지만, 결국 <code>rlang</code> 패키지에 자체 프로그래밍 프레임워크를 장착했다. <code>rlang</code> 패키지 <code>Defuse-and-Inject</code> 패턴에 이르는 과정은 이전 다양한 시도를 통해 학습하는 배움의 과정이였다.</p>
 <ul>
 <li>S언어에서 <code><a href="https://rdrr.io/r/base/attach.html">attach()</a></code> 함수로 데이터 범위 개념을 도입했다. <span class="citation" data-cites="becker2018new">(Becker 2018)</span>
@@ -604,8 +622,8 @@ ga('send', {
 </tr>
 </tbody>
 </table>
-<section id="attach-함수" class="level3" data-number="17.2.1"><h3 data-number="17.2.1" class="anchored" data-anchor-id="attach-함수">
-<span class="header-section-number">17.2.1</span> <code>attach()</code> 함수</h3>
+<section id="attach-함수" class="level3" data-number="18.2.1"><h3 data-number="18.2.1" class="anchored" data-anchor-id="attach-함수">
+<span class="header-section-number">18.2.1</span> <code>attach()</code> 함수</h3>
 <p>데이터프레임에 <code><a href="https://rdrr.io/r/base/attach.html">attach()</a></code> 함수를 사용하면 데이터프레임을 구성하는 칼럼이 벡터로 작업환경에서 바로 접근하여 작업을 수행할 수 있다. <code>penguins</code> 데이터프레임을 <code><a href="https://rdrr.io/r/base/attach.html">attach()</a></code>한 결과 <code>bill_depth_mm</code> 벡터가 작업환경에서 바로 접근하여 평균값을 계산할 수 있게 되었다. 작업을 완료한 후에 <code><a href="https://rdrr.io/r/base/detach.html">detach()</a></code> 를 사용해서 작업환경에서 제거한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
@@ -622,8 +640,8 @@ ga('send', {
 <span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/detach.html">detach</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="with-함수" class="level3" data-number="17.2.2"><h3 data-number="17.2.2" class="anchored" data-anchor-id="with-함수">
-<span class="header-section-number">17.2.2</span> <code>with()</code> 함수</h3>
+</section><section id="with-함수" class="level3" data-number="18.2.2"><h3 data-number="18.2.2" class="anchored" data-anchor-id="with-함수">
+<span class="header-section-number">18.2.2</span> <code>with()</code> 함수</h3>
 <p><code><a href="https://rdrr.io/r/base/attach.html">attach()</a></code> 함수는 편리한 장점이 있지만, 데이터프레임 변수명과 함수명, 또 다른 작업에서 나온 객체명과 충돌이 발생할 경우 전혀 생각하지 못한 문제가 발생할 수 있다. 따라서, 격리를 통해 문제를 단순화하는 것이 필요하다. 이를 위해서 <code><a href="https://rdrr.io/r/base/with.html">with()</a></code> 함수를 사용하게 되면 데이터프레임에 속한 칼럼명을 명시하지 않더라도 간결하게 데이터 분석 작업을 이어나갈 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
@@ -632,8 +650,8 @@ ga('send', {
 <span>     expr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">bill_depth_mm</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 17.15117</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="aggregate-함수" class="level3" data-number="17.2.3"><h3 data-number="17.2.3" class="anchored" data-anchor-id="aggregate-함수">
-<span class="header-section-number">17.2.3</span> <code>aggregate()</code> 함수</h3>
+</section><section id="aggregate-함수" class="level3" data-number="18.2.3"><h3 data-number="18.2.3" class="anchored" data-anchor-id="aggregate-함수">
+<span class="header-section-number">18.2.3</span> <code>aggregate()</code> 함수</h3>
 <p>Base R 에서 지원되는 <code><a href="https://rdrr.io/r/stats/aggregate.html">aggregate()</a></code> 함수를 사용해서 동일한 결과를 얻을 수 있다. <code><a href="https://rdrr.io/r/stats/aggregate.html">aggregate()</a></code> 함수는 <code><a href="https://rdrr.io/r/base/with.html">with()</a></code>와 지향점은 유사하지만 구현방식에서 다소 차이가 난다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">bill_depth_mm</span> <span class="op">~</span> <span class="fl">1</span>, </span>
@@ -643,8 +661,8 @@ ga('send', {
 <span><span class="co">#&gt;   bill_depth_mm</span></span>
 <span><span class="co">#&gt; 1      17.15117</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="데이터-마스킹" class="level2" data-number="17.3"><h2 data-number="17.3" class="anchored" data-anchor-id="데이터-마스킹">
-<span class="header-section-number">17.3</span> 데이터 마스킹</h2>
+</section></section><section id="데이터-마스킹" class="level2" data-number="18.3"><h2 data-number="18.3" class="anchored" data-anchor-id="데이터-마스킹">
+<span class="header-section-number">18.3</span> 데이터 마스킹</h2>
 <p>R에서의 <strong>데이터 마스킹(Data Masking)</strong>은 <code>tidyverse</code> 생태계에서 데이터 문법을 담당하는 <code>dplyr</code> 패키지에서 핵심적인 개념이다. 데이터 마스킹을 사용하면 데이터프레임 칼럼을 <code>$</code>, <code>[[ ]]</code>를 사용하지 않고도 칼럼명으로 직접 참조할 수 있어, 데이터를 조작하고 변환할 때 훨씬 직관적이고 가독성 높은 코드를 작성할 수 있다.</p>
 <p><code>penguins</code> 데이터프레임의 <code>species</code>를 데이터 마스킹 없이 조작하려면 <code>penguins$species</code> 혹은 <code>penguins[['species']]</code>와 같이 구문을 작성해야 하지만 데이터 마스킹을 사용하면 <code>species</code> 만으로 충분한다.</p>
 <div class="cell">
@@ -724,8 +742,8 @@ ga('send', {
 <td style="text-align: left;">- R 메타프로그래밍 이해 필요. <br> - 고급 사용자에게 더 많은 유연성 제공.</td>
 </tr>
 </tbody>
-</table></section><section id="깔끔한-평가" class="level2" data-number="17.4"><h2 data-number="17.4" class="anchored" data-anchor-id="깔끔한-평가">
-<span class="header-section-number">17.4</span> 깔끔한 평가</h2>
+</table></section><section id="깔끔한-평가" class="level2" data-number="18.4"><h2 data-number="18.4" class="anchored" data-anchor-id="깔끔한-평가">
+<span class="header-section-number">18.4</span> 깔끔한 평가</h2>
 <p><strong>깔끔한 평가(Tidy evaluation)</strong>은 R <code>tidyverse</code> 프레임워크로, 특히 비표준 평가 (Non-Standard Evaluation, NSE)와 관련하여 <code>tidyverse</code> 함수로 프로그래밍하는 방법을 표준화했다. NSE는 R 함수가 표준과는 다른 맥락에서 표현식을 평가할 때 발생한다.</p>
 <ul>
 <li>준인용(Quasiquotation): <code><a href="https://rlang.r-lib.org/reference/enquo.html">enquo()</a></code> 함수를 사용하여 표현식을 캡처하고 <code>!!</code>를 사용하여 표현식의 인용제거(Unquoting)을 가능케 한다.</li>
@@ -784,8 +802,8 @@ ga('send', {
 <ul>
 <li>데이터 마스킹: 변수를 사용하여 계산하는 <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> 등 함수에 사용.</li>
 <li>Tidy-selection: 변수를 선택하는 <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code>과 같은 함수에 사용.</li>
-</ul></section><section id="그룹별-평균" class="level2" data-number="17.5"><h2 data-number="17.5" class="anchored" data-anchor-id="그룹별-평균">
-<span class="header-section-number">17.5</span> 그룹별 평균</h2>
+</ul></section><section id="그룹별-평균" class="level2" data-number="18.5"><h2 data-number="18.5" class="anchored" data-anchor-id="그룹별-평균">
+<span class="header-section-number">18.5</span> 그룹별 평균</h2>
 <p><a href="images/function_dataframe.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/function_dataframe.jpg" class="img-fluid"></a></p>
 <p>데이터프레임 요약통계량을 계산하는 코드를 작성해보자. 펭귄종(<code>species</code>) 별로 부리길이를 계산하는 코드를 작성해보자.</p>
 <div class="cell">
@@ -828,8 +846,8 @@ ga('send', {
 <span><span class="co">#&gt; 2 Chinstrap          48.8</span></span>
 <span><span class="co">#&gt; 3 Gentoo             47.5</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="그래프" class="level2" data-number="17.6"><h2 data-number="17.6" class="anchored" data-anchor-id="그래프">
-<span class="header-section-number">17.6</span> 그래프</h2>
+</section><section id="그래프" class="level2" data-number="18.6"><h2 data-number="18.6" class="anchored" data-anchor-id="그래프">
+<span class="header-section-number">18.6</span> 그래프</h2>
 <p><a href="images/function_graph.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/function_graph.jpg" class="img-fluid"></a></p>
 <p>데이터프레임에서 범주형 변수를 하나 선택하여 빈도수를 시각화하는 스크립트를 다음과 같이 작성한다.</p>
 <div class="cell">
@@ -1342,12 +1360,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./function_plyr.html" class="pagination-link" aria-label="분할-적용-병합 전략">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./functions_purrr.html" class="pagination-link" aria-label="함수형 프로그래밍">
-        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1363,7 +1381,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","loop":false,"selector":".lightbox"});
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","loop":false,"descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
