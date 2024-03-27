@@ -57,5 +57,8 @@ envs/
 
 publishing/
 
-data/file/
+data/file/SAS/
+data/file/SPSS/
+data/file/STATA/
 
+code/bigrquery.R

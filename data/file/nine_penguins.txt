@@ -1,0 +1,10 @@
+species	island	bill_length_mm	flipper_length_mm	body_mass_g	sex	year
+Adelie	Biscoe	38.6	199	3750	female	2009
+Adelie	Biscoe	40.5	180	3950	male	2007
+Adelie	Dream	37	185	3000	female	2007
+Gentoo	Biscoe	54.3	231	5650	male	2008
+Gentoo	Biscoe	59.6	230	6050	male	2007
+Gentoo	Biscoe	44.5	214	4850	female	2009
+Chinstrap	Dream	49.3	203	4050	male	2009
+Chinstrap	Dream	46.1	178	3250	female	2007
+Chinstrap	Dream	50.8	210	4100	male	2009
