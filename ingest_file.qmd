@@ -6,31 +6,6 @@ editor_options:
 
 # 파일 데이터 {#intro}
 
-```{mermaid}
-%%| label: fig-workflow
-%%| fig-cap: 데이터 과학 작업흐름도
-%%| fig-align: center
-
-graph LR
-    subgraph 이해하기
-        모형 --> 시각화
-        변환 --> 모형
-        시각화 --> 변환
-        
-    end
-    가져오기 --> 깔끔화 --> 이해하기
-    이해하기 --> 의사소통
-    
-    classDef modern fill:#fff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:12px;
-    classDef emphasize fill:#8CBDE3,stroke:#333,stroke-width:3px,color:#333,font-family:MaruBuri,font-size:15px,font-weight:bold;
-    classDef subgraphStyle fill:#f0f8ff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:15px;
-    
-    class 깔끔화,변환,모형,시각화,의사소통 modern
-    class 가져오기 emphasize
-    class 이해하기 subgraphStyle
-```
-
-
 ## 유니코드와 UTF-8
 
 사람 간의 의사소통은 다양한 기호 체계를 통해 이루어진다. 영어 알파벳, 한글, 한자 등 문자가 의사소통에 사용되는 좋은 예이다. 

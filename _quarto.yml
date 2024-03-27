@@ -86,9 +86,11 @@ book:
 
     - part: "**7부** 가져오기"
       chapters:
+        - ingest_database.qmd
         - ingest_file.qmd
         - ingest_web.qmd
         - ingest_spreadsheet.qmd
+
 
     - part: "**8부** 챗GPT"
       chapters:
