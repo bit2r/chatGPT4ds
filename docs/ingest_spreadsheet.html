@@ -52,7 +52,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -72,7 +92,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -458,6 +481,7 @@ ga('send', {
   </ul>
 </li>
   <li><a href="#%EC%97%91%EC%85%80" id="toc-엑셀" class="nav-link" data-scroll-target="#%EC%97%91%EC%85%80"><span class="header-section-number">26.2</span> 엑셀</a></li>
+  <li><a href="#%EA%B5%AC%EA%B8%80%EC%8B%9C%ED%8A%B8" id="toc-구글시트" class="nav-link" data-scroll-target="#%EA%B5%AC%EA%B8%80%EC%8B%9C%ED%8A%B8"><span class="header-section-number">26.3</span> 구글시트</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/ingest_spreadsheet.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -476,28 +500,48 @@ ga('send', {
   
 
 
-</header><div class="cell" data-layout-align="center">
+</header><p>R에서 CSV 파일, 스프레드시트(엑셀, 구글시트), 데이터베이스, 통계 패키지(SPSS, SAS, STATA), 웹 데이터 등 다양한 출처에서 데이터를 가져올 수 있다. 상용 파일 형식 데이터는 크게 통계 패키지 계열과 스프레드시트 계열로 나눠볼 수 있다.</p>
+<p>통계 패키지의 데이터 파일은 과거 다양한 R 패키지가 존재하였으나 해들리 위컴이 저작한 <code>haven</code> 패키지에서 제공하는 함수(<code><a href="https://haven.tidyverse.org/reference/read_spss.html">read_spss()</a></code>, <code><a href="https://haven.tidyverse.org/reference/read_sas.html">read_sas()</a></code>, <code><a href="https://haven.tidyverse.org/reference/read_dta.html">read_dta()</a></code> 등)를 사용하여 불러온다. 한국보건사회연구원에서 조사하여 발표하는 한국복지패널데이터(KoWeP)는 오픈 파일 형식을 제외하고 SAS, SPSS, STATA 3가지 형식으로 제공되는데 <code>haven</code> 패키지를 사용하여 불러올 경우 함수명은 다르지만 동일한 방식으로 일관성을 갖는다는 점에서 장점이 있다.</p>
+<p>엑셀로 대표되는 스프레드시트 파일은 로컬 파일로 작업할 때는 <code>readxl</code> 패키지 <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code>, 원격 스프레드시트 파일을 구글시트(Google Sheets)로 작업할 때는 <code>googlesheets4</code> 패키지 <code><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet()</a></code> 함수를 사용한다.</p>
+<p>엑셀, 구글 드라이브와 연결된 구글시트, 통계패키지 파일은 유료 상용 소프트웨어로 원칙적으로 해당 파일을 R 혹은 파이썬 등 다른 작업환경으로 가져오는 것은 해당 소프트웨어가 없다면 불가능하다. 물론 상용 소프트웨어가 개방형 파일 형태(<code>.csv</code> 등)로 내보내는 기능을 제공하지만 이러한 경우 메타데이터가 손실은 불가피하고 데이터 일부가 손실될 수 있다.</p>
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-import-data" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-import-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
 <pre class="mermaid mermaid-js" data-label="fig-import-data">graph TB
-    subgraph 가져오기["가져오기(Import)"]
-        csv[CSV 파일] --&gt; 핸들러
-        스프레드쉬트 --&gt; 핸들러
-        데이터베이스 --&gt; 핸들러
-        웹 --&gt; 핸들러
+subgraph 가져오기["가져오기"]
+    csv[CSV 파일] --&gt; 핸들러_가져오기
+    스프레드쉬트 --&gt; 핸들러_가져오기
+    subgraph spreadsheet[" "]
+        엑셀 --&gt; 스프레드쉬트
+        구글시트 --&gt; 스프레드쉬트
+    end
 
-        핸들러 --&gt; 데이터프레임
+    데이터베이스 --&gt; 핸들러_가져오기
+    통계패키지 --&gt; 핸들러_가져오기
+
+    subgraph pkg[" "]
+        SPSS --&gt; 통계패키지
+        SAS --&gt; 통계패키지
+        STATA --&gt; 통계패키지
     end
     
-    classDef modern fill:#fff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:12px;
-    classDef emphasize fill:#8CBDE3,stroke:#333,stroke-width:3px,color:#333,font-family:MaruBuri,font-size:15px,font-weight:bold;
-    classDef subgraphStyle fill:#f0f8ff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:20px;
-    
-    class csv,스프레드쉬트,데이터베이스,웹,핸들러 modern
-    class 데이터프레임 emphasize
-    class 가져오기 subgraphStyle
+    웹["웹 데이터"] --&gt; 핸들러_가져오기
+end
+
+핸들러_가져오기["핸들러"] --&gt; 데이터프레임
+
+classDef modern fill:#fff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:12px;
+classDef emphasize fill:#d0d0d0,stroke:#333,stroke-width:3px,color:#333,font-family:MaruBuri,font-size:15px,font-weight:bold;
+classDef subgraphStyle fill:#f0f0f0,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:20px;
+classDef spreadsheetStyle fill:#e0e0e0,stroke:#333,stroke-width:3px,color:#333,font-family:MaruBuri,font-size:20px;
+
+class csv,데이터베이스,웹,통계패키지,pkg,엑셀,구글시트,SPSS,SAS,STATA modern
+class 데이터프레임 emphasize
+class 가져오기 subgraphStyle
+class 스프레드쉬트,spreadsheet spreadsheetStyle
+class 핸들러_가져오기 modern
 </pre>
 </div>
 </div>
@@ -524,9 +568,9 @@ ga('send', {
 <li>복지인식설문용데이터(SAS, SPSS, STATA):koweps_wc17_2022_Beta1</li>
 <li><strong>가구용, 가구원용, 복지인식설문용 머지데이터(SAS, SPSS, STATA):koweps_hpwc17_2022_Beta1</strong></li>
 </ol>
-<p>SPSS 로 작성된 <code>.sav</code> 파일으로 R 환경으로 불러오기 위해서는 <code>haven</code> 패키지를 로드하여 SPSS (.sav) 데이터 파일을 R로 읽어온다. <code><a href="https://haven.tidyverse.org/reference/read_spss.html">read_spss()</a></code> 함수를 사용하여 “koweps_hpwc17_2022_Beta1.sav” 파일을 <code>welfare_raw</code> 데이터 프레임으로 저장한 후, <code>map_chr()</code> 함수를 사용하여 <code>welfare_raw</code>의 각 변수에 대해 <code>attributes(.x)$label</code>을 적용하여 변수의 레이블을 추출하고 후속 작업을 위해서 문자형 벡터로 변환시킨다.</p>
-<p><code>enframe()</code> 함수를 사용하여 추출된 레이블을 데이터 프레임으로 변환하고, <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> 함수와 <code>str_detect()</code> 함수를 사용하여 “성별”, “종교”, “태어난 연도”, “혼인상태”, “가구원수”라는 키워드가 포함된 변수만 선택한다. <code>pull()</code> 함수를 사용하여 선택된 변수의 이름을 추출하고, <code><a href="https://rdrr.io/r/base/sets.html">setdiff()</a></code> 함수를 사용하여 정규표현식 작성과정에서 함께 추출된”h1707_6aq6” 변수를 제외시킨 후 <code>demo_vars</code> 변수로 저장한다.</p>
-<p><code>welfare_raw</code> 데이터 프레임에서 <code>select()</code> 함수와 <code>all_of()</code> 함수를 사용하여 <code>demo_vars</code>에 해당하는 변수만 선택한 후 <code>set_names()</code> 함수를 사용하여 선택된 변수명을 “성별”, “종교”, “태어난 연도”, “혼인상태”, “가구원수”로 변경한다. <code>str_split()</code>과 <code><a href="https://rdrr.io/r/base/dput.html">dput()</a></code>을 사용하여 변수 이름을 파이프(<code>|</code>)로 연산으로 한 명령어로 처리한다. <code>janitor</code> 패키지 <code>clean_names()</code> 함수를 사용하여 변수 이름을 깔끔하게 정리하는데, <code>ascii = FALSE</code> 옵션을 사용하여 한글 변수명을 유지한다.</p>
+<p>SPSS 로 작성된 <code>.sav</code> 파일으로 R 환경으로 불러오기 위해서는 <code>haven</code> 패키지를 로드하여 SPSS (.sav) 데이터 파일을 R로 읽어온다. <code><a href="https://haven.tidyverse.org/reference/read_spss.html">read_spss()</a></code> 함수를 사용하여 “koweps_hpwc17_2022_Beta1.sav” 파일을 <code>welfare_raw</code> 데이터 프레임으로 저장한 후, <code><a href="https://purrr.tidyverse.org/reference/map.html">map_chr()</a></code> 함수를 사용하여 <code>welfare_raw</code>의 각 변수에 대해 <code>attributes(.x)$label</code>을 적용하여 변수의 레이블을 추출하고 후속 작업을 위해서 문자형 벡터로 변환시킨다.</p>
+<p><code><a href="https://tibble.tidyverse.org/reference/enframe.html">enframe()</a></code> 함수를 사용하여 추출된 레이블을 데이터 프레임으로 변환하고, <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> 함수와 <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> 함수를 사용하여 “성별”, “종교”, “태어난 연도”, “혼인상태”, “가구원수”라는 키워드가 포함된 변수만 선택한다. <code><a href="https://dplyr.tidyverse.org/reference/pull.html">pull()</a></code> 함수를 사용하여 선택된 변수의 이름을 추출하고, <code><a href="https://generics.r-lib.org/reference/setops.html">setdiff()</a></code> 함수를 사용하여 정규표현식 작성과정에서 함께 추출된”h1707_6aq6” 변수를 제외시킨 후 <code>demo_vars</code> 변수로 저장한다.</p>
+<p><code>welfare_raw</code> 데이터 프레임에서 <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> 함수와 <code><a href="https://tidyselect.r-lib.org/reference/all_of.html">all_of()</a></code> 함수를 사용하여 <code>demo_vars</code>에 해당하는 변수만 선택한 후 <code><a href="https://rlang.r-lib.org/reference/set_names.html">set_names()</a></code> 함수를 사용하여 선택된 변수명을 “성별”, “종교”, “태어난 연도”, “혼인상태”, “가구원수”로 변경한다. <code><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split()</a></code>과 <code><a href="https://rdrr.io/r/base/dput.html">dput()</a></code>을 사용하여 변수 이름을 파이프(<code>|</code>)로 연산으로 한 명령어로 처리한다. <code>janitor</code> 패키지 <code>clean_names()</code> 함수를 사용하여 변수 이름을 깔끔하게 정리하는데, <code>ascii = FALSE</code> 옵션을 사용하여 한글 변수명을 유지한다.</p>
 <p>한국보건사회연구원에서 한국복지패널 데이터가 SPSS로 제공되고 있지만 상용 SPSS 패키지가 없더라도 R 환경에서 <code>haven</code> 패키지와 <code>janitor</code> 패키지를 활용하여 SPSS 데이터를 불러와서 본격적인 분석을 오픈 데이터 분석 및 통계 언어 R로 수행할 준비가 되었다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org">haven</a></span><span class="op">)</span> <span class="co"># install.packages("foreign")</span></span>
@@ -643,8 +687,126 @@ ga('send', {
 </div>
 </section></section><section id="엑셀" class="level2" data-number="26.2"><h2 data-number="26.2" class="anchored" data-anchor-id="엑셀">
 <span class="header-section-number">26.2</span> 엑셀</h2>
+<p>엑셀에서 복잡한 데이터를 관리하는 방법 중 하나는 여러 시트에 데이터를 나누어 저장하는 것이다. <code>readxl</code> 패키지를 사용하여 엑셀 파일을 불러올 때 <code><a href="https://readxl.tidyverse.org/reference/excel_sheets.html">excel_sheets()</a></code> 함수를 사용하여 엑셀 파일에 저장된 시트 이름을 확인할 수 있다. 이후 <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> 함수를 사용하여 원하는 시트를 불러올 수 있다. 제20대 국회의원 선거 지역구와 비례대표 당선자 명단을 담은 엑셀 파일을 불러오는 예제를 살펴보자. 국회의원 정수는 총 300 명이기 때문에 지역구 당선자와 비례 당선자를 하나로 묶어 각 당별로 당선자가 몇명인지 확인할 수 있다.</p>
+<div id="fig-excel-sheets" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-excel-sheets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/excel_sheets.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="그림&nbsp;26.2: 제20대 국회의원 선거 당선자 명단"><img src="images/excel_sheets.jpg" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-excel-sheets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;26.2: 제20대 국회의원 선거 당선자 명단
+</figcaption></figure>
+</div>
+<p><code>readxl</code> 패키지의 <code><a href="https://readxl.tidyverse.org/reference/excel_sheets.html">excel_sheets()</a></code> 함수를 사용하여 제20대와 제21대 국회의원선거 당선인 정보가 담긴 엑셀 파일 “data/국회의원_당선인명부.xlsx”에서 시트명을 추출하여 <code>winners_sheetname</code> 변수에 저장한다. <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> 함수를 사용하여 지역구 당선자 명단은 <code>winners_sheetname</code>의 첫 번째 시트에서, 비례대표 당선자 명단은 두 번째 시트에서 추출하여 각각 <code>winners_precinct</code>와 <code>winners_prop</code> 변수에 저장한다. <code><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows()</a></code> 함수를 사용하여 지역구와 비례대표 당선자 명단을 하나로 합치고, 비례대표 당선자의 선거구명을 “비례대표”로 설정하여 지역구와 자료구조를 맞춘 후 <code>winners</code> 데이터프레임에 저장한다. <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> 함수를 사용하여 소속정당명별 당선자수를 집계하고, 당선자수 순으로 정렬한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span> </span>
+<span></span>
+<span><span class="co"># 엑셀 파일에서 시트명 추출</span></span>
+<span><span class="va">winners_sheetname</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/excel_sheets.html">excel_sheets</a></span><span class="op">(</span><span class="st">"data/국회의원_당선인명부.xlsx"</span><span class="op">)</span></span>
+<span><span class="va">winners_sheetname</span></span>
+<span><span class="co">#&gt; [1] "지역구20"   "비례대표20" "지역구21"   "비례대표21"</span></span>
+<span></span>
+<span><span class="co"># 지역구와 비례 당선자 명단 추출</span></span>
+<span><span class="va">winners_precinct</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"data/국회의원_당선인명부.xlsx"</span>, sheet <span class="op">=</span> <span class="va">winners_sheetname</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">winners_prop</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"data/국회의원_당선인명부.xlsx"</span>, sheet <span class="op">=</span> <span class="va">winners_sheetname</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 지역구와 비례대표 당선자 명단을 하나로 합침</span></span>
+<span><span class="va">winners</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">winners_precinct</span>, <span class="va">winners_prop</span> <span class="op">|&gt;</span> </span>
+<span>                       <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>선거구명 <span class="op">=</span> <span class="st">"비례대표"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 정당별 당선자수 집계</span></span>
+<span><span class="va">winners</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">소속정당명</span>, sort <span class="op">=</span> <span class="cn">TRUE</span>, name <span class="op">=</span> <span class="st">"당선자수"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 5 × 2</span></span>
+<span><span class="co">#&gt;   소속정당명   당선자수</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;           &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 더불어민주당      123</span></span>
+<span><span class="co">#&gt; 2 새누리당          122</span></span>
+<span><span class="co">#&gt; 3 국민의당           38</span></span>
+<span><span class="co">#&gt; 4 무소속             11</span></span>
+<span><span class="co">#&gt; 5 정의당              6</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="구글시트" class="level2" data-number="26.3"><h2 data-number="26.3" class="anchored" data-anchor-id="구글시트">
+<span class="header-section-number">26.3</span> 구글시트</h2>
+<p>스프레드시트는 데이터 입력, 저장, 분석 및 시각화를 위해 널리 사용되는 소프트웨어 도구다. 하지만, 데이터 입력과 저장 측면에 초점을 맞추어 보면 오류도 많다. 흔히 보게 되는 엑셀 파일의 문제점 중 하나는 엉망진창(messy) 데이터다. 논문<span class="citation" data-cites="Broman2018">(Broman 와/과 Woo 2018)</span>에 제시된 엉망진창 데이터 중 하나를 뽑아 깔끔한 데이터로 변환해보자.</p>
+<div id="fig-googlesheet-messytidy" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-googlesheet-messytidy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/googlesheet_messytidy.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="그림&nbsp;26.3: 엉망진창(messy) 데이터를 깔끔한(tidy) 데이터 변환"><img src="images/googlesheet_messytidy.jpg" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-googlesheet-messytidy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;26.3: 엉망진창(messy) 데이터를 깔끔한(tidy) 데이터 변환
+</figcaption></figure>
+</div>
+<p>논문 데이터를 OCR 과정을 거친 후에 누구나 실습할 수 있도록 구글시트 <a href="https://docs.google.com/spreadsheets/d/19L3ASfmWTCd1YikWHIHeWKdK29nXz-hhwktFU8qLAYc/edit?usp=sharing">messy_data</a>로 공유되어 있다. 구글시트는 엑셀과 유사한 스프레드시트 프로그램이다. 구글시트에 저장된 데이터를 불러오기 위해서는 <code>googlesheets4</code> 패키지를 사용한다. <code>googlesheets4</code> 패키지를 사용하여 구글 시트의 엉망진창(messy) 데이터를 불러온다. <code><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet()</a></code> 함수로 데이터를 읽어오고, <code><a href="https://rlang.r-lib.org/reference/set_names.html">set_names()</a></code> 함수로 열 이름을 설정한다. <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> 함수를 사용하여 엉망진창 데이터를 깔끔한(tidy) 데이터로 변환한다. <code>starts_with("week")</code> 열을 선택하고, <code>names_sep</code> 인수로 “_”를 기준으로 열 이름을 분리한다. <code>names_to</code>와 <code>values_to</code> 인수를 사용하여 새로운 열 이름과 값을 지정한다. <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> 함수를 사용하여 필요한 열을 선택하고 이름을 변경한다. 최종적으로 깔끔한 데이터 형태로 변환된 데이터프레임을 얻는다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://googlesheets4.tidyverse.org">googlesheets4</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># messy 데이터 불러오기</span></span>
+<span><span class="va">sheet_url</span> <span class="op">&lt;-</span> <span class="st">"https://docs.google.com/spreadsheets/d/19L3ASfmWTCd1YikWHIHeWKdK29nXz-hhwktFU8qLAYc/"</span></span>
+<span></span>
+<span><span class="va">messy_import</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet</a></span><span class="op">(</span><span class="va">sheet_url</span>, skip <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>                         col_types <span class="op">=</span> <span class="st">"ccccccccccc"</span> <span class="op">)</span></span>
+<span><span class="va">messy_data</span> <span class="op">&lt;-</span> <span class="va">messy_import</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rlang.r-lib.org/reference/set_names.html">set_names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Mouse_ID"</span>, <span class="st">"SEX"</span>, <span class="st">"week_4_date"</span>, <span class="st">"week_4_weight"</span>, </span>
+<span>              <span class="st">"week_4_glucose"</span>, <span class="st">"week_6_date"</span>, <span class="st">"week_6_weight"</span>, </span>
+<span>              <span class="st">"week_6_glucose"</span>, <span class="st">"week_8_date"</span>, <span class="st">"week_8_weight"</span>, </span>
+<span>              <span class="st">"week_8_glucose"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># messy 데이터를 tidy 데이터로 변환</span></span>
+<span><span class="va">tidy_data</span> <span class="op">&lt;-</span> <span class="va">messy_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">as.character</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"week"</span><span class="op">)</span>,</span>
+<span>               names_to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"week"</span>, <span class="st">"type"</span>, <span class="st">".value"</span><span class="op">)</span>,</span>
+<span>               values_to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"date"</span>, <span class="st">"glucose"</span>, <span class="st">"weight"</span><span class="op">)</span>,</span>
+<span>               names_sep <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span>  <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">week</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>week <span class="op">=</span> <span class="va">type</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>mouse_id <span class="op">=</span> <span class="va">Mouse_ID</span>,</span>
+<span>         sex <span class="op">=</span> <span class="va">SEX</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">mouse_id</span>, <span class="va">sex</span>, <span class="va">week</span>, <span class="va">date</span>, <span class="va">glucose</span>, <span class="va">weight</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tidy_data</span></span>
+<span><span class="co">#&gt; # A tibble: 15 × 6</span></span>
+<span><span class="co">#&gt;    mouse_id sex   week  date       glucose weight</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt; </span></span>
+<span><span class="co">#&gt;  1 3005     M     4     3/30/2007  635     19.3  </span></span>
+<span><span class="co">#&gt;  2 3005     M     6     4/11/2007  460.7   31    </span></span>
+<span><span class="co">#&gt;  3 3005     M     8     4/27/2007  530.2   39.6  </span></span>
+<span><span class="co">#&gt;  4 3017     M     4     10/6/2006  202.4   25.9  </span></span>
+<span><span class="co">#&gt;  5 3017     M     6     10/19/2006 384.7   45.1  </span></span>
+<span><span class="co">#&gt;  6 3017     M     8     11/3/2006  458.7   57.2  </span></span>
+<span><span class="co">#&gt;  7 3434     F     4     11/22/2006 238.9   26.6  </span></span>
+<span><span class="co">#&gt;  8 3434     F     6     12/6/2006  378     45.9  </span></span>
+<span><span class="co">#&gt;  9 3434     F     8     12/22/2006 409.8   56.2  </span></span>
+<span><span class="co">#&gt; 10 3449     M     4     1/5/2007   121     27.5  </span></span>
+<span><span class="co">#&gt; 11 3449     M     6     1/19/2007  191.3   42.9  </span></span>
+<span><span class="co">#&gt; 12 3449     M     8     2/2/2007   182.5   56.7  </span></span>
+<span><span class="co">#&gt; 13 3499     F     4     1/5/2007   220.2   19.8  </span></span>
+<span><span class="co">#&gt; 14 3499     F     6     1/19/2007  556.9   36.6  </span></span>
+<span><span class="co">#&gt; 15 3499     F     8     2/2/2007   446     43.6</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>깔끔한 데이터를 구글시트의 <code>tidy_data</code> 시트에 저장한다. <code><a href="https://googlesheets4.tidyverse.org/reference/sheet_write.html">sheet_write()</a></code> 함수를 사용하여 깔끔한 데이터를 구글시트에 저장한다. 이때 해당 시트에 권한이 부여되어야만 데이터를 저장할 수 있다. 권한이 부여되지 않은 경우에는 <a href="#fig-googlesheet-auth" class="quarto-xref">그림&nbsp;<span>26.4</span></a> 와 같이 <strong>편집자</strong> 권한을 부여하면 깔끔한 데이터가 구글시트에 저장된다.</p>
+<div id="fig-googlesheet-auth" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-googlesheet-auth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/googlesheet_auth.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="그림&nbsp;26.4: 구글시트 messy_data 권한부여"><img src="images/googlesheet_auth.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="292"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-googlesheet-auth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;26.4: 구글시트 messy_data 권한부여
+</figcaption></figure>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tidy_data <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sheet_write</span>(<span class="at">ss =</span> sheet_url, <span class="at">sheet =</span> <span class="st">"tidy_data"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>✔ Writing to mess_data.</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>✔ Writing to sheet tidy_data.</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Broman2018" class="csl-entry" role="listitem">
+Broman, Karl W., 와/과 Kara H. Woo. 2018. <span>“Data Organization in Spreadsheets”</span>. <em>The American Statistician</em> 72 (1): 2–10. <a href="https://doi.org/10.1080/00031305.2017.1375989">https://doi.org/10.1080/00031305.2017.1375989</a>.
+</div>
+</div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1093,7 +1255,31 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"descPosition":"bottom","selector":".lightbox","openEffect":"zoom"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
 
 
 </body></html>

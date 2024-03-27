@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://r2bit.com/gpt-ds/ingest_file.html</loc>
-    <lastmod>2024-03-26T09:47:50.352Z</lastmod>
+    <lastmod>2024-03-26T23:10:33.569Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/llm_python.html</loc>
@@ -22,6 +22,10 @@
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/ingest_spreadsheet.html</loc>
-    <lastmod>2024-03-26T04:15:57.471Z</lastmod>
+    <lastmod>2024-03-27T01:59:59.412Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r2bit.com/gpt-ds/index.html</loc>
+    <lastmod>2024-03-16T08:30:29.654Z</lastmod>
   </url>
 </urlset>
