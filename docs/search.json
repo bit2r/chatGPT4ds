@@ -445,5 +445,60 @@
       "**6부** 커뮤니케이션",
       "<span class='chapter-number'>23</span>  <span class='chapter-title'>저장하기</span>"
     ]
+  },
+  {
+    "objectID": "gpt_python.html",
+    "href": "gpt_python.html",
+    "title": "\n28  챗GPT 환경 구축\n",
+    "section": "",
+    "text": "28.1 파이썬 설치\n가장 최신 파이썬 3.12 버전 대신 안정성이 검증된 파이썬 3.11 버전 다운로드 웹사이트에서 운영체제에 맞게 설치한다. 설치 과정에서 Add Python 3.11 to PATH 옵션을 반드시 선택한다.\nlibrary(reticulate)\nrepl_python()\n\n#&gt; Python 3.11.8 (C:/Users/&lt;사용자명&gt;/AppData/Local/Programs/Python/Python311/python.exe)\n#&gt; Reticulate 1.35.0 REPL -- A Python interpreter in R.\n#&gt; Enter 'exit' or 'quit' to exit the REPL and return to R.\n#&gt; &gt;&gt;&gt;",
+    "crumbs": [
+      "**8부** 챗GPT",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>챗GPT 환경 구축</span>"
+    ]
+  },
+  {
+    "objectID": "gpt_python.html#rprofile-설정",
+    "href": "gpt_python.html#rprofile-설정",
+    "title": "\n28  파이썬 설치\n",
+    "section": "\n28.2 .Rprofile 설정",
+    "text": "28.2 .Rprofile 설정\n매번 R을 실행할 때마다 파이썬 가상환경을 활성화하는 것은 번거롭다. .Rprofile 파일에 RETICULATE_PYTHON 환경변수를 설정하게 되면, .Rprofile 파일은 R을 시작할 때 자동으로 파이썬 가상환경이 활성화된다.\n\nusethis::edit_r_profile()\n\nusethis::edit_r_profile() 명령어를 통해 .Rprofile 파일을 열고 아래 내용을 추가한다.\nSys.setenv(RETICULATE_PYTHON=\"D:/envs/gpt-ds/Scripts/python.exe\")\n\nlibrary(reticulate)\npy_config()\n\n#&gt; python:         D:/envs/gpt-ds/Scripts/python.exe\n#&gt; libpython:      C:/Users/statkclee/AppData/Local/Programs/Python/Python311/python311.dll\n#&gt; pythonhome:     D:/envs/gpt-ds\n#&gt; version:        3.11.8 (tags/v3.11.8:db85d51, Feb  6 2024, 22:03:32) [MSC v.1937 64 bit (AMD64)]\n#&gt; Architecture:   64bit\n#&gt; numpy:          D:/envs/gpt-ds/Lib/site-packages/numpy\n#&gt; numpy_version:  1.26.4\n#&gt; \n#&gt; NOTE: Python version was forced by RETICULATE_PYTHON",
+    "crumbs": [
+      "**8부** 챗GPT",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>파이썬 설치</span>"
+    ]
+  },
+  {
+    "objectID": "gpt_python.html#감성분석",
+    "href": "gpt_python.html#감성분석",
+    "title": "\n28  챗GPT 환경 구축\n",
+    "section": "\n28.2 감성분석",
+    "text": "28.2 감성분석\n앞서 구축한 파이썬 가상환경에서 음식점 리뷰에 대한 감성분석을 수행하는 사례를 살펴본다. 먼저 transformers 라이브러리 pipeline을 사용하여 텍스트 분류 모델을 로드하고, 한국어 문장을 입력으로 받아 다국어 버트(bert) 모형으로 감성 분석을 수행한다. 사전 학습된 모델을 활용하여 자연어 처리 감성분석 작업을 수행하는 방법이 앞서 구축한 파이썬 가상환경에서 수행되고 있다.\n\nfrom transformers import pipeline\n\nprompt = \"분위기도 좋았고 음식도 아주 훌륭했어.\"\n\nclassifier = pipeline(\"text-classification\", \n                      model='nlptown/bert-base-multilingual-uncased-sentiment')\n\nprediction = classifier(prompt)\nprint(prediction)\n#&gt; [{'label': '4 stars', 'score': 0.5038140416145325}]\n\n\n\n\n그림 28.1: 파이썬 설치 과정",
+    "crumbs": [
+      "**8부** 챗GPT",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>챗GPT 환경 구축</span>"
+    ]
+  },
+  {
+    "objectID": "gpt_python.html#파이썬-설치",
+    "href": "gpt_python.html#파이썬-설치",
+    "title": "\n28  챗GPT 환경 구축\n",
+    "section": "",
+    "text": "그림 28.1: 파이썬 설치 과정\n\n\n\n\n28.1.1 가상환경\n파이썬 가상환경을 생성하는 이유는 프로젝트별로 필요한 패키지를 분리하여 관리하여 충돌을 방지하기 위함이다. 파일명(--name) 방식과 경로명(--prefix) 방식이 있으며 서로 장단점이 있다. 여기서 경로명 방식과 reticulate 패키지를 활용하여 R 내부적으로 수행하는 방식을 소개한다. virtualenv_remove() 함수를 사용하여 가상환경을 삭제할 수 있다.\n\nvirtualenv_create(\"d:/envs/gpt-ds\")\n\n#&gt; virtualenv_remove(\"d:/envs/gpt-ds\")\n#&gt; Remove virtual environment 'd:/envs/gpt-ds'? [Y/n]: Y\n#&gt; Virtual environment \"d:/envs/gpt-ds\" removed.\n\nvirtualenv_list()\n#&gt; [1] \"gpt-ds\"\n\nuse_virtualenv() 함수를 사용하여 가상환경을 활성화하고 virtualenv_install() 함수를 사용하여 필요한 패키지를 설치한다. 감성분석을 위해서 transformers 패키지가 필요한데 torch, torchvision 의존성으로 함께 설치한다.\n\nlibrary(reticulate)\nuse_virtualenv(\"gpt-ds\", required = TRUE)\n\nvirtualenv_install(\"d:/envs/gpt-ds\", c(\"transformers\", \"torch\", \"torchvision\", \"torchtext\"))\n\n\n28.1.2 .Rprofile 설정\n매번 R을 실행할 때마다 파이썬 가상환경을 활성화하는 것은 번거롭다. .Rprofile 파일에 RETICULATE_PYTHON 환경변수를 설정하게 되면, .Rprofile 파일은 R을 시작할 때 자동으로 파이썬 가상환경이 활성화된다.\n\nusethis::edit_r_profile()\n\nusethis::edit_r_profile() 명령어를 통해 .Rprofile 파일을 열고 파이썬 가상환경 gpt-ds의 python.exe 경로를 RETICULATE_PYTHON 환경변수로 설정한다.\nSys.setenv(RETICULATE_PYTHON=\"D:/envs/gpt-ds/Scripts/python.exe\")\n다시 R 세션을 시작한 후 py_config() 함수를 통해 파이썬 환경을 확인하면 앞서 설정한 gpt-ds 가상환경이 해당 디렉토리로 지정된 것을 확인할 수 있다.\n\nlibrary(reticulate)\npy_config()\n\n#&gt; python:         D:/envs/gpt-ds/Scripts/python.exe\n#&gt; libpython:      C:/Users/statkclee/AppData/Local/Programs/Python/Python311/python311.dll\n#&gt; pythonhome:     D:/envs/gpt-ds\n#&gt; version:        3.11.8 (tags/v3.11.8:db85d51, Feb  6 2024, 22:03:32) [MSC v.1937 64 bit (AMD64)]\n#&gt; Architecture:   64bit\n#&gt; numpy:          D:/envs/gpt-ds/Lib/site-packages/numpy\n#&gt; numpy_version:  1.26.4\n#&gt; \n#&gt; NOTE: Python version was forced by RETICULATE_PYTHON",
+    "crumbs": [
+      "**8부** 챗GPT",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>챗GPT 환경 구축</span>"
+    ]
+  },
+  {
+    "objectID": "gpt_python.html#감성분석-사례",
+    "href": "gpt_python.html#감성분석-사례",
+    "title": "\n28  챗GPT 환경 구축\n",
+    "section": "\n28.2 감성분석 사례",
+    "text": "28.2 감성분석 사례\n앞서 구축한 파이썬 가상환경에서 음식점 리뷰에 대한 감성분석을 수행하는 사례를 살펴본다. 먼저 transformers 라이브러리 pipeline을 사용하여 텍스트 분류 모델을 로드하고, 한국어 문장을 입력으로 받아 다국어 버트(bert) 모형으로 감성 분석을 수행한다. 사전 학습된 모델을 활용하여 자연어 처리 감성분석 작업을 수행하는 방법이 앞서 구축한 파이썬 가상환경에서 수행되고 있다.\n\nfrom transformers import pipeline\n\nprompt = \"분위기도 좋았고 음식도 아주 훌륭했어.\"\n\nclassifier = pipeline(\"text-classification\", \n                      model='nlptown/bert-base-multilingual-uncased-sentiment')\n\nprediction = classifier(prompt)\nprint(prediction)\n#&gt; [{'label': '4 stars', 'score': 0.5038140416145325}]\n\n\n\n\n그림 28.1: 파이썬 설치 과정",
+    "crumbs": [
+      "**8부** 챗GPT",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>챗GPT 환경 구축</span>"
+    ]
   }
 ]
