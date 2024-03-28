@@ -1,0 +1,57 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# 쿼토 파이썬 환경
+
+아나콘다를 설치하고 `conda` 가상환경을 설정한다.
+가상환경 이름은 `envs`로 설정하고 데이터 과학, 인공지능을 위한 기본 파이썬 패키지도 가상환경 안에 설치한다.    
+
+```bash
+$ conda create --prefix ./envs python=3.11 numpy seaborn pandas matplotlib scikit-learn transformers
+$ conda activate ./envs
+$ which python
+```
+
+파이썬(`python.exe`)를 R 환경에 연결시키기 위해 정확한 경로명을 `reticulate::conda_list()` 함수로 확인한다.
+
+```{r}
+#| eval: false
+reticulate::conda_list()
+```
+
+
+```{r}
+#| eval: false
+usethis::edit_r_profile()
+```
+
+`usethis::edit_r_profile()` 명령어를 통해 `.Rprofile` 파일을 열고 아래 내용을 추가한다.
+
+```yaml
+Sys.setenv(RETICULATE_PYTHON="C:\\chatGPT4ds\\envs\\python.exe")
+```
+
+```{r}
+library(reticulate)
+py_config()
+```
+
+
+
+# 감성분석
+
+```{python}
+from transformers import pipeline
+
+prompt = "The ambience was good, food was quite good."
+
+classifier = pipeline("text-classification", 
+                      model='nlptown/bert-base-multilingual-uncased-sentiment')
+
+prediction = classifier(prompt)
+print(prediction)
+```
+

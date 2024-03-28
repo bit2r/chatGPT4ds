@@ -4,24 +4,61 @@ editor_options:
   chunk_output_type: console
 ---
 
-# 쿼토 파이썬 환경
-
-아나콘다를 설치하고 `conda` 가상환경을 설정한다.
-가상환경 이름은 `envs`로 설정하고 데이터 과학, 인공지능을 위한 기본 파이썬 패키지도 가상환경 안에 설치한다.    
-
-```bash
-$ conda create --prefix ./envs python=3.11 numpy seaborn pandas matplotlib scikit-learn transformers
-$ conda activate ./envs
-$ which python
+```{r}
+#| eval: false
+reticulate::use_virtualenv("gpt-ds", required = TRUE)
 ```
 
-파이썬(`python.exe`)를 R 환경에 연결시키기 위해 정확한 경로명을 `reticulate::conda_list()` 함수로 확인한다.
+
+
+# 파이썬 설치
+
+파이썬 3.11 버전 [다운로드](https://www.python.org/downloads/release/python-3118/) 웹사이트에서 운영체제에 맞게 설치한다.
+
+![파이썬 설치 과정](images/gpt-python-install.jpg){#fig-install-python}
 
 ```{r}
 #| eval: false
-reticulate::conda_list()
+library(reticulate)
+repl_python()
+
+#> Python 3.11.8 (C:/Users/<사용자명>/AppData/Local/Programs/Python/Python311/python.exe)
+#> Reticulate 1.35.0 REPL -- A Python interpreter in R.
+#> Enter 'exit' or 'quit' to exit the REPL and return to R.
+#> >>>
 ```
 
+## 가상환경 
+
+파이썬 가상환경을 생성하는 이유는 프로젝트별로 필요한 패키지를 분리하여 관리하여 충돌을 방지하기 위함이다. 파일명(`--name`) 방식과 경로명(`--prefix`) 방식이 있으며 서로 장단점이 있다. 여기서 경로명 방식과 `reticulate` 패키지를 활용하여 R 내부적으로 수행하는 방식을 소개한다.
+`virtualenv_remove()` 함수를 사용하여 가상환경을 삭제할 수 있다.
+
+```{r}
+#| eval: false
+virtualenv_create("d:/envs/gpt-ds")
+
+#> virtualenv_remove("d:/envs/gpt-ds")
+#> Remove virtual environment 'd:/envs/gpt-ds'? [Y/n]: Y
+#> Virtual environment "d:/envs/gpt-ds" removed.
+
+virtualenv_list()
+#> [1] "gpt-ds"
+```
+
+`use_virtualenv()` 함수를 사용하여 가상환경을 활성화하고 `virtualenv_install()` 함수를 사용하여 필요한 패키지를 설치한다.
+
+```{r}
+#| eval: false
+library(reticulate)
+use_virtualenv("gpt-ds", required = TRUE)
+
+virtualenv_install("gpt-ds", c("python-dotenv", "openai", "transformers"))
+```
+
+## `.Rprofile` 설정
+
+매번 R을 실행할 때마다 파이썬 가상환경을 활성화하는 것은 번거롭다.
+`.Rprofile` 파일에 `RETICULATE_PYTHON` 환경변수를 설정하게 되면, `.Rprofile` 파일은 R을 시작할 때 자동으로 파이썬 가상환경이 활성화된다.
 
 ```{r}
 #| eval: false
@@ -31,12 +68,23 @@ usethis::edit_r_profile()
 `usethis::edit_r_profile()` 명령어를 통해 `.Rprofile` 파일을 열고 아래 내용을 추가한다.
 
 ```yaml
-Sys.setenv(RETICULATE_PYTHON="C:\\chatGPT4ds\\envs\\python.exe")
+Sys.setenv(RETICULATE_PYTHON="D:/envs/gpt-ds/Scripts/python.exe")
 ```
 
 ```{r}
+#| eval: false
 library(reticulate)
 py_config()
+
+#> python:         D:/envs/gpt-ds/Scripts/python.exe
+#> libpython:      C:/Users/statkclee/AppData/Local/Programs/Python/Python311/python311.dll
+#> pythonhome:     D:/envs/gpt-ds
+#> version:        3.11.8 (tags/v3.11.8:db85d51, Feb  6 2024, 22:03:32) [MSC v.1937 64 bit (AMD64)]
+#> Architecture:   64bit
+#> numpy:          D:/envs/gpt-ds/Lib/site-packages/numpy
+#> numpy_version:  1.26.4
+#> 
+#> NOTE: Python version was forced by RETICULATE_PYTHON
 ```
 
 
