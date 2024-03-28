@@ -140,4 +140,11 @@ done
 
 첨부된 파일 전체에 대해서 처음부터 끝까지 맞춤범 검사와 함께 문장이 매끄럽게 작성되도록 윤문한다.
 
+# 파이썬 패키지 --------------
+
+virtualenv_install("d:/envs/gpt-ds", c("python-dotenv", "openai"))
+
+
+py$answer_question
+
 

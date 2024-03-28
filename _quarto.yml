@@ -95,7 +95,7 @@ book:
     - part: "**8부** 챗GPT"
       chapters:
         - gpt_python.qmd
-        # - gpt_prompt_ds.qmd
+        - gpt_prompt_ds.qmd
         # - prompt.qmd
         # - langchain.qmd
         # - code_interpreter.qmd

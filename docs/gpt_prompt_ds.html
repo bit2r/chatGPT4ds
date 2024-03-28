@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.552">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="이광춘, 신종화">
+<title>챗GPT 데이터 과학 - 29&nbsp; 데이터 과학 프롬프트</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./gpt_python.html" rel="prev">
+<link href="./images/logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script><script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-229551680-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./gpt_python.html"><strong>8부</strong> 챗GPT</a></li><li class="breadcrumb-item"><a href="./gpt_prompt_ds.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">데이터 과학 프롬프트</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">챗GPT 데이터 과학</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/bit2r/gpt-ds" title="소스 코드" class="quarto-navigation-tool px-1" aria-label="소스 코드"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="리더 모드 전환">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="검색"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">서문</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text"><strong>1부</strong> 들어가며</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">들어가며</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">데이터 사이언스 운영체제</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_whole_game.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">데이터 과학 맛보기</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_penguins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text"><strong>2부</strong> 데이터 다루기</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text"><strong>3부</strong> 시각화</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2_concept.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">그래프 문법</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2_pattern.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text"><strong>4부</strong> 모형</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_many.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text"><strong>5부</strong> 프로그래밍</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./function_plyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text"><strong>6부</strong> 커뮤니케이션</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comm_map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comm_knitr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">데이터 분석 보고서</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comm_quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comm_export.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">저장하기</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text"><strong>7부</strong> 가져오기</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ingest_database.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">데이터베이스</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ingest_file.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">파일 데이터</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ingest_web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">웹 데이터</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ingest_spreadsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">상용 데이터</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text"><strong>8부</strong> 챗GPT</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gpt_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">챗GPT 환경 구축</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gpt_prompt_ds.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">데이터 과학 프롬프트</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">참고문헌</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li>
+<a href="#%ED%97%AC%EB%A1%9C%EC%9B%94%EB%93%9C" id="toc-헬로월드" class="nav-link active" data-scroll-target="#%ED%97%AC%EB%A1%9C%EC%9B%94%EB%93%9C"><span class="header-section-number">30</span> 헬로월드</a>
+  <ul class="collapse">
+<li>
+<a href="#%ED%83%90%EC%83%89%EC%A0%81-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D" id="toc-탐색적-데이터-분석" class="nav-link" data-scroll-target="#%ED%83%90%EC%83%89%EC%A0%81-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D"><span class="header-section-number">30.1</span> 탐색적 데이터 분석</a>
+  <ul class="collapse">
+<li><a href="#%EC%A7%88%EB%AC%B8-1" id="toc-질문-1" class="nav-link" data-scroll-target="#%EC%A7%88%EB%AC%B8-1"><span class="header-section-number">30.1.1</span> 질문 1</a></li>
+  </ul>
+</li>
+  <li><a href="#%EC%A7%88%EB%AC%B8-2" id="toc-질문-2" class="nav-link" data-scroll-target="#%EC%A7%88%EB%AC%B8-2"><span class="header-section-number">30.2</span> 질문 2</a></li>
+  <li><a href="#%EC%A7%88%EB%AC%B8-3-1" id="toc-질문-3-1" class="nav-link" data-scroll-target="#%EC%A7%88%EB%AC%B8-3-1"><span class="header-section-number">30.3</span> 질문 3</a></li>
+  <li><a href="#%EC%A7%88%EB%AC%B8-4-1" id="toc-질문-4-1" class="nav-link" data-scroll-target="#%EC%A7%88%EB%AC%B8-4-1"><span class="header-section-number">30.4</span> 질문 4</a></li>
+  <li><a href="#%EC%A7%88%EB%AC%B8-5-1" id="toc-질문-5-1" class="nav-link" data-scroll-target="#%EC%A7%88%EB%AC%B8-5-1"><span class="header-section-number">30.5</span> 질문 5</a></li>
+  <li><a href="#%EC%A7%88%EB%AC%B8-6-1" id="toc-질문-6-1" class="nav-link" data-scroll-target="#%EC%A7%88%EB%AC%B8-6-1"><span class="header-section-number">30.6</span> 질문 6</a></li>
+  <li><a href="#%EC%A7%88%EB%AC%B8-7-1" id="toc-질문-7-1" class="nav-link" data-scroll-target="#%EC%A7%88%EB%AC%B8-7-1"><span class="header-section-number">30.7</span> 질문 7</a></li>
+  <li><a href="#%EC%A7%88%EB%AC%B8-8-1" id="toc-질문-8-1" class="nav-link" data-scroll-target="#%EC%A7%88%EB%AC%B8-8-1"><span class="header-section-number">30.8</span> 질문 8</a></li>
+  <li><a href="#%EC%A7%88%EB%AC%B8-9-1" id="toc-질문-9-1" class="nav-link" data-scroll-target="#%EC%A7%88%EB%AC%B8-9-1"><span class="header-section-number">30.9</span> 질문 9</a></li>
+  <li><a href="#%EC%A7%88%EB%AC%B8-10-1" id="toc-질문-10-1" class="nav-link" data-scroll-target="#%EC%A7%88%EB%AC%B8-10-1"><span class="header-section-number">30.10</span> 질문 10</a></li>
+  </ul>
+</li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/gpt_prompt_ds.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./gpt_python.html"><strong>8부</strong> 챗GPT</a></li><li class="breadcrumb-item"><a href="./gpt_prompt_ds.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">데이터 과학 프롬프트</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title">
+<span class="chapter-number">29</span>&nbsp; <span class="chapter-title">데이터 과학 프롬프트</span>
+</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><div id="fig-data-science-workflow" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-data-science-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/gpt_data_science_workflow.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/gpt_data_science_workflow.jpg" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-data-science-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;29.1: 데이터 과학자 업무방식 변화
+</figcaption></figure>
+</div>
+<p>챗GPT의 출현으로 데이터 과학 결과물을 만들어내기 위해서 과거 구글링, 미트업, cheatsheet 등을 데이터 과학자가 파악하고 이를 데이터 과학자가 반영하는 것에서 챗GPT와 상호 작용하여 결과물을 얻어내는 새로운 선택지가 만들어졌다. <span class="citation" data-cites="gencay2023chatgpt">(Gencay 2023)</span></p>
+<p>데이터를 가져와서 데이터 정제, 탐색적 데이터분석, 시각화, 기계학습, 배포 과정을 거치게 된다. 각 단계별로 챗GPT 정답을 살펴보자.</p>
+<section id="헬로월드" class="level1 page-columns page-full" data-number="30"><h1 data-number="30">
+<span class="header-section-number">30</span> 헬로월드</h1>
+<p>챗GPT가 작성해주는 파이썬 코드를 사용해서 챗GPT에 요청한 결과를 R로 반환받아 이를 문서로 제작한다. OpenAI <code>Chat</code> 제품 중 <code>gpt-3.5-turbo</code> 모형을 기반으로 프롬프트를 잘 작성하여 고품질 결과를 얻어낸다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    api_key <span class="op">=</span> os.getenv(<span class="st">"OPENAI_API_KEY"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> answer_question(text):</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"당신은 R 언어를 사용하는 데이터 과학자로 다음 질문을 친절히 설명해주세요: </span><span class="sc">{</span>text<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>            model<span class="op">=</span><span class="st">'gpt-4'</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>            messages<span class="op">=</span>[</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                {<span class="st">"role"</span>: <span class="st">"user"</span>, </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"content"</span>: prompt }</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>            ]</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> response.choices[<span class="dv">0</span>].message.content.strip()</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">str</span>(e)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>answer_text <span class="op">=</span> answer_question(<span class="st">"데이터 탐색이란 무엇이며, 데이터 과학에서 어떻게 유용한가요?"</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(answer_text)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>동일한 프롬프트에 모형을 <code>gpt-3.5-turbo</code>와 현존하는 가장 높은 성능을 보이고 있는 <code>gpt-4</code>를 사용하여 결과를 비교해보자. 토큰 당 달리 과금되기 때문에 이점을 염두에 두고 데이터 과학 “데이터 탐색”에 대한 두 모형의 차이를 살펴보면 도움이 된다.</p>
+<div class="columns">
+<div class="column" style="width:47.5%;">
+<section id="gpt-3.5" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="gpt-3.5">GPT-3.5</h3>
+<p>데이터 탐색은 데이터를 분석하기 전에 데이터셋을 살펴보고 이해하는 단계를 말합니다. 데이터 탐색 단계에서는 데이터의 구조, 패턴, 이상치, 결측값 등을 파악하고 데이터의 특성을 이해하기 위해 시각화와 통계 분석을 활용합니다.</p>
+<p>데이터 과학에서 데이터 탐색은 매우 중요한 단계로, 데이터의 특성과 패턴을 파악하는 데 도움을 줍니다. 데이터 탐색을 통해 데이터의 잠재적인 문제나 패턴을 발견할 수 있고, 데이터 전처리나 모델링 단계에서 필요한 추가적인 작업을 수행할 수 있습니다.</p>
+<p>또한, 데이터 탐색을 통해 데이터의 관계나 인사이트를 발견하고 이를 시각화하여 이해하기 쉽게 전달할 수 있습니다. 따라서 데이터 탐색은 데이터 과학의 핵심적인 부분이며, 데이터를 더 잘 이해하고 분석할 수 있는 기반을 제공합니다. 이러한 데이터 탐색 과정을 R 언어를 사용하여 다양한 시각화 기법과 통계 분석을 통해 진행할 수 있습니다.</p>
+</section>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:47.5%;">
+<section id="gpt-4" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="gpt-4">GPT-4</h3>
+<p>데이터 탐색 혹은 탐색적 데이터 분석(Exploratory Data Analysis, EDA)는 데이터를 열어보고 분석하는 단계입니다. 그래프나 통계량을 사용하여 수집된 데이터의 구조 및 관계를 파악하는 데 사용됩니다.</p>
+<p>데이터 탐색의 목적은 데이터의 주요 특성을 찾아내고, 구조를 이해하거나 특정 변수 사이의 관계를 확인하거나, 예상치 못한 패턴이나 이상치를 찾는 것입니다.</p>
+<p>데이터 과학에서 데이터 탐색은 매우 중요합니다. 일단 분석 전에 데이터의 특성을 이해하는 것은 추론 및 모델링 과정에서 중요한 역할을 합니다. 데이터 탐색을 통해 이상치를 발견할 수 있고, 이를 통해 데이터 클리닝 및 전처리를 이행할 수 있습니다. 또한, 변수들간의 관계 및 패턴을 분석함으로써, 이후의 분석 방향을 결정하거나 가설을 설정하는데 도움이 됩니다.</p>
+<p>예를 들어, 어떤 상점의 판매 데이터를 분석한다고 가정해봅시다. 데이터 탐색 과정에서 고객 연령대별로 구매 패턴이 유의미하게 차이가 난다면 이를 분석에 반영하여 연령대별 마케팅 전략을 수립하는데 도움이 될 수 있습니다. 또한, 특정 상품이 후불결제 시 결제 실패율이 높다는 이상치를 발견하였다면, 이 문제를 해결하기 위한 방안을 마련하는데 도움이 됩니다. 또한 데이터 탐색을 통해 데이터의 품질 및 적절성을 평가할 수 있으며, 데이터 과학자가 보다 의미있는 결과와 인사이트를 도출하는데 기여하게 됩니다.</p>
+</section>
+</div>
+</div>
+<section id="탐색적-데이터-분석" class="level2 page-columns page-full" data-number="30.1"><h2 data-number="30.1" class="anchored" data-anchor-id="탐색적-데이터-분석">
+<span class="header-section-number">30.1</span> 탐색적 데이터 분석</h2>
+<p>다음 질문에 대해서 챗GPT 응답결과를 정리해보자.</p>
+<ul>
+<li>데이터 탐색이란 무엇이며, 데이터 과학에서 어떻게 유용한가요?</li>
+<li>데이터 탐색을 위한 인기있는 R 패키지는 무엇이며, 어떻게 사용되나요?</li>
+<li>R을 사용한 기본적인 데이터 탐색 스크립트의 예시를 제공할 수 있나요?</li>
+<li>PCA를 사용하여 변수간 관계를 탐색하기 위해 차원 축소를 어떻게 수행할 수 있나요?</li>
+<li>t-SNE, PCA 및 클러스터링을 사용하여 변수간 관계를 탐색하는 데이터 탐색 스크립트의 예시를 제공할 수 있나요?</li>
+<li>tibble과 ggplot2를 사용하여 시계열 데이터에서 패턴과 추세를 어떻게 식별할 수 있나요?</li>
+<li>tibble과 ggplot2를 사용하여 데이터에서 패턴과 추세를 식별하는 데이터 탐색 스크립트의 예시를 제공할 수 있나요?</li>
+<li>tibble과 ggplot2를 사용하여 변수간 관계를 탐색하기 위한 일반적인 기술은 무엇인가요?</li>
+<li>tibble과 ggplot2를 사용하여 산점도와 라인 차트를 생성하여 변수간 관계를 탐색할 수 있는 방법은 무엇인가요?</li>
+<li>PCA를 사용하여 변수간 관계를 탐색하기 위해 차원 축소를 어떻게 수행할 수 있나요?</li>
+</ul>
+<section id="질문-1" class="level3" data-number="30.1.1"><h3 data-number="30.1.1" class="anchored" data-anchor-id="질문-1">
+<span class="header-section-number">30.1.1</span> 질문 1</h3>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/reticulate/">reticulate</a></span><span class="op">)</span></span>
+<span><span class="va">question_01</span> <span class="op">&lt;-</span> <span class="st">"데이터 탐색이란 무엇이며, 데이터 과학에서 어떻게 유용한가요?"</span></span>
+<span></span>
+<span><span class="va">answer_01</span> <span class="op">&lt;-</span> <span class="va">py</span><span class="op">$</span><span class="fu">answer_question</span><span class="op">(</span><span class="va">question_01</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><div class="column-page">
+<div class="columns">
+<div class="column" style="width:25%;">
+<section id="질문" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="질문">질문</h3>
+<p>데이터 탐색이란 무엇이며, 데이터 과학에서 어떻게 유용한가요?</p>
+</section>
+</div><div class="column" style="width:75%;">
+<section id="답변" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="답변">답변</h3>
+<p>데이터 탐색 혹은 탐색적 데이터 분석(Exploratory Data Analysis, EDA)는 데이터를 열어보고 분석하는 단계입니다. 그래프나 통계량을 사용하여 수집된 데이터의 구조 및 관계를 파악하는 데 사용됩니다.</p>
+<p>데이터 탐색의 목적은 데이터의 주요 특성을 찾아내고, 구조를 이해하거나 특정 변수 사이의 관계를 확인하거나, 예상치 못한 패턴이나 이상치를 찾는 것입니다.</p>
+<p>데이터 과학에서 데이터 탐색은 매우 중요합니다. 일단 분석 전에 데이터의 특성을 이해하는 것은 추론 및 모델링 과정에서 중요한 역할을 합니다. 데이터 탐색을 통해 이상치를 발견할 수 있고, 이를 통해 데이터 클리닝 및 전처리를 이행할 수 있습니다. 또한, 변수들간의 관계 및 패턴을 분석함으로써, 이후의 분석 방향을 결정하거나 가설을 설정하는데 도움이 됩니다.</p>
+<p>예를 들어, 어떤 상점의 판매 데이터를 분석한다고 가정해봅시다. 데이터 탐색 과정에서 고객 연령대별로 구매 패턴이 유의미하게 차이가 난다면 이를 분석에 반영하여 연령대별 마케팅 전략을 수립하는데 도움이 될 수 있습니다. 또한, 특정 상품이 후불결제 시 결제 실패율이 높다는 이상치를 발견하였다면, 이 문제를 해결하기 위한 방안을 마련하는데 도움이 됩니다. 또한 데이터 탐색을 통해 데이터의 품질 및 적절성을 평가할 수 있으며, 데이터 과학자가 보다 의미있는 결과와 인사이트를 도출하는데 기여하게 됩니다.</p>
+</section>
+</div>
+<p>:</p>
+</div>
+</div>
+</section><section id="질문-2" class="level2 page-columns page-full" data-number="30.2"><h2 data-number="30.2" class="anchored" data-anchor-id="질문-2">
+<span class="header-section-number">30.2</span> 질문 2</h2>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">question_02</span> <span class="op">&lt;-</span> <span class="st">"R을 사용한 기본적인 데이터 탐색 스크립트의 예시를 제공할 수 있나요?"</span></span>
+<span></span>
+<span><span class="co"># answer_02 &lt;-  py$answer_question(question_02)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="column-page">
+<div class="columns">
+<div class="column" style="width:25%;">
+<section id="질문-3" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="질문-3">질문</h3>
+<p>R을 사용한 기본적인 데이터 탐색 스크립트의 예시를 제공할 수 있나요?</p>
+</section>
+</div><div class="column" style="width:75%;">
+<section id="답변-1" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="답변-1">답변</h3>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"물론입니다. R 언어를 활용한 간단한 데이터 탐색 스크립트를 제공하겠습니다.\n\n우선, 내장 데이터셋인 \"mtcars\"을 사용하여 살펴보겠습니다.\n\n```R\n# 데이터 불러오기\ndata(mtcars)\n\n# 데이터의 상위 6개 행 보기\nhead(mtcars)\n\n# 데이터의 기본적인 구조 보기\nstr(mtcars)\n\n# 간단한 요약통계 보기\nsummary(mtcars)\n\n# 변수 간 상관관계 보기\ncor(mtcars)\n\n# mpg 변수에 대한 히스토그램 생성\nhist(mtcars$mpg)\n\n# 변수 간 산점도 행렬 생성\npairs(mtcars)\n```\n\n위의 예시는 mtcars 데이터셋을 불러와 파일의 상위 6줄을 보는 것으로 시작합니다. 그 신 dataset의 전반적인 구조 (변수의 이름, 유형, 데이터 셋에서 행의 수 등) 를 확인하고, 요약 통계를 제공합니다. 그 다음으로, 변수 간 상관관계를 설명하며 mpg 변수를 가진 히스토그램을 그립니다. 마지막으로, 산점도 행렬을 생성하여 변수들 사이의 관계를 한눈에 보여줍니다. \n\n이러한 단계들은 기본적인 데이터 탐색 과정에서 중요하며, 상황에 따라 추가분석이 필요한 경우가 있습니다.\n이는 데이터에 대한 조사나, 누락 된 값의 확인, 이상치 검사 등이 포함될 수 있습니다."</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 물론입니다. R 언어를 활용한 간단한 데이터 탐색 스크립트를 제공하겠습니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 우선, 내장 데이터셋인 "mtcars"을 사용하여 살펴보겠습니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ```R</span></span>
+<span><span class="co">#&gt; # 데이터 불러오기</span></span>
+<span><span class="co">#&gt; data(mtcars)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; # 데이터의 상위 6개 행 보기</span></span>
+<span><span class="co">#&gt; head(mtcars)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; # 데이터의 기본적인 구조 보기</span></span>
+<span><span class="co">#&gt; str(mtcars)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; # 간단한 요약통계 보기</span></span>
+<span><span class="co">#&gt; summary(mtcars)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; # 변수 간 상관관계 보기</span></span>
+<span><span class="co">#&gt; cor(mtcars)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; # mpg 변수에 대한 히스토그램 생성</span></span>
+<span><span class="co">#&gt; hist(mtcars$mpg)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; # 변수 간 산점도 행렬 생성</span></span>
+<span><span class="co">#&gt; pairs(mtcars)</span></span>
+<span><span class="co">#&gt; ```</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 위의 예시는 mtcars 데이터셋을 불러와 파일의 상위 6줄을 보는 것으로 시작합니다. 그 신 dataset의 전반적인 구조 (변수의 이름, 유형, 데이터 셋에서 행의 수 등) 를 확인하고, 요약 통계를 제공합니다. 그 다음으로, 변수 간 상관관계를 설명하며 mpg 변수를 가진 히스토그램을 그립니다. 마지막으로, 산점도 행렬을 생성하여 변수들 사이의 관계를 한눈에 보여줍니다. </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 이러한 단계들은 기본적인 데이터 탐색 과정에서 중요하며, 상황에 따라 추가분석이 필요한 경우가 있습니다.</span></span>
+<span><span class="co">#&gt; 이는 데이터에 대한 조사나, 누락 된 값의 확인, 이상치 검사 등이 포함될 수 있습니다.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</section><section id="질문-3-1" class="level2 page-columns page-full" data-number="30.3"><h2 data-number="30.3" class="anchored" data-anchor-id="질문-3-1">
+<span class="header-section-number">30.3</span> 질문 3</h2>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">question_03</span> <span class="op">&lt;-</span> <span class="st">"PCA를 사용하여 변수간 관계를 탐색하기 위해 차원 축소를 어떻게 수행할 수 있나요?"</span></span>
+<span></span>
+<span><span class="co"># answer_03 &lt;- py$answer_question(question_03)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="column-page">
+<div class="columns">
+<div class="column" style="width:25%;">
+<section id="질문-4" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="질문-4">질문</h3>
+<p>PCA를 사용하여 변수간 관계를 탐색하기 위해 차원 축소를 어떻게 수행할 수 있나요?</p>
+</section>
+</div><div class="column" style="width:75%;">
+<section id="답변-2" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="답변-2">답변</h3>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"PCA (Principal Component Analysis)는 데이터의 차원 축소를 위한 테크닉 중 하나입니다. 이는 관찰된 변수들 간의 상관관계를 기반으로 데이터의 차원을 축소하는 방법입니다. \n\nPCA를 사용하여 R에서 변수의 관계를 탐색하려면 다음과 같이 수행할 수 있습니다:\n\n1. 데이터 전처리: 분석을 위한 데이터는 종종 어떤 변수도 누락되지 않도록 전처리되어야 합니다. 또한, PCA는 숫자 변수에 대해 작동하므로 범주형 데이터는 적절하게 변환되어야 합니다.\n\n2. 스케일링: PCA는 상관행렬이나 공분산 행렬에 대해 수행되므로 모든 변수가 동일한 스케일을 가져야 합니다. 이를 위해 `scale()` 함수를 사용하여 데이터를 정규화 할 수 있습니다.\n\n3. PCA 수행: `prcomp()` 또는 `princomp()` 함수를 사용하여 PCA를 수행하고 결과를 저장할 수 있습니다.\n\n```r\npca &lt;- prcomp(data, scale = TRUE)\n```\n4. 결과 시각화 및 해석: `summary()` 함수와 `biplot()` 함수를 사용하여 결과를 해석하고 시각화 할 수 있습니다. `summary(pca)`를 사용하여 설명된 분산의 백분율을 검토해 보고, `biplot(pca)`를 사용하여 기여도를 시각화 할 수 있습니다.\n\n```r\nsummary(pca)\nbiplot(pca)\n```\n\n이렇게 하면 각 주성분이 데이터의 분산을 어느 정도 설명하는지 그리고 각 변수가 주성분에 어떻게 기여하는지 쉽게 이해할 수 있습니다. 이 정보를 통해 변수간의 관계를 분석하고 이해할 수 있습니다."</span><span class="op">)</span></span>
+<span><span class="co">#&gt; PCA (Principal Component Analysis)는 데이터의 차원 축소를 위한 테크닉 중 하나입니다. 이는 관찰된 변수들 간의 상관관계를 기반으로 데이터의 차원을 축소하는 방법입니다. </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; PCA를 사용하여 R에서 변수의 관계를 탐색하려면 다음과 같이 수행할 수 있습니다:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 1. 데이터 전처리: 분석을 위한 데이터는 종종 어떤 변수도 누락되지 않도록 전처리되어야 합니다. 또한, PCA는 숫자 변수에 대해 작동하므로 범주형 데이터는 적절하게 변환되어야 합니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 2. 스케일링: PCA는 상관행렬이나 공분산 행렬에 대해 수행되므로 모든 변수가 동일한 스케일을 가져야 합니다. 이를 위해 `scale()` 함수를 사용하여 데이터를 정규화 할 수 있습니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 3. PCA 수행: `prcomp()` 또는 `princomp()` 함수를 사용하여 PCA를 수행하고 결과를 저장할 수 있습니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ```r</span></span>
+<span><span class="co">#&gt; pca &lt;- prcomp(data, scale = TRUE)</span></span>
+<span><span class="co">#&gt; ```</span></span>
+<span><span class="co">#&gt; 4. 결과 시각화 및 해석: `summary()` 함수와 `biplot()` 함수를 사용하여 결과를 해석하고 시각화 할 수 있습니다. `summary(pca)`를 사용하여 설명된 분산의 백분율을 검토해 보고, `biplot(pca)`를 사용하여 기여도를 시각화 할 수 있습니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ```r</span></span>
+<span><span class="co">#&gt; summary(pca)</span></span>
+<span><span class="co">#&gt; biplot(pca)</span></span>
+<span><span class="co">#&gt; ```</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 이렇게 하면 각 주성분이 데이터의 분산을 어느 정도 설명하는지 그리고 각 변수가 주성분에 어떻게 기여하는지 쉽게 이해할 수 있습니다. 이 정보를 통해 변수간의 관계를 분석하고 이해할 수 있습니다.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</section><section id="질문-4-1" class="level2 page-columns page-full" data-number="30.4"><h2 data-number="30.4" class="anchored" data-anchor-id="질문-4-1">
+<span class="header-section-number">30.4</span> 질문 4</h2>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">question_04</span> <span class="op">&lt;-</span> <span class="st">"PCA를 사용하여 변수간 관계를 탐색하기 위해 차원 축소를 어떻게 수행할 수 있나요?"</span></span>
+<span></span>
+<span><span class="co"># answer_04 &lt;- py$answer_question(question_04)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="column-page">
+<div class="columns">
+<div class="column" style="width:25%;">
+<section id="질문-5" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="질문-5">질문</h3>
+<p>PCA를 사용하여 변수간 관계를 탐색하기 위해 차원 축소를 어떻게 수행할 수 있나요?</p>
+</section>
+</div><div class="column" style="width:75%;">
+<section id="답변-3" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="답변-3">답변</h3>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"PCA(Principal Component Analysis, 주성분 분석)는 많은 변수에서 가장 중요한 패턴을 찾을 수 있도록 도와주는 통계적 기법으로, 이를 통해 데이터의 차원을 축소할 수 있습니다. R에서는 'prcomp' 또는 'princomp' 함수를 사용하여 PCA를 수행할 수 있습니다. \n\n추상적인 개념이지만 구체적인 예제를 통해 설명해보겠습니다.\n\n1. 데이터 준비: 먼저, 분석할 데이터셋을 로드하고 정제합니다. 모든 변수는 수치형이어야 하며, 결측치가 없어야 합니다.\n\n2. 데이터 정규화: PCA는 변수의 스케일에 민감하므로, 데이터는 진행하기 전에 반드시 정규화(normalization)되어야 합니다. R에서는 scale() 함수를 사용해서 모든 변수를 같은 스케일로 조정할 수 있습니다.\n\n3. PCA 수행: prcomp() 함수를 사용하여 PCA를 실행합니다. 예를 들어, 데이터 프레임이 df라면 아래와 같이 코드를 작성할 수 있습니다.\n    ```\n    pca_result &lt;- prcomp(df, center = TRUE, scale. = TRUE)\n    ```\n    이 함수는 PCA 결과를 반환하며, 각 주성분의 중요도, 각 원래 변수가 주성분에 얼마나 기여하는지 (rotation 또는 loadings라고 함) 등을 제공합니다.\n\n4. 결과 분석: summary() 함수를 사용하여 각 주성분이 데이터의 얼마나 큰 비율을 설명하는지 확인할 수 있습니다. \n    ```\n    summary(pca_result)\n    ```\n    또한 R에서 제공하는 다양한 시각화 기능 (예: biplot)을 사용하여 결과를 시각화하고 분석할 수 있습니다. 이를 통해 변수 간의 관계를 더 자세히 조사하거나, 데이터를 더 낮은 차원으로 투영하여 차원 축소를 수행할 수 있습니다. \n\n따라서 PCA는 데이터의 차원을 줄이면서도 가장 중요한 정보를 유지하는 데 도움이 되며, 이는 특히 데이터의 패턴을 탐색하거나 시각화할 때 유용합니다."</span><span class="op">)</span></span>
+<span><span class="co">#&gt; PCA(Principal Component Analysis, 주성분 분석)는 많은 변수에서 가장 중요한 패턴을 찾을 수 있도록 도와주는 통계적 기법으로, 이를 통해 데이터의 차원을 축소할 수 있습니다. R에서는 'prcomp' 또는 'princomp' 함수를 사용하여 PCA를 수행할 수 있습니다. </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 추상적인 개념이지만 구체적인 예제를 통해 설명해보겠습니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 1. 데이터 준비: 먼저, 분석할 데이터셋을 로드하고 정제합니다. 모든 변수는 수치형이어야 하며, 결측치가 없어야 합니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 2. 데이터 정규화: PCA는 변수의 스케일에 민감하므로, 데이터는 진행하기 전에 반드시 정규화(normalization)되어야 합니다. R에서는 scale() 함수를 사용해서 모든 변수를 같은 스케일로 조정할 수 있습니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 3. PCA 수행: prcomp() 함수를 사용하여 PCA를 실행합니다. 예를 들어, 데이터 프레임이 df라면 아래와 같이 코드를 작성할 수 있습니다.</span></span>
+<span><span class="co">#&gt;     ```</span></span>
+<span><span class="co">#&gt;     pca_result &lt;- prcomp(df, center = TRUE, scale. = TRUE)</span></span>
+<span><span class="co">#&gt;     ```</span></span>
+<span><span class="co">#&gt;     이 함수는 PCA 결과를 반환하며, 각 주성분의 중요도, 각 원래 변수가 주성분에 얼마나 기여하는지 (rotation 또는 loadings라고 함) 등을 제공합니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 4. 결과 분석: summary() 함수를 사용하여 각 주성분이 데이터의 얼마나 큰 비율을 설명하는지 확인할 수 있습니다. </span></span>
+<span><span class="co">#&gt;     ```</span></span>
+<span><span class="co">#&gt;     summary(pca_result)</span></span>
+<span><span class="co">#&gt;     ```</span></span>
+<span><span class="co">#&gt;     또한 R에서 제공하는 다양한 시각화 기능 (예: biplot)을 사용하여 결과를 시각화하고 분석할 수 있습니다. 이를 통해 변수 간의 관계를 더 자세히 조사하거나, 데이터를 더 낮은 차원으로 투영하여 차원 축소를 수행할 수 있습니다. </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 따라서 PCA는 데이터의 차원을 줄이면서도 가장 중요한 정보를 유지하는 데 도움이 되며, 이는 특히 데이터의 패턴을 탐색하거나 시각화할 때 유용합니다.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</section><section id="질문-5-1" class="level2 page-columns page-full" data-number="30.5"><h2 data-number="30.5" class="anchored" data-anchor-id="질문-5-1">
+<span class="header-section-number">30.5</span> 질문 5</h2>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">question_05</span> <span class="op">&lt;-</span> <span class="st">"t-SNE, PCA 및 클러스터링을 사용하여 변수간 관계를 탐색하는 데이터 탐색 스크립트의 예시를 제공할 수 있나요?"</span></span>
+<span></span>
+<span><span class="co"># answer_05 &lt;- py$answer_question(question_05)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="column-page">
+<div class="columns">
+<div class="column" style="width:25%;">
+<section id="질문-6" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="질문-6">질문</h3>
+<p>t-SNE, PCA 및 클러스터링을 사용하여 변수간 관계를 탐색하는 데이터 탐색 스크립트의 예시를 제공할 수 있나요?</p>
+</section>
+</div><div class="column" style="width:75%;">
+<section id="답변-4" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="답변-4">답변</h3>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"네, 말씀하신대로 R 언어를 사용하여 t-SNE, PCA 및 클러스터링을 사용하여 데이터의 변수 간 관계를 탐색하는 샘플 스크립트를 아래에 제공합니다. 이 예시에서는 내장 데이터 세트인 'iris'를 사용합니다.\n\n```R\n# 필요한 패키지를 불러오기\nlibrary(tidyverse)\nlibrary(Rtsne)\nlibrary(cluster)\nlibrary(factoextra)\n\n# 데이터 불러오기\ndata(\"iris\")\n\n# PCA를 이용한 변수 간 관계 탐색\npca_iris &lt;- prcomp(iris[, 1:4], scale = TRUE)\n\n# PCA 결과 확인\nfviz_pca_ind(pca_iris, geom.ind='point',\n             pointshape = 21, pointsize = 2, \n             fill.ind = iris$Species, palette = \"jco\", \n             addEllipses = TRUE, ellipse.level = 0.95)\n\n# t-SNE를 이용한 변수간 관계 탐색\ntsne_iris &lt;- Rtsne(iris[, 1:4], dims = 2, perplexity=30, verbose=TRUE, max_iter = 500)\n\n# t-SNE 결과 확인 \ntsne_iris$Y %&gt;%\n  data.frame() %&gt;%\n  setNames(c(\"X\", \"Y\")) %&gt;%\n  mutate(Species = iris$Species) %&gt;%\n  ggplot(aes(X, Y, color = Species)) +\n  geom_point() +\n  theme_minimal()\n\n# 클러스터링을 이용한 변수간 관계 탐색\ndist_iris &lt;- dist(iris[, 1:4])\nhclust_iris &lt;- hclust(dist_iris)\ncluster_iris &lt;- cutree(hclust_iris, k = 3)\n\n# 클러스터링 결과 확인\ntable(cluster_iris, iris$Species)\nplot(hclust_iris)\nrect.hclust(hclust_iris, k = 3, border = \"red\")\n```\nt-SNE와 PCA는 고차원 데이터를 시각화하기 위해 사용되며, 이를 통해 변수들 사이의 관계를 기하학적으로 이해할 수 있습니다. 클러스터링은 데이터 세트를 비슷한 특성을 가진 그룹으로 분류할 때 사용하며, 이를 통해 관계를 파악할 수 있습니다.\n출력 그래프와 함께 이들 결과를 해석하면 더 깊은 인사이트를 얻을 수 있습니다."</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 네, 말씀하신대로 R 언어를 사용하여 t-SNE, PCA 및 클러스터링을 사용하여 데이터의 변수 간 관계를 탐색하는 샘플 스크립트를 아래에 제공합니다. 이 예시에서는 내장 데이터 세트인 'iris'를 사용합니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ```R</span></span>
+<span><span class="co">#&gt; # 필요한 패키지를 불러오기</span></span>
+<span><span class="co">#&gt; library(tidyverse)</span></span>
+<span><span class="co">#&gt; library(Rtsne)</span></span>
+<span><span class="co">#&gt; library(cluster)</span></span>
+<span><span class="co">#&gt; library(factoextra)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; # 데이터 불러오기</span></span>
+<span><span class="co">#&gt; data("iris")</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; # PCA를 이용한 변수 간 관계 탐색</span></span>
+<span><span class="co">#&gt; pca_iris &lt;- prcomp(iris[, 1:4], scale = TRUE)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; # PCA 결과 확인</span></span>
+<span><span class="co">#&gt; fviz_pca_ind(pca_iris, geom.ind='point',</span></span>
+<span><span class="co">#&gt;              pointshape = 21, pointsize = 2, </span></span>
+<span><span class="co">#&gt;              fill.ind = iris$Species, palette = "jco", </span></span>
+<span><span class="co">#&gt;              addEllipses = TRUE, ellipse.level = 0.95)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; # t-SNE를 이용한 변수간 관계 탐색</span></span>
+<span><span class="co">#&gt; tsne_iris &lt;- Rtsne(iris[, 1:4], dims = 2, perplexity=30, verbose=TRUE, max_iter = 500)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; # t-SNE 결과 확인 </span></span>
+<span><span class="co">#&gt; tsne_iris$Y %&gt;%</span></span>
+<span><span class="co">#&gt;   data.frame() %&gt;%</span></span>
+<span><span class="co">#&gt;   setNames(c("X", "Y")) %&gt;%</span></span>
+<span><span class="co">#&gt;   mutate(Species = iris$Species) %&gt;%</span></span>
+<span><span class="co">#&gt;   ggplot(aes(X, Y, color = Species)) +</span></span>
+<span><span class="co">#&gt;   geom_point() +</span></span>
+<span><span class="co">#&gt;   theme_minimal()</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; # 클러스터링을 이용한 변수간 관계 탐색</span></span>
+<span><span class="co">#&gt; dist_iris &lt;- dist(iris[, 1:4])</span></span>
+<span><span class="co">#&gt; hclust_iris &lt;- hclust(dist_iris)</span></span>
+<span><span class="co">#&gt; cluster_iris &lt;- cutree(hclust_iris, k = 3)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; # 클러스터링 결과 확인</span></span>
+<span><span class="co">#&gt; table(cluster_iris, iris$Species)</span></span>
+<span><span class="co">#&gt; plot(hclust_iris)</span></span>
+<span><span class="co">#&gt; rect.hclust(hclust_iris, k = 3, border = "red")</span></span>
+<span><span class="co">#&gt; ```</span></span>
+<span><span class="co">#&gt; t-SNE와 PCA는 고차원 데이터를 시각화하기 위해 사용되며, 이를 통해 변수들 사이의 관계를 기하학적으로 이해할 수 있습니다. 클러스터링은 데이터 세트를 비슷한 특성을 가진 그룹으로 분류할 때 사용하며, 이를 통해 관계를 파악할 수 있습니다.</span></span>
+<span><span class="co">#&gt; 출력 그래프와 함께 이들 결과를 해석하면 더 깊은 인사이트를 얻을 수 있습니다.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</section><section id="질문-6-1" class="level2 page-columns page-full" data-number="30.6"><h2 data-number="30.6" class="anchored" data-anchor-id="질문-6-1">
+<span class="header-section-number">30.6</span> 질문 6</h2>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">question_06</span> <span class="op">&lt;-</span> <span class="st">"tibble과 ggplot2를 사용하여 시계열 데이터에서 패턴과 추세를 어떻게 식별할 수 있나요?"</span></span>
+<span></span>
+<span><span class="co"># answer_06 &lt;- py$answer_question(question_06)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="column-page">
+<div class="columns">
+<div class="column" style="width:25%;">
+<section id="질문-7" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="질문-7">질문</h3>
+<p>tibble과 ggplot2를 사용하여 시계열 데이터에서 패턴과 추세를 어떻게 식별할 수 있나요?</p>
+</section>
+</div><div class="column" style="width:75%;">
+<section id="답변-5" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="답변-5">답변</h3>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"R 언어에서 tibble과 ggplot2 패키지는 시계열 데이터에서 패턴과 추세를 식별하는데 사용할 수 있는 유용한 도구입니다.\n\n1. 첫 번째로, tibble은 R에서 데이터 프레임을 다루기 위한 새로운 데이터 타입입니다. 기본 R 데이터 프레임의 단점을 보완하면서, 동일한 구조와 작업을 유지합니다. 그러므로 tibble은 아주 큰 데이터셋에서도 처리 속도가 빠르며, 시계열 데이터를 포함한 모든 종류의 데이터를 쉽게 다룰 수 있게 해줍니다.\n\n예를 들어, 우리는 다음과 같은 방법으로 시계열 데이터를 tibble로 변환할 수 있습니다:\n\n```r\n# 필요한 패키지 불러오기\nlibrary(tidyverse)\n\n# 일별 주가 데이터를 tibble로 변환\nstock_prices &lt;- as_tibble(stock_prices)\n```\n\n2. 다음으로, ggplot2는 'The Grammar of Graphics'를 기반으로 하는 데이터 시각화 패키지입니다. 이를 이용해 시계열 데이터에서 패턴과 추세를 직관적으로 파악할 수 있습니다.\n\n예를 들어, ggplot2를 이용해 주가의 시간에 따른 변화를 그래프로 그릴 수 있습니다.\n\n```r\nggplot(data = stock_prices, aes(x = Date, y = Close)) +\n  geom_line() +\n  labs(title = \"Stock prices over time\", x = \"Date\", y = \"Close price\")\n```\n\n여기서 geom_line() 함수는 시간에 따른 주가의 변화를 선 그래프로 그려줍니다. 이를 통해 데이터에서 패턴이나 트렌드를 시각적으로 파악할 수 있습니다. \n\n또한, ggplot2 패키지는 다양한 통계 변환 함수와 smoothers를 제공하여 시계열 데이터의 추세를 더 잘 나타낼 수 있습니다. 예를 들어, geom_smooth() 함수는 일련의 데이터 포인트에 적합한 부드러운 곡선을 추가하여 데이터의 전반적인 추세를 도식화해 줍니다."</span><span class="op">)</span></span>
+<span><span class="co">#&gt; R 언어에서 tibble과 ggplot2 패키지는 시계열 데이터에서 패턴과 추세를 식별하는데 사용할 수 있는 유용한 도구입니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 1. 첫 번째로, tibble은 R에서 데이터 프레임을 다루기 위한 새로운 데이터 타입입니다. 기본 R 데이터 프레임의 단점을 보완하면서, 동일한 구조와 작업을 유지합니다. 그러므로 tibble은 아주 큰 데이터셋에서도 처리 속도가 빠르며, 시계열 데이터를 포함한 모든 종류의 데이터를 쉽게 다룰 수 있게 해줍니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 예를 들어, 우리는 다음과 같은 방법으로 시계열 데이터를 tibble로 변환할 수 있습니다:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ```r</span></span>
+<span><span class="co">#&gt; # 필요한 패키지 불러오기</span></span>
+<span><span class="co">#&gt; library(tidyverse)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; # 일별 주가 데이터를 tibble로 변환</span></span>
+<span><span class="co">#&gt; stock_prices &lt;- as_tibble(stock_prices)</span></span>
+<span><span class="co">#&gt; ```</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 2. 다음으로, ggplot2는 'The Grammar of Graphics'를 기반으로 하는 데이터 시각화 패키지입니다. 이를 이용해 시계열 데이터에서 패턴과 추세를 직관적으로 파악할 수 있습니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 예를 들어, ggplot2를 이용해 주가의 시간에 따른 변화를 그래프로 그릴 수 있습니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ```r</span></span>
+<span><span class="co">#&gt; ggplot(data = stock_prices, aes(x = Date, y = Close)) +</span></span>
+<span><span class="co">#&gt;   geom_line() +</span></span>
+<span><span class="co">#&gt;   labs(title = "Stock prices over time", x = "Date", y = "Close price")</span></span>
+<span><span class="co">#&gt; ```</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여기서 geom_line() 함수는 시간에 따른 주가의 변화를 선 그래프로 그려줍니다. 이를 통해 데이터에서 패턴이나 트렌드를 시각적으로 파악할 수 있습니다. </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 또한, ggplot2 패키지는 다양한 통계 변환 함수와 smoothers를 제공하여 시계열 데이터의 추세를 더 잘 나타낼 수 있습니다. 예를 들어, geom_smooth() 함수는 일련의 데이터 포인트에 적합한 부드러운 곡선을 추가하여 데이터의 전반적인 추세를 도식화해 줍니다.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</section><section id="질문-7-1" class="level2 page-columns page-full" data-number="30.7"><h2 data-number="30.7" class="anchored" data-anchor-id="질문-7-1">
+<span class="header-section-number">30.7</span> 질문 7</h2>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">question_07</span> <span class="op">&lt;-</span> <span class="st">"tibble과 ggplot2를 사용하여 데이터에서 패턴과 추세를 식별하는 데이터 탐색 스크립트의 예시를 제공할 수 있나요?"</span></span>
+<span></span>
+<span><span class="co"># answer_07 &lt;- py$answer_question(question_07)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="column-page">
+<div class="columns">
+<div class="column" style="width:25%;">
+<section id="질문-8" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="질문-8">질문</h3>
+<p>tibble과 ggplot2를 사용하여 데이터에서 패턴과 추세를 식별하는 데이터 탐색 스크립트의 예시를 제공할 수 있나요?</p>
+</section>
+</div><div class="column" style="width:75%;">
+<section id="답변-6" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="답변-6">답변</h3>
+<div class="cell">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"네, 물론입니다. 다음의 예를 들어보겠습니다. 먼저 필요한 라이브러리를 로드합니다:\n\n```R\nlibrary(tidyverse)  # includes both tibble and ggplot2\n```\n\n다음으로, 패턴이나 추세를 확인하려는 데이터를 예로 들어, 내장되어 있는 미국 여성의 생존 기대치를 보여주는 데이터셋인 `women`을 불러옵니다:\n\n```R\ndata(\"women\")\n```\n\n`tibble`을 사용해 데이터를 보다 더 보기 쉽게 확인할 수 있습니다:\n\n```R\nwomen_tibble &lt;- as_tibble(women)\nprint(women_tibble)\n```\n\n`ggplot2`을 사용해 이 데이터의 패턴과 추세를 시각화하겠습니다. 본 예시에서는 women 데이터셋에서 나이에 따른 평균 체중을 나타내는 그래프를 그립니다:\n\n```R\nggplot(data = women_tibble, aes(x = height, y = weight)) +\n  geom_point(shape=1) +    # Use hollow circles\n  geom_smooth(method = lm, se = FALSE, color=\"red\") +  # Add linear regression line, without CI\n  labs(title = \"Age vs Weight in Women\", x = \"Height\", y = \"Weight\") # labels\n```\n데이터를 plot해 본 결과, `women` 데이터셋에서 여성의 키와 몸무게 사이에 양의 상관 관계가 있음을 발견할 수 있습니다. `geom_smooth` 함수를 사용하면, 이 데이터의 추세를 더 명확하게 파악할 수 있습니다. 이는 `ggplot2` 패키지의 많은 기능 중 하나입니다.\n\n이런 식으로 `tibble`과 `ggplot2`를 활용하면, 데이터를 쉽게 관리하고 시각화하면서 여러 패턴과 추세를 찾아낼 수 있습니다. 이는 데이터 과학자가 데이터를 이해하는 데 매우 중요한 과정입니다."</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 네, 물론입니다. 다음의 예를 들어보겠습니다. 먼저 필요한 라이브러리를 로드합니다:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ```R</span></span>
+<span><span class="co">#&gt; library(tidyverse)  # includes both tibble and ggplot2</span></span>
+<span><span class="co">#&gt; ```</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 다음으로, 패턴이나 추세를 확인하려는 데이터를 예로 들어, 내장되어 있는 미국 여성의 생존 기대치를 보여주는 데이터셋인 `women`을 불러옵니다:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ```R</span></span>
+<span><span class="co">#&gt; data("women")</span></span>
+<span><span class="co">#&gt; ```</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; `tibble`을 사용해 데이터를 보다 더 보기 쉽게 확인할 수 있습니다:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ```R</span></span>
+<span><span class="co">#&gt; women_tibble &lt;- as_tibble(women)</span></span>
+<span><span class="co">#&gt; print(women_tibble)</span></span>
+<span><span class="co">#&gt; ```</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; `ggplot2`을 사용해 이 데이터의 패턴과 추세를 시각화하겠습니다. 본 예시에서는 women 데이터셋에서 나이에 따른 평균 체중을 나타내는 그래프를 그립니다:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ```R</span></span>
+<span><span class="co">#&gt; ggplot(data = women_tibble, aes(x = height, y = weight)) +</span></span>
+<span><span class="co">#&gt;   geom_point(shape=1) +    # Use hollow circles</span></span>
+<span><span class="co">#&gt;   geom_smooth(method = lm, se = FALSE, color="red") +  # Add linear regression line, without CI</span></span>
+<span><span class="co">#&gt;   labs(title = "Age vs Weight in Women", x = "Height", y = "Weight") # labels</span></span>
+<span><span class="co">#&gt; ```</span></span>
+<span><span class="co">#&gt; 데이터를 plot해 본 결과, `women` 데이터셋에서 여성의 키와 몸무게 사이에 양의 상관 관계가 있음을 발견할 수 있습니다. `geom_smooth` 함수를 사용하면, 이 데이터의 추세를 더 명확하게 파악할 수 있습니다. 이는 `ggplot2` 패키지의 많은 기능 중 하나입니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 이런 식으로 `tibble`과 `ggplot2`를 활용하면, 데이터를 쉽게 관리하고 시각화하면서 여러 패턴과 추세를 찾아낼 수 있습니다. 이는 데이터 과학자가 데이터를 이해하는 데 매우 중요한 과정입니다.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</section><section id="질문-8-1" class="level2 page-columns page-full" data-number="30.8"><h2 data-number="30.8" class="anchored" data-anchor-id="질문-8-1">
+<span class="header-section-number">30.8</span> 질문 8</h2>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">question_08</span> <span class="op">&lt;-</span> <span class="st">"tibble과 ggplot2를 사용하여 변수간 관계를 탐색하기 위한 일반적인 기술은 무엇인가요?"</span></span>
+<span></span>
+<span><span class="co"># answer_08 &lt;- py$answer_question(question_08)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="column-page">
+<div class="columns">
+<div class="column" style="width:25%;">
+<section id="질문-9" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="질문-9">질문</h3>
+<p>tibble과 ggplot2를 사용하여 변수간 관계를 탐색하기 위한 일반적인 기술은 무엇인가요?</p>
+</section>
+</div><div class="column" style="width:75%;">
+<section id="답변-7" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="답변-7">답변</h3>
+<div class="cell">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"tibble과 ggplot2는 R 언어에서 데이터를 다루고 시각화하는 데 널리 사용되는 도구입니다. 변수 간 관계를 탐색하는 일반적인 기법은 아래와 같습니다.\n\n1. **tibble 사용:**\n\n   tibble은 데이터 프레임을 다루는 R 패키지로, 데이터 프레임을 더 유연하게 조작할 수 있도록 만들어진 향상된 데이터 프레임입니다. tibble을 사용하면, 데이터 요약 및 변환을 위한 dplyr 함수들을 사용할 수 있습니다. \n\n   변수 간 관계를 탐색하는 tibble의 일반적인 방법은 'group_by', 'summarize'와 같은 dplyr 함수를 사용하여 특정 변수에 따라 데이터를 그룹 지어 분석하는 것입니다. 'filter', 'select', 'mutate', 'arrange'와 같은 함수들도 유용하게 사용될 수 있습니다.\n\n2. **ggplot2 사용:**\n\n   ggplot2는 R에서 가장 인기 있는 데이터 시각화 패키지 중 하나로, 데이터를 그래프로 그려 복잡한 데이터 패턴을 빠르게 이해할 수 있도록 합니다.\n\n   ggplot2를 사용해서 변수 간 관계를 탐색하는 일반적인 방법 중 하나는 산점도 (scatter plot)를 그리는 것입니다. 두 변수 간의 관계를 보여주는 가장 기본적인 그래프 형태입니다. \n\n   또한, ggplot2의 'facet_wrap' 또는 'facet_grid' 기능을 사용하면, 한 변수의 서로 다른 수준에 따른 다른 변수의 분포를 여러 개의 작은 패널로 보여주는 그래프를 만들 수 있습니다. \n\n   'geom_smooth'를 사용하면 추세선을 추가하여 변수 간 관계를 보다 명확하게 확인할 수도 있습니다.\n   \n이외에도 histogram, boxplot, violin plot 등 다양한 그래프를 활용하여 변수 간 관계를 탐색할 수 있습니다. 주어진 데이터 특성과 질문에 따라 적절한 방법을 선택하면 됩니다."</span><span class="op">)</span></span>
+<span><span class="co">#&gt; tibble과 ggplot2는 R 언어에서 데이터를 다루고 시각화하는 데 널리 사용되는 도구입니다. 변수 간 관계를 탐색하는 일반적인 기법은 아래와 같습니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 1. **tibble 사용:**</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;    tibble은 데이터 프레임을 다루는 R 패키지로, 데이터 프레임을 더 유연하게 조작할 수 있도록 만들어진 향상된 데이터 프레임입니다. tibble을 사용하면, 데이터 요약 및 변환을 위한 dplyr 함수들을 사용할 수 있습니다. </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;    변수 간 관계를 탐색하는 tibble의 일반적인 방법은 'group_by', 'summarize'와 같은 dplyr 함수를 사용하여 특정 변수에 따라 데이터를 그룹 지어 분석하는 것입니다. 'filter', 'select', 'mutate', 'arrange'와 같은 함수들도 유용하게 사용될 수 있습니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 2. **ggplot2 사용:**</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;    ggplot2는 R에서 가장 인기 있는 데이터 시각화 패키지 중 하나로, 데이터를 그래프로 그려 복잡한 데이터 패턴을 빠르게 이해할 수 있도록 합니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;    ggplot2를 사용해서 변수 간 관계를 탐색하는 일반적인 방법 중 하나는 산점도 (scatter plot)를 그리는 것입니다. 두 변수 간의 관계를 보여주는 가장 기본적인 그래프 형태입니다. </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;    또한, ggplot2의 'facet_wrap' 또는 'facet_grid' 기능을 사용하면, 한 변수의 서로 다른 수준에 따른 다른 변수의 분포를 여러 개의 작은 패널로 보여주는 그래프를 만들 수 있습니다. </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;    'geom_smooth'를 사용하면 추세선을 추가하여 변수 간 관계를 보다 명확하게 확인할 수도 있습니다.</span></span>
+<span><span class="co">#&gt;    </span></span>
+<span><span class="co">#&gt; 이외에도 histogram, boxplot, violin plot 등 다양한 그래프를 활용하여 변수 간 관계를 탐색할 수 있습니다. 주어진 데이터 특성과 질문에 따라 적절한 방법을 선택하면 됩니다.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</section><section id="질문-9-1" class="level2 page-columns page-full" data-number="30.9"><h2 data-number="30.9" class="anchored" data-anchor-id="질문-9-1">
+<span class="header-section-number">30.9</span> 질문 9</h2>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">question_09</span> <span class="op">&lt;-</span> <span class="st">"tibble과 ggplot2를 사용하여 산점도와 선 그래프를 생성하여 변수간 관계를 탐색할 수 있는 방법은 무엇인가요?"</span></span>
+<span></span>
+<span><span class="co"># answer_09 &lt;- py$answer_question(question_09)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="column-page">
+<div class="columns">
+<div class="column" style="width:25%;">
+<section id="질문-10" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="질문-10">질문</h3>
+<p>tibble과 ggplot2를 사용하여 산점도와 선 그래프를 생성하여 변수간 관계를 탐색할 수 있는 방법은 무엇인가요?</p>
+</section>
+</div><div class="column" style="width:75%;">
+<section id="답변-8" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="답변-8">답변</h3>
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"R에서 'tibble'이란 데이터 프레임을 보다 쉽게 다룰 수 있게 설계된 데이터 구조이며, 'ggplot2'는 복잡한 그래프를 효과적으로 생성할 수 있게 도와주는 패키지입니다. \n\n선 그래프와 산점도를 생성하여 변수 간의 관계를 탐색하는 방식은 아래와 같이 구성할 수 있습니다.\n\n먼저, 필요한 패키지를 설치하고 불러와야 합니다.\n```R\ninstall.packages(\"dplyr\")\ninstall.packages(\"ggplot2\")\nlibrary(dplyr)\nlibrary(ggplot2)\n```\n\n다음으로, tibble 형태의 데이터를 생성하거나 불러옵니다.\n```R\ndf &lt;- tibble::tibble(\n  x = rnorm(100),  # 100개의 표준 정규분포 난수 생성\n  y = 1.5 * x + rnorm(100)  # x값에 따른 y값 생성\n)\n```\n이 데이터는 x와 y이라는 두 개의 변수로 이루어진 100개의 관측치를 담고 있습니다.\n\n그 후, 'ggplot2'를 사용하여 산점도를 생성할 수 있습니다. \n```R\nggplot(data = df, mapping = aes(x = x, y = y)) +\n  geom_point()  # 산점도 생성\n```\n\n선 그래프를 생성하기 위해서는 'geom_line()'을 사용합니다.\n```R\nggplot(data = df, mapping = aes(x = x, y = y)) +\n  geom_line()  # 선 그래프 생성\n```\n\n이렇게 하면 x와 y의 관계를 산점도와 선 그래프로 시각적으로 표현할 수 있습니다. 각 점이나 선의 위치와 형태를 통해 변수들 간의 관계를 살펴볼 수 있게 됩니다. \n\n추가적으로, 여러 그래픽 파라미터를 조정하는 것으로 그래프를 보다 세밀하게 조정할 수 있습니다. 예를 들어, 'labs()', 'theme()', 'geom_smooth()', 'facet_wrap()' 등의 함수들을 조합하면 다양한 복잡한 그래프를 만들 수 있습니다."</span><span class="op">)</span></span>
+<span><span class="co">#&gt; R에서 'tibble'이란 데이터 프레임을 보다 쉽게 다룰 수 있게 설계된 데이터 구조이며, 'ggplot2'는 복잡한 그래프를 효과적으로 생성할 수 있게 도와주는 패키지입니다. </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 선 그래프와 산점도를 생성하여 변수 간의 관계를 탐색하는 방식은 아래와 같이 구성할 수 있습니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 먼저, 필요한 패키지를 설치하고 불러와야 합니다.</span></span>
+<span><span class="co">#&gt; ```R</span></span>
+<span><span class="co">#&gt; install.packages("dplyr")</span></span>
+<span><span class="co">#&gt; install.packages("ggplot2")</span></span>
+<span><span class="co">#&gt; library(dplyr)</span></span>
+<span><span class="co">#&gt; library(ggplot2)</span></span>
+<span><span class="co">#&gt; ```</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 다음으로, tibble 형태의 데이터를 생성하거나 불러옵니다.</span></span>
+<span><span class="co">#&gt; ```R</span></span>
+<span><span class="co">#&gt; df &lt;- tibble::tibble(</span></span>
+<span><span class="co">#&gt;   x = rnorm(100),  # 100개의 표준 정규분포 난수 생성</span></span>
+<span><span class="co">#&gt;   y = 1.5 * x + rnorm(100)  # x값에 따른 y값 생성</span></span>
+<span><span class="co">#&gt; )</span></span>
+<span><span class="co">#&gt; ```</span></span>
+<span><span class="co">#&gt; 이 데이터는 x와 y이라는 두 개의 변수로 이루어진 100개의 관측치를 담고 있습니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 그 후, 'ggplot2'를 사용하여 산점도를 생성할 수 있습니다. </span></span>
+<span><span class="co">#&gt; ```R</span></span>
+<span><span class="co">#&gt; ggplot(data = df, mapping = aes(x = x, y = y)) +</span></span>
+<span><span class="co">#&gt;   geom_point()  # 산점도 생성</span></span>
+<span><span class="co">#&gt; ```</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 선 그래프를 생성하기 위해서는 'geom_line()'을 사용합니다.</span></span>
+<span><span class="co">#&gt; ```R</span></span>
+<span><span class="co">#&gt; ggplot(data = df, mapping = aes(x = x, y = y)) +</span></span>
+<span><span class="co">#&gt;   geom_line()  # 선 그래프 생성</span></span>
+<span><span class="co">#&gt; ```</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 이렇게 하면 x와 y의 관계를 산점도와 선 그래프로 시각적으로 표현할 수 있습니다. 각 점이나 선의 위치와 형태를 통해 변수들 간의 관계를 살펴볼 수 있게 됩니다. </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 추가적으로, 여러 그래픽 파라미터를 조정하는 것으로 그래프를 보다 세밀하게 조정할 수 있습니다. 예를 들어, 'labs()', 'theme()', 'geom_smooth()', 'facet_wrap()' 등의 함수들을 조합하면 다양한 복잡한 그래프를 만들 수 있습니다.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</section><section id="질문-10-1" class="level2 page-columns page-full" data-number="30.10"><h2 data-number="30.10" class="anchored" data-anchor-id="질문-10-1">
+<span class="header-section-number">30.10</span> 질문 10</h2>
+<div class="cell">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">question_10</span> <span class="op">&lt;-</span> <span class="st">"PCA를 사용하여 변수간 관계를 탐색하기 위해 차원 축소를 어떻게 수행할 수 있나요?"</span></span>
+<span></span>
+<span><span class="co"># answer_10 &lt;- py$answer_question(question_10)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="column-page">
+<div class="columns">
+<div class="column" style="width:25%;">
+<section id="질문-11" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="질문-11">질문</h3>
+<p>PCA를 사용하여 변수간 관계를 탐색하기 위해 차원 축소를 어떻게 수행할 수 있나요?</p>
+</section>
+</div><div class="column" style="width:75%;">
+<section id="답변-9" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="답변-9">답변</h3>
+<div class="cell">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"주성분 분석(PCA)는 R에서 차원 축소를 수행하는 데 사용되는 기법 중 하나로, 변동이 가장 큰 데이터의 축을 찾아 높은 차원의 데이터를 낮은 차원으로 변환시키는 기법을 설명합니다.\n\n다음은 R에서 PCA를 수행하기 위한 간단한 단계입니다:\n\n1. 데이터를 준비합니다. PCA는 연속형 변수에만 적용될 수 있으므로, 범주형 변수를 포함하고 있다면 이를 제거하거나 숫자로 변환해야 합니다.\n\n2. 데이터 스케일링을 수행합니다. PCA는 변수의 범위에 따라 결과가 크게 달라질 수 있으므로, 데이터의 표준화 또는 정규화 과정이 필요합니다. R의 `scale()` 함수를 사용할 수 있습니다.\n\n3. `prcomp()` 또는 `princomp()` 함수를 사용하여 PCA를 수행합니다. 주성분의 개수를 지정하거나, 데이터에 총 변동성의 몇 퍼센트를 설명하도록 할지 결정할 수 있습니다.\n\n4. `summary()` 함수를 사용하여 결과를 확인합니다. 여기에는 각 주성분이 설명하는 변동성의 비율, 누적 설명된 변동중 어느 정도의 비율을 차지하는 지 등의 정보가 포함되어 있습니다.\n\n5. 필요에 따라 결과를 시각화합니다. 이를 통해 각 주성분이 어떤 변수와 강한 연관성을 보이는지 확인할 수 있습니다. `biplot()` 함수를 사용하면 주성분과 개별 변수 사이의 관계를 한눈에 볼 수 있습니다.\n\n이런 방법을 통해 데이터 세트의 차원을 축소하고, 변수 간의 패턴이나 관계를 더 잘 이해하고 시각화하는 데 도움이 될 수 있습니다."</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 주성분 분석(PCA)는 R에서 차원 축소를 수행하는 데 사용되는 기법 중 하나로, 변동이 가장 큰 데이터의 축을 찾아 높은 차원의 데이터를 낮은 차원으로 변환시키는 기법을 설명합니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 다음은 R에서 PCA를 수행하기 위한 간단한 단계입니다:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 1. 데이터를 준비합니다. PCA는 연속형 변수에만 적용될 수 있으므로, 범주형 변수를 포함하고 있다면 이를 제거하거나 숫자로 변환해야 합니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 2. 데이터 스케일링을 수행합니다. PCA는 변수의 범위에 따라 결과가 크게 달라질 수 있으므로, 데이터의 표준화 또는 정규화 과정이 필요합니다. R의 `scale()` 함수를 사용할 수 있습니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 3. `prcomp()` 또는 `princomp()` 함수를 사용하여 PCA를 수행합니다. 주성분의 개수를 지정하거나, 데이터에 총 변동성의 몇 퍼센트를 설명하도록 할지 결정할 수 있습니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 4. `summary()` 함수를 사용하여 결과를 확인합니다. 여기에는 각 주성분이 설명하는 변동성의 비율, 누적 설명된 변동중 어느 정도의 비율을 차지하는 지 등의 정보가 포함되어 있습니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 5. 필요에 따라 결과를 시각화합니다. 이를 통해 각 주성분이 어떤 변수와 강한 연관성을 보이는지 확인할 수 있습니다. `biplot()` 함수를 사용하면 주성분과 개별 변수 사이의 관계를 한눈에 볼 수 있습니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 이런 방법을 통해 데이터 세트의 차원을 축소하고, 변수 간의 패턴이나 관계를 더 잘 이해하고 시각화하는 데 도움이 될 수 있습니다.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</div>
+</div>
+</div>
+
+
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">그림&nbsp;29.1: 데이터 과학자 업무방식 변화</span>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-gencay2023chatgpt" class="csl-entry" role="listitem">
+Gencay, I. 2023. <span>“ChatGPT Guide for Data Scientists: Top 40 Most Important Prompts”</span>. <em>Towards AI</em>, 4월. <a href="https://pub.towardsai.net/chatgpt-guide-for-data-scientists-top-40-most-important-prompts-cdb911f3a427">https://pub.towardsai.net/chatgpt-guide-for-data-scientists-top-40-most-important-prompts-cdb911f3a427</a>.
+</div>
+</div>
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "복사완료!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "복사완료!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/r2bit\.com\/gpt-ds\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
+          }
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./gpt_python.html" class="pagination-link" aria-label="챗GPT 환경 구축">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">챗GPT 환경 구축</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="참고문헌">
+        <span class="nav-page-text">참고문헌</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p>챗GPT 데이터 과학 책은 소프트웨어 카펜트리 “R for Reproducible Scientific Analysis”를 번역한 것이 포함되어 있습니다.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/gpt_prompt_ds.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
+</div>
+  </div>
+</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","loop":false});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
+
+
+</body></html>
